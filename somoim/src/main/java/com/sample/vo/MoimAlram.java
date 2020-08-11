@@ -2,7 +2,7 @@ package com.sample.vo;
 
 public class MoimAlram {
 
-	private long no;
+	private long alramNo;
 	private String message;
 	private String type;
 	private String readYn;
@@ -10,12 +10,12 @@ public class MoimAlram {
 	
 	public MoimAlram() {}
 
-	public long getNo() {
-		return no;
+	public long getAlramNo() {
+		return alramNo;
 	}
-
-	public void setNo(long no) {
-		this.no = no;
+	
+	public void setAlramNo(long alramNo) {
+		this.alramNo = alramNo;
 	}
 
 	public String getMessage() {

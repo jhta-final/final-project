@@ -2,17 +2,17 @@ package com.sample.vo;
 
 public class MoimBoardCate {
 
-	private long no;
+	private long boardCateNo;
 	private String name;
 	
 	public MoimBoardCate() {}
 
-	public long getNo() {
-		return no;
+	public long getBoardCateNo() {
+		return boardCateNo;
 	}
-
-	public void setNo(long no) {
-		this.no = no;
+	
+	public void setBoardCateNo(long boardCateNo) {
+		this.boardCateNo = boardCateNo;
 	}
 
 	public String getName() {

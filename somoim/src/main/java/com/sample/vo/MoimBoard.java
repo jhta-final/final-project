@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class MoimBoard {
 
-	private long no;
+	private long boardNo;
 	private String title;
 	private String content;
 	private long views;
@@ -16,12 +16,12 @@ public class MoimBoard {
 	
 	public MoimBoard() {}
 
-	public long getNo() {
-		return no;
+	public long getBoardNo() {
+		return boardNo;
 	}
-
-	public void setNo(long no) {
-		this.no = no;
+	
+	public void setBoardNo(long boardNo) {
+		this.boardNo = boardNo;
 	}
 
 	public String getTitle() {
