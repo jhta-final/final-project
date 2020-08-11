@@ -12,6 +12,7 @@
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  margin-top: 55px;
 }
 
 /* The navigation menu links */
@@ -39,7 +40,7 @@
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main {
+#content {
   transition: margin-left .5s;
   padding: 20px;
 }
@@ -50,9 +51,9 @@
   .sidenav a {font-size: 18px;}
 }
 </style>
-<br/>
-<br/>
+
 <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a href="#">About</a>
   <a href="#">Services</a>
   <a href="#">Clients</a>

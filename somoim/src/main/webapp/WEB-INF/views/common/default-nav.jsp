@@ -2,7 +2,7 @@
 <div class="pos-f-t my-nav">
 	<nav class="navbar navbar-dark bg-dark">
 		<button class="navbar-toggler">
-			<span class="navbar-toggler-icon" ontoggle="openNav()"></span>
+			<span class="navbar-toggler-icon" onclick="openNav()"></span>
 		</button>
 		<a class="navbar-brand" href="#"> <img
 			src="https://mdbootstrap.com/img/logo/mdb-transparent.png"
