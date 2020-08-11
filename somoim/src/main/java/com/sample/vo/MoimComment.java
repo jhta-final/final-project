@@ -1,0 +1,74 @@
+package com.sample.vo;
+
+import java.util.Date;
+
+public class MoimComment {
+
+	private long no;
+	private String title;
+	private String deleteYn;
+	private Date createdDate;
+	private String userId;
+	private long boardNo;
+	private long mainCommentNo;
+	
+	public MoimComment() {}
+
+	public long getNo() {
+		return no;
+	}
+
+	public void setNo(long no) {
+		this.no = no;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDeleteYn() {
+		return deleteYn;
+	}
+
+	public void setDeleteYn(String deleteYn) {
+		this.deleteYn = deleteYn;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public long getBoardNo() {
+		return boardNo;
+	}
+
+	public void setBoardNo(long boardNo) {
+		this.boardNo = boardNo;
+	}
+
+	public long getMainCommentNo() {
+		return mainCommentNo;
+	}
+
+	public void setMainCommentNo(long mainCommentNo) {
+		this.mainCommentNo = mainCommentNo;
+	}
+	
+	
+}

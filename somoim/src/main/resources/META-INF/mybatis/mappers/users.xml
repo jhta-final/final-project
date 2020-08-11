@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sample.dao.UserDao">
+	<select id="getUserById" parameterType="String" resultType="User">\
+		select
+			user_id	as	id,
+			user_name 	as	name,
+			tel,
+			user_password	as password,
+			nickname,
+			email,
+			birth	as birthDate,
+			gender,
+			user_content as content
+		from
+			moim_user
+		where
+			user_id = #{value}
+	</select>
+	
+	<!-- <insert id="insertUser" parameterType="User">
+		insert into moim_user
+			(user_id, user_name, tel, user_password, nickname, email, birth, gender, user_content, location_no, profile_image)
+			values
+			(#{id}, #{name}, #{tel}, #{password}, #{nickname}, #{email}, #{birth}, #{gender}, #{content), #{locationNo}, #{profileImage})
+	</insert> -->
+
+</mapper>
