@@ -46,7 +46,7 @@ public class MoimServiceImpl implements MoimService {
 	public void modifyMoim(MoimMain moimMain) {
 		MoimMain savedMoim = moimDao.selectMoim(moimMain.getMoimNo());
 		if(savedMoim == null) {
-			System.out.println("해당 게시글이 존재하지 않음");
+			System.out.println("해당 모임이 존재하지 않음");
 			return;
 		}
 		
@@ -69,7 +69,7 @@ public class MoimServiceImpl implements MoimService {
 	public void deleteMoim(long moimNo) {
 		MoimMain savedMoim = moimDao.selectMoim(moimNo);
 		if(savedMoim == null) {
-			System.out.println("해당 게시글이 존재하지 않음");
+			System.out.println("해당 모임이 존재하지 않음");
 			return;
 		}
 		
