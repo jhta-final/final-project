@@ -3,4 +3,114 @@
 
 <mapper namespace="com.sample.dao.MoimDao">
 
+	<insert id="insertMoim" parameterType="Main">
+		<selectKey keyProperty="moimNo" resultType="long" order="BEFORE">
+			select moim_seq.nextval from dual
+		</selectKey>
+		insert into moim_main
+		(moim_no, title, head_count, content, image, fee, join_date, sub_cate_no, location_no)
+		values
+		(#{moimNo}, #{title}, #{headCount}, #{content}, #{image}, #{fee}, #{joinDate}, #{subCateNo}, #{locationNo})
+	</insert>
+	
+	<select id="selectMoims" resultType="Main">
+		select
+			moim_no			as moimNo,
+			title			as title,
+			join_count		as joinCount,
+			head_count		as headCount,
+			content			as content,
+			image			as image,
+			fee				as fee,
+			likes			as likes,
+			primium_yn		as primiumYn,
+			delete_yn		as deleteYn,
+			join_date		as joinDate,
+			created_date	as createdDate,
+			sub_cate_no		as subCateNo,
+			location_no		as locationNo
+		from
+			moim_main
+		order by
+			moim_no desc
+	</select>
+	
+	<select id="selectMoim" parameterType="long" resultType="Main">
+		select
+			moim_no			as moimNo,
+			title			as title,
+			join_count		as joinCount,
+			head_count		as headCount,
+			content			as content,
+			image			as image,
+			fee				as fee,
+			likes			as likes,
+			primium_yn		as primiumYn,
+			delete_yn		as deleteYn,
+			join_date		as joinDate,
+			created_date	as createdDate,
+			sub_cate_no		as subCateNo,
+			location_no		as locationNo
+		from
+			moim_main
+		where
+			moim_no = #{value}
+	</select>
+	
+	<select id="selectMoimDupUser" parameterType="JoinUser" resultType="JoinUser">
+		select *
+		from moim_join_user
+		where
+			moim_no = #{moimNo}
+		and
+			user_id = #{userId}
+	</select>
+	
+	<update id="updateMoim" parameterType="Main">
+		update moim_main
+		set
+			title = #{title},
+			join_count = #{joinCount},
+			head_count = #{headCount},
+			content = #{content},
+			image = #{image},
+			fee = #{fee},
+			likes = #{likes},
+			primium_yn = #{primiumYn},
+			delete_yn = #{deleteYn},
+			join_date = #{joinDate},
+			sub_cate_no = #{subCateNo},
+			location_no = #{locationNo}
+		where
+			moim_no = #{moimNo}
+	</update>
+	
+	<insert id="insertJoinUser" parameterType="JoinUser">
+		insert into moim_join_user
+		(moim_no, user_id, user_role)
+		values
+		(#{moimNo}, #{userId}, #{userRole})
+	</insert>
+	
+	<select id="selectJoinUsers" parameterType="long">
+		select
+			moim_no as moimNo,
+			user_id as userId,
+			user_role as userRole,
+			created_date as createdDate
+		from
+			moim_join_user
+		where
+			moim_no = #{value}
+		order by
+			user_id asc
+	</select>
+	
+	<delete id="deleteJoinUser" parameterType="JoinUser">
+		delete from moim_join_user
+		where
+			moim_no = #{moimNo}
+		and
+			user_id = #{userId}
+	</delete>
 </mapper>

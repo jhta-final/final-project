@@ -8,12 +8,13 @@ import com.sample.vo.MoimMain;
 public interface MoimDao {
 
 	void insertMoim(MoimMain moimMain);
-	List<MoimMain> getAllMoims();
-	MoimMain getMoimsByNo(long moimNo);
+	List<MoimMain> selectMoims();
+	MoimMain selectMoim(long moimNo);
 	void updateMoim(MoimMain moimMain);
-	void deleteMoim(long moimNo);
 	
 	void insertJoinUser(MoimJoinUser moimJoinUser);
-	List<MoimJoinUser> getAllJoinUserByMoimNo(long moimNo);
+	List<MoimJoinUser> selectJoinUsers(long moimNo);
 	void deleteJoinUser(MoimJoinUser moimJoinUser);
+	
+	MoimJoinUser selectMoimDupUser(MoimJoinUser moimJoinUser);
 }

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class MoimComment {
 
-	private long no;
+	private long commentNo;
 	private String title;
 	private String deleteYn;
 	private Date createdDate;
@@ -14,12 +14,12 @@ public class MoimComment {
 	
 	public MoimComment() {}
 
-	public long getNo() {
-		return no;
+	public long getCommentNo() {
+		return commentNo;
 	}
-
-	public void setNo(long no) {
-		this.no = no;
+	
+	public void setCommentNo(long commentNo) {
+		this.commentNo = commentNo;
 	}
 
 	public String getTitle() {

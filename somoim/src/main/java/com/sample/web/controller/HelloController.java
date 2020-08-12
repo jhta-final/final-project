@@ -8,7 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HelloController {
 
 	@GetMapping("/")
-	public String home() {
-		return "moim/moim.tiles";
+	public String index() {
+		return "form/index";
 	}
+	@GetMapping("/home.do")
+	public String home() {
+		return "main/main.tiles";
+	}
+	
 }

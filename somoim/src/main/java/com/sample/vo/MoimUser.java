@@ -10,7 +10,7 @@ public class MoimUser {
 	private String password;
 	private String nickname;
 	private String email;
-	private Date birthDate;
+	private String birthDate;
 	private String gender;
 	private String content;
 	private String deleteYN;
@@ -68,11 +68,13 @@ public class MoimUser {
 		this.email = email;
 	}
 
-	public Date getBirthDate() {
+
+
+	public String getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 

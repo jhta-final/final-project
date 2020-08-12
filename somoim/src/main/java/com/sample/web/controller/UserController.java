@@ -18,7 +18,6 @@ public class UserController {
 	
 	@GetMapping("/info.do")
 	public String userDetail(String userId, Model model) {
-		userId = "kwon";
 		MoimUser user = userService.getUserDetail(userId);
 		System.out.println(user.getEmail());
 		return "/list.do";

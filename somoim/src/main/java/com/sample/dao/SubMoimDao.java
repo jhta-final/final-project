@@ -8,12 +8,11 @@ import com.sample.vo.MoimSubMoim;
 public interface SubMoimDao {
 
 	void insertSubMoim(MoimSubMoim moimSubMoim);
-	List<MoimSubMoim> getAllSubMoims();
-	MoimSubMoim getSubMoimByNo(long subMoimNo);
+	List<MoimSubMoim> selectSubMoims(long moimNo);
+	MoimSubMoim selectSubMoim(long subMoimNo);
 	void updateSubMoim(MoimSubMoim moimSubMoim);
-	void deleteSubMoim(long subMoimNo);
 	
 	void insertSubJoinUser(MoimSubJoinUser moimSubJoinUser);
-	List<MoimSubJoinUser> getSubMoimJoinUsersBySubMoimNo(long subMoimNo);
+	List<MoimSubJoinUser>selectSubJoinUsers(long subMoimNo);
 	void deleteSubJoinUser(MoimSubJoinUser moimSubJoinUser);
 }
