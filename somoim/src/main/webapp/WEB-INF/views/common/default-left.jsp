@@ -58,7 +58,7 @@
 </style>
 
 <div id="mySidenav" class="sidenav">
-	<a href="javascript:void(0)">home</a>
+	<a class="active" href="javascript:void(0)">home</a>
 	<a href="#">인기</a>
 	<a href="#">카테고리</a>
 	<hr />
