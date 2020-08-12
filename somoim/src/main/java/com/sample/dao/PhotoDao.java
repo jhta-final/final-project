@@ -10,5 +10,4 @@ public interface PhotoDao {
 	List<MoimPhoto> selectPhotos(long moimNo);
 	MoimPhoto selectPhoto(long photoNo);
 	void updatePhoto(MoimPhoto moimPhoto);
-	void deletePhoto(long photoNo);
 }

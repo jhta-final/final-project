@@ -11,7 +11,6 @@ public interface MoimDao {
 	List<MoimMain> selectMoims();
 	MoimMain selectMoim(long moimNo);
 	void updateMoim(MoimMain moimMain);
-	void deleteMoim(long moimNo);
 	
 	void insertJoinUser(MoimJoinUser moimJoinUser);
 	List<MoimJoinUser> selectJoinUsers(long moimNo);

@@ -54,10 +54,4 @@
 		where
 			photo_no = #{photoNo}
 	</update>
-	
-	<delete id="deletePhoto" parameterType="long">
-		delete from moim_photo
-		where
-			photo_no = #{value}
-	</delete>
 </mapper>
