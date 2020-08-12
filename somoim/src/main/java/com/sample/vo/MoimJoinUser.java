@@ -8,6 +8,14 @@ public class MoimJoinUser {
 	private String userId;
 	private String userRole;
 	private Date createdDate;
+	
+	public MoimJoinUser() {}
+	
+	public MoimJoinUser(long moimNo, String userId) {
+		this.moimNo = moimNo;
+		this.userId = userId;
+	}
+	
 	public long getMoimNo() {
 		return moimNo;
 	}

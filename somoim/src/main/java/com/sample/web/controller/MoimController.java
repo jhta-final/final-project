@@ -1,12 +1,17 @@
 package com.sample.web.controller;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sample.service.MoimService;
 import com.sample.vo.MoimMain;
+import com.sample.web.form.MoimForm;
 
 @Controller
 
@@ -16,17 +21,27 @@ public class MoimController {
 	@Autowired
 	private MoimService moimService;
 	
-	@GetMapping("/detail.do")
-	public String moimDetail() {
-		MoimMain main = new MoimMain();
-		main.setMoimNo(500015);
-		main.setTitle("문화/공연/축제");
-		main.setHeadCount(5);
-		main.setContent("내용!");
-		main.setSubCateNo(700023);
-		main.setLocationNo(1);
+	// 새 모임 등록
+	@PostMapping("/add.do")
+	public String addMoim(@ModelAttribute("moimForm") @Valid MoimForm moimForm) throws Exception {
 		
-		moimService.modifyMoim(main);
-		return "list.do";
+		MoimMain moimMain = new MoimMain();
+		
+		BeanUtils.copyProperties(moimForm, moimMain);
+//		moimService.addNewMoim(moimMain);
+		
+		return "";
+	}
+	
+	// 모임 정보 수정
+	// moimNo ???
+	@PostMapping("/modify.do")
+	public String modifyMoim(@ModelAttribute("moimForm") @Valid MoimForm moimForm) throws Exception {
+		MoimMain moimMain = new MoimMain();
+		
+		BeanUtils.copyProperties(moimForm, moimMain);
+		moimService.modifyMoim(moimMain);
+		
+		return "";
 	}
 }

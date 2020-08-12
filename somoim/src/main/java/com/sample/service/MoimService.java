@@ -7,7 +7,7 @@ import com.sample.vo.MoimMain;
 public interface MoimService {
 
 	// 새 모임 등록
-	void addNewMoim(MoimMain moimMain);
+	void addNewMoim(MoimMain moimMain, String userId);
 	// 모든 모임 조회
 	List<MoimMain> getAllMoims();
 	// 모임 상세정보 조회
@@ -20,4 +20,9 @@ public interface MoimService {
 	void increaseMoimLikes(long moimNo, String userId);
 	// 모임 프리미엄 변경
 	void primiumMoim(long moimNo, String userId);
+	
+	// 모임 가입
+	void joinMoim(long moimNo, String userId);
+	// 모임 탈퇴
+	void outMoim(long moimNo, String userId);
 }
