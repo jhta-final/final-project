@@ -58,7 +58,7 @@
 	</select>
 	
 	<update id="updateMoim" parameterType="Main">
-		update moim_no
+		update moim_main
 		set
 			title = #{title},
 			join_count = #{joinCount},
@@ -69,7 +69,7 @@
 			likes = #{likes},
 			primium_yn = #{primiumYn},
 			delete_yn = #{deleteYn},
-			join_date = #{join_date},
+			join_date = #{joinDate},
 			sub_cate_no = #{subCateNo},
 			location_no = #{locationNo}
 		where
