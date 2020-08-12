@@ -9,6 +9,6 @@ public class HelloController {
 
 	@GetMapping("/")
 	public String home() {
-		return "form/signin.tiles";
+		return "moim/moim.tiles";
 	}
 }
