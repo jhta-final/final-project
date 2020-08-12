@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.dao.UserDao;
 import com.sample.vo.MoimUser;
+import com.sample.vo.MoimUserCate;
 
 @Service
 @Transactional
@@ -30,5 +31,11 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 		return user;
+	}
+	
+	@Override
+	public void signUpUser(MoimUser user, MoimUserCate userCate) {
+			userDao.insertUser(user);
+			
 	}
 }

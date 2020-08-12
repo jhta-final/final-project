@@ -53,4 +53,11 @@
 		delete from moim_user
 		where user_id = #{value}
 	</delete>
+	
+	<insert id="insertUserCate" parameterType="UserCate">
+		insert into moim_user_cate
+			(user_id, main_cate_no)
+		values
+		(#{userId}, #{mainCateNo})
+	</insert>
 </mapper>

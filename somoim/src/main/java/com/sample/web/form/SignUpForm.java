@@ -14,6 +14,11 @@ public class SignUpForm {
 	@Pattern(regexp="^[a-z0-9]{5,}$", message="아이디는 소문자 및 숫자로만 구성 돼야합니다.")
 	private String id;
 	
+	@NotBlank(message="이름은 필수입력값입니다.")
+	@Length(min=2, message="이름은 2글자 이상입니다.")
+	@Pattern(regexp="^[가-힣]{2,}$", message="이름은  한글로 구성해야 합니다.")
+	private String name;
+	
 	@NotBlank(message="닉네임을 입력해주세요.")
 	@Length(min=2, message="닉네임은 2글자 이상입니다.")
 	@Pattern(regexp="^[a-zA-Z0-9가-힣]{2,}$", message="닉네임에 특수문자를 사용하실수 없습니다.")
@@ -122,6 +127,14 @@ public class SignUpForm {
 
 	public void setLocationNo(long locationNo) {
 		this.locationNo = locationNo;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	
