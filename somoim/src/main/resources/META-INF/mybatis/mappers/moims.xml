@@ -57,6 +57,15 @@
 			moim_no = #{value}
 	</select>
 	
+	<select id="selectMoimDupUser" parameterType="JoinUser" resultType="JoinUser">
+		select *
+		from moim_join_user
+		where
+			moim_no = #{moimNo}
+		and
+			user_id = #{userId}
+	</select>
+	
 	<update id="updateMoim" parameterType="Main">
 		update moim_main
 		set

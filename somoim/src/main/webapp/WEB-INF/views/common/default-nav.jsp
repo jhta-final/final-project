@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!--Navbar -->
+
 <div class="pos-f-t my-nav">
 	<nav class="navbar navbar-dark" style="background-color: #0F4C81">
 		<div style="width: 15%;">
