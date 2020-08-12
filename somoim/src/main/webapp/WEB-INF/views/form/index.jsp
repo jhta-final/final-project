@@ -229,11 +229,11 @@ body {
 				$.ajax({
 					type : "POST",
 					url : "/signup1.do",
-					data : signUpForm,
+					data : JSON.stringify(signUpForm),
 					contentType : "application/json",
 					dataType : "json",
-					success : function(userForm) {
-
+					success : function(status) {
+						console.log(status);
 					}
 				})
 			})

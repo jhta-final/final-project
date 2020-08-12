@@ -25,12 +25,13 @@ public class SignUpController {
 	@Autowired
 	UserService userService;
 	
-	SignUpForm signUpForm;
+	private SignUpForm signUpForm = new SignUpForm();
 	
 	@PostMapping("/signup1.do")
 	@ResponseBody
 	public Map<String, String> step1Submit (@RequestBody SignUpForm signUpForm1) {
 		System.out.println("과연 :" + signUpForm1);
+		System.out.println("id :" + signUpForm1.getId());
 		MoimUser user = userService.getUserDetail(signUpForm1.getId());
 		Map<String, String> map = new HashMap<>();
 		if(user != null) {
