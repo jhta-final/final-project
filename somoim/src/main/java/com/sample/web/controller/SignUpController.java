@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sample.service.UserService;
@@ -25,9 +27,10 @@ public class SignUpController {
 	
 	SignUpForm signUpForm;
 	
-	@GetMapping("signup1.do")
+	@PostMapping("/signup1.do")
 	@ResponseBody
-	public Map<String, String> step1Submit (@ModelAttribute("signUpForm") SignUpForm signUpForm1) {
+	public Map<String, String> step1Submit (@RequestBody SignUpForm signUpForm1) {
+		System.out.println("과연 :" + signUpForm1);
 		MoimUser user = userService.getUserDetail(signUpForm1.getId());
 		Map<String, String> map = new HashMap<>();
 		if(user != null) {

@@ -217,7 +217,7 @@ body {
 
 		$(function() {
 			$("#signup-button").click(function() {
-				var signupForm = {
+				var signUpForm = {
 					id : $("#signup-id").val(),
 					name : $("#signup-name").val(),
 					nickname : $("#signup-nickname").val(),
@@ -229,7 +229,7 @@ body {
 				$.ajax({
 					type : "POST",
 					url : "/signup1.do",
-					data : signupForm,
+					data : signUpForm,
 					contentType : "application/json",
 					dataType : "json",
 					success : function(userForm) {

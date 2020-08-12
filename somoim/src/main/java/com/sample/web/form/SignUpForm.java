@@ -136,6 +136,13 @@ public class SignUpForm {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@Override
+	public String toString() {
+		return "SignUpForm [id=" + id + ", name=" + name + ", nickname=" + nickname + ", password=" + password
+				+ ", email=" + email + ", tel=" + tel + ", birth=" + birth + ", gender=" + gender + ", content="
+				+ content + ", mainCateNo=" + mainCateNo + ", locationNo=" + locationNo + "]";
+	}
 	
 	
 	
