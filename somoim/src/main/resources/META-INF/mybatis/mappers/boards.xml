@@ -13,7 +13,7 @@
 		(#{boardNo}, #{title}, #{content}, #{moimNo}, #{userId}, #{boardCateNo})
 	</insert>
 	
-	<select id="getAllMoimBoards" parameterType="long" resultType="Board">
+	<select id="selectMoimBoards" parameterType="long" resultType="Board">
 		select
 			board_no		as boardNo,
 			title			as title,
@@ -32,7 +32,7 @@
 			board_no desc
 	</select>
 	
-	<select id="getMoimBoardByNo" parameterType="long" resultType="Board">
+	<select id="selectMoimBoard" parameterType="long" resultType="Board">
 		select
 			board_no		as boardNo,
 			title			as title,

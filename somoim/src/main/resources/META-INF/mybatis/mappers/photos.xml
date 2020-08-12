@@ -13,7 +13,7 @@
 		(#{photoNo}, #{photo}, #{moimNo}, #{userId})
 	</insert>
 	
-	<select id="getAllPhotos" parameterType="long" resultType="Photo">
+	<select id="selectPhotos" parameterType="long" resultType="Photo">
 		select
 			photo_no		as photoNo,
 			photo			as photo,
@@ -30,7 +30,7 @@
 			photo_no desc
 	</select>
 	
-	<select id="getPhotoByNo" parameterType="long" resultType="Photo">
+	<select id="selectPhoto" parameterType="long" resultType="Photo">
 		select
 			photo_no		as photoNo,
 			photo			as photo,

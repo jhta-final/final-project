@@ -9,6 +9,6 @@ public interface MoimBoardDao {
 	void insertMoimBoard(MoimBoardDao moimBoard);
 	void updateMoimBoard(MoimBoardDao moimBoard);
 	void deleteMoimBoard(long no);
-	List<MoimBoard> getAllMoimBoards(long moimNo);
-	MoimBoard getMoimBoardByNo(long no);
+	List<MoimBoard> selectMoimBoards(long moimNo);
+	MoimBoard selectMoimBoard(long no);
 }

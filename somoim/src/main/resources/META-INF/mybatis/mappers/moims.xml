@@ -13,7 +13,7 @@
 		(#{moimNo}, #{title}, #{headCount}, #{content}, #{image}, #{fee}, #{joinDate}, #{subCateNo}, #{locationNo})
 	</insert>
 	
-	<select id="getAllMoims" resultType="Main">
+	<select id="selectMoims" resultType="Main">
 		select
 			moim_no			as moimNo,
 			title			as title,
@@ -35,7 +35,7 @@
 			moim_no desc
 	</select>
 	
-	<select id="getMoimByNo" parameterType="long" resultType="Main">
+	<select id="selectMoim" parameterType="long" resultType="Main">
 		select
 			moim_no			as moimNo,
 			title			as title,
@@ -90,7 +90,7 @@
 		(#{moimNo}, #{userId}, #{userRole})
 	</insert>
 	
-	<select id="getAllJoinUsersByMoimNo" parameterType="long">
+	<select id="selectJoinUsers" parameterType="long">
 		select
 			moim_no as moimNo,
 			user_id as userId,

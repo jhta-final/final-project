@@ -13,7 +13,7 @@
 		(#{subMoimNo}, #{title}, #{location}, #{headCount}, #{fee}, #{joinDate}, #{userId}, #{moimNo})
 	</insert>
 	
-	<select id="getAllSubMoims" parameterType="long" resultType="SubMoim">
+	<select id="selectSubMoims" parameterType="long" resultType="SubMoim">
 		select
 			sub_moim_no		as subMoimNo,
 			title			as title,
@@ -34,7 +34,7 @@
 			sub_moim_no desc
 	</select>
 	
-	<select id="getSubMoimByNo" parameterType="long" resultType="SubMoim">
+	<select id="selectSubMoim" parameterType="long" resultType="SubMoim">
 		select
 			sub_moim_no		as subMoimNo,
 			title			as title,
@@ -80,7 +80,7 @@
 		(#{subMoimNo}, #{moimNo}, #{userId})
 	</insert>
 	
-	<select id="getSubMoimJoinUsersBySubMoimNo" parameterType="long" resultType="SubJoinUser">
+	<select id="selectSubJoinUsers" parameterType="long" resultType="SubJoinUser">
 		select
 			sub_moim_no as subMoimNo,
 			moim_no as moimNo,
