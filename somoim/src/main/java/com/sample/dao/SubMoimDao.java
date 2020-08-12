@@ -8,7 +8,7 @@ import com.sample.vo.MoimSubMoim;
 public interface SubMoimDao {
 
 	void insertSubMoim(MoimSubMoim moimSubMoim);
-	List<MoimSubMoim> getAllSubMoims();
+	List<MoimSubMoim> getAllSubMoims(long moimNo);
 	MoimSubMoim getSubMoimByNo(long subMoimNo);
 	void updateSubMoim(MoimSubMoim moimSubMoim);
 	void deleteSubMoim(long subMoimNo);
