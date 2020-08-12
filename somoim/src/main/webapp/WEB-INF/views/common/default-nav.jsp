@@ -1,8 +1,8 @@
 <!--Navbar -->
 <div class="pos-f-t my-nav">
-	<nav class="navbar navbar-dark bg-dark">
+	<nav class="navbar navbar-dark" style="background-color: #0F4C81">
 		<button class="navbar-toggler">
-			<span class="navbar-toggler-icon" onclick="openNav()"></span>
+			<span class="navbar-toggler-icon" id="sideMenu"></span>
 		</button>
 		<a class="navbar-brand" href="#"> <img
 			src="https://mdbootstrap.com/img/logo/mdb-transparent.png"
