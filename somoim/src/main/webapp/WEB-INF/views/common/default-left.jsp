@@ -3,15 +3,15 @@
 /* The side navigation menu */
 .sidenav {
 	height: 100%; /* 100% Full-height */
-	width: 0; /* 0 width - change this with JavaScript */
+	width: 250px; /* 0 width - change this with JavaScript */
 	position: fixed; /* Stay in place */
 	z-index: 1; /* Stay on top */
 	top: 0;
-	left: 0;
+	left: -250px;
 	background-color: #0F4C81; /* Black*/
 	overflow-x: hidden; /* Disable horizontal scroll */
 	padding-top: 60px; /* Place content 60px from the top */
-	transition: 0.5s;
+	transition: 0.2s;
 	/* 0.5 second transition effect to slide in the sidenav */
 	margin-top: 55px;
 }
@@ -20,10 +20,10 @@
 .sidenav a {
 	padding: 8px 8px 8px 32px;
 	text-decoration: none;
-	font-size: 25px;
+	font-size: 20px;
 	color: aqua;
 	display: block;
-	transition: 0.3s;
+	transition: 0.2s;
 }
 
 /* When you mouse over the navigation links, change their color */
@@ -42,7 +42,7 @@
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #content {
-	transition: margin-left .5s;
+	transition: margin-left .1s;
 	padding: 20px;
 }
 
@@ -75,13 +75,13 @@
 		<span class="nav-item avatar"> <img
 				src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
 				class="rounded-circle z-depth-0" alt="avatar image" height="35">
-		박재형</span>
+		장주리</span>
 	</a>
 	<a href="#">
 		<span class="nav-item avatar"> <img
 				src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
 				class="rounded-circle z-depth-0" alt="avatar image" height="35">
-		박재형</span>
+		김민수</span>
 	</a>
 	<hr />
 	<div class="" id="footer">

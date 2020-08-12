@@ -16,6 +16,9 @@
 	margin-left: 0px;
 	color: black;
 }
+.my-content {
+	transition: 1s;
+}
 </style>
 </head>
 
@@ -38,13 +41,13 @@ $(function() {
 	var action = 1;
 	function viewSomething() {
 	       if ( action == 1 ) {
-	    	   $("#mySidenav").css("width", "250px");
+	    	   $("#mySidenav").css("left", "0px");
 	           action = 2;
 	       } else {
-	           $("#mySidenav").css("width", "0px");
+	           $("#mySidenav").css("left", "250px");
 	           action = 1;
 	       }
-	       $("#sideMenu").toggle();
+	       $("#sideMenu").toggle("fast");
 	}
 	
 
@@ -52,12 +55,12 @@ $(function() {
 
 	function viewSomething() {
 	       if ( action == 1 ) {
-	    	   $("#mySidenav").css("width", "250px");
+	    	   $("#mySidenav").css("left", "0px");
 	           $("#content").css("marginLeft", "250px");
 	           action = 2;
 	       } else {
+	           $("#mySidenav").css("left", "-250px");
 	           $("#content").css("marginLeft", "0px");
-	           $("#mySidenav").css("width", "0px");
 	           action = 1;
 	       }
 	}
