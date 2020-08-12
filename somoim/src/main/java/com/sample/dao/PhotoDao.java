@@ -7,7 +7,7 @@ import com.sample.vo.MoimPhoto;
 public interface PhotoDao {
 
 	void insertPhoto(MoimPhoto moimPhoto);
-	List<MoimPhoto> getAllPhotos();
+	List<MoimPhoto> getAllPhotos(long moimNo);
 	MoimPhoto getPhotoByNo(long photoNo);
 	void updatePhoto(MoimPhoto moimPhoto);
 	void deletePhoto(long photoNo);
