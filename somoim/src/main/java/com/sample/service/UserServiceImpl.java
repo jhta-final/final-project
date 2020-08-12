@@ -19,4 +19,16 @@ public class UserServiceImpl implements UserService {
 	public MoimUser getUserDetail(String userId) {
 		return userDao.getUserById(userId);
 	}
+	
+	@Override
+	public MoimUser login(String userId, String userPwd) {
+		MoimUser user = userDao.getUserById(userId);
+		if (user == null) {
+			return null;
+		}
+		if(!user.getPassword().equals(userPwd)) {
+			return null;
+		}
+		return user;
+	}
 }
