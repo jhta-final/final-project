@@ -4,22 +4,65 @@
 <html>
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-
-  <!-- Link Swiper's CSS -->
-  <link rel="stylesheet" href="../package/swiper-bundle.min.css">
-
 <tiles:insertAttribute name="header" />
 <style type="text/css">
 .my-back {
 	padding-left: 0px;
 	padding-right: 0px;
 }
-
-#content {
+.my-content {
 	margin-left: 250px;
-	transition: 1s;
 }
+
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      padding: 0;
+    }
+
+    .swiper-container {
+      width: 100%;
+      height: 300px;
+      margin: 20px auto;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+
+    .append-buttons {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .append-buttons a {
+      display: inline-block;
+      border: 1px solid #007aff;
+      color: #007aff;
+      text-decoration: none;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin: 0 10px;
+      font-size: 13px;
+    }
 
 </style>
 </head>
@@ -32,8 +75,10 @@
 		</div>
 	</div>
 	<div class="row">
+	<div id="test">
 		<tiles:insertAttribute name="left" />
-		<div class="col-10 my-content" id="content">
+	</div>
+		<div class="col-10 my-content">
 			<tiles:insertAttribute name="content" />
 		</div>
 	</div>
@@ -57,12 +102,16 @@ $(function() {
 
 	function viewSomething() {
 	       if ( action == 1 ) {
+	    	   $(".my-content").attr('class','my-content col-12');
 	           $("#mySidenav").css("left", "-250px");
-	           $("#content").css("marginLeft", "0px");
+	           $(".my-content").css("marginleft", "0px");
+	           $(".my-content").css("left", "-250px");
 	           action = 2;
 	       } else {
+	    	   $(".my-content").attr('class','my-content col-10');
 	    	   $("#mySidenav").css("left", "0px");
-	           $("#content").css("marginLeft", "250px");
+	           $(".my-content").css("marginLeft", "250px");
+	           $(".my-content").css("left", "-0px");
 	           action = 1;
 	       }
 	}

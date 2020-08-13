@@ -2,7 +2,7 @@
 <!--Navbar -->
 
 <div class="pos-f-t my-nav">
-	<nav class="navbar navbar-dark fixed-top" style="background-color: #0F4C81; position: top">
+	<nav class="navbar navbar-dark" style="background-color: #0F4C81;">
 		<div style="width: 20%;">
 			<button class="navbar-toggler mr-3 nav-black">
 				<span class="navbar-toggler-icon" id="sideMenu"></span>
@@ -25,35 +25,85 @@
 					<button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle"
 						data-toggle="dropdown"></button>
 					<div class="dropdown-menu dropdown-menu-right" style="width: 590px;">
-						<span>
 							<label>지역구</label>
-							<input type="checkbox"> 강서구
-							<input type="checkbox"> 양천구
-							<input type="checkbox"> 구로구
-							<input type="checkbox"> 금천구
-							<input type="checkbox"> 영등포구
-							<input type="checkbox"> 동작구
-							<input type="checkbox"> 관악구
-							<input type="checkbox"> 서초구
-							<input type="checkbox"> 강남구
-							<input type="checkbox"> 송파구
-							<input type="checkbox"> 강동구
-							<input type="checkbox"> 마포구
-							<input type="checkbox"> 용산구
-							<input type="checkbox"> 서대문구
-							<input type="checkbox"> 은평구
-							<input type="checkbox"> 종로구
-							<input type="checkbox"> 중구
-							<input type="checkbox"> 서초구
-							<input type="checkbox"> 성동구
-							<input type="checkbox"> 광진구
-							<input type="checkbox"> 동대문구
-							<input type="checkbox"> 성북구
-							<input type="checkbox"> 강북구
-							<input type="checkbox"> 도봉구
-							<input type="checkbox"> 노원구
-							<input type="checkbox"> 중랑구
-						</span>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">강서구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">양천구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">구로구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">금천구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">영등포구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">동작구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">관악구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">서초구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">강남구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">송파구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">강동구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">마포구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">용산구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">서대문구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">은평구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">종로구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">서초구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">성동구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">광진구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">동대문구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">성북구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">중구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">강북구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">도봉구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">노원구
+							</label>
+							<label class="checkbox-inline">
+ 							<input type="checkbox" id="inlineCheckbox1" value="option1">중랑구
+							</label>
 						<hr/>
 						<span>
 							<label>카테고리</label>
