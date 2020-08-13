@@ -65,27 +65,27 @@
             <hr>
     </div>
 </div>
-<div class="row ml-4">
+<div class="row ml-4 mb-1">
         <span>
             <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-                 class="rounded-circle" alt="avatar image" height="60px">
+                 class="rounded-circle" alt="avatar image" height="55px">
             <strong style="font-size: large">고정원</strong>
         </span>
         <span style=" margin-top: 14px; margin-left: 10%">
                 <strong style="font-size: large;" id="leader">방장</strong>
         </span>
 </div>
-<div class="row ml-4">
+<div class="row ml-4 mb-1">
     <span>
         <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-             class="rounded-circle" alt="avatar image" height="60px">
+             class="rounded-circle" alt="avatar image" height="55px">
         <strong style="font-size: large">김민수</strong>
     </span>
 </div>
-<div class="row ml-4">
+<div class="row ml-4 mb-1">
     <span>
         <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-             class="rounded-circle" alt="avatar image" height="60px">
+             class="rounded-circle" alt="avatar image" height="55px">
         <strong style="font-size: large">권영준</strong>
     </span>
 </div>
