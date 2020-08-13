@@ -36,12 +36,12 @@
 	</select>
 	
 	<!-- 지역 선호도 별로 표시 -->
-	<select id="locationMoims" resultType="MainDto">
+	<select id="locationMoims" parameterType="long" resultType="MainDto">
 	<![CDATA[
 	select * from(
 	select *
 	from moim_main
-	where location_no = 7
+	where location_no = #{value}
 	order by dbms_random.random
 	) where rownum <= 5;
 	]]>
