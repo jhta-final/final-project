@@ -18,6 +18,7 @@ import com.sample.service.MoimService;
 import com.sample.service.SubMoimService;
 import com.sample.vo.MoimSubMoim;
 import com.sample.web.form.MoimForm;
+import com.sample.web.form.SubMoimForm;
 
 @Controller
 @RequestMapping("/moim")
@@ -59,6 +60,9 @@ public class MoimController {
 		model.addAttribute("moim", moimService.getMoimByNo(moimNo));
 		model.addAttribute("submoims", subMoimService.getAllSubMoims(moimNo));
 		model.addAttribute("users", moimService.getAllJoinUsers(moimNo));
+		
+		model.addAttribute("subMoimForm", new SubMoimForm());
+		
 		
 		return "moim/moim.tiles";
 	}
