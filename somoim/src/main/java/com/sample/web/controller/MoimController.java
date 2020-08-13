@@ -56,7 +56,6 @@ public class MoimController {
 	@GetMapping("/moim.do")
 	public String detailMoim(@RequestParam("moimNo") long moimNo, Model model) {
 		model.addAttribute("moim", moimService.getMoimByNo(moimNo));
-		
-		return "moim.tiles";
+		return "/moim.tiles";
 	}
 }
