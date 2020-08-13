@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimJoinUserMoimDto;
 import com.sample.service.MypageService;
 import com.sample.vo.MoimBoard;
@@ -31,7 +32,7 @@ public class MypageController {
 	@GetMapping("/mypage.do")
 	public String myPage1(HttpSession session, Model model) {
 		this.user = (MoimUser)session.getAttribute("LOGIN_USER");
-		List<MoimFollow> followers = mypageService.allFollower(user.getId());
+		List<MoimFollowDto> followers = mypageService.allFollower(user.getId());
 		model.addAttribute("followers", followers);
 		
 		return "mypage/mypage.tiles";
