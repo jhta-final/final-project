@@ -21,6 +21,7 @@ public class MoimServiceImpl implements MoimService {
 	// 새로운 모임 생성
 	@Override
 	public void addNewMoim(MoimMain moimMain, String userId) {
+		// 모임 방장 저장하기
 		MoimJoinUser moimJoinUser = new MoimJoinUser();
 		moimJoinUser.setMoimNo(moimMain.getMoimNo());
 		moimJoinUser.setUserId(userId);

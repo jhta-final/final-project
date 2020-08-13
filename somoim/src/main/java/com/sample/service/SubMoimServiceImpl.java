@@ -29,7 +29,7 @@ public class SubMoimServiceImpl implements SubMoimService {
 		subMoimDao.insertSubJoinUser(joinUser);
 	}
 
-	// 모임 내의 모든 번개모임 등록
+	// 모임 내의 모든 번개모임 조회
 	@Override
 	public List<MoimSubMoim> getAllSubMoims(long moimNo) {
 		return subMoimDao.selectSubMoims(moimNo);
