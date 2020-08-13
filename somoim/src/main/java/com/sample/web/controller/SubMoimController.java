@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sample.dto.SubJoinUsers;
+import com.sample.dto.SubMoimDto;
 import com.sample.service.SubMoimService;
 import com.sample.vo.MoimSubMoim;
 
@@ -24,11 +25,11 @@ public class SubMoimController {
 	// 서브모임 상세정보
 	@ResponseBody
 	@GetMapping("/submoim.do")
-	public MoimSubMoim detailSubMoim(@RequestParam("subMoimNo") long subMoimNo) {
+	public SubMoimDto detailSubMoim(@RequestParam("subMoimNo") long subMoimNo) {
 		
 		MoimSubMoim moim = subMoimService.getSubMoimByNo(subMoimNo);
 		List<SubJoinUsers> joinUsers = subMoimService.getAllSubJoinUsers(subMoimNo);
-		return subMoimService.getSubMoimByNo(subMoimNo);
+		return new SubMoimDto(moim, joinUsers);
 	}
 	
 	// 서브모임 등록

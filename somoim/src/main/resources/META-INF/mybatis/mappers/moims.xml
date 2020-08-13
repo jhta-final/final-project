@@ -94,7 +94,7 @@
 		(#{moimNo}, #{userId}, #{userRole})
 	</insert>
 	
-	<select id="selectJoinUsers" parameterType="long" resultType="JoinUserDto">
+	<select id="selectJoinUsers" parameterType="long" resultType="JoinUsers">
 		select
 			moim_no as moimNo,
 			a.user_id as userId,
