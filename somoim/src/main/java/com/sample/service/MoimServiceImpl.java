@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.dao.MoimDao;
+import com.sample.dto.MoimMainDto;
 import com.sample.vo.MoimJoinUser;
 import com.sample.vo.MoimMain;
 
@@ -31,20 +32,20 @@ public class MoimServiceImpl implements MoimService {
 
 	// 모든 모임 조회
 	@Override
-	public List<MoimMain> getAllMoims() {
+	public List<MoimMainDto> getAllMoims() {
 		return moimDao.selectMoims();
 	}
 
 	// 모임 상세정보 조회
 	@Override
-	public MoimMain getMoimByNo(long moimNo) {
+	public MoimMainDto getMoimByNo(long moimNo) {
 		return moimDao.selectMoim(moimNo);
 	}
 
 	// 모임 정보 수정
 	@Override
-	public void modifyMoim(MoimMain moimMain) {
-		MoimMain savedMoim = moimDao.selectMoim(moimMain.getMoimNo());
+	public void modifyMoim(MoimMainDto moimMainDto) {
+		MoimMainDto savedMoim = moimDao.selectMoim(moimMainDto.getMoimNo());
 		if(savedMoim == null) {
 			System.out.println("해당 모임이 존재하지 않음");
 			return;
@@ -52,14 +53,14 @@ public class MoimServiceImpl implements MoimService {
 		
 		// 모임 작성자 비교??
 		
-		savedMoim.setTitle(moimMain.getTitle());
-		savedMoim.setHeadCount(moimMain.getHeadCount());
-		savedMoim.setContent(moimMain.getContent());
-		savedMoim.setImage(moimMain.getImage());
-		savedMoim.setFee(moimMain.getFee());
-		savedMoim.setJoinDate(moimMain.getJoinDate());
-		savedMoim.setSubCateNo(moimMain.getSubCateNo());
-		savedMoim.setLocationNo(moimMain.getLocationNo());
+		savedMoim.setTitle(moimMainDto.getTitle());
+		savedMoim.setHeadCount(moimMainDto.getHeadCount());
+		savedMoim.setContent(moimMainDto.getContent());
+		savedMoim.setImage(moimMainDto.getImage());
+		savedMoim.setFee(moimMainDto.getFee());
+		savedMoim.setJoinDate(moimMainDto.getJoinDate());
+		savedMoim.setSubCateNo(moimMainDto.getSubCateNo());
+		savedMoim.setLocationNo(moimMainDto.getLocationNo());
 		
 		moimDao.updateMoim(savedMoim);
 	}
@@ -67,7 +68,7 @@ public class MoimServiceImpl implements MoimService {
 	// 모임 삭제
 	@Override
 	public void deleteMoim(long moimNo) {
-		MoimMain savedMoim = moimDao.selectMoim(moimNo);
+		MoimMainDto savedMoim = moimDao.selectMoim(moimNo);
 		if(savedMoim == null) {
 			System.out.println("해당 모임이 존재하지 않음");
 			return;
@@ -81,7 +82,7 @@ public class MoimServiceImpl implements MoimService {
 	// 모임 좋아요 증가
 	@Override
 	public void increaseMoimLikes(long moimNo, String userId) {
-		MoimMain savedMoim = moimDao.selectMoim(moimNo);
+		MoimMainDto savedMoim = moimDao.selectMoim(moimNo);
 		if(savedMoim == null) {
 			System.out.println("해당 게시글이 존재하지 않음");
 			return;
@@ -97,7 +98,7 @@ public class MoimServiceImpl implements MoimService {
 	// 모임 프리미엄 변경
 	@Override
 	public void primiumMoim(long moimNo, String userId) {
-		MoimMain savedMoim = moimDao.selectMoim(moimNo);
+		MoimMainDto savedMoim = moimDao.selectMoim(moimNo);
 		if(savedMoim == null) {
 			System.out.println("해당 게시글이 존재하지 않음");
 			return;
@@ -116,7 +117,7 @@ public class MoimServiceImpl implements MoimService {
 	// 모임 가입하기
 	@Override
 	public void joinMoim(long moimNo, String userId) {
-		MoimJoinUser savedUser = moimDao.selectMoimDupUser(new MoimJoinUser(moimNo, userId));
+		MoimJoinUser savedUser = moimDao.selectJoinUser(new MoimJoinUser(moimNo, userId));
 		if(savedUser != null) {
 			System.out.println("이미 가입된 모임입니다");
 		}
