@@ -31,7 +31,7 @@
            a.moim_no = b.moim_no
 		order by
 		   DBMS_RANDOM.RANDOM
-	) where rownum <= 5
+	) where rownum <= 20
 	]]>
 	</select>
 	
@@ -39,10 +39,10 @@
 	<select id="locationMoims" parameterType="long" resultType="MainDto">
 	<![CDATA[
 	select * from(
-	select *
-	from moim_main
-	where location_no = #{value}
-	order by dbms_random.random
+		select *
+		from moim_main
+		where location_no = #{value}
+		order by dbms_random.random
 	) where rownum <= 5
 	]]>
 	</select>
