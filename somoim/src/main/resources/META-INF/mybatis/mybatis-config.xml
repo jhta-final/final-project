@@ -33,6 +33,7 @@
 		<mapper resource="META-INF/mybatis/mappers/users.xml"/>
 		<mapper resource="META-INF/mybatis/mappers/submoims.xml"/>
 		<mapper resource="META-INF/mybatis/mappers/photos.xml"/>
+		<mapper resource="META-INF/mybatis/mappers/home.xml"/>
 	</mappers>
 </configuration>
 
