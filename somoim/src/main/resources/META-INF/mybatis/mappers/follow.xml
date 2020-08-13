@@ -2,14 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sample.dao.FollowerDao">
 	
-	<select id="getFollowersByUserId" parameterType="string" resultType="Follow">
+	<select id="getFollowersByUserId" parameterType="string" resultType="com.sample.dto.MoimFollowDto">
 		select
-			user_id		as userId,
-			fol_user_id	as folUserId
+			A.user_id		as userId,
+			A.fol_user_id	as folUserId,
+			B.profile_image as image,
+			B.nickname		as nickname
+			
 		from
-			moim_follow
+			moim_follow A, moim_user B
 		where
-			user_id = #{value}
+			A.user_id = #{value}
+		and
+			A.fol_user_id = B.user_id
 	</select>
 
 	<select id="getUserMoims" parameterType="string" resultType="com.sample.dto.MoimJoinUserMoimDto">

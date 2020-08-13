@@ -2,6 +2,7 @@ package com.sample.service;
 
 import java.util.List;
 
+import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimJoinUserMoimDto;
 import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimFollow;
@@ -11,7 +12,7 @@ public interface MypageService {
 
 	void addFollower(MoimFollow moimFollow);
 	
-	List<MoimFollow> allFollower(String userId);
+	List<MoimFollowDto> allFollower(String userId);
 	
 	List<MoimJoinUserMoimDto> allJoinMoims(String userId);
 	
