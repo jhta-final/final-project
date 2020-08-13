@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.dao.MoimDao;
+import com.sample.dto.JoinUsers;
 import com.sample.dto.MoimMainDto;
 import com.sample.vo.MoimJoinUser;
 import com.sample.vo.MoimMain;
@@ -21,6 +22,7 @@ public class MoimServiceImpl implements MoimService {
 	// 새로운 모임 생성
 	@Override
 	public void addNewMoim(MoimMain moimMain, String userId) {
+		// 모임 방장 저장하기
 		MoimJoinUser moimJoinUser = new MoimJoinUser();
 		moimJoinUser.setMoimNo(moimMain.getMoimNo());
 		moimJoinUser.setUserId(userId);
@@ -130,5 +132,12 @@ public class MoimServiceImpl implements MoimService {
 	public void outMoim(long moimNo, String userId) {
 		
 		moimDao.deleteJoinUser(new MoimJoinUser(moimNo, userId));
+	}
+
+	// 모임 내의 유저들 조회하기
+	@Override
+	public List<JoinUsers> getAllJoinUsers(long moimNo) {
+		
+		return moimDao.selectJoinUsers(moimNo);
 	}
 }

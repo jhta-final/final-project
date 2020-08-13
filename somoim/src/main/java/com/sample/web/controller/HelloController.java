@@ -6,17 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HelloController {
-
-	@GetMapping("/")
-	public String index() {
-		return "form/index";
-	}
 	@GetMapping("/home.do")
 	public String home() {
 		return "main/main.tiles";
-	}
-	@GetMapping("/moim.do")
-	public String moim() {
-		return "moim/moim.tiles";
 	}
 }

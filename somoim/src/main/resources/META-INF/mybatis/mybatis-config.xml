@@ -15,6 +15,7 @@
 		<typeAlias type="com.sample.vo.MoimFavoriteMoim" alias="FavoriteMoim"/>
 		<typeAlias type="com.sample.vo.MoimFollow" alias="Follow"/>
 		<typeAlias type="com.sample.vo.MoimJoinUser" alias="JoinUser"/>
+		<typeAlias type="com.sample.dto.JoinUsers" alias="JoinUsers"/>
 		<typeAlias type="com.sample.vo.MoimLocation" alias="Location"/>
 		<typeAlias type="com.sample.vo.MoimMain" alias="Main"/>
 		<typeAlias type="com.sample.dto.MoimMainDto" alias="MainDto"/>
@@ -22,7 +23,9 @@
 		<typeAlias type="com.sample.vo.MoimPhoto" alias="Photo"/>
 		<typeAlias type="com.sample.vo.MoimSubCate" alias="SubCate"/>
 		<typeAlias type="com.sample.vo.MoimSubJoinUser" alias="SubJoinUser"/>
+		<typeAlias type="com.sample.dto.SubJoinUsers" alias="SubJoinUsers"/>
 		<typeAlias type="com.sample.vo.MoimSubMoim" alias="SubMoim"/>
+		<typeAlias type="com.sample.dto.SubMoimDto" alias="SubMoimDto"/>
 		<typeAlias type="com.sample.vo.MoimUser" alias="User"/>
 		<typeAlias type="com.sample.vo.MoimUserCate" alias="UserCate"/>
 	</typeAliases>
@@ -34,6 +37,7 @@
 		<mapper resource="META-INF/mybatis/mappers/submoims.xml"/>
 		<mapper resource="META-INF/mybatis/mappers/photos.xml"/>
 		<mapper resource="META-INF/mybatis/mappers/home.xml"/>
+		<mapper resource="META-INF/mybatis/mappers/follow.xml"/>
 	</mappers>
 </configuration>
 

@@ -10,4 +10,5 @@ public interface BoardDao {
 	void updateMoimBoard(MoimBoard moimBoard);
 	List<MoimBoard> selectMoimBoards(long moimNo);
 	MoimBoard selectMoimBoard(long moimNo);
+	List<MoimBoard> getBoardsByUserId(String userId);
 }

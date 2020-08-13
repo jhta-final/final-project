@@ -2,6 +2,7 @@ package com.sample.service;
 
 import java.util.List;
 
+import com.sample.dto.SubJoinUsers;
 import com.sample.vo.MoimSubMoim;
 
 public interface SubMoimService {
@@ -19,5 +20,8 @@ public interface SubMoimService {
 	
 	// 번개모임 가입
 	void joinSubMoim(long subMoimNo, String userId);
+	// 번개모임 탈퇴
 	void outSubMoim(long subMoimNo, String userId);
+	// 번개모임 내의 유저들 조회
+	List<SubJoinUsers> getAllSubJoinUsers(long subMoimNo);
 }

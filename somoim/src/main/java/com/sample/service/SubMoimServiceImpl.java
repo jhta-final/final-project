@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.dao.SubMoimDao;
+import com.sample.dto.SubJoinUsers;
 import com.sample.vo.MoimSubJoinUser;
 import com.sample.vo.MoimSubMoim;
 
@@ -29,7 +30,7 @@ public class SubMoimServiceImpl implements SubMoimService {
 		subMoimDao.insertSubJoinUser(joinUser);
 	}
 
-	// 모임 내의 모든 번개모임 등록
+	// 모임 내의 모든 번개모임 조회
 	@Override
 	public List<MoimSubMoim> getAllSubMoims(long moimNo) {
 		return subMoimDao.selectSubMoims(moimNo);
@@ -91,6 +92,12 @@ public class SubMoimServiceImpl implements SubMoimService {
 	@Override
 	public void outSubMoim(long subMoimNo, String userId) {
 		subMoimDao.deleteSubJoinUser(new MoimSubJoinUser(subMoimNo, userId));
+	}
+	
+	// 번개모임 내의 유저들 조회하기
+	public List<SubJoinUsers> getAllSubJoinUsers(long subMoimNo) {
+		
+		return subMoimDao.selectSubJoinUsers(subMoimNo);
 	}
 
 }

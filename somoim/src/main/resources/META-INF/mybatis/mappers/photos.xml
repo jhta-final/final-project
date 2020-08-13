@@ -54,4 +54,19 @@
 		where
 			photo_no = #{photoNo}
 	</update>
+	
+	<select id="getPhotosByUserId" parameterType="string" resultType="Photo">
+		select
+			photo_no		as photoNo,
+			photo			as photo,
+			likes			as likes,
+			delete_yn		as deleteYn,
+			created_date	as createdDate,
+			moim_no			as moimNo,
+			user_id			as userId
+		from
+			moim_photo
+		where
+			user_id = #{value}
+	</select>
 </mapper>

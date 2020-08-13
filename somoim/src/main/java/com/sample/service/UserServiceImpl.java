@@ -1,10 +1,12 @@
 package com.sample.service;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sample.dao.FollowerDao;
 import com.sample.dao.UserDao;
 import com.sample.vo.MoimUser;
 import com.sample.vo.MoimUserCate;
@@ -35,7 +37,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public void signUpUser(MoimUser user, MoimUserCate userCate) {
-			userDao.insertUser(user);
+		userDao.insertUser(user);
 			
 	}
+	
 }
