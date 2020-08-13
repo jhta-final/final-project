@@ -25,6 +25,12 @@ public class LoginForm {
 	public void setUserpwd(String userpwd) {
 		this.userpwd = userpwd;
 	}
+
+	@Override
+	public String toString() {
+		return "LoginForm [userId=" + userId + ", userpwd=" + userpwd + "]";
+	}
+	
 	
 	
 }

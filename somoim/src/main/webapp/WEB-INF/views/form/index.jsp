@@ -109,21 +109,21 @@ body {
 					style="font-size: 40px; font-weight: bolder; margin-top: 20px; margin-bottom: 20px; background-color: rgba(0, 0, 0, 0); border-bottom: 0;">
 					모임에 참여하세요!!!</div>
 				<div class="card-body">
-					<form action="">
+					<form:form action="/signin.do" method="post" modelAttribute="loginForm">
 						<div class="form-group text-left">
-							<label for="signin-id" style="font-size: 20px;">id</label> <input
-								type="text" class="form-control" id="signin-id">
+							<label for="signin-id" style="font-size: 20px;">id</label> <form:input
+								type="text" class="form-control" id="signin-id" path="userId"/>
 						</div>
 						<div class="form-group text-left">
 							<label for="signin-password" style="font-size: 20px;">password</label>
-							<input type="text" class="form-control" id="signin-password">
+							<form:input type="text" class="form-control" id="signin-password" path="userpwd" />
 						</div>
-						<button type="button" class="btn btn-primary"
+						<button type="submit" class="btn btn-primary"
 							style="width: 150px; background-color: #0f4c81;">Signin</button>
 						<button type="button" class="btn btn-secondary"
 							data-toggle="modal" data-target="#signup-modal"
 							style="width: 150px;">Signup</button>
-					</form>
+					</form:form>
 				</div>
 				<div class="card-footer" style="padding: 10px 10px;">
 					<div class="mb-2">
