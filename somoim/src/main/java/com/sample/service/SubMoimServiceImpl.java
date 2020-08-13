@@ -24,6 +24,7 @@ public class SubMoimServiceImpl implements SubMoimService {
 		subMoimDao.insertSubMoim(moimSubMoim);
 		
 		MoimSubJoinUser joinUser = new MoimSubJoinUser();
+		joinUser.setSubMoimNo(moimSubMoim.getSubMoimNo());
 		joinUser.setMoimNo(moimSubMoim.getMoimNo());
 		joinUser.setUserId(moimSubMoim.getUserId());
 		

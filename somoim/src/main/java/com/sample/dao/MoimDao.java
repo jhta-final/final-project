@@ -9,7 +9,7 @@ import com.sample.vo.MoimMain;
 
 public interface MoimDao {
 
-	void insertMoim(MoimMain moimMain);
+	void insertMoim(MoimMainDto moimMainDto);
 	List<MoimMainDto> selectMoims();
 	MoimMainDto selectMoim(long moimNo);
 	void updateMoim(MoimMainDto moimMainDto);

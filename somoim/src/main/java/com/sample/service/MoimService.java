@@ -9,7 +9,7 @@ import com.sample.vo.MoimMain;
 public interface MoimService {
 
 	// 새 모임 등록
-	void addNewMoim(MoimMain moimMain, String userId);
+	void addNewMoim(MoimMainDto moimMainDto);
 	// 모든 모임 조회
 	List<MoimMainDto> getAllMoims();
 	// 모임 상세정보 조회

@@ -10,7 +10,13 @@
 <meta name="viewport" content="width=device-width" />
 
 <!-- Bootstrap and jQuery     -->
-<script type="text/javascript" src="/resources/jquery/jquery.min.js"></script>
 <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+<link rel="stylesheet"
+	href="https://unpkg.com/swiper/swiper-bundle.min.css">
+	
+<script type="text/javascript" src="/resources/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="https://kit.fontawesome.com/7a2820e1a2.js" crossorigin="anonymous"></script>
+<script src="/resources/bootstrap/js/popper.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="/resources/bootstrap/swiper/swiper-bundle.min.js"></script>

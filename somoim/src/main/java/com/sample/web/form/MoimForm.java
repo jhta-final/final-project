@@ -6,6 +6,8 @@ import javax.validation.constraints.NotBlank;
 
 public class MoimForm {
 
+	private long moimNo;
+	
 	@NotBlank(message = "제목을 입력해주세요.")
 	private String title;
 	
@@ -18,6 +20,8 @@ public class MoimForm {
 	@NotBlank(message = "사진을 등록해주세요.")
 	private String image;
 	
+	private long fee;
+	
 	@NotBlank(message = "모임 날짜를 등록해주세요.")
 	private Date joinDate;
 	
@@ -26,4 +30,5 @@ public class MoimForm {
 	
 	@NotBlank(message = "지역을 선택해주세요.")
 	private long locationNo;
+	
 }
