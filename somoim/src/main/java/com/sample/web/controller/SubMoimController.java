@@ -28,7 +28,7 @@ public class SubMoimController {
 	private SubMoimService subMoimService;
 	
 	// 서브모임 등록
-	@PostMapping("subadd.do")
+	@PostMapping("/subadd.do")
 	public String addSubMoim(@ModelAttribute("subMoimForm") @Valid SubMoimForm subMoimForm) throws Exception {
 		
 		MoimSubMoim moimSubMoim = new MoimSubMoim();
