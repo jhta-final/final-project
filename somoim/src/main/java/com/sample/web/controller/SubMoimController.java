@@ -36,7 +36,7 @@ public class SubMoimController {
 		BeanUtils.copyProperties(subMoimForm, moimSubMoim);
 		subMoimService.addNewSubMoim(moimSubMoim);
 		
-		return "moim/moim.tiles";
+		return "redirect:moim/moim.tiles";
 	}
 
 	// 서브모임 상세정보

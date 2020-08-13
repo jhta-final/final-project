@@ -7,5 +7,5 @@ import com.sample.dto.MoimMainDto;
 public interface HomeDao {
 
 	List<MoimMainDto> randomMoims();
-	List<MoimMainDto> locationMoims();
+	List<MoimMainDto> locationMoims(long locationNo);
 }
