@@ -4,6 +4,7 @@ public class MoimMainCategory {
 
 	private long mainCateNo;
 	private String name;
+	
 	public long getMainCateNo() {
 		return mainCateNo;
 	}
