@@ -39,7 +39,7 @@ public class SubMoimController {
 		subMoimService.addNewSubMoim(moimSubMoim);
 		
 
-		return "redirect:moim.do?moimNo" + moimNo;
+		return "redirect:moim.do?moimNo=" + moimNo;
 
 	}
 

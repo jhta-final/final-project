@@ -31,7 +31,7 @@ public class MypageController {
 	@GetMapping("/mypage.do")
 	public String myPage1(HttpSession session, Model model) {
 		this.user = (MoimUser)session.getAttribute("LOGIN_USER");
-		List<MoimFollow> followers = mypageService.allFollower("kim");
+		List<MoimFollow> followers = mypageService.allFollower(user.getId());
 		model.addAttribute("followers", followers);
 		
 		return "mypage/mypage.tiles";

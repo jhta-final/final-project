@@ -16,6 +16,7 @@ public class HomeController {
 	@Autowired
 	HomeService homeService;
 	
+	// 모든 모임 랜덤으로 표시하기
 	@GetMapping("/home.do")
 	public String getAllMoims(Model model, HttpSession httpSession) {
 		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");

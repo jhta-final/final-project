@@ -1,10 +1,14 @@
 package com.sample.web.form;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class SubMoimForm {
 
@@ -25,6 +29,7 @@ public class SubMoimForm {
 	private String userId;
 	
 	private long moimNo;
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
 	public String getTitle() {
 		return title;
@@ -62,8 +67,13 @@ public class SubMoimForm {
 		return joinDate;
 	}
 
-	public void setJoinDate(Date joinDate) {
-		this.joinDate = joinDate;
+	public void setJoinDate(String stringJoinDate) {
+		stringJoinDate = stringJoinDate.replace("T", " ");
+		try {
+			this.joinDate = sdf.parse(stringJoinDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String getUserId() {
