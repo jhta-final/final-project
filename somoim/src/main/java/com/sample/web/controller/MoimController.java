@@ -17,6 +17,7 @@ import com.sample.service.MoimService;
 import com.sample.web.form.MoimForm;
 
 @Controller
+@RequestMapping("/moim")
 public class MoimController {
 
 	@Autowired
