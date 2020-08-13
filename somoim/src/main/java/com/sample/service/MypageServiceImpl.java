@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sample.dao.BoardDao;
 import com.sample.dao.FollowerDao;
 import com.sample.dao.PhotoDao;
+import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimJoinUserMoimDto;
 import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimFollow;
@@ -35,7 +36,7 @@ public class MypageServiceImpl implements MypageService {
 	}
 	
 	@Override
-	public List<MoimFollow> allFollower(String userId) {
+	public List<MoimFollowDto> allFollower(String userId) {
 		return followerDao.getFollowersByUserId(userId);
 	}
 	@Override
