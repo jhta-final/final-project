@@ -94,18 +94,22 @@
 		(#{moimNo}, #{userId}, #{userRole})
 	</insert>
 	
-	<select id="selectJoinUsers" parameterType="long" resultType="JoinUser">
+	<select id="selectJoinUsers" parameterType="long" resultType="JoinUserDto">
 		select
 			moim_no as moimNo,
-			user_id as userId,
+			a.user_id as userId,
+            user_name as userName,
+            nickname as nickname,
 			user_role as userRole,
-			created_date as createdDate
+			a.created_date as createdDate
 		from
-			moim_join_user
+			moim_join_user A, moim_user B
 		where
 			moim_no = #{value}
+        and
+            a.user_id = b.user_id
 		order by
-			user_id asc
+			a.user_id asc
 	</select>
 	
 	<select id="selectJoinUser" parameterType="JoinUser" resultType="JoinUser">

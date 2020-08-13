@@ -23,19 +23,17 @@ public class SignInOutController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/signin.do")
+	@GetMapping("/")
 	public String signIn(Model model) {
 		LoginForm loginForm = new LoginForm();
 		model.addAttribute("loginForm", loginForm);
-		MoimUser user = userService.login("kwon", "zxcv1234");
-		System.out.println(user.getNickname());
-		return "loginform";
+		return "form/index";
 	}
 	
 	@PostMapping("/signin.do")
 	public String login(@ModelAttribute("loginForm") @Valid LoginForm loginForm,
 			BindingResult errors, Model model) {
-		
+		System.out.println("loginForm: " + loginForm);
 		if(errors.hasErrors()) {
 			return "loginform";
 		}

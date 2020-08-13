@@ -7,7 +7,7 @@
 	position: fixed; /* Stay in place */
 	z-index: 1; /* Stay on top */
 	top: 0;
-	left: -250px;
+	left: 0px;
 	background-color: #0F4C81; /* Black*/
 	overflow-x: hidden; /* Disable horizontal scroll */
 	padding-top: 60px; /* Place content 60px from the top */

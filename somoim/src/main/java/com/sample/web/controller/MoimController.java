@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sample.dto.MoimMainDto;
 import com.sample.service.MoimService;
 import com.sample.service.SubMoimService;
+import com.sample.vo.MoimSubMoim;
 import com.sample.web.form.MoimForm;
 
 @Controller
@@ -63,5 +65,12 @@ public class MoimController {
 		model.addAttribute("users", moimService.getAllJoinUsers(moimNo));
 		
 		return "moim/moim.tiles";
+	}
+	
+	@ResponseBody
+	@GetMapping("/submoim.do")
+	public MoimSubMoim detailSubMoim(@RequestParam("subMoimNo") long subMoimNo) {
+		
+		return subMoimService.getSubMoimByNo(subMoimNo);
 	}
 }
