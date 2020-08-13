@@ -4,7 +4,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<style>
+.card{
+	width: 350px;
+	height: 300px;
+}
 
+</style>
 <div class="main">
 	<!-- Swiper -->
 	<div class="swiper-container">
@@ -47,7 +53,8 @@
 		  <div class="card">
 		    <img class="card-img-top" src="/resources/home_images/1.jpeg" alt="Card image cap">
 		    <div class="card-body">
-		      <h5 class="card-title">Card title</h5>
+		      <h5 class="card-title"><c:forEach items="allMoims" var=""></c:forEach>
+		      </h5>
 		      <p class="card-text">🔥[No.1 채널 멜론둥이의 멜론차트]🔥 2020년 8월 12일 3주차 🔥KPOP Chart🔥 최신 인기가요 노래 모음!!🔥🔥</p>
 		    </div>
 		    <div class="card-footer">
@@ -65,7 +72,7 @@
 		    </div>
 		  </div>
 		  <div class="card">
-		    <img class="card-img-top" src="/resources/home_images/3.png" alt="Card image cap" width="300px;" height="250px;">
+		    <img class="card-img-top" src="/resources/home_images/3.png" alt="Card image cap">
 		    <div class="card-body">
 		      <h5 class="card-title">Card title</h5>
 		      <p class="card-text">🔥[No.1 채널 멜론둥이의 멜론차트]🔥 2020년 8월 12일 3주차 🔥KPOP Chart🔥 최신 인기가요 노래 모음!!🔥🔥</p>
@@ -75,7 +82,7 @@
 		    </div>
 		  </div>
 		  <div class="card">
-		    <img class="card-img-top" src="/resources/home_images/4.jpeg" alt="Card image cap" width="300px;" height="250px;">
+		    <img class="card-img-top" src="/resources/home_images/4.jpeg" alt="Card image cap">
 		    <div class="card-body">
 		      <h5 class="card-title">Card title</h5>
 		      <p class="card-text">🔥[No.1 채널 멜론둥이의 멜론차트]🔥 2020년 8월 12일 3주차 🔥KPOP Chart🔥 최신 인기가요 노래 모음!!🔥🔥</p>
@@ -85,7 +92,7 @@
 		    </div>
 		  </div>
 		  <div class="card">
-		    <img class="card-img-top" src="/resources/home_images/5.jpg" alt="Card image cap" width="300px;" height="250px;">
+		    <img class="card-img-top" src="/resources/home_images/5.jpg" alt="Card image cap">
 		    <div class="card-body">
 		      <h5 class="card-title">Card title</h5>
 		      <p class="card-text">🔥[No.1 채널 멜론둥이의 멜론차트]🔥 2020년 8월 12일 3주차 🔥KPOP Chart🔥 최신 인기가요 노래 모음!!🔥🔥</p>
@@ -95,7 +102,7 @@
 		    </div>
 		  </div>
 		  <div class="card">
-		    <img class="card-img-top" src="/resources/home_images/6.jpeg" alt="Card image cap" width="300px;" height="250px;">
+		    <img class="card-img-top" src="/resources/home_images/6.jpeg" alt="Card image cap">
 		    <div class="card-body">
 		      <h5 class="card-title">Card title</h5>
 		      <p class="card-text">🔥[No.1 채널 멜론둥이의 멜론차트]🔥 2020년 8월 12일 3주차 🔥KPOP Chart🔥 최신 인기가요 노래 모음!!🔥🔥</p>
@@ -105,7 +112,7 @@
 		    </div>
 		  </div>
 		  <div class="card">
-		    <img class="card-img-top" src="/resources/home_images/7.jpg" alt="Card image cap" width="300px;" height="250px;">
+		    <img class="card-img-top" src="/resources/home_images/7.jpg" alt="Card image cap">
 		    <div class="card-body">
 		      <h5 class="card-title">Card title</h5>
 		      <p class="card-text">🔥[No.1 채널 멜론둥이의 멜론차트]🔥 2020년 8월 12일 3주차 🔥KPOP Chart🔥 최신 인기가요 노래 모음!!🔥🔥</p>
@@ -115,7 +122,7 @@
 		    </div>
 		  </div>
 		  <div class="card">
-		    <img class="card-img-top" src="/resources/home_images/8.jpeg" alt="Card image cap" width="300px;" height="250px;">
+		    <img class="card-img-top" src="/resources/home_images/8.jpeg" alt="Card image cap">
 		    <div class="card-body">
 		      <h5 class="card-title">Card title</h5>
 		      <p class="card-text">🔥[No.1 채널 멜론둥이의 멜론차트]🔥 2020년 8월 12일 3주차 🔥KPOP Chart🔥 최신 인기가요 노래 모음!!🔥🔥</p>
@@ -125,7 +132,7 @@
 		    </div>
 		  </div>
 		  <div class="card">
-		    <img class="card-img-top" src="/resources/home_images/9.jpg" alt="Card image cap" width="300px;" height="250px;">
+		    <img class="card-img-top" src="/resources/home_images/9.jpg" alt="Card image cap">
 		    <div class="card-body">
 		      <h5 class="card-title">Card title</h5>
 		      <p class="card-text">🔥[No.1 채널 멜론둥이의 멜론차트]🔥 2020년 8월 12일 3주차 🔥KPOP Chart🔥 최신 인기가요 노래 모음!!🔥🔥</p>
