@@ -16,7 +16,7 @@ public class HomeController {
 	@Autowired
 	HomeService homeService;
 	
-	@GetMapping("/home.do")
+	@GetMapping("/home.do2")
 	public String getAllMoims(Model model, HttpSession httpSession) {
 		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
 		model.addAttribute("allMoims", homeService.getAllMoims());
