@@ -16,15 +16,6 @@
 	padding-right: 0px;
 }
 
-.my-content a {
-.jeong a {
-	margin-left: 0px;
-	color: black;
-	text-decoration: none;
-}
-.jeong #leader {
-	color : red;
-}
 #content {
 	margin-left: 250px;
 	transition: 1s;
