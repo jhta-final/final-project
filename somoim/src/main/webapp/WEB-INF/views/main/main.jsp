@@ -43,42 +43,92 @@
 	<!-- Swiper Finish -->
 	<!-- 목록 -->
 	<div class="">
-		<div class="card-deck">
+		<div class="card-columns">
 		  <div class="card">
-		    <img class="card-img-top" src="/resources/home_images/1.jpeg" alt="Card image cap" width="350px;" height="300px;">
+		    <img class="card-img-top" src="/resources/home_images/1.jpeg" alt="Card image cap">
 		    <div class="card-body">
 		      <h5 class="card-title">Card title</h5>
-		      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+		      <p class="card-text">🔥[No.1 채널 멜론둥이의 멜론차트]🔥 2020년 8월 12일 3주차 🔥KPOP Chart🔥 최신 인기가요 노래 모음!!🔥🔥</p>
 		    </div>
 		    <div class="card-footer">
 		      <small class="text-muted">Last updated 3 mins ago</small>
 		    </div>
 		  </div>
 		  <div class="card">
-		    <img class="card-img-top" src="/resources/home_images/2.jpg" alt="Card image cap"  width="350px;" height="300px;">
+		    <img class="card-img-top" src="/resources/home_images/2.jpg" alt="Card image cap">
 		    <div class="card-body">
 		      <h5 class="card-title">Card title</h5>
-		      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+		      <p class="card-text">🔥[No.1 채널 멜론둥이의 멜론차트]🔥 2020년 8월 12일 3주차 🔥KPOP Chart🔥 최신 인기가요 노래 모음!!🔥🔥</p>
 		    </div>
 		    <div class="card-footer">
 		      <small class="text-muted">Last updated 3 mins ago</small>
 		    </div>
 		  </div>
 		  <div class="card">
-		    <img class="card-img-top" src="/resources/home_images/3.png" alt="Card image cap" width="350px;" height="300px;">
+		    <img class="card-img-top" src="/resources/home_images/3.png" alt="Card image cap" width="300px;" height="250px;">
 		    <div class="card-body">
 		      <h5 class="card-title">Card title</h5>
-		      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+		      <p class="card-text">🔥[No.1 채널 멜론둥이의 멜론차트]🔥 2020년 8월 12일 3주차 🔥KPOP Chart🔥 최신 인기가요 노래 모음!!🔥🔥</p>
 		    </div>
 		    <div class="card-footer">
 		      <small class="text-muted">Last updated 3 mins ago</small>
 		    </div>
 		  </div>
 		  <div class="card">
-		    <img class="card-img-top" src="/resources/home_images/4.jpeg" alt="Card image cap" width="350px;" height="300px;">
+		    <img class="card-img-top" src="/resources/home_images/4.jpeg" alt="Card image cap" width="300px;" height="250px;">
 		    <div class="card-body">
 		      <h5 class="card-title">Card title</h5>
-		      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+		      <p class="card-text">🔥[No.1 채널 멜론둥이의 멜론차트]🔥 2020년 8월 12일 3주차 🔥KPOP Chart🔥 최신 인기가요 노래 모음!!🔥🔥</p>
+		    </div>
+		    <div class="card-footer">
+		      <small class="text-muted">Last updated 3 mins ago</small>
+		    </div>
+		  </div>
+		  <div class="card">
+		    <img class="card-img-top" src="/resources/home_images/5.jpg" alt="Card image cap" width="300px;" height="250px;">
+		    <div class="card-body">
+		      <h5 class="card-title">Card title</h5>
+		      <p class="card-text">🔥[No.1 채널 멜론둥이의 멜론차트]🔥 2020년 8월 12일 3주차 🔥KPOP Chart🔥 최신 인기가요 노래 모음!!🔥🔥</p>
+		    </div>
+		    <div class="card-footer">
+		      <small class="text-muted">Last updated 3 mins ago</small>
+		    </div>
+		  </div>
+		  <div class="card">
+		    <img class="card-img-top" src="/resources/home_images/6.jpeg" alt="Card image cap" width="300px;" height="250px;">
+		    <div class="card-body">
+		      <h5 class="card-title">Card title</h5>
+		      <p class="card-text">🔥[No.1 채널 멜론둥이의 멜론차트]🔥 2020년 8월 12일 3주차 🔥KPOP Chart🔥 최신 인기가요 노래 모음!!🔥🔥</p>
+		    </div>
+		    <div class="card-footer">
+		      <small class="text-muted">Last updated 3 mins ago</small>
+		    </div>
+		  </div>
+		  <div class="card">
+		    <img class="card-img-top" src="/resources/home_images/7.jpg" alt="Card image cap" width="300px;" height="250px;">
+		    <div class="card-body">
+		      <h5 class="card-title">Card title</h5>
+		      <p class="card-text">🔥[No.1 채널 멜론둥이의 멜론차트]🔥 2020년 8월 12일 3주차 🔥KPOP Chart🔥 최신 인기가요 노래 모음!!🔥🔥</p>
+		    </div>
+		    <div class="card-footer">
+		      <small class="text-muted">Last updated 3 mins ago</small>
+		    </div>
+		  </div>
+		  <div class="card">
+		    <img class="card-img-top" src="/resources/home_images/8.jpeg" alt="Card image cap" width="300px;" height="250px;">
+		    <div class="card-body">
+		      <h5 class="card-title">Card title</h5>
+		      <p class="card-text">🔥[No.1 채널 멜론둥이의 멜론차트]🔥 2020년 8월 12일 3주차 🔥KPOP Chart🔥 최신 인기가요 노래 모음!!🔥🔥</p>
+		    </div>
+		    <div class="card-footer">
+		      <small class="text-muted">Last updated 3 mins ago</small>
+		    </div>
+		  </div>
+		  <div class="card">
+		    <img class="card-img-top" src="/resources/home_images/9.jpg" alt="Card image cap" width="300px;" height="250px;">
+		    <div class="card-body">
+		      <h5 class="card-title">Card title</h5>
+		      <p class="card-text">🔥[No.1 채널 멜론둥이의 멜론차트]🔥 2020년 8월 12일 3주차 🔥KPOP Chart🔥 최신 인기가요 노래 모음!!🔥🔥</p>
 		    </div>
 		    <div class="card-footer">
 		      <small class="text-muted">Last updated 3 mins ago</small>
