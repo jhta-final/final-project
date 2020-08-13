@@ -18,4 +18,10 @@ public class HomeServiceImpl implements HomeService{
 		
 		return moimDao.selectMoims();
 	}
+
+	@Override
+	public List<MoimMainDto> getAllMoims() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
