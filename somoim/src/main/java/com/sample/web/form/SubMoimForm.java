@@ -6,8 +6,6 @@ import javax.validation.constraints.NotBlank;
 
 public class SubMoimForm {
 
-	private long subMoimNo;
-	
 	@NotBlank(message = "제목을 입력해주세요.")
 	private String title;
 	
