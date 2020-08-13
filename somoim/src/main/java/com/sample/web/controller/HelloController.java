@@ -15,5 +15,8 @@ public class HelloController {
 	public String home() {
 		return "main/main.tiles";
 	}
-	
+	@GetMapping("/moim.do")
+	public String moim() {
+		return "moim/moim.tiles";
+	}
 }
