@@ -52,18 +52,33 @@
 	<div class="">
 		<div class="card-columns">
 			<div>
-				<c:forEach items="${allMoims }" var="moim">
+				<a href="/moim/moim.do?moimNo=500000">
 					<div class="card">
 						<img class="card-img-top" src="/resources/home_images/2.jpg"
 							alt="Card image cap">
 						<div class="card-body">
-							<h5 class="card-title"><c:out value="${moim.title }" /></h5>
-							<p class="card-text">${moim.content }</p>
+							<h5 class="card-title"><c:out value="제목제목제목" /></h5>
+							<p class="card-text">텍스트 텓그스</p>
 						</div>
 						<div class="card-footer">
-							<small class="text-muted">${moim.createdDate}</small>
+							<small class="text-muted"> 데이터데이터</small>
 						</div>
 					</div>
+				</a>
+				<c:forEach items="${allMoims }" var="moim">
+					<a href="/moim/moim.do?moimNo=${moim.moimNo}">
+						<div class="card">
+							<img class="card-img-top" src="/resources/home_images/2.jpg"
+								alt="Card image cap">
+							<div class="card-body">
+								<h5 class="card-title"><c:out value="${moim.title }" /></h5>
+								<p class="card-text">${moim.content }</p>
+							</div>
+							<div class="card-footer">
+								<small class="text-muted">${moim.createdDate}</small>
+							</div>
+						</div>
+					</a>
 				</c:forEach>
 			</div>
 		</div>

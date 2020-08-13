@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!--Navbar -->
 
-<div class="pos-f-t my-nav">
+<div class="my-nav">
 	<nav class="navbar navbar-dark" style="background-color: #0F4C81;">
 		<div style="width: 20%;">
 			<button class="navbar-toggler mr-3 nav-black">
@@ -132,16 +132,16 @@
 				</div>
 			</form>
 		</div>
-		<div>
-			<a class="nav-link" id="navbarDropdownMenuLink-22" data-toggle="dropdown"
+		<div class="dropdown">
+		
+			<a class="nav-link" id="navbarDropdownMenuLink-33" data-toggle="dropdown"
 	          aria-haspopup="true" aria-expanded="false">
-	          <img src="/resources/bootstrap/nav_images/bell.png" class=""
-	            alt="" height="35">
+	          <i class="fas fa-bell fa-2x" style="color: lightgray;"></i>
 	        </a>
-	        <div class="dropdown-menu dropdown-menu">
-	          <a class="dropdown-item" href="#">프로필 수정</a>
-	          <a class="dropdown-item" href="#">쪽지함</a>
-	          <a class="dropdown-item" href="#">로그아웃</a>
+	        <div class="dropdown-menu dropdown-menu-right">
+	          <a class="dropdown-item" href="#">알람</a>
+	          <a class="dropdown-item" href="#">경고:어쩌고 저쩌고</a>
+	          <a class="dropdown-item" href="#">친구:홍길동님이 팔로우 하셧습니다.</a>
 			</div>
 		</div>
 		<div class="dropdown">
