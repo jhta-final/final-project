@@ -2,6 +2,8 @@ package com.sample.web.form;
 
 import java.util.Date;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 public class SubMoimForm {
@@ -12,7 +14,8 @@ public class SubMoimForm {
 	@NotBlank(message = "지역을 선택해주세요.")
 	private String location;
 	
-	@NotBlank(message = "인원을 입력해주세요.")
+	@Min(message = "인원은 2~20명 까지입니다.", value = 2)
+	@Max(message = "인원은 2~20명 까지입니다.", value = 20)
 	private long headCount;
 	
 	private long fee;

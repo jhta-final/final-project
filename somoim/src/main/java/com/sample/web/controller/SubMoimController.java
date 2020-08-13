@@ -31,6 +31,8 @@ public class SubMoimController {
 	@PostMapping("/subadd.do")
 	public String addSubMoim(@ModelAttribute("subMoimForm") @Valid SubMoimForm subMoimForm, @RequestParam("moimNo") long moimNo) throws Exception {
 		
+		System.out.println("ssss");
+		
 		MoimSubMoim moimSubMoim = new MoimSubMoim();
 		
 		BeanUtils.copyProperties(subMoimForm, moimSubMoim);
