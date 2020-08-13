@@ -28,13 +28,13 @@ public class MypageController {
 	private MoimUser user = new MoimUser();
 	
 	
-	@GetMapping("/profile.do")
+	@GetMapping("/mypage.do")
 	public String myPage1(HttpSession session, Model model) {
 		this.user = (MoimUser)session.getAttribute("LOGIN_USER");
-		List<MoimFollow> followers = mypageService.allFollower(user.getId());
+		List<MoimFollow> followers = mypageService.allFollower("kim");
 		model.addAttribute("followers", followers);
 		
-		return "";
+		return "mypage/mypage.tiles";
 	}
 	
 	// 가입한모임
