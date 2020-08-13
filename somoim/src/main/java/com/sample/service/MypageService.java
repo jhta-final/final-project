@@ -2,6 +2,7 @@ package com.sample.service;
 
 import java.util.List;
 
+import com.sample.dto.JoinUsers;
 import com.sample.dto.MoimJoinUserDto;
 import com.sample.vo.MoimFollow;
 

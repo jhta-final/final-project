@@ -2,7 +2,7 @@ package com.sample.service;
 
 import java.util.List;
 
-import com.sample.dto.MoimJoinUserDto;
+import com.sample.dto.JoinUsers;
 import com.sample.dto.MoimMainDto;
 import com.sample.vo.MoimMain;
 
@@ -25,7 +25,7 @@ public interface MoimService {
 	
 	
 	// 모임에 가입한 유저들 조회
-	List<MoimJoinUserDto> getAllJoinUsers(long moimNo);
+	List<JoinUsers> getAllJoinUsers(long moimNo);
 	// 모임 가입
 	void joinMoim(long moimNo, String userId);
 	// 모임 탈퇴
