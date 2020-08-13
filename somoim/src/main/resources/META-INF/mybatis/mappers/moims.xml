@@ -13,10 +13,11 @@
 		(#{moimNo}, #{title}, #{headCount}, #{content}, #{image}, #{fee}, #{joinDate}, #{subCateNo}, #{locationNo})
 	</insert>
 	
-	<select id="selectMoims" resultType="Main">
+	<select id="selectMoims" resultType="MainDto">
 		select
-			moim_no			as moimNo,
+			a.moim_no		as moimNo,
 			title			as title,
+            user_id         as userId,
 			join_count		as joinCount,
 			head_count		as headCount,
 			content			as content,
@@ -26,19 +27,24 @@
 			primium_yn		as primiumYn,
 			delete_yn		as deleteYn,
 			join_date		as joinDate,
-			created_date	as createdDate,
+			a.created_date	as createdDate,
 			sub_cate_no		as subCateNo,
 			location_no		as locationNo
 		from
-			moim_main
+			moim_main A, moim_join_user B
+        where
+            b.user_role = 'ADMIN'
+        and
+            a.moim_no = b.moim_no
 		order by
-			moim_no desc
+			a.moim_no desc
 	</select>
 	
-	<select id="selectMoim" parameterType="long" resultType="Main">
+	<select id="selectMoim" parameterType="long" resultType="MainDto">
 		select
-			moim_no			as moimNo,
+			a.moim_no		as moimNo,
 			title			as title,
+            user_id         as userId,
 			join_count		as joinCount,
 			head_count		as headCount,
 			content			as content,
@@ -48,25 +54,21 @@
 			primium_yn		as primiumYn,
 			delete_yn		as deleteYn,
 			join_date		as joinDate,
-			created_date	as createdDate,
+			a.created_date	as createdDate,
 			sub_cate_no		as subCateNo,
 			location_no		as locationNo
 		from
-			moim_main
+			moim_main A, moim_join_user B
 		where
-			moim_no = #{value}
-	</select>
-	
-	<select id="selectMoimDupUser" parameterType="JoinUser" resultType="JoinUser">
-		select *
-		from moim_join_user
-		where
-			moim_no = #{moimNo}
+			a.moim_no = #{value}
 		and
-			user_id = #{userId}
+			b.user_role = 'ADMIN'
+		and
+            a.moim_no = b.moim_no
 	</select>
 	
-	<update id="updateMoim" parameterType="Main">
+	
+	<update id="updateMoim" parameterType="MainDto">
 		update moim_main
 		set
 			title = #{title},
@@ -104,6 +106,15 @@
 			moim_no = #{value}
 		order by
 			user_id asc
+	</select>
+	
+	<select id="selectJoinUser" parameterType="JoinUser" resultType="JoinUser">
+		select *
+		from moim_join_user
+		where
+			moim_no = #{moimNo}
+		and
+			user_id = #{userId}
 	</select>
 	
 	<delete id="deleteJoinUser" parameterType="JoinUser">

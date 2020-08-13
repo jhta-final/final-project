@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sample.dto.MoimMainDto;
 import com.sample.service.MoimService;
-import com.sample.vo.MoimMain;
 import com.sample.web.form.MoimForm;
 
 @Controller
@@ -25,10 +25,14 @@ public class MoimController {
 	@PostMapping("/add.do")
 	public String addMoim(@ModelAttribute("moimForm") @Valid MoimForm moimForm) throws Exception {
 		
-		MoimMain moimMain = new MoimMain();
+		MoimMainDto moimMainDto = new MoimMainDto();
 		
-		BeanUtils.copyProperties(moimForm, moimMain);
-//		moimService.addNewMoim(moimMain);
+		BeanUtils.copyProperties(moimForm, moimMainDto);
+//		moimService.addNewMoim(moimMainDto);
+		
+		
+		moimMainDto = moimService.getMoimByNo(50019);
+		System.out.println(moimMainDto.getUserId());
 		
 		return "";
 	}
@@ -37,10 +41,10 @@ public class MoimController {
 	// moimNo ???
 	@PostMapping("/modify.do")
 	public String modifyMoim(@ModelAttribute("moimForm") @Valid MoimForm moimForm) throws Exception {
-		MoimMain moimMain = new MoimMain();
+		MoimMainDto moimMainDto = new MoimMainDto();
 		
-		BeanUtils.copyProperties(moimForm, moimMain);
-		moimService.modifyMoim(moimMain);
+		BeanUtils.copyProperties(moimForm, moimMainDto);
+		moimService.modifyMoim(moimMainDto);
 		
 		return "";
 	}
