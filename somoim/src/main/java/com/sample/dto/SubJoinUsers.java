@@ -1,15 +1,19 @@
 package com.sample.dto;
 
-import java.util.Date;
+public class SubJoinUsers {
 
-public class MoimJoinUserDto {
-
+	private long subMoimNo;
 	private long moimNo;
 	private String userId;
-	private String userRole;
-	private Date createdDate;
 	private String userName;
 	private String nickname;
+	
+	public long getSubMoimNo() {
+		return subMoimNo;
+	}
+	public void setSubMoimNo(long subMoimNo) {
+		this.subMoimNo = subMoimNo;
+	}
 	public long getMoimNo() {
 		return moimNo;
 	}
@@ -21,18 +25,6 @@ public class MoimJoinUserDto {
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
-	}
-	public String getUserRole() {
-		return userRole;
-	}
-	public void setUserRole(String userRole) {
-		this.userRole = userRole;
-	}
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
 	}
 	public String getUserName() {
 		return userName;

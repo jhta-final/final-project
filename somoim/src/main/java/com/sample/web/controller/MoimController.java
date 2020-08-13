@@ -36,13 +36,9 @@ public class MoimController {
 		MoimMainDto moimMainDto = new MoimMainDto();
 		
 		BeanUtils.copyProperties(moimForm, moimMainDto);
-//		moimService.addNewMoim(moimMainDto);
+		moimService.addNewMoim(moimMainDto);
 		
-		
-		moimMainDto = moimService.getMoimByNo(50019);
-		System.out.println(moimMainDto.getUserId());
-		
-		return "";
+		return "redirect:moim/moim.tiles";
 	}
 	
 	// 모임 정보 수정
@@ -67,10 +63,4 @@ public class MoimController {
 		return "moim/moim.tiles";
 	}
 	
-	@ResponseBody
-	@GetMapping("/submoim.do")
-	public MoimSubMoim detailSubMoim(@RequestParam("subMoimNo") long subMoimNo) {
-		
-		return subMoimService.getSubMoimByNo(subMoimNo);
-	}
 }

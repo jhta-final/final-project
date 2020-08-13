@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.sample.dao.HomeDao">
+
+	<!-- 랜덤 모임 표시 -->
+	<select id="randomMoims" resultType="MainDto">
+	<![CDATA[
+		select * from (
+		select
+			a.moim_no		as moimNo,
+			title			as title,
+            user_id         as userId,
+			join_count		as joinCount,
+			head_count		as headCount,
+			content			as content,
+			image			as image,
+			fee				as fee,
+			likes			as likes,
+			primium_yn		as primiumYn,
+			delete_yn		as deleteYn,
+			join_date		as joinDate,
+			a.created_date	as createdDate,
+			sub_cate_no		as subCateNo,
+			location_no		as locationNo
+		from
+			moim_main A, moim_join_user B
+        where
+            b.user_role = 'ADMIN'
+        and 
+           a.moim_no = b.moim_no
+		order by
+		   DBMS_RANDOM.RANDOM
+	) where rownum <= 5
+	]]>
+	</select>
+	
+	<!-- 지역 선호도 별로 표시 -->
+	<select id="locationMoims" resultType="MainDto">
+	<![CDATA[
+	select * from(
+	select *
+	from moim_main
+	where location_no = 7
+	order by dbms_random.random
+	) where rownum <= 5;
+	]]>
+	</select>
+</mapper>
