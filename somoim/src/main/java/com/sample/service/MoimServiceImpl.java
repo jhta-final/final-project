@@ -21,14 +21,14 @@ public class MoimServiceImpl implements MoimService {
 	
 	// 새로운 모임 생성
 	@Override
-	public void addNewMoim(MoimMain moimMain, String userId) {
+	public void addNewMoim(MoimMainDto moimMainDto) {
 		// 모임 방장 저장하기
 		MoimJoinUser moimJoinUser = new MoimJoinUser();
-		moimJoinUser.setMoimNo(moimMain.getMoimNo());
-		moimJoinUser.setUserId(userId);
+		moimJoinUser.setMoimNo(moimMainDto.getMoimNo());
+		moimJoinUser.setUserId(moimMainDto.getUserId());
 		moimJoinUser.setUserRole("ADMIN");
 		
-		moimDao.insertMoim(moimMain);
+		moimDao.insertMoim(moimMainDto);
 		moimDao.insertJoinUser(moimJoinUser);
 	}
 
