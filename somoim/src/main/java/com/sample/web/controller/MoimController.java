@@ -67,10 +67,4 @@ public class MoimController {
 		return "moim/moim.tiles";
 	}
 	
-	@ResponseBody
-	@GetMapping("/submoim.do")
-	public MoimSubMoim detailSubMoim(@RequestParam("subMoimNo") long subMoimNo) {
-		
-		return subMoimService.getSubMoimByNo(subMoimNo);
-	}
 }

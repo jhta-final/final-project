@@ -2,6 +2,7 @@ package com.sample.dao;
 
 import java.util.List;
 
+import com.sample.dto.SubJoinUsers;
 import com.sample.vo.MoimSubJoinUser;
 import com.sample.vo.MoimSubMoim;
 
@@ -13,7 +14,7 @@ public interface SubMoimDao {
 	void updateSubMoim(MoimSubMoim moimSubMoim);
 	
 	void insertSubJoinUser(MoimSubJoinUser moimSubJoinUser);
-	List<MoimSubJoinUser>selectSubJoinUsers(long subMoimNo);
+	List<SubJoinUsers>selectSubJoinUsers(long subMoimNo);
 	MoimSubJoinUser selectSubJoinUser(MoimSubJoinUser moimSubJoinUser);
 	void deleteSubJoinUser(MoimSubJoinUser moimSubJoinUser);
 }

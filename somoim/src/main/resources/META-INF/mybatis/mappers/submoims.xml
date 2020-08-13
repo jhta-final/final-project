@@ -74,17 +74,21 @@
 		(#{subMoimNo}, #{moimNo}, #{userId})
 	</insert>
 	
-	<select id="selectSubJoinUsers" parameterType="long" resultType="SubJoinUser">
+	<select id="selectSubJoinUsers" parameterType="long" resultType="SubJoinUsers">
 		select
 			sub_moim_no as subMoimNo,
 			moim_no as moimNo,
-			user_id as userId
+			a.user_id as userId,
+            user_name as userName,
+            nickname as nickname
 		from
-			moim_sub_join_user
+			moim_sub_join_user A, moim_user B
 		where
 			sub_moim_no = #{value}
+        and
+            a.user_id = b.user_id
 		order by
-			user_id asc
+			a.user_id asc
 	</select>
 	
 	<select id="selectSubJoinUser" parameterType="SubJoinUser" resultType="SubJoinUser">
