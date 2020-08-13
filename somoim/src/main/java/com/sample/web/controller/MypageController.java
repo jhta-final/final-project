@@ -15,6 +15,7 @@ import com.sample.dto.MoimJoinUserMoimDto;
 import com.sample.service.MypageService;
 import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimFollow;
+import com.sample.vo.MoimPhoto;
 import com.sample.vo.MoimUser;
 
 @Controller
@@ -30,7 +31,7 @@ public class MypageController {
 	@GetMapping("/profile.do")
 	public String myPage1(HttpSession session, Model model) {
 		this.user = (MoimUser)session.getAttribute("LOGIN_USER");
-		List<MoimFollow> followers = mypageService.getAllFollower(user.getId());
+		List<MoimFollow> followers = mypageService.allFollower(user.getId());
 		model.addAttribute("followers", followers);
 		
 		return "";
@@ -41,7 +42,7 @@ public class MypageController {
 	@ResponseBody
 	public List<MoimJoinUserMoimDto> joinMoims (){
 		
-		return mypageService.getAllJoinMoims(user.getId());
+		return mypageService.allJoinMoims(user.getId());
 	}
 	
 	// 작성글
@@ -49,6 +50,14 @@ public class MypageController {
 	@ResponseBody
 	public List<MoimBoard> userBoards (){
 		
-		return null;
+		return mypageService.boardsByUser(user.getId());
+	}
+	
+	// 올린사진
+	@GetMapping("/photo.do")
+	@ResponseBody
+	public List<MoimPhoto> userPhotos () {
+		
+		return mypageService.photosByUser(user.getId());
 	}
 }
