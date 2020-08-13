@@ -146,14 +146,20 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h2 class="modal-title" id="sub-moim-title">모임 이름</h2>
+                    <h2 class="modal-title" id="sub-moim-title"></h2>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="border border-light">
-                        <p id="sub-moim"><i class="far fa-clock mr-3" style="color: #f06595;"></i>2020.08.20 00:00</p>
-                        <p><i class="fas fa-map-marker mr-3" style="color: #f06595;"></i>구로구</p>
-                        <p><i class="fas fa-won-sign mr-2" style="color: #f06595;"></i> 5,000</p>
+                        <i class="far fa-clock" style="color: #f06595;"></i>
+                        <p id="sub-moim-time"><fmt:formatDate value=""
+                        		type="both" dateStyle="short" timeStyle="short" /> </p>
+                        
+                        <i class="fas fa-map-marker" style="color: #f06595;"></i>
+                        <p id="sub-moim-location"></p>
+                        
+                        <i class="fas fa-won-sign" style="color: #f06595;"></i>
+                        <p id="sub-moim-fee"> </p>
                         <h5><strong>모임멤버</strong></h5>
                         <hr>
                         <c:forEach var="user" items="${users}">
@@ -186,7 +192,10 @@
             data: {subMoimNo:subMoimNo},
             dataType:"json",
             success:function (subMoim) {
-                console.log(subMoim);
+                $("#sub-moim-title").text(subMoim.moimSubMoim.title);
+                $("#sub-moim-time").text(subMoim.moimSubMoim.joinDate);
+                $("#sub-moim-location").text(subMoim.moimSubMoim.location);
+                $("#sub-moim-fee").text(subMoim.moimSubMoim.fee);
             }
         })
     })

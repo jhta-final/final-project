@@ -2,6 +2,8 @@ package com.sample.vo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class MoimSubMoim {
 
 	private long subMoimNo;
@@ -10,6 +12,8 @@ public class MoimSubMoim {
 	private long headCount;
 	private long fee;
 	private String deleteYN;
+	
+	@JsonFormat(pattern="yyyy. MM. dd HH:mm")
 	private Date joinDate;
 	private long joinCount;
 	private Date createdDate;
