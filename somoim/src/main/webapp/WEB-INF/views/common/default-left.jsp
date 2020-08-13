@@ -8,7 +8,7 @@
 	z-index: 1; /* Stay on top */
 	top: 0;
 	left: 0px;
-	background-color: #0F4C81; /* Black*/
+	background-color: #FFFFF0; /* Black*/
 	overflow-x: hidden; /* Disable horizontal scroll */
 	padding-top: 60px; /* Place content 60px from the top */
 	transition: 0.2s;
@@ -62,8 +62,8 @@
 	<a href="#">인기</a>
 	<a href="#">카테고리</a>
 	<hr />
-	<a href="#">내 모임</a>
-	<a href="#">내 후기</a>
+	<a href="#">가입 모임</a>
+	<a href="#"><i class="far fa-heart"></i>모임</a>
 	<a href="#">내 친구</a>
 	<a href="#">
 		<span class="nav-item avatar"> <img

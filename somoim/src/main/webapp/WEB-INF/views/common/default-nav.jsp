@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!--Navbar -->
-
 <div class="my-nav">
-	<nav class="navbar navbar-dark" style="background-color: #0F4C81;">
+	<nav class="navbar navbar-dark" style="background-color: #FFFFF0;">
 		<div style="width: 20%;">
 			<button class="navbar-toggler mr-3 nav-black">
-				<span class="navbar-toggler-icon" id="sideMenu"></span>
+				<i class="fas fa-grip-lines"></i>
 			</button>
-			<a class="navbar-brand" href="#"> <img
-				src="https://mdbootstrap.com/img/logo/mdb-transparent.png"
+			<a class="navbar-brand" href="/home.do" style="color: black"> <img
+				src="/resources/home_images/logo_1.png"
 				height="30" class="d-inline-block align-top" alt="mdb logo">
 				somoim
 			</a>
@@ -24,106 +23,28 @@
 				<div class="dropdown">
 					<button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle"
 						data-toggle="dropdown"></button>
-					<div class="dropdown-menu dropdown-menu-right" style="width: 590px;">
-							<label>지역구</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">강서구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">양천구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">구로구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">금천구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">영등포구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">동작구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">관악구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">서초구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">강남구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">송파구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">강동구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">마포구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">용산구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">서대문구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">은평구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">종로구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">서초구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">성동구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">광진구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">동대문구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">성북구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">중구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">강북구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">도봉구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">노원구
-							</label>
-							<label class="checkbox-inline">
- 							<input type="checkbox" id="inlineCheckbox1" value="option1">중랑구
-							</label>
-						<hr/>
-						<span>
-							<label>카테고리</label>
-							<input type="checkbox"> 리그오브레전드
-							<input type="checkbox"> 배틀그라운드
-							<input type="checkbox"> 피파온라인4
-							<input type="checkbox"> 싱글/연애
-							<input type="checkbox"> 술/커피/차
-							<input type="checkbox"> 맛집/미식회
-							<input type="checkbox"> 축구/풋살
-							<input type="checkbox"> 농구
-							<input type="checkbox"> 스케이트/인라인
-							<input type="checkbox"> 강아지
-							<input type="checkbox"> 고양이
-							<input type="checkbox"> 파충류
-							<input type="checkbox"> 공연/연극
-							<input type="checkbox"> 영화
-							<input type="checkbox"> 파티/페스티벌
-						</span>
-						<hr/>
+					<div class="dropdown-menu dropdown-menu-right" style="width: 595px;">
+						<select name="location" style="width: 500px;">
+						    <option value=""selected="selected" disabled="disabled" class="text-center">지역</option>
+						    <option value="종로구">종로구</option>
+						    <option value="성동구">성동구</option>
+						    <option value="강남구">강남구</option>
+						    <option value="송파구">송파구</option>
+						</select>
+						<select name="location" style="width: 500px;" class="text-center">
+						    <option value=""selected="selected" disabled="disabled">카테고리</option>
+							<optgroup label="게임">
+							<option value="종로구"> 리그오브레전드</option>
+							<option value="종로구"> 배틀그라운드</option>
+							<option value="종로구"> 피파온라인4</option>
+							</optgroup>
+							<optgroup label="스포츠">
+							<option value="종로구"> 축구/풋살</option>
+							<option value="종로구"> 농구</option>
+							<option value="종로구"> 스케이트/인라인</option>
+							</optgroup>
+						</select>
+
 						<div class="text-right mr-3">
 							<button class="btn btn-primary btn-sm" type="submit">상세검색</button>
 							<button class="btn btn-outline-primary btn-sm" type="reset">리셋</button>
@@ -147,8 +68,8 @@
 		<div class="dropdown">
 	        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
 	          aria-haspopup="true" aria-expanded="false">
-	          <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="rounded-circle z-depth-0"
-	            alt="avatar image" height="35">
+	          <img src="/resources/home_images/11.png" class="rounded-circle z-depth-0"
+	            alt="avatar image" height="35" width="35">
 	        </a>
 			<div class="dropdown-menu dropdown-menu-right">
 	          <a class="dropdown-item" href="/mypage/mypage.do">my page</a>

@@ -54,7 +54,7 @@
 			<div>
 				<a href="/moim/moim.do?moimNo=500000">
 					<div class="card">
-						<img class="card-img-top" src="/resources/home_images/2.jpg"
+						<img class="card-img-top" src="/resources/home_images/9.jpg"
 							alt="Card image cap">
 						<div class="card-body">
 							<h5 class="card-title"><c:out value="제목제목제목" /></h5>
@@ -68,7 +68,7 @@
 				<c:forEach items="${allMoims }" var="moim">
 					<a href="/moim/moim.do?moimNo=${moim.moimNo}">
 						<div class="card">
-							<img class="card-img-top" src="/resources/home_images/2.jpg"
+							<img class="card-img-top" src="/resources/home_images/9.jpg"
 								alt="Card image cap">
 							<div class="card-body">
 								<h5 class="card-title"><c:out value="${moim.title }" /></h5>
