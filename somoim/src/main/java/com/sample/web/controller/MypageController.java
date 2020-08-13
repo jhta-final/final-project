@@ -8,13 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sample.dto.MoimJoinUserDto;
+import com.sample.dto.MoimJoinUserMoimDto;
 import com.sample.service.MypageService;
-import com.sample.service.UserService;
 import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimFollow;
 import com.sample.vo.MoimUser;
@@ -41,7 +39,7 @@ public class MypageController {
 	// 가입한모임
 	@GetMapping("/usermoim.do")
 	@ResponseBody
-	public List<MoimJoinUserDto> joinMoims (){
+	public List<MoimJoinUserMoimDto> joinMoims (){
 		
 		return mypageService.getAllJoinMoims(user.getId());
 	}

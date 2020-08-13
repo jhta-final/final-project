@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.dao.FollowerDao;
-import com.sample.dto.MoimJoinUserDto;
+import com.sample.dto.MoimJoinUserMoimDto;
+import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimFollow;
 
 @Service
@@ -29,7 +30,12 @@ public class MypageServiceImpl implements MypageService {
 		return followerDao.getFollowersByUserId(userId);
 	}
 	@Override
-	public List<MoimJoinUserDto> getAllJoinMoims(String userId) {
+	public List<MoimJoinUserMoimDto> getAllJoinMoims(String userId) {
 		return followerDao.getUserMoims(userId);
+	}
+	@Override
+	public List<MoimBoard> getBoardsByUser(String userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

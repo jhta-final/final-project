@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sample.dao.FollowerDao">
+	
+	<select id="getFollowersByUserId" parameterType="string" resultType="Follow">
+		select
+			user_id		as userId,
+			fol_user_id	as folUserId
+		from
+			moim_follow
+		where
+			user_id = #{value}
+	</select>
+
+	<select id="getUserMoims" parameterType="string" resultType="com.sample.dto.MoimJoinUserMoimDto">
+		select
+			A.moim_no	   as moimNo,
+			A.user_id	   as userId,
+			A.user_role    as userRole,
+			A.created_date as createdDate,
+			B.title		   as title,
+			B.image		   as image
+		from
+			moim_join_user A, moim_main B
+		where
+		 	A.moim_no = B.moim_no
+		 and
+		 	A.user_id = #{value}
+	</select>
+	
+	<insert id="insertFollower" parameterType="Follow">
+		insert into moim_follow
+		(user_id, fol_user_id)
+		values
+		(#{userId}, #{folUserId})
+	</insert>
+</mapper>
