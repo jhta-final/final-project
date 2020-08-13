@@ -14,7 +14,7 @@
 <div class="ml-5 mt-3">
 	<img src="/resources/home_images/2.jpg"
 		class="rounded-circle myimage mr-3" alt="Cinque Terre"> <span
-		style="font-size: large; font-weight: bold;">권영준</span>
+		style="font-size: large; font-weight: bold;">${LOGIN_USER.nickname }</span>
 </div>
 <div class="row mt-3" style="width: 95%">
 	<div class="col-12">
@@ -50,6 +50,8 @@
 			<div>
 				<button type="button" class="btn btn-info">수정</button>
 			</div>
+			<div>
+			</div>
 		</div>
 	</div>
 	<div class="col-3">
@@ -59,7 +61,7 @@
 				<div class="mb-3">
 					<img src="/resources/home_images/3.png"
 						class="rounded-circle smallimage mr-3" alt="Cinque Terre"> <span
-						style="font-size: 15px; font-weight: bold;">${follower.folUserId }</span>
+						style="font-size: 15px; font-weight: bold;">${follower.nickname }</span>
 				</div>
 			</c:forEach>
 		</div>
@@ -77,5 +79,9 @@
 				}
 			})
 		})
+		
+		function joinmoim() {
+			
+		}
 	})
 </script>

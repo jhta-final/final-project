@@ -109,14 +109,17 @@ body {
 					style="font-size: 40px; font-weight: bolder; margin-top: 20px; margin-bottom: 20px; background-color: rgba(0, 0, 0, 0); border-bottom: 0;">
 					모임에 참여하세요!!!</div>
 				<div class="card-body">
-					<form:form action="/signin.do" method="post" modelAttribute="loginForm">
+					<form:form action="/signin.do" method="post"
+						modelAttribute="loginForm">
 						<div class="form-group text-left">
-							<label for="signin-id" style="font-size: 20px;">id</label> <form:input
-								type="text" class="form-control" id="signin-id" path="userId"/>
+							<label for="signin-id" style="font-size: 20px;">id</label>
+							<form:input type="text" class="form-control" id="signin-id"
+								path="userId" />
 						</div>
 						<div class="form-group text-left">
 							<label for="signin-password" style="font-size: 20px;">password</label>
-							<form:input type="text" class="form-control" id="signin-password" path="userpwd" />
+							<form:input type="text" class="form-control" id="signin-password"
+								path="userpwd" />
 						</div>
 						<button type="submit" class="btn btn-primary"
 							style="width: 150px; background-color: #0f4c81;">Signin</button>
@@ -127,14 +130,14 @@ body {
 				</div>
 				<div class="card-footer" style="padding: 10px 10px;">
 					<div class="mb-2">
-						<span><img src="kakao_login_medium_narrow.png" alt=""
+						<span><img src="/resources/index_images/kakao_login_medium_narrow.png" alt=""
 							width="40%"></span> <span><img
-							src="kakao_login_medium_narrow.png" alt="" width="40%"></span>
+							src="/resources/index_images/kakao_login_medium_narrow.png" alt="" width="40%"></span>
 					</div>
 					<div class="">
-						<span><img src="네이버 아이디로 로그인_완성형_Green.PNG" alt=""
+						<span><img src="/resources/index_images/네이버 아이디로 로그인_완성형_Green.PNG" alt=""
 							width="40%"></span> <span><img
-							src="네이버 아이디로 로그인_완성형_Green.PNG" alt="" width="40%"></span>
+							src="/resources/index_images/네이버 아이디로 로그인_완성형_Green.PNG" alt="" width="40%"></span>
 					</div>
 				</div>
 			</div>
