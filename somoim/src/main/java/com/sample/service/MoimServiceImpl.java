@@ -132,4 +132,10 @@ public class MoimServiceImpl implements MoimService {
 		
 		moimDao.deleteJoinUser(new MoimJoinUser(moimNo, userId));
 	}
+
+	@Override
+	public List<MoimJoinUser> getAllJoinUsers(long moimNo) {
+		
+		return moimDao.selectJoinUsers(moimNo);
+	}
 }

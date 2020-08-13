@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sample.dto.MoimMainDto;
 import com.sample.service.MoimService;
+import com.sample.service.SubMoimService;
 import com.sample.web.form.MoimForm;
 
 @Controller
@@ -22,6 +23,9 @@ public class MoimController {
 
 	@Autowired
 	private MoimService moimService;
+	
+	@Autowired
+	private SubMoimService subMoimService;
 	
 	// 새 모임 등록
 	@PostMapping("/add.do")
@@ -55,6 +59,9 @@ public class MoimController {
 	@GetMapping("/moim.do")
 	public String detailMoim(@RequestParam("moimNo") long moimNo, Model model) {
 		model.addAttribute("moim", moimService.getMoimByNo(moimNo));
+		model.addAttribute("submoims", subMoimService.getAllSubMoims(moimNo));
+		model.addAttribute("users", moimService.getAllJoinUsers(moimNo));
+		
 		return "moim/moim.tiles";
 	}
 }
