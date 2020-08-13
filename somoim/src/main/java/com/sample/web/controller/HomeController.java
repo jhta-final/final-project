@@ -16,12 +16,12 @@ public class HomeController {
 	@Autowired
 	HomeService homeService;
 	
-//	@GetMapping("/home.do")
-//	public String getAllMoims(Model model, HttpSession httpSession) {
-//		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
-//		model.addAttribute("allMoims", homeService.getAllMoims());
-//		model.addAttribute("locationMoims", homeService.getlocationMoims(user.getLocationNo()));
-//		
-//		return "redirect:home.do";
-//	} 
+	@GetMapping("/home.do")
+	public String getAllMoims(Model model, HttpSession httpSession) {
+		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
+		model.addAttribute("allMoims", homeService.getAllMoims());
+		model.addAttribute("locationMoims", homeService.getlocationMoims(user.getLocationNo()));
+		
+		return "redirect:home.do";
+	} 
 }
