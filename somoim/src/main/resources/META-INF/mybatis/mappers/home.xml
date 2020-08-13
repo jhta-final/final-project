@@ -43,7 +43,7 @@
 	from moim_main
 	where location_no = #{value}
 	order by dbms_random.random
-	) where rownum <= 5;
+	) where rownum <= 5
 	]]>
 	</select>
 </mapper>

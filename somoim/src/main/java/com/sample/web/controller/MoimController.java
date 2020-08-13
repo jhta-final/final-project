@@ -64,6 +64,9 @@ public class MoimController {
 		model.addAttribute("subMoimForm", new SubMoimForm());
 		
 		
+		model.addAttribute("subMoimForm", new SubMoimForm());
+		
+		
 		return "moim/moim.tiles";
 	}
 	
