@@ -53,7 +53,8 @@
 		  <div class="card">
 		    <img class="card-img-top" src="/resources/home_images/1.jpeg" alt="Card image cap">
 		    <div class="card-body">
-		      <h5 class="card-title">Card title</h5>
+		      <h5 class="card-title"><c:forEach items="allMoims" var=""></c:forEach>
+		      </h5>
 		      <p class="card-text">🔥[No.1 채널 멜론둥이의 멜론차트]🔥 2020년 8월 12일 3주차 🔥KPOP Chart🔥 최신 인기가요 노래 모음!!🔥🔥</p>
 		    </div>
 		    <div class="card-footer">
