@@ -10,4 +10,5 @@ public interface PhotoDao {
 	List<MoimPhoto> selectPhotos(long moimNo);
 	MoimPhoto selectPhoto(long photoNo);
 	void updatePhoto(MoimPhoto moimPhoto);
+	List<MoimPhoto> getPhotosByUserId(String userId);
 }

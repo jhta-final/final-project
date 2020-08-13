@@ -60,4 +60,21 @@
 		where
 			board_no = #{boardNo}
 	</update>
+	
+	<select id="getBoardsByUserId" parameterType="string" resultType="Board">
+		select
+			board_no		as boardNo,
+			title			as title,
+			content			as content,
+			views			as views,
+			delete_yn		as deleteYn,
+			created_date	as createdDate,
+			moim_no			as moimNo,
+			user_id			as userId,
+			board_cate_no	as boardCateNo
+		from
+			moim_board
+		where
+			user_id = #{value}
+	</select>
 </mapper>
