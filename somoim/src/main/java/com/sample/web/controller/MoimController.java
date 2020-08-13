@@ -64,4 +64,11 @@ public class MoimController {
 		
 		return "moim/moim.tiles";
 	}
+	
+	@GetMapping("/submoim.do")
+	public String detailSubMoim(@RequestParam("subMoimNo") long subMoimNo, Model model) {
+		model.addAttribute("submoim", subMoimService.getSubMoimByNo(subMoimNo));
+		
+		return "moim/moim.tiles";
+	}
 }
