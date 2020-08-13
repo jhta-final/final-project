@@ -8,6 +8,11 @@ public class MoimSubJoinUser {
 	
 	public MoimSubJoinUser() {}
 
+	public MoimSubJoinUser(long subMoimNo, String userId) {
+		this.subMoimNo = subMoimNo;
+		this.userId = userId;
+	}
+
 	public long getSubMoimNo() {
 		return subMoimNo;
 	}

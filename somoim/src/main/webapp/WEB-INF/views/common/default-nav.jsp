@@ -2,8 +2,8 @@
 <!--Navbar -->
 
 <div class="pos-f-t my-nav">
-	<nav class="navbar navbar-dark" style="background-color: #0F4C81">
-		<div style="width: 15%;">
+	<nav class="navbar navbar-dark fixed-top" style="background-color: #0F4C81; position: top">
+		<div style="width: 20%;">
 			<button class="navbar-toggler mr-3 nav-black">
 				<span class="navbar-toggler-icon" id="sideMenu"></span>
 			</button>
@@ -83,12 +83,28 @@
 			</form>
 		</div>
 		<div>
-			<ul class="navbar-nav ml-auto nav-flex-icons">
-				<li class="nav-item avatar"><a class="nav-link p-0" href="#">
-						<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-						class="rounded-circle z-depth-0" alt="avatar image" height="35">
-				</a></li>
-			</ul>
+			<a class="nav-link" id="navbarDropdownMenuLink-22" data-toggle="dropdown"
+	          aria-haspopup="true" aria-expanded="false">
+	          <img src="/resources/bootstrap/nav_images/bell.png" class=""
+	            alt="" height="35">
+	        </a>
+	        <div class="dropdown-menu dropdown-menu">
+	          <a class="dropdown-item" href="#">프로필 수정</a>
+	          <a class="dropdown-item" href="#">쪽지함</a>
+	          <a class="dropdown-item" href="#">로그아웃</a>
+			</div>
+		</div>
+		<div class="dropdown">
+	        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
+	          aria-haspopup="true" aria-expanded="false">
+	          <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="rounded-circle z-depth-0"
+	            alt="avatar image" height="35">
+	        </a>
+			<div class="dropdown-menu dropdown-menu-right">
+	          <a class="dropdown-item" href="#">프로필 수정</a>
+	          <a class="dropdown-item" href="#">쪽지함</a>
+	          <a class="dropdown-item" href="#">로그아웃</a>
+			</div>
 		</div>
 	</nav>
 </div>

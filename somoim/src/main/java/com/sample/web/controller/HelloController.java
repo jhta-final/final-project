@@ -15,5 +15,4 @@ public class HelloController {
 	public String home() {
 		return "main/main.tiles";
 	}
-	
 }

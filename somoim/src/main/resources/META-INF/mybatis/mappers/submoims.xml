@@ -87,6 +87,19 @@
 			user_id asc
 	</select>
 	
+	<select id="selectSubJoinUser" parameterType="SubJoinUser" resultType="SubJoinUser">
+		select
+			sub_moim_no as subMoimNo,
+			moim_no as moimNo,
+			user_id as userId
+		from
+			moim_sub_join_user
+		where
+			sub_moim_no = #{value}
+		and
+			user_id = #{userId}
+	</select>
+	
 	<delete id="deleteSubJoinUser" parameterType="SubJoinUser">
 		delete from sub_join_user
 		where

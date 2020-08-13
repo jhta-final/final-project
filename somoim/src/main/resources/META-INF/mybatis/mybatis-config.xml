@@ -17,6 +17,7 @@
 		<typeAlias type="com.sample.vo.MoimJoinUser" alias="JoinUser"/>
 		<typeAlias type="com.sample.vo.MoimLocation" alias="Location"/>
 		<typeAlias type="com.sample.vo.MoimMain" alias="Main"/>
+		<typeAlias type="com.sample.dto.MoimMainDto" alias="MainDto"/>
 		<typeAlias type="com.sample.vo.MoimMainCategory" alias="MainCategory"/>
 		<typeAlias type="com.sample.vo.MoimPhoto" alias="Photo"/>
 		<typeAlias type="com.sample.vo.MoimSubCate" alias="SubCate"/>

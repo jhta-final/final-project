@@ -29,7 +29,7 @@ public class SubMoimServiceImpl implements SubMoimService {
 		subMoimDao.insertSubJoinUser(joinUser);
 	}
 
-	// 모임 내의 모든 번개모임 등록
+	// 모임 내의 모든 번개모임 조회
 	@Override
 	public List<MoimSubMoim> getAllSubMoims(long moimNo) {
 		return subMoimDao.selectSubMoims(moimNo);
@@ -79,13 +79,18 @@ public class SubMoimServiceImpl implements SubMoimService {
 	// 번개모임 가입
 	@Override
 	public void joinSubMoim(long subMoimNo, String userId) {
+		MoimSubJoinUser savedUser = subMoimDao.selectSubJoinUser(new MoimSubJoinUser(subMoimNo, userId));
+		if(savedUser != null) {
+			System.out.println("이미 가입된 모임입니다.");
+		}
 		
+		subMoimDao.insertSubJoinUser(savedUser);
 	}
 
 	// 번개모임 탈퇴
 	@Override
 	public void outSubMoim(long subMoimNo, String userId) {
-		
+		subMoimDao.deleteSubJoinUser(new MoimSubJoinUser(subMoimNo, userId));
 	}
 
 }
