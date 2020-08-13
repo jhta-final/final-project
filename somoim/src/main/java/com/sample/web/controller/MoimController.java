@@ -60,6 +60,11 @@ public class MoimController {
 		model.addAttribute("moim", moimService.getMoimByNo(moimNo));
 		model.addAttribute("submoims", subMoimService.getAllSubMoims(moimNo));
 		model.addAttribute("users", moimService.getAllJoinUsers(moimNo));
+
+		model.addAttribute("subMoimForm", new SubMoimForm());
+		
+		model.addAttribute("subMoimForm", new SubMoimForm());
+		
 		
 		model.addAttribute("subMoimForm", new SubMoimForm());
 		

@@ -22,6 +22,8 @@ public class HomeController {
 		model.addAttribute("allMoims", homeService.getAllMoims());
 		model.addAttribute("locationMoims", homeService.getlocationMoims(user.getLocationNo()));
 		
-		return "redirect:home.do";
+
+		return "main/main.tiles";
+
 	} 
 }

@@ -29,14 +29,16 @@ public class SubMoimController {
 	
 	// 서브모임 등록
 	@PostMapping("/subadd.do")
-	public String addSubMoim(@ModelAttribute("subMoimForm") @Valid SubMoimForm subMoimForm) throws Exception {
+	public String addSubMoim(@ModelAttribute("subMoimForm") @Valid SubMoimForm subMoimForm, @RequestParam("moimNo") long moimNo) throws Exception {
 		
 		MoimSubMoim moimSubMoim = new MoimSubMoim();
 		
 		BeanUtils.copyProperties(subMoimForm, moimSubMoim);
 		subMoimService.addNewSubMoim(moimSubMoim);
 		
-		return "redirect:moim/moim.tiles";
+
+		return "redirect:moim.do?moimNo" + moimNo;
+
 	}
 
 	// 서브모임 상세정보
