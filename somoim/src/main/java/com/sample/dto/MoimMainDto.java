@@ -20,9 +20,25 @@ public class MoimMainDto {
 	private long subCateNo; 
 	private long locationNo;
 	private String locationName;
+	private long mainCateNo;
+	private String mainCateName;
 	
 	
 	
+	
+	
+	public long getMainCateNo() {
+		return mainCateNo;
+	}
+	public void setMainCateNo(long mainCateNo) {
+		this.mainCateNo = mainCateNo;
+	}
+	public String getMainCateName() {
+		return mainCateName;
+	}
+	public void setMainCateName(String mainCateName) {
+		this.mainCateName = mainCateName;
+	}
 	public String getLocationName() {
 		return locationName;
 	}

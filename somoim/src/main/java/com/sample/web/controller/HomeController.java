@@ -29,8 +29,6 @@ public class HomeController {
 		// 모든 모임 좋아요별로 표시하기
 		model.addAttribute("favoliteMoims", homeService.getFavoliteMoims());
 		
-		System.out.println(homeService.getlocationMoims(user.getLocationNo()));
-		
 		return "main/main.tiles";
 	} 
 }

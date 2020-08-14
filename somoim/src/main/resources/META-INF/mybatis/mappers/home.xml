@@ -5,8 +5,6 @@
 
 	<!-- 랜덤 모임 표시 -->
 	<select id="randomMoims" resultType="MainDto">
-	<![CDATA[
-		select * from (
 		select
 			a.moim_no		as moimNo,
 			title			as title,
@@ -33,14 +31,10 @@
         	a.delete_yn = 'N'
 		order by
 		   DBMS_RANDOM.RANDOM
-	) where rownum <= 20
-	]]>
 	</select>
 	
 	<!-- 지역 선호도 별로 표시 -->
 	<select id="locationMoims" parameterType="long" resultType="MainDto">
-	<![CDATA[
-	select * from(
     select 
 			a.moim_no		as moimNo,
 			title			as title,
@@ -66,8 +60,6 @@
         	a.delete_yn = 'N'
 		order by
 			dbms_random.random
-	) where rownum <= 5
-	]]>
 	</select>
 	
 	<select id="favoliteMoims" parameterType="long" resultType="MainDto">
@@ -97,6 +89,34 @@
 			likes desc
 	) where rownum <= 5
 	]]>
+	
+	</select>
+	
+	<select id="mainCategoryMoims" parameterType="long" resultType="MainDto">
+	 select * from(
+	 	select 
+			a.moim_no		as moimNo,
+			title			as title,
+			join_count		as joinCount,
+			head_count		as headCount,
+			content			as content,
+			image			as image,
+			fee				as fee,
+			likes			as likes,
+			primium_yn		as primiumYn,
+			join_date		as joinDate,
+			a.created_date	as createdDate,
+			c.sub_cate_no	as subCateNo,
+			c.name			as name
+		from 
+			moim_main A, moim_main_category B, moim_sub_cate C
+		where
+			a.sub_cate_no = c.sub_cate_no and b.main_cate_no = c.main_cate_no
+        and
+            b.main_cate_no = #{value}
+        and
+        	a.delete_yn = 'N';
+	 )
 	
 	</select>
 </mapper>
