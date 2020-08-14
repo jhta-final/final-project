@@ -109,7 +109,7 @@
         and
             a.user_id = b.user_id
 		order by
-			a.user_id asc
+			user_role, a.user_id asc
 	</select>
 	
 	<select id="selectJoinUser" parameterType="JoinUser" resultType="JoinUser">
@@ -131,5 +131,7 @@
 	
 	<delete id="deleteJoinUsers" parameterType="long">
 		delete from moim_join_user
+		where
+			moim_no = #{value}
 	</delete>
 </mapper>

@@ -30,4 +30,6 @@ public interface MoimService {
 	void joinMoim(long moimNo, String userId);
 	// 모임 탈퇴
 	void outMoim(long moimNo, String userId);
+	// 모임에 가입된 유저들 모두 탈퇴
+	void AllOutMoim(long moimNo);
 }
