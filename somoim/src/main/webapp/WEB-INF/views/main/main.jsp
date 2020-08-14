@@ -65,7 +65,25 @@
 						</div>
 					</div>
 				</a>
+				<c:forEach items="${locationMoims }" var="location">
+				<h1>지역별</h1>
+					<a href="/moim/moim.do?moimNo=${location.moimNo}">
+						<div class="card">
+							<img class="card-img-top" src="/resources/home_images/1.jpeg"
+								alt="Card image cap">
+							<div class="card-body">
+								<h5 class="card-title"><c:out value="${location.title }" /></h5>
+								<p class="card-text">${location.content }</p>
+							</div>
+							<div class="card-footer">
+								<small class="text-muted">${location.createdDate}</small>
+							</div>
+						</div>
+					</a>
+				</c:forEach>
+				<hr/>
 				<c:forEach items="${allMoims }" var="moim">
+				<h1>랜덤뿌리기</h1>
 					<a href="/moim/moim.do?moimNo=${moim.moimNo}">
 						<div class="card">
 							<img class="card-img-top" src="/resources/home_images/9.jpg"
@@ -80,6 +98,7 @@
 						</div>
 					</a>
 				</c:forEach>
+				
 			</div>
 		</div>
 	</div>
