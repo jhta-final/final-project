@@ -14,7 +14,6 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		String uri = request.getRequestURI();
-		System.out.println(uri);
 		HttpSession session  = request.getSession();
 		MoimUser user = (MoimUser) session.getAttribute("LOGIN_USER");
 		if((!"/".equals(uri)) && user == null) {
