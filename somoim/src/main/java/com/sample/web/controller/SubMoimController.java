@@ -73,4 +73,22 @@ public class SubMoimController {
 		
 		return "redirect:moim.do?moimNo=" + moimNo;
 	}
+	
+	// 서브모임 가입
+	@GetMapping("subjoin.do")
+	public String joinSubMoim(@RequestParam("subMoimNo") long subMoimNo, @RequestParam("userId") String userId, @RequestParam("moimNo") long moimNo) {
+		
+		subMoimService.joinSubMoim(subMoimNo, userId);
+		
+		return "redirect:moim.do?moimNo=" + moimNo;
+	}
+	
+	// 서브모임 탈퇴
+	@GetMapping("subout.do")
+	public String outSubMoim(@RequestParam("subMoimNo") long subMoimNo, @RequestParam("userId") String userId, @RequestParam("moimNo") long moimNo) {
+		
+		subMoimService.outSubMoim(subMoimNo, userId);
+		
+		return "redirect:moim.do?moimNo=" + moimNo;
+	}
 }
