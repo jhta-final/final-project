@@ -17,7 +17,7 @@
 			A.fol_user_id = B.user_id
 	</select>
 
-	<select id="getUserMoims" parameterType="string" resultType="com.sample.dto.MoimJoinUserMoimDto">
+	<select id="getUserMoims" parameterType="string" resultType="MoimJoinUser">
 		select
 			A.moim_no	   as moimNo,
 			A.user_id	   as userId,

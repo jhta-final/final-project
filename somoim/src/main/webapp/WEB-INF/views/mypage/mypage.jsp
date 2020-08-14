@@ -107,11 +107,11 @@
 				url: "/mypage/photo.do",
 				dataType: "json",
 				success: function (images) {
-					$.each(images, function (index, image) {
 						if(images.length==0){
-							var empty = "<div><p>내가쓴 글이 존재하지않습니다.</p></div>";
+							var empty = "<div><p>내가올린 사진이 존재하지않습니다.</p></div>";
 							$mypageBody.append(empty);
 						} else{
+					$.each(images, function (index, image) {
 						var tr = "<div class='card'>";
 						tr += "<a href='/moim/moim.do?moimNo=${moim.moimNo}'>";
 						tr +=
@@ -125,8 +125,8 @@
 
 						$mypageBody.append(tr);
 							
-						}
-					})
+						})
+					}
 				}
 			})
 		})
@@ -136,11 +136,11 @@
 				url: "/mypage/board.do",
 				dataType: "json",
 				success: function (boards) {
-					$.each(boards, function (index, board) {
 						if(boards.length==0){
-							var empty = "<div><table class='table'><tr><th>내가쓴 글이 존재하지않습니다.</th></tr></table></div>";
+							var empty = "<div>내가쓴 글이 존재하지않습니다.</div>";
 							$mypageBody.append(empty);
 						} else{
+					$.each(boards, function (index, board) {
 						var tr = "<div class='card'>";
 						tr += "<a href='/moim/moim.do?moimNo=${moim.moimNo}'>";
 						tr +=
@@ -154,8 +154,8 @@
 
 						$mypageBody.append(tr);
 							
-						}
-					})
+						})
+					}
 				}
 			})
 		})
