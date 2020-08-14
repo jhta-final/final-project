@@ -28,4 +28,11 @@ public class HomeServiceImpl implements HomeService{
 	public List<MoimMainDto> getlocationMoims(long locationNo) {
 		return homeDao.locationMoims(locationNo);
 	}
+
+	// 좋아요 순으로 모임조회
+	@Override
+	public List<MoimMainDto> getFavoliteMoims() {
+		
+		return homeDao.favoliteMoims();
+	}
 }

@@ -12,5 +12,8 @@ public interface HomeService {
 	// 지역선호별 모임 조회
 	List<MoimMainDto> getlocationMoims(long locationNo);
 	
+	// 좋아요 순으로 모임 조회
+	List<MoimMainDto> getFavoliteMoims();
+	
 	
 }
