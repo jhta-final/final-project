@@ -12,6 +12,9 @@ public interface HomeDao {
 	// 지역별 선호 모임 랜덤 표시
 	List<MoimMainDto> locationMoims(long locationNo);
 	
-	// 인기모임 랜덤 표시
+	// 좋아요순으로 모임 랜덤 표시
 	List<MoimMainDto> favoliteMoims();
+	
+	// 메안카테고리 랜덤표시
+	List<MoimMainDto> mainCategoryMoims(long mainCateNo);
 }

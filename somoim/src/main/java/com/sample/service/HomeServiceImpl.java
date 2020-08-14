@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.dao.HomeDao;
-import com.sample.dao.MoimDao;
 import com.sample.dto.MoimMainDto;
 
 @Service
@@ -26,13 +25,25 @@ public class HomeServiceImpl implements HomeService{
 	// 전체 회원 지역선호별 모임
 	@Override
 	public List<MoimMainDto> getlocationMoims(long locationNo) {
+		if(locationNo == 0) {
+			locationNo = (long)(Math.random()*25 +1);
+		}
 		return homeDao.locationMoims(locationNo);
 	}
 
-	// 좋아요 순으로 모임조회
+	// 좋아요순으로 모임 랜덤 표시
 	@Override
 	public List<MoimMainDto> getFavoliteMoims() {
 		
 		return homeDao.favoliteMoims();
+	}
+
+	// 메안카테고리 랜덤표시
+	@Override
+	public List<MoimMainDto> getMainCategoryMoims() {
+
+		long mainCateNo = (long)(Math.random()*5 +1);
+
+		return homeDao.mainCategoryMoims(mainCateNo);
 	}
 }
