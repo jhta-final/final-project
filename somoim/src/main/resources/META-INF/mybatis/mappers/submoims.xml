@@ -62,7 +62,7 @@
 			fee = #{fee},
 			join_date = #{joinDate}
 		where
-			sub_moim_no = #{subMoimNo} 
+			sub_moim_no = #{subMoimNo}
 	</update>
 	
 	

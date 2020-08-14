@@ -54,13 +54,13 @@ public class SubMoimController {
 	
 	// 서브모임 수정
 	@PostMapping("/submodify.do")
-	public String modifySubMoim(@ModelAttribute("subMoimForm") @Valid SubMoimForm subMoimForm, @RequestParam("subMoimNo") long subMoimNo) throws Exception {
+	public String modifySubMoim(@ModelAttribute("subMoimForm") @Valid SubMoimForm subMoimForm, @RequestParam("subMoimNo") long subMoimNo, @RequestParam("moimNo") long moimNo) throws Exception {
 		
 		MoimSubMoim moimSubMoim = subMoimService.getSubMoimByNo(subMoimNo);
 		
 		BeanUtils.copyProperties(subMoimForm, moimSubMoim);
 		subMoimService.modifySubMoim(moimSubMoim);
 		
-		return "redirect:submoim.do?subMoimNo=" + subMoimNo;
+		return "redirect:moim.do?moimNo=" + moimNo;
 	}
 }
