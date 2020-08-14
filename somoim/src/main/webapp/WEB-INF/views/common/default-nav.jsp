@@ -4,7 +4,7 @@
 	<nav class="navbar navbar-dark" style="background-color: #FFFFF0;">
 		<div style="width: 20%;">
 			<button class="navbar-toggler mr-3 nav-black">
-				<i class="fas fa-grip-lines"></i>
+				<span class="navbar-toggler-icon" id="sideMenu"></span>
 			</button>
 			<a class="navbar-brand" href="/home.do" style="color: black"> <img
 				src="/resources/home_images/logo_1.png"
