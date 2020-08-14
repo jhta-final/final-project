@@ -79,4 +79,13 @@ public class MoimController {
 		
 		return "";
 	}
+	
+	// 모임 가입
+	@GetMapping("join.do")
+	public String joinMoim(@RequestParam("moimNo") long moimNo, @RequestParam("userId") String userId) {
+		
+		moimService.joinMoim(moimNo, userId);
+		
+		return "";
+	}
 }
