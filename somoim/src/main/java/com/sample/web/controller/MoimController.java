@@ -1,5 +1,6 @@
 package com.sample.web.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
@@ -17,6 +18,7 @@ import com.sample.dto.MoimMainDto;
 import com.sample.service.MoimService;
 import com.sample.service.SubMoimService;
 import com.sample.vo.MoimSubMoim;
+import com.sample.vo.MoimUser;
 import com.sample.web.form.MoimForm;
 import com.sample.web.form.SubMoimForm;
 
@@ -56,15 +58,16 @@ public class MoimController {
 	
 	// 모임 상세정보
 	@GetMapping("/moim.do")
-	public String detailMoim(@RequestParam("moimNo") long moimNo, Model model) {
+	public String detailMoim(@RequestParam("moimNo") long moimNo, Model model, HttpSession httpSession) {
 		model.addAttribute("moim", moimService.getMoimByNo(moimNo));
 		model.addAttribute("submoims", subMoimService.getAllSubMoims(moimNo));
 		model.addAttribute("users", moimService.getAllJoinUsers(moimNo));
 
 		model.addAttribute("subMoimForm", new SubMoimForm());
 		
+		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
+		model.addAttribute("longinedUser", user.getId());
 		
 		return "moim/moim.tiles";
 	}
-	
 }
