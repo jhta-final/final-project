@@ -71,7 +71,7 @@
 		                                class="btn btn-primary" data-target="#sub-moim-modify">수정</button>
                     		</c:when>
                     		<c:otherwise>
-		                        <button data-toggle="modal" onclick="getSubMoimDetail(${subMoim.subMoimNo})"
+		                        <button data-toggle="modal" onclick="getSubMoimDetail(${subMoim.subMoimNo}, '${longinedUser}')"
 		                                class="btn btn-success"  data-target="#sub-moim-participant">참가</button>
                     		</c:otherwise>
                     	</c:choose>
@@ -211,15 +211,7 @@
                         <p id="sub-moim-fee"> </p>
                         <h5><strong>모임멤버</strong></h5>
                         <hr>
-                        <c:forEach var="user" items="${users}">
-                            <div class="row ml-4 mb-1">
-	                            <span>
-	                                <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-	                                     class="rounded-circle" alt="avatar image" height="55px">
-	                                <strong style="font-size: large">${user.userId}</strong>
-	                            </span>
-                            </div>
-                        </c:forEach>
+                        <div id="sub-moim-join-users"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -232,19 +224,36 @@
     </div>
 </div>
 <script>
-    function getSubMoimDetail(subMoimNo) {
+    function getSubMoimDetail(subMoimNo, longinedUser) {
         $.ajax({
             type:"GET",
             url:"/moim/submoim.do",
             data: {subMoimNo:subMoimNo},
             dataType:"json",
             success:function (subMoim) {
+                $("#btn-participant").removeClass('btn-danger');
+                $("#btn-participant").addClass('btn-primary');
                 $("#sub-moim-title").text(subMoim.moimSubMoim.title);
                 $("#sub-moim-time").text(subMoim.moimSubMoim.joinDate);
                 $("#sub-moim-location").text(subMoim.moimSubMoim.location);
                 $("#sub-moim-fee").text(subMoim.moimSubMoim.fee);
                 $("#btn-participant").text(subMoim.moimSubMoim.joinCount + "/" + subMoim.moimSubMoim.headCount);
-                console.log(subMoim.subJoinUsers);
+                let $joinusers = $("#sub-moim-join-users").empty();
+                let div = "";
+                for (let user of subMoim.subJoinUsers){
+                    div += '<div class="row ml-4 mb-1">';
+                    div += '<span>';
+                    div += '<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"class="rounded-circle"'
+                            +   'alt="avatar image" height="55px">';
+                    div += '<strong class="ml-3" style="font-size: large">' +user.userId+ '</strong>';
+                    div += '</span>';
+                    div += '</div>';
+                    if(longinedUser === user.userId) {
+                        $("#btn-participant").removeClass('btn-primary');
+                        $("#btn-participant").addClass('btn-danger');
+                    }
+                }
+                $joinusers.append(div);
             }
         })
     }
