@@ -17,7 +17,7 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter{
 		HttpSession session  = request.getSession();
 		MoimUser user = (MoimUser) session.getAttribute("LOGIN_USER");
 		if(user == null) {
-			response.sendRedirect("");
+			response.sendRedirect("/");
 			return false;
 		}
 		
