@@ -28,6 +28,7 @@
 		<typeAlias type="com.sample.dto.SubMoimDto" alias="SubMoimDto"/>
 		<typeAlias type="com.sample.vo.MoimUser" alias="User"/>
 		<typeAlias type="com.sample.vo.MoimUserCate" alias="UserCate"/>
+		<typeAlias type="com.sample.vo.MoimDates" alias="Dates"/>
 		<typeAlias type="com.sample.dto.MoimJoinUserMoimDto" alias="MoimJoinUser"/>
 	</typeAliases>
 	
