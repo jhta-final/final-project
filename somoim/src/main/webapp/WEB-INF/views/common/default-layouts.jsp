@@ -12,7 +12,6 @@
 	padding-right: 0px;
 }
 .my-content {
-	margin-left: 250px;
 }
 
     body {
@@ -69,6 +68,10 @@
 </head>
 
 <body>
+<div style="position: fixed;bottom: 10px; right: 10px;">
+	<a href="/moim/add.do"><i class="fas fa-plus"></i></a>
+</div>
+
 <div class="container-fluid ">
 	<div class="row">
 		<div class="col-12 my-back">
@@ -76,9 +79,9 @@
 		</div>
 	</div>
 	<div class="row">
-	<div id="test">
-		<tiles:insertAttribute name="left" />
-	</div>
+		<div class ="test col-2">
+			<tiles:insertAttribute name="left" />
+		</div>
 		<div class="col-10 my-content">
 			<tiles:insertAttribute name="content" />
 		</div>
@@ -90,7 +93,7 @@ $(function() {
 	function viewSomething() {
 	       if ( action == 1 ) {
 	           action = 2;
-	           $("#mySidenav").css("left", "250px");
+	           $("#mySidenav").css("left", "-317px");
 	       } else {
 	    	   $("#mySidenav").css("left", "0px");
 	           action = 1;
@@ -104,15 +107,15 @@ $(function() {
 	function viewSomething() {
 	       if ( action == 1 ) {
 	    	   $(".my-content").attr('class','my-content col-12');
-	           $("#mySidenav").css("left", "-250px");
-	           $(".my-content").css("marginleft", "0px");
-	           $(".my-content").css("left", "-250px");
+	    	   $("#mySidenav").attr('class', "sidenav");
+	           $("#mySidenav").css("left", "-317px");
+	           $("#test1").attr("class", "");
 	           action = 2;
 	       } else {
 	    	   $(".my-content").attr('class','my-content col-10');
+	    	   $("#mySidenav").attr('class', "sidenav col-2");
 	    	   $("#mySidenav").css("left", "0px");
-	           $(".my-content").css("marginLeft", "250px");
-	           $(".my-content").css("left", "-0px");
+	           $("#test1").attr("class", "ml-4");
 	           action = 1;
 	       }
 	}

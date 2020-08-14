@@ -21,3 +21,4 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 <script src="/resources/bootstrap/swiper/swiper-bundle.min.js"></script>
 <script src="https://kit.fontawesome.com/7a2820e1a2.js" crossorigin="anonymous"></script>
+<script src="/resources/ckeditor/ckeditor.js"></script>

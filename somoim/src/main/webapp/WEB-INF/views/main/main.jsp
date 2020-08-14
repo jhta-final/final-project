@@ -9,29 +9,31 @@
 	margin-bottom: 50px;
 }
 .card{
-	width: 298px;
+	width: 350px;
 	height: 300px;
 	margin-bottom: 150px;
 }
 .card-img-top {
-	width: 296px;
+	width: 348px;
 	height: 200px;
 }
 h5 {
 	font-size: 12px;
 }
 
-p {
+a > p {
 	font-size: 8px;
 }
 
 </style>
-<div class="main">
+<div class="main ">
 	<!-- Swiper -->
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
 				<img alt="" src="/resources/index_images/1.jpg" width="500px">
+				
+				<p></p>
 			</div>
 			<div class="swiper-slide">
 				<img alt="" src="/resources/index_images/2.jpg" width="500px">
@@ -63,7 +65,7 @@ p {
 	</p>
 	<!-- Swiper Finish -->
 	<!-- 목록 -->
-	<div class="">
+	<div class="ml-4" id="test1">
 		<div class="card-deck mb-4">
 			<a href="/moim/moim.do?moimNo=500000">
 				<div class="card mb-4">
