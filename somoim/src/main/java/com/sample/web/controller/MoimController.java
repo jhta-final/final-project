@@ -69,4 +69,32 @@ public class MoimController {
 		
 		return "moim/moim.tiles";
 	}
+	
+	// 모임 삭제
+	@GetMapping("delete.do")
+	public String deleteMoim(@RequestParam("moimNo") long moimNo) {
+		
+		moimService.AllOutMoim(moimNo);
+		moimService.deleteMoim(moimNo);
+		
+		return "";
+	}
+	
+	// 모임 가입
+	@GetMapping("join.do")
+	public String joinMoim(@RequestParam("moimNo") long moimNo, @RequestParam("userId") String userId) {
+		
+		moimService.joinMoim(moimNo, userId);
+		
+		return "";
+	}
+	
+	// 모임 탈퇴
+	@GetMapping("out.do")
+	public String outMoim(@RequestParam("moimNo") long moimNo, @RequestParam("userId") String userId) {
+		
+		moimService.outMoim(moimNo, userId);
+		
+		return "";
+	}
 }

@@ -133,6 +133,13 @@ public class MoimServiceImpl implements MoimService {
 		
 		moimDao.deleteJoinUser(new MoimJoinUser(moimNo, userId));
 	}
+	
+	// 모임에 가입된 유저들 모두 탈퇴
+	@Override
+	public void AllOutMoim(long moimNo) {
+
+		moimDao.deleteJoinUsers(moimNo);
+	}
 
 	// 모임 내의 유저들 조회하기
 	@Override
