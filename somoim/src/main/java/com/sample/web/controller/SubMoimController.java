@@ -31,8 +31,6 @@ public class SubMoimController {
 	@PostMapping("/subadd.do")
 	public String addSubMoim(@ModelAttribute("subMoimForm") @Valid SubMoimForm subMoimForm, @RequestParam("moimNo") long moimNo) throws Exception {
 		
-		System.out.println("ssss");
-		
 		MoimSubMoim moimSubMoim = new MoimSubMoim();
 		
 		BeanUtils.copyProperties(subMoimForm, moimSubMoim);
@@ -52,5 +50,17 @@ public class SubMoimController {
 		List<SubJoinUsers> joinUsers = subMoimService.getAllSubJoinUsers(subMoimNo);
 		
 		return new SubMoimDto(moim, joinUsers);
+	}
+	
+	// 서브모임 수정
+	@PostMapping("/submodify.do")
+	public String modifySubMoim(@ModelAttribute("subMoimForm") @Valid SubMoimForm subMoimForm, @RequestParam("subMoimNo") long subMoimNo) throws Exception {
+		
+		MoimSubMoim moimSubMoim = subMoimService.getSubMoimByNo(subMoimNo);
+		
+		BeanUtils.copyProperties(subMoimForm, moimSubMoim);
+		subMoimService.modifySubMoim(moimSubMoim);
+		
+		return "redirect:submoim.do?subMoimNo=" + subMoimNo;
 	}
 }
