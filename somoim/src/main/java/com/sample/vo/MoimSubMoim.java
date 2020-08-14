@@ -11,7 +11,7 @@ public class MoimSubMoim {
 	private String location;
 	private long headCount;
 	private long fee;
-	private String deleteYN;
+	private String deleteYn;
 	
 	@JsonFormat(pattern="yyyy. MM. dd HH:mm")
 	private Date joinDate;
@@ -62,12 +62,12 @@ public class MoimSubMoim {
 		this.fee = fee;
 	}
 
-	public String getDeleteYN() {
-		return deleteYN;
+	public String getDeleteYn() {
+		return deleteYn;
 	}
-
-	public void setDeleteYN(String deleteYN) {
-		this.deleteYN = deleteYN;
+	
+	public void setDeleteYn(String deleteYn) {
+		this.deleteYn = deleteYn;
 	}
 
 	public Date getJoinDate() {
