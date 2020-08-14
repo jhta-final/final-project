@@ -56,7 +56,7 @@
 			location_no		as locationNo,
 			name			as name
 		from 
-			moim_main A, moimlocation B
+			moim_main A, moim_location B
 		where
 			location_no = #{value}
 		order by 
