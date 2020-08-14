@@ -21,7 +21,7 @@ h5 {
 	font-size: 12px;
 }
 
-p {
+a > p {
 	font-size: 8px;
 }
 
@@ -65,7 +65,7 @@ p {
 	</p>
 	<!-- Swiper Finish -->
 	<!-- 목록 -->
-	<div style="width:auto;">
+	<div class="ml-4" id="test1">
 		<div class="card-deck mb-4">
 			<a href="/moim/moim.do?moimNo=500000">
 				<div class="card mb-4">
