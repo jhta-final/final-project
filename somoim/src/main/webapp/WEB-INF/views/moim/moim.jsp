@@ -65,8 +65,16 @@
                         <div class="row"><i class="fas fa-won-sign mr-2" style="color: #f06595;"></i><span>${subMoim.fee}</span></div>
                     </div>
                     <div>
-                        <button data-toggle="modal"
-                                class="btn btn-success" data-no="${subMoim.subMoimNo}" data-target="#sub-moim-participant">참가</button>
+                    	<c:choose>
+                    		<c:when test="${longinedUser eq subMoim.userId}">
+                    			<button data-toggle="modal" onclick="subMoimModify(${subMoim.subMoimNo})"
+		                                class="btn btn-primary" data-target="#sub-moim-modify">수정</button>
+                    		</c:when>
+                    		<c:otherwise>
+		                        <button data-toggle="modal" onclick="getSubMoimDetail(${subMoim.subMoimNo})"
+		                                class="btn btn-success"  data-target="#sub-moim-participant">참가</button>
+                    		</c:otherwise>
+                    	</c:choose>
                         <hr>
                     </div>
                 </div>
@@ -103,12 +111,8 @@
                     </div>
                     <form:form method="post" action="/moim/subadd.do" modelAttribute="subMoimForm">
                     <div class="modal-body">
-                     
                             <input hidden="hidden" type="number" name="moimNo" value="${param.moimNo}" />
-                            
-                            유저 아이디 나중에 추가해야됨
-                            
-                            <input hidden="hidden" type="text" value="ko" name="userId"/>
+                            <input hidden="hidden" type="text" value="${longinedUser}" name="userId"/>
                             <div class="form-group">
                                 <label>벙개 이름</label>
                                 <form:input type="text" class="form-control" path="title"/>
@@ -141,6 +145,51 @@
         </div>
     </div>
 
+    <div class="modal" id="sub-moim-modify">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">벙개 수정</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <form:form method="post" action="/moim/subadd.do" modelAttribute="subMoimForm">
+                    <div class="modal-body">
+                        <input id="sub-modify-no" type="number" name="subMoimNo" value="0">
+                        <input hidden="hidden" type="number" name="moimNo" value="${param.moimNo}" />
+                        <input hidden="hidden" type="text" value="${longinedUser}" name="userId"/>
+                        <div class="form-group">
+                            <label>벙개 이름</label>
+                            <form:input type="text" class="form-control" path="title"/>
+                        </div>
+                        <div class="form-group">
+                            <label>정모 일시</label>
+                            <form:input type="datetime-local" class="form-control" path="joinDate"/>
+                        </div>
+                        <div class="form-group">
+                            <label>정모 장소</label>
+                            <form:input type="text" class="form-control" path="location"/>
+                        </div>
+                        <div class="form-group">
+                            <label>참가비</label>
+                            <form:input type="number" class="form-control" path="fee"/>
+                        </div>
+                        <div class="form-group">
+                            <label>참가인원 (2 ~ 20명)</label>
+                            <form:input type="number" min="2" max="20" class="form-control" path="headCount"/>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                        <button type="submit" class="btn btn-primary">수정</button>
+                    </div>
+                </form:form>
+
+            </div>
+        </div>
+    </div>
+
+
     <div class="modal" id="sub-moim-participant">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -152,8 +201,7 @@
                 <div class="modal-body">
                     <div class="border border-light">
                         <i class="far fa-clock" style="color: #f06595;"></i>
-                        <p id="sub-moim-time"><fmt:formatDate value=""
-                        		type="both" dateStyle="short" timeStyle="short" /> </p>
+                        <p id="sub-moim-time"></p>
                         
                         <i class="fas fa-map-marker" style="color: #f06595;"></i>
                         <p id="sub-moim-location"></p>
@@ -175,7 +223,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    <button type="submit" class="btn btn-primary" id="btn-add-product">1/20</button>
+                    <button type="submit" class="btn btn-primary" id="btn-participant"></button>
                 </div>
 
             </div>
@@ -183,9 +231,7 @@
     </div>
 </div>
 <script>
-    $("#sub-moim-join").on("click", "button", function() {
-        let subMoimNo = $(this).data("no");
-
+    function getSubMoimDetail(subMoimNo) {
         $.ajax({
             type:"GET",
             url:"/moim/submoim.do",
@@ -196,7 +242,12 @@
                 $("#sub-moim-time").text(subMoim.moimSubMoim.joinDate);
                 $("#sub-moim-location").text(subMoim.moimSubMoim.location);
                 $("#sub-moim-fee").text(subMoim.moimSubMoim.fee);
+                $("#btn-participant").text(subMoim.moimSubMoim.joinCount + "/" + subMoim.moimSubMoim.headCount);
             }
         })
-    })
+    }
+
+    function subMoimModify(subMoimNo) {
+        $("#sub-modify-no").val(subMoimNo);
+    }
 </script>
