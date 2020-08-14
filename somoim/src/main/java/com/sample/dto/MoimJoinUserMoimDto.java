@@ -13,6 +13,7 @@ public class MoimJoinUserMoimDto {
 		// moim_main
 		private String title;
 		private String image;
+		private String content;
 		
 		public long getMoimNo() {
 			return moimNo;
@@ -50,4 +51,11 @@ public class MoimJoinUserMoimDto {
 		public void setImage(String image) {
 			this.image = image;
 		}
+		public String getContent() {
+			return content;
+		}
+		public void setContent(String content) {
+			this.content = content;
+		}
+		
 }
