@@ -1,5 +1,7 @@
 package com.sample.web.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -15,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sample.dto.MoimMainDto;
+import com.sample.service.CategoryService;
 import com.sample.service.MoimService;
 import com.sample.service.SubMoimService;
+import com.sample.vo.MoimSubCate;
 import com.sample.vo.MoimSubMoim;
 import com.sample.vo.MoimUser;
 import com.sample.web.form.MoimForm;
@@ -32,6 +36,9 @@ public class MoimController {
 	@Autowired
 	private SubMoimService subMoimService;
 	
+	@Autowired
+	private CategoryService categoryService;
+	
 	// 새 모임 등록
 	@PostMapping("/add.do")
 	//public String addMoim(@ModelAttribute("moimForm") @Valid MoimForm moimForm)
@@ -45,9 +52,20 @@ public class MoimController {
 		return "redirect:moim/moim.tiles";
 	}
 	
+	// 새 모임 등록 페이지
 	@GetMapping("/add.do")
-	public String createMoim() {
+	public String createMoim(Model model, HttpSession httpSession) {
+		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
+		model.addAttribute("longinedUser", user.getId());
+		
 		return "moim/moimCreate.tiles";
+	}
+	
+	// 모임등록 세부 카테고리
+	@GetMapping("/subCate.do")
+	@ResponseBody
+	public List<MoimSubCate> getSubCate(@RequestParam("mainCateNo") long mainCateNo) {
+		return categoryService.getSubCates(mainCateNo);
 	}
 	
 	// 모임 정보 수정

@@ -1,10 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<style>
+    .image-checked {
+        border: solid 5px #0F4C81;
+    }
+</style>
+
 <div class="container mt-5 ml-4">
-    <form class="form" role="form" method="post" action="">
+    <form class="form" method="post" action="/moim/add.do">
+        <input hidden="hidden" name="${longinedUser}">
         <div class="form-group mt-4">
-            <i class="mr-2 fas fa-check"></i><label>벙개 이름</label>
+            <i class="mr-2 fas fa-images" style="color: #0F4C81;"></i><label>기본 이미지</label>
+            <br>
+            <span id="image-check">
+	            <img class="mr-3" src="/resources/home_images/4.jpeg" width="150" height="150" />
+	            <img class="mr-3" src="/resources/home_images/5.jpg"  width="150" height="150" />
+	            <img class="mr-3" src="/resources/home_images/6.jpeg" width="150" height="150" />
+	            <img class="mr-3" src="/resources/home_images/7.jpg" width="150" height="150" />
+            </span>
+            <br>
+        </div>
+        <input hidden="hidden" name="img">
+        <div class="form-group mt-4">
+            <i class="mr-2 fas fa-check" style="color: #0F4C81;"></i><label>벙개 이름</label>
             <input type="text" class="form-control" name="title"/>
         </div>
         <div class="form-group">
@@ -44,7 +63,7 @@
         </div>
         <div class="form-group">
             <i class="mr-2 fas fa-tags" style="color: #0F4C81;"></i><label>카테고리</label>
-            <select name="category" class="form-control">
+            <select id="main-cate" name="category" class="form-control" onchange="getSubCate()">
                 <option value=""selected="selected" disabled="disabled" class="text-center"></option>
                 <option value="1">게임/오락</option>
                 <option value="2">사교/인맥</option>
@@ -55,7 +74,8 @@
         </div>
         <div class="form-group">
             <i class="mr-2 fas fa-tags" style="color: #0F4C81;"></i><label>세부 카테고리</label>
-            <input type="text" class="form-control" name="location"/>
+            <select id="sub-cate" name="category" class="form-control">
+            </select>
         </div>
         <div class="form-group">
             <i class="mr-2 fas fa-won-sign" style="color: #0F4C81;"></i><label>참가비</label>
@@ -80,4 +100,34 @@
 
 <script>
     CKEDITOR.replace( 'ckeditor' );
+
+    $("#image-check").on("click", "img", function () {
+        $("#image-check img").removeClass("image-checked")
+        $(this).addClass("image-checked");
+    })
+
+    // 세부 카테고리 가져오기
+    function getSubCate() {
+        mainCateNo = $("#main-cate option:selected").val()
+
+        $.ajax({
+            type:"GET",
+            url:"/moim/subCate.do",
+            data: {
+                mainCateNo:mainCateNo
+            },
+            dataType:"json",
+            success:function (subCates) {
+                console.log(subCates);
+                let $select = $("#sub-cate").empty();
+                let options = "";
+                for(let subCate of subCates) {
+                    options += '<option value='+subCate.subCateNo+'>'
+                    options += subCate.name;
+                    options += '</option>';
+                }
+                $select.append(options);
+            }
+        })
+    }
 </script>

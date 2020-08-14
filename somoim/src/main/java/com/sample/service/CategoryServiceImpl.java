@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sample.dao.CategoryDao;
 import com.sample.dto.MoimMainDto;
 import com.sample.vo.MoimDates;
+import com.sample.vo.MoimSubCate;
 
 @Service
 @Transactional
@@ -44,6 +45,13 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public List<MoimMainDto> getMoimsByLikes() {
 		return categoryDao.selectMoimsByLikes();
+	}
+
+	// 메인카테No로 서브카테 조회
+	@Override
+	public List<MoimSubCate> getSubCates(long mainCateNo) {
+		// TODO Auto-generated method stub
+		return categoryDao.getSubCates(mainCateNo);
 	}
 
 }

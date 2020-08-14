@@ -1,5 +1,7 @@
 package com.sample.web.form;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.validation.constraints.NotBlank;
@@ -22,8 +24,9 @@ public class MoimForm {
 	
 	private long fee;
 	
-	@NotBlank(message = "모임 날짜를 등록해주세요.")
 	private Date joinDate;
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
 	@NotBlank(message = "카테고리를 선택해주세요.")
 	private long subCateNo;
@@ -83,8 +86,13 @@ public class MoimForm {
 		return joinDate;
 	}
 
-	public void setJoinDate(Date joinDate) {
-		this.joinDate = joinDate;
+	public void setJoinDate(String stringJoinDate) {
+		stringJoinDate = stringJoinDate.replace("T", " ");
+		try {
+			this.joinDate = sdf.parse(stringJoinDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public long getSubCateNo() {

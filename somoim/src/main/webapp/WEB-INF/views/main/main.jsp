@@ -38,7 +38,7 @@ a > p {
 			<div class="swiper-slide">
 				<a href="/moim/moim.do?moimNo=${favolite.moimNo}"> 
 				<div class="card mb-4">
-					<img class="card-img-top" src="/resources/home_images/1.jpeg"
+					<img class="card-img-top" src="/resources/home_images/11.png"
 						alt="Card image cap">
 						<div class="card-body">
 							<h5 class="card-title">
@@ -67,6 +67,7 @@ a > p {
 	<!-- Swiper Finish -->
 	<!-- 목록 -->
 	<div class="ml-4" id="test1">
+			<h1>${locationMoims[0].locationName }</h1>
 		<div class="card-deck mb-4">
 			<a href="/moim/moim.do?moimNo=500000">
 				<div class="card mb-4">
@@ -74,17 +75,14 @@ a > p {
 						alt="Card image cap">
 					<div class="card-body">
 						<h5 class="card-title">
-							<c:out value="제목제목제목" />
+							<c:out value="title" />
 						</h5>
-						<p class="card-text">텍스트 텓그스</p>
-						<small class="text-muted"> 데이터데이터</small>
+						<p class="card-text">정원이 원하는 페이지</p>
+						<small class="text-muted">ㅇㅇㅇㅇㅇㅇㅇ</small>
 					</div>
 				</div>
 
 			</a>
-		</div>
-			<h1>${locationMoims[0].locationName }</h1>
-		<div class="card-deck mb-4">
 			<c:forEach items="${locationMoims }" var="location">
 					<a href="/moim/moim.do?moimNo=${location.moimNo}"> 
 				<div class="card mb-4">
@@ -102,7 +100,26 @@ a > p {
 			</c:forEach>
 		</div>
 		<hr />
-		<h1>랜덤뿌리기</h1>
+		<h1>카테고리별</h1>
+		<div class="card-deck mb-4">
+			<c:forEach items="${mainCategoryMoims }" var="category">
+				<a href="/moim/moim.do?moimNo=${category.moimNo}">
+					<div class="card mb-4">
+						<img class="card-img-top" src="/resources/home_images/7.jpg"
+							alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">
+								<c:out value="${category.title }" />
+							</h5>
+							<p class="card-text">${category.content }</p>
+							<small class="text-muted">${category.createdDate}</small>
+						</div>
+					</div>
+				</a>
+			</c:forEach>
+		</div>
+		<hr />
+		<h1>전체모임</h1>
 		<div class="card-deck mb-4">
 			<c:forEach items="${allMoims }" var="moim">
 				<a href="/moim/moim.do?moimNo=${moim.moimNo}">
