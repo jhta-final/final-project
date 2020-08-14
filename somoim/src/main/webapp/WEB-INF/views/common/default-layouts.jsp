@@ -12,6 +12,7 @@
 	padding-right: 0px;
 }
 .my-content {
+	background-color: white;
 }
 
     body {

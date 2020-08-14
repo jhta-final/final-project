@@ -106,8 +106,9 @@
 			primium_yn		as primiumYn,
 			join_date		as joinDate,
 			a.created_date	as createdDate,
+			b.main_cate_no	as mainCateNo,
 			c.sub_cate_no	as subCateNo,
-			c.name			as name
+			c.name			as mainCateName
 		from 
 			moim_main A, moim_main_category B, moim_sub_cate C
 		where
@@ -115,8 +116,9 @@
         and
             b.main_cate_no = #{value}
         and
-        	a.delete_yn = 'N';
-	 )
+        	a.delete_yn = 'N'
+	 ) order by 
+	 		dbms_random.random
 	
 	</select>
 </mapper>

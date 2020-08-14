@@ -18,7 +18,7 @@
 </style>
 <div class="ml-5 mt-3">
 	<img src="/resources/home_images/2.jpg" class="rounded-circle myimage mr-3" alt="Cinque Terre"> <span
-		style="font-size: large; font-weight: bold;">${LOGIN_USER.nickname }</span>
+		style="font-size: large; font-weight: bold;">${friendUser.nickname }</span>
 </div>
 <div class="row mt-3" style="width: 95%">
 	<div class="col-12">
@@ -38,18 +38,6 @@
 	<div class="col-9">
 		<div id="mypage-body">
 
-		</div>
-	</div>
-	<div class="col-3">
-		<div style="padding: 30px;">
-			<div class="text-center">내 친구</div>
-			<c:forEach items="${followers }" var="follower">
-				<div class="mb-3">
-				
-					<a href="/friend/info.do?userId=${follower.folUserId }"><img src="/resources/home_images/3.png" class="rounded-circle smallimage mr-3" alt="Cinque Terre"> <span
-						style="font-size: 15px; font-weight: bold;">${follower.nickname }</span></a>
-				</div>
-			</c:forEach>
 		</div>
 	</div>
 </div>

@@ -34,26 +34,23 @@ a > p {
 	<!-- Swiper -->
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
+				<c:forEach items="${favoliteMoims }" var="favolite">
 			<div class="swiper-slide">
-				<img alt="" src="/resources/index_images/1.jpg" width="500px">
-				
-				<p></p>
+				<a href="/moim/moim.do?moimNo=${favolite.moimNo}"> 
+				<div class="card mb-4">
+					<img class="card-img-top" src="/resources/home_images/1.jpeg"
+						alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">
+								<c:out value="${favolite.title }" />
+							</h5>
+							<p class="card-text">${favolite.content }</p>
+							<small class="text-muted">${favolite.createdDate}</small>
+						</div>
+				</div>
+					</a>
 			</div>
-			<div class="swiper-slide">
-				<img alt="" src="/resources/index_images/2.jpg" width="500px">
-			</div>
-			<div class="swiper-slide">
-				<img alt="" src="/resources/index_images/3.jpg" width="500px">
-			</div>
-			<div class="swiper-slide">
-				<img alt="" src="/resources/index_images/4.jpg" width="500px">
-			</div>
-			<div class="swiper-slide">
-				<img alt="" src="/resources/index_images/5.jpg" width="500px">
-			</div>
-			<div class="swiper-slide">
-				<img alt="" src="/resources/index_images/6.jpg" width="500px">
-			</div>
+				</c:forEach>
 		</div>
 		<!-- Add Pagination -->
 		<div class="swiper-pagination"></div>

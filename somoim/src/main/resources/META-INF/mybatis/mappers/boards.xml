@@ -76,5 +76,7 @@
 			moim_board
 		where
 			user_id = #{value}
+		and
+			board_cate_no = 2
 	</select>
 </mapper>
