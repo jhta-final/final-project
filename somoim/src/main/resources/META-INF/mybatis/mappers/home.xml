@@ -39,10 +39,27 @@
 	<select id="locationMoims" parameterType="long" resultType="MainDto">
 	<![CDATA[
 	select * from(
-		select *
-		from moim_main
-		where location_no = #{value}
-		order by dbms_random.random
+		select 
+			moim_no			as moimNo,
+			title			as title,
+			join_count		as joinCount,
+			head_count		as headCount,
+			content			as content,
+			image			as image,
+			fee				as fee,
+			likes			as likes,
+			primium_yn		as primiumYn,
+			delete_yn		as deleteYn,
+			join_date		as joinDate,
+			created_date	as createdDate,
+			sub_cate_no		as subCateNo,
+			location_no		as locationNo
+		from 
+			moim_main
+		where
+			location_no = #{value}
+		order by 
+			dbms_random.random
 	) where rownum <= 5
 	]]>
 	</select>

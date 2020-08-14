@@ -110,6 +110,13 @@ public class MoimMainDto {
 	public void setLocationNo(long locationNo) {
 		this.locationNo = locationNo;
 	}
+	@Override
+	public String toString() {
+		return "MoimMainDto [moimNo=" + moimNo + ", title=" + title + ", userId=" + userId + ", joinCount=" + joinCount
+				+ ", headCount=" + headCount + ", content=" + content + ", image=" + image + ", fee=" + fee + ", likes="
+				+ likes + ", primiumYn=" + primiumYn + ", deleteYn=" + deleteYn + ", joinDate=" + joinDate
+				+ ", createdDate=" + createdDate + ", subCateNo=" + subCateNo + ", locationNo=" + locationNo + "]";
+	}
 	
 	
 }

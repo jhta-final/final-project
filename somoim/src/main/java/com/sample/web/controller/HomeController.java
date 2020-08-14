@@ -22,9 +22,8 @@ public class HomeController {
 		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
 		model.addAttribute("allMoims", homeService.getAllMoims());
 		model.addAttribute("locationMoims", homeService.getlocationMoims(user.getLocationNo()));
-		
+		System.out.println(homeService.getlocationMoims(user.getLocationNo()));
 
 		return "main/main.tiles";
-
 	} 
 }
