@@ -77,7 +77,6 @@
 		$("#mypage-info").click(function() {
 			$mypageBody.append(mypageInfo);
 		})
-		
 		$("#mypage-mymoim").click(function () {
 			$.ajax({
 				type: "GET",
@@ -85,6 +84,34 @@
 				dataType: "json",
 				success: function (moims) {
 					$.each(moims, function (index, moim) {
+						var tr = "<div class='card'>";
+						tr += "<a href='/moim/moim.do?moimNo="+moim.moimNo+"'>";
+						tr +=
+							"<img class='card-img-top' src='/resources/home_images/9.jpg' alt='Card image cap'>";
+						tr += "<div class='card-body'>";
+						tr += "<h5 class='card-title'>"+moim.title+"</h5>"
+						tr += "<p class='card-text'>"+moim.content+"</p>";
+						tr += "</div><div class='card-footer'>";
+						tr += "<small class='text-muted'>"+moim.createdDate+"</small>";
+						tr += "</div></a></div>";
+
+						$mypageBody.append(tr);
+					})
+				}
+			})
+		})
+		
+		$("#mypage-images").click(function () {
+			$.ajax({
+				type: "GET",
+				url: "/mypage/photo.do",
+				dataType: "json",
+				success: function (images) {
+					$.each(images, function (index, image) {
+						if(images.length==0){
+							var empty = "<div><p>내가쓴 글이 존재하지않습니다.</p></div>";
+							$mypageBody.append(empty);
+						} else{
 						var tr = "<div class='card'>";
 						tr += "<a href='/moim/moim.do?moimNo=${moim.moimNo}'>";
 						tr +=
@@ -97,6 +124,37 @@
 						tr += "</div></a></div>";
 
 						$mypageBody.append(tr);
+							
+						}
+					})
+				}
+			})
+		})
+		$("#mypage-board").click(function () {
+			$.ajax({
+				type: "GET",
+				url: "/mypage/board.do",
+				dataType: "json",
+				success: function (boards) {
+					$.each(boards, function (index, board) {
+						if(boards.length==0){
+							var empty = "<div><table class='table'><tr><th>내가쓴 글이 존재하지않습니다.</th></tr></table></div>";
+							$mypageBody.append(empty);
+						} else{
+						var tr = "<div class='card'>";
+						tr += "<a href='/moim/moim.do?moimNo=${moim.moimNo}'>";
+						tr +=
+							"<img class='card-img-top' src='/resources/home_images/9.jpg' alt='Card image cap'>";
+						tr += "<div class='card-body'>";
+						tr += "<h5 class='card-title'><c:out value='${moim.title }'/></h5>"
+						tr += "<p class='card-text'>${moim.content }</p>";
+						tr += "</div><div class='card-footer'>";
+						tr += "<small class='text-muted'>${moim.createdDate}</small>";
+						tr += "</div></a></div>";
+
+						$mypageBody.append(tr);
+							
+						}
 					})
 				}
 			})

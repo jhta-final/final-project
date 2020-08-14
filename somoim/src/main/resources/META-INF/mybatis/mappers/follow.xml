@@ -24,7 +24,8 @@
 			A.user_role    as userRole,
 			A.created_date as createdDate,
 			B.title		   as title,
-			B.image		   as image
+			B.image		   as image,
+			B.content	   as content
 		from
 			moim_join_user A, moim_main B
 		where
