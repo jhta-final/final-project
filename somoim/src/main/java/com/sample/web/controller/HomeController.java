@@ -34,10 +34,6 @@ public class HomeController {
 		
 		// 메안카테고리 랜덤표시
 		model.addAttribute("mainCategoryMoims", homeService.getMainCategoryMoims());
-		List<MoimMainDto> mainCate = homeService.getMainCategoryMoims();
-		for(MoimMainDto moimMainDto : mainCate ) {
-			System.out.println(moimMainDto.getMainCateName());
-		}
 			
 		return "main/main.tiles";
 	} 
