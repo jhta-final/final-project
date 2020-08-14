@@ -68,6 +68,7 @@
 </head>
 
 <body>
+
 <div class="container-fluid ">
 	<div class="row">
 		<div class="col-12 my-back">
@@ -89,7 +90,7 @@ $(function() {
 	function viewSomething() {
 	       if ( action == 1 ) {
 	           action = 2;
-	           $("#mySidenav").css("left", "-250px");
+	           $("#mySidenav").css("left", "-317px");
 	       } else {
 	    	   $("#mySidenav").css("left", "0px");
 	           action = 1;
@@ -104,12 +105,14 @@ $(function() {
 	       if ( action == 1 ) {
 	    	   $(".my-content").attr('class','my-content col-12');
 	    	   $("#mySidenav").attr('class', "sidenav");
-	           $("#mySidenav").css("left", "-250px");
+	           $("#mySidenav").css("left", "-317px");
+	           $("#test1").attr("class", "");
 	           action = 2;
 	       } else {
 	    	   $(".my-content").attr('class','my-content col-10');
 	    	   $("#mySidenav").attr('class', "sidenav col-2");
 	    	   $("#mySidenav").css("left", "0px");
+	           $("#test1").attr("class", "ml-4");
 	           action = 1;
 	       }
 	}

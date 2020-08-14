@@ -21,12 +21,16 @@ h5 {
 	font-size: 12px;
 }
 
-p {
+a > p {
 	font-size: 8px;
 }
 
 </style>
 <div class="main ">
+	<div style="position: fixed;bottom: 10px; right: 10px;">
+		<a href="/moim/add.do"><i class="fas fa-plus"></i></a>
+		<a href="#"><i class="fas fa-arrow-up"></i></a>
+	</div>
 	<!-- Swiper -->
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
@@ -65,7 +69,7 @@ p {
 	</p>
 	<!-- Swiper Finish -->
 	<!-- 목록 -->
-	<div style="width:auto;">
+	<div class="ml-4" id="test1">
 		<div class="card-deck mb-4">
 			<a href="/moim/moim.do?moimNo=500000">
 				<div class="card mb-4">

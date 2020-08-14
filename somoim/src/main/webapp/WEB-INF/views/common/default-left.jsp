@@ -3,7 +3,7 @@
 /* The side navigation menu */
 .sidenav {
 	height: 100%; /* 100% Full-height */
-	width: 250px; /* 0 width - change this with JavaScript */
+	width: 317px; /* 0 width - change this with JavaScript */
 	position: fixed; /* Stay in place */
 	z-index: 1; /* Stay on top */
 	top: 0;
@@ -18,10 +18,11 @@
 
 /* The navigation menu links */
 .sidenav a {
+	margin-left:50px;
 	padding: 8px 8px 8px 32px;
 	text-decoration: none;
 	font-size: 20px;
-	color: aqua;
+	color: gray;
 	display: block;
 	transition: 0.2s;
 }
@@ -106,16 +107,16 @@
       </li>
     </ul>
 	<hr />
-	<div class="" id="footer">
-	자주하는 질문
-	help@friendscube.com
-	홈서비스
-	 소개언론/미디어블로그
-	 고객센터
-	 웹사이트소통공간서비스
-	  이용약관개인정보
-	   취급방침
-	   ⓒ Friendscube
+	<div class="" id="footer" style="font-size: 10px; margin-left:50px;">
+		<p>자주하는 질문</p>
+		<p>help@friendscube.com</p>
+		<p>홈서비스</p>
+		<p>소개언론/미디어블로그</p>
+		<p>고객센터</p>
+		<p>웹사이트소통공간서비스</p>
+		<p>이용약관개인정보</p>
+		<p>취급방침</p>
+		<p>ⓒ Friendscube</p>
 	</div>
 </div>
 

@@ -34,14 +34,20 @@ public class MoimController {
 	
 	// 새 모임 등록
 	@PostMapping("/add.do")
+	//public String addMoim(@ModelAttribute("moimForm") @Valid MoimForm moimForm)
 	public String addMoim(@ModelAttribute("moimForm") @Valid MoimForm moimForm) throws Exception {
 		
-		MoimMainDto moimMainDto = new MoimMainDto();
+		//MoimMainDto moimMainDto = new MoimMainDto();
 		
-		BeanUtils.copyProperties(moimForm, moimMainDto);
-		moimService.addNewMoim(moimMainDto);
+		//BeanUtils.copyProperties(moimForm, moimMainDto);
+		//moimService.addNewMoim(moimMainDto);
 		
 		return "redirect:moim/moim.tiles";
+	}
+	
+	@GetMapping("/add.do")
+	public String createMoim() {
+		return "moim/moimCreate.tiles";
 	}
 	
 	// 모임 정보 수정
