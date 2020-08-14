@@ -1,5 +1,7 @@
 package com.sample.web.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.sample.dto.MoimMainDto;
 import com.sample.service.HomeService;
 import com.sample.vo.MoimUser;
 
@@ -20,15 +23,22 @@ public class HomeController {
 	public String getAllMoims(Model model, HttpSession httpSession) {
 		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
 
-		// 모든 모임 랜덤으로 표시하기
+		// 모든 카테고리 랜덤 모임 표시
 		model.addAttribute("allMoims", homeService.getAllMoims());
 		
-		// 모든 모임 지역 선호별로 표시하기
+		// 지역별 선호 모임 랜덤 표시
 		model.addAttribute("locationMoims", homeService.getlocationMoims(user.getLocationNo()));
 		
-		// 모든 모임 좋아요별로 표시하기
+		// 좋아요순으로 모임 랜덤 표시
 		model.addAttribute("favoliteMoims", homeService.getFavoliteMoims());
 		
+		// 메안카테고리 랜덤표시
+		model.addAttribute("mainCategoryMoims", homeService.getMainCategoryMoims());
+		List<MoimMainDto> mainCate = homeService.getMainCategoryMoims();
+		for(MoimMainDto moimMainDto : mainCate ) {
+			System.out.println(moimMainDto.getMainCateName());
+		}
+			
 		return "main/main.tiles";
 	} 
 }
