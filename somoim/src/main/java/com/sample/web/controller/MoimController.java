@@ -69,4 +69,14 @@ public class MoimController {
 		
 		return "moim/moim.tiles";
 	}
+	
+	// 모임 삭제
+	@GetMapping("delete.do")
+	public String deleteMoim(@RequestParam("moimNo") long moimNo) {
+		
+		moimService.AllOutMoim(moimNo);
+		moimService.deleteMoim(moimNo);
+		
+		return "";
+	}
 }
