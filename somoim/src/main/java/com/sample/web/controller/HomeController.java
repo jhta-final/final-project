@@ -16,14 +16,21 @@ public class HomeController {
 	@Autowired
 	HomeService homeService;
 	
-	// 모든 모임 랜덤으로 표시하기
 	@GetMapping("/home.do")
 	public String getAllMoims(Model model, HttpSession httpSession) {
 		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
-		model.addAttribute("allMoims", homeService.getAllMoims());
-		model.addAttribute("locationMoims", homeService.getlocationMoims(user.getLocationNo()));
-		System.out.println(homeService.getlocationMoims(user.getLocationNo()));
 
+		// 모든 모임 랜덤으로 표시하기
+		model.addAttribute("allMoims", homeService.getAllMoims());
+		
+		// 모든 모임 지역 선호별로 표시하기
+		model.addAttribute("locationMoims", homeService.getlocationMoims(user.getLocationNo()));
+		
+		// 모든 모임 좋아요별로 표시하기
+		model.addAttribute("favoliteMoims", homeService.getFavoliteMoims());
+		
+		System.out.println(homeService.getlocationMoims(user.getLocationNo()));
+		
 		return "main/main.tiles";
 	} 
 }
