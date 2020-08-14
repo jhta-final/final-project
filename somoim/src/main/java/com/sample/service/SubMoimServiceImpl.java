@@ -70,7 +70,7 @@ public class SubMoimServiceImpl implements SubMoimService {
 			return;
 		}
 		
-		savedMoim.setDeleteYN("Y");
+		savedMoim.setDeleteYn("Y");
 		
 		subMoimDao.updateSubMoim(savedMoim);
 	}
