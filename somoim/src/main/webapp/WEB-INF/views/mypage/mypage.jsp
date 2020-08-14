@@ -45,8 +45,9 @@
 			<div class="text-center">내 친구</div>
 			<c:forEach items="${followers }" var="follower">
 				<div class="mb-3">
-					<img src="/resources/home_images/3.png" class="rounded-circle smallimage mr-3" alt="Cinque Terre"> <span
-						style="font-size: 15px; font-weight: bold;">${follower.nickname }</span>
+				
+					<a href="/friend/info.do?userId=${follower.folUserId }"><img src="/resources/home_images/3.png" class="rounded-circle smallimage mr-3" alt="Cinque Terre"> <span
+						style="font-size: 15px; font-weight: bold;">${follower.nickname }</span></a>
 				</div>
 			</c:forEach>
 		</div>

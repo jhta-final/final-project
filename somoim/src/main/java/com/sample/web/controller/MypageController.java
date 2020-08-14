@@ -15,7 +15,6 @@ import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimJoinUserMoimDto;
 import com.sample.service.MypageService;
 import com.sample.vo.MoimBoard;
-import com.sample.vo.MoimFollow;
 import com.sample.vo.MoimPhoto;
 import com.sample.vo.MoimUser;
 
