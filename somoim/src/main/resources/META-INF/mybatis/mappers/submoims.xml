@@ -116,7 +116,7 @@
 	</delete>
 	
 	<delete id="deleteSubJoinUser" parameterType="SubJoinUser">
-		delete from sub_join_user
+		delete from moim_sub_join_user
 		where
 			sub_moim_no = #{subMoimNo}
 		and
