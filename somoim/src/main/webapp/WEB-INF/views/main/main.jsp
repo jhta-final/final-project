@@ -5,15 +5,24 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <style>
-
+.card-deck{
+	margin-bottom: 50px;
+}
 .card{
 	width: 298px;
-	height: 250px;
-	margin-bottom: 100px;
+	height: 300px;
+	margin-bottom: 150px;
 }
 .card-img-top {
 	width: 296px;
 	height: 200px;
+}
+h5 {
+	font-size: 12px;
+}
+
+p {
+	font-size: 8px;
 }
 
 </style>
@@ -55,9 +64,9 @@
 	<!-- Swiper Finish -->
 	<!-- 목록 -->
 	<div class="">
-		<div class="card-deck">
+		<div class="card-deck mb-4">
 			<a href="/moim/moim.do?moimNo=500000">
-				<div class="card">
+				<div class="card mb-4">
 					<img class="card-img-top" src="/resources/home_images/9.jpg"
 						alt="Card image cap">
 					<div class="card-body">
@@ -65,18 +74,17 @@
 							<c:out value="제목제목제목" />
 						</h5>
 						<p class="card-text">텍스트 텓그스</p>
-					</div>
-					<div class="card-footer">
 						<small class="text-muted"> 데이터데이터</small>
 					</div>
 				</div>
 
 			</a>
 		</div>
-		<div class="card-deck">
+			<h1>${locationMoims[0].locationName }</h1>
+		<div class="card-deck mb-4">
 			<c:forEach items="${locationMoims }" var="location">
 					<a href="/moim/moim.do?moimNo=${location.moimNo}"> 
-				<div class="card">
+				<div class="card mb-4">
 					<img class="card-img-top" src="/resources/home_images/1.jpeg"
 						alt="Card image cap">
 						<div class="card-body">
@@ -84,8 +92,6 @@
 								<c:out value="${location.title }" />
 							</h5>
 							<p class="card-text">${location.content }</p>
-						</div>
-						<div class="card-footer">
 							<small class="text-muted">${location.createdDate}</small>
 						</div>
 				</div>
@@ -94,10 +100,10 @@
 		</div>
 		<hr />
 		<h1>랜덤뿌리기</h1>
-		<div class="card-deck">
+		<div class="card-deck mb-4">
 			<c:forEach items="${allMoims }" var="moim">
 				<a href="/moim/moim.do?moimNo=${moim.moimNo}">
-					<div class="card">
+					<div class="card mb-4">
 						<img class="card-img-top" src="/resources/home_images/9.jpg"
 							alt="Card image cap">
 						<div class="card-body">
@@ -105,8 +111,6 @@
 								<c:out value="${moim.title }" />
 							</h5>
 							<p class="card-text">${moim.content }</p>
-						</div>
-						<div class="card-footer">
 							<small class="text-muted">${moim.createdDate}</small>
 						</div>
 					</div>
