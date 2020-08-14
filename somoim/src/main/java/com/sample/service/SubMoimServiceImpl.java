@@ -93,10 +93,15 @@ public class SubMoimServiceImpl implements SubMoimService {
 		subMoimDao.deleteSubJoinUser(new MoimSubJoinUser(subMoimNo, userId));
 	}
 	
+	// 번개모임에 가입된 유저들 모두 탈퇴
+	@Override
+	public void AllOutSubMoim(long subMoimNo) {
+		subMoimDao.deleteSubJoinUsers(subMoimNo);
+	}
+	
 	// 번개모임 내의 유저들 조회하기
 	public List<SubJoinUsers> getAllSubJoinUsers(long subMoimNo) {
 		
 		return subMoimDao.selectSubJoinUsers(subMoimNo);
 	}
-
 }

@@ -22,6 +22,8 @@ public interface SubMoimService {
 	void joinSubMoim(long subMoimNo, String userId);
 	// 번개모임 탈퇴
 	void outSubMoim(long subMoimNo, String userId);
+	// 번개모임에 가입된 유저들 모두 탈퇴
+	void AllOutSubMoim(long subMoimNo);
 	// 번개모임 내의 유저들 조회
 	List<SubJoinUsers> getAllSubJoinUsers(long subMoimNo);
 }

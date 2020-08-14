@@ -17,5 +17,6 @@ public interface SubMoimDao {
 	void insertSubJoinUser(MoimSubJoinUser moimSubJoinUser);
 	List<SubJoinUsers>selectSubJoinUsers(long subMoimNo);
 	MoimSubJoinUser selectSubJoinUser(MoimSubJoinUser moimSubJoinUser);
+	void deleteSubJoinUsers(long subMoimNo);
 	void deleteSubJoinUser(MoimSubJoinUser moimSubJoinUser);
 }

@@ -68,6 +68,7 @@ public class SubMoimController {
 	@GetMapping("/subdelete.do")
 	public String deleteSubMoim(@RequestParam("subMoimNo") long subMoimNo, @RequestParam("moimNo") long moimNo) {
 		
+		subMoimService.AllOutSubMoim(subMoimNo);
 		subMoimService.deleteSubMoim(subMoimNo);
 		
 		return "redirect:moim.do?moimNo=" + moimNo;
