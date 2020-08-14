@@ -65,6 +65,12 @@
 			sub_moim_no = #{subMoimNo}
 	</update>
 	
+	<delete id="deleteSubMoim" parameterType="long">
+		delete from moim_sub_moim
+		where
+			sub_moim_no = #{value}
+	</delete>
+	
 	
 	<insert id="insertSubJoinUser" parameterType="SubJoinUser">
 		insert into moim_sub_join_user

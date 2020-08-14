@@ -63,4 +63,13 @@ public class SubMoimController {
 		
 		return "redirect:moim.do?moimNo=" + moimNo;
 	}
+	
+	// 서브모임 삭제
+	@GetMapping("/subdelete.do")
+	public String deleteSubMoim(@RequestParam("subMoimNo") long subMoimNo, @RequestParam("moimNo") long moimNo) {
+		
+		subMoimService.deleteSubMoim(subMoimNo);
+		
+		return "redirect:moim.do?moimNo=" + moimNo;
+	}
 }
