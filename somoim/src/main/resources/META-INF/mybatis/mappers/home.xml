@@ -53,12 +53,12 @@
 			join_date		as joinDate,
 			a.created_date	as createdDate,
 			sub_cate_no		as subCateNo,
-			location_no		as locationNo,
+			a.location_no		as locationNo,
 			name			as name
 		from 
 			moim_main A, moim_location B
 		where
-			location_no = #{value}
+			a.location_no = #{value}
 		order by 
 			dbms_random.random
 	) where rownum <= 5
