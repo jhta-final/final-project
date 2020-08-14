@@ -60,7 +60,7 @@
 			location = #{location},
 			head_count = #{headCount},
 			fee = #{fee},
-			delete_yn = #{deleteYn}
+			delete_yn = #{deleteYN}
 			join_date = #{joinDate}
 		where
 			sub_moim_no = #{subMoimNo} 
