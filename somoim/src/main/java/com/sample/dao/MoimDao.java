@@ -18,5 +18,5 @@ public interface MoimDao {
 	List<JoinUsers> selectJoinUsers(long moimNo);
 	MoimJoinUser selectJoinUser(MoimJoinUser moimJoinUser);
 	void deleteJoinUser(MoimJoinUser moimJoinUser);
-	
+	void deleteJoinUsers(long moimNo);
 }

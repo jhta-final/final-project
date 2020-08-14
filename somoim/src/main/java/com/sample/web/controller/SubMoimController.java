@@ -71,7 +71,7 @@ public class SubMoimController {
 		subMoimService.AllOutSubMoim(subMoimNo);
 		subMoimService.deleteSubMoim(subMoimNo);
 		
-		return "redirect:moim.do?moimNo=" + moimNo;
+		return "moim.do?moimNo=" + moimNo;
 	}
 	
 	// 서브모임 가입
