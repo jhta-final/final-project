@@ -49,6 +49,7 @@
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
 	.sidenav {
+		padding-top: 15px;
 		
 	}
 	.sidenav a {
@@ -57,8 +58,7 @@
 }
 </style>
 
-<div class="sidenav">
-<nav class="navbar" id="mySidenav">
+<div id="mySidenav" class="sidenav">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="/home.do">Home
@@ -106,7 +106,6 @@
       </li>
     </ul>
 	<hr />
-	</nav>
 	<div class="" id="footer">
 	자주하는 질문
 	help@friendscube.com

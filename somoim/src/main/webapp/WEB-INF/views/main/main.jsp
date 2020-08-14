@@ -7,8 +7,13 @@
 <style>
 
 .card{
-	width: 350px;
-	height: 300px;
+	width: 298px;
+	height: 250px;
+	margin-bottom: 100px;
+}
+.card-img-top {
+	width: 296px;
+	height: 200px;
 }
 
 </style>
@@ -50,56 +55,64 @@
 	<!-- Swiper Finish -->
 	<!-- 목록 -->
 	<div class="">
-		<div class="card-columns">
-			<div>
-				<a href="/moim/moim.do?moimNo=500000">
+		<div class="card-deck">
+			<a href="/moim/moim.do?moimNo=500000">
+				<div class="card">
+					<img class="card-img-top" src="/resources/home_images/9.jpg"
+						alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">
+							<c:out value="제목제목제목" />
+						</h5>
+						<p class="card-text">텍스트 텓그스</p>
+					</div>
+					<div class="card-footer">
+						<small class="text-muted"> 데이터데이터</small>
+					</div>
+				</div>
+
+			</a>
+		</div>
+		<div class="card-deck">
+			<c:forEach items="${locationMoims }" var="location">
+		<h1>${location.name }</h1>
+					<a href="/moim/moim.do?moimNo=${location.moimNo}"> 
+				<div class="card">
+					<img class="card-img-top" src="/resources/home_images/1.jpeg"
+						alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">
+								<c:out value="${location.title }" />
+							</h5>
+							<p class="card-text">${location.content }</p>
+						</div>
+						<div class="card-footer">
+							<small class="text-muted">${location.createdDate}</small>
+						</div>
+				</div>
+					</a>
+			</c:forEach>
+		</div>
+		<hr />
+		<h1>랜덤뿌리기</h1>
+		<div class="card-deck">
+			<c:forEach items="${allMoims }" var="moim">
+				<a href="/moim/moim.do?moimNo=${moim.moimNo}">
 					<div class="card">
 						<img class="card-img-top" src="/resources/home_images/9.jpg"
 							alt="Card image cap">
 						<div class="card-body">
-							<h5 class="card-title"><c:out value="제목제목제목" /></h5>
-							<p class="card-text">텍스트 텓그스</p>
+							<h5 class="card-title">
+								<c:out value="${moim.title }" />
+							</h5>
+							<p class="card-text">${moim.content }</p>
 						</div>
 						<div class="card-footer">
-							<small class="text-muted"> 데이터데이터</small>
+							<small class="text-muted">${moim.createdDate}</small>
 						</div>
 					</div>
 				</a>
-				<c:forEach items="${locationMoims }" var="location">
-				<h1>지역별</h1>
-					<a href="/moim/moim.do?moimNo=${location.moimNo}">
-						<div class="card">
-							<img class="card-img-top" src="/resources/home_images/1.jpeg"
-								alt="Card image cap">
-							<div class="card-body">
-								<h5 class="card-title"><c:out value="${location.title }" /></h5>
-								<p class="card-text">${location.content }</p>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">${location.createdDate}</small>
-							</div>
-						</div>
-					</a>
-				</c:forEach>
-				<hr/>
-				<c:forEach items="${allMoims }" var="moim">
-				<h1>랜덤뿌리기</h1>
-					<a href="/moim/moim.do?moimNo=${moim.moimNo}">
-						<div class="card">
-							<img class="card-img-top" src="/resources/home_images/9.jpg"
-								alt="Card image cap">
-							<div class="card-body">
-								<h5 class="card-title"><c:out value="${moim.title }" /></h5>
-								<p class="card-text">${moim.content }</p>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">${moim.createdDate}</small>
-							</div>
-						</div>
-					</a>
-				</c:forEach>
-				
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 </div>
