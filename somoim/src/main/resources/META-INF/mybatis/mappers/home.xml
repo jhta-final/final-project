@@ -40,7 +40,7 @@
 	<![CDATA[
 	select * from(
 		select 
-			moim_no			as moimNo,
+			a.moim_no		as moimNo,
 			title			as title,
 			join_count		as joinCount,
 			head_count		as headCount,
@@ -51,11 +51,12 @@
 			primium_yn		as primiumYn,
 			delete_yn		as deleteYn,
 			join_date		as joinDate,
-			created_date	as createdDate,
+			a.created_date	as createdDate,
 			sub_cate_no		as subCateNo,
-			location_no		as locationNo
+			location_no		as locationNo,
+			name			as name
 		from 
-			moim_main
+			moim_main A, moimlocation B
 		where
 			location_no = #{value}
 		order by 
