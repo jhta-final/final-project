@@ -40,7 +40,7 @@ public class SignInOutController {
 		
 		MoimUser user = userService.login(loginForm.getUserId(), loginForm.getUserpwd());
 		if (user == null) {
-			return "redirect:/signin.do?error=fail";
+			return "redirect:/?error=fail";
 		}
 		
 		model.addAttribute("LOGIN_USER", user);

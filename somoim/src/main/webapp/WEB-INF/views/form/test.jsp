@@ -8,7 +8,7 @@
 <div class="row">
       <div class="col-9" style="background-color:lightgoldenrodyellow;">
         <div class="row mb-4 mt-4">
-          <div class="col-4 ml-1">
+          <div class="col-4">
             <img src="resources/index_images/10.jpg" alt="" class="rounded" width="250px">
           </div>
           <div class="col-8">

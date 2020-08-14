@@ -80,17 +80,21 @@ body {
 	width: 25%;
 	text-align: center;
 }
+
+.noClick {
+   pointer-events: none;
+}
 </style>
 </head>
 
 <body>
 	<!-- Swiper -->
-	<div class="swiper-container">
+	<div class="swiper-container noClick">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide bg-image"
 				style="background-image: url('/resources/index_images/1.jpg');"></div>
 			<div class="swiper-slide bg-image"
-				style="background-image: url('/resources/index_images/2.jpg');"></div>
+				style="background-image: url('/resources/i	ndex_images/2.jpg');"></div>
 			<div class="swiper-slide bg-image"
 				style="background-image: url('/resources/index_images/4.jpg');"></div>
 			<div class="swiper-slide bg-image"
@@ -102,7 +106,8 @@ body {
 			<div class="swiper-slide bg-image"
 				style="background-image: url('/resources/index_images/8.png');"></div>
 		</div>
-		<div class="bg-text">
+	</div>
+		<div class="bg-text ">
 			<div class="card"
 				style="background-color: rgba(255, 248, 248, 0.3); border-radius: 6%;">
 				<div class="card-header mt-5"
@@ -113,12 +118,12 @@ body {
 						modelAttribute="loginForm">
 						<div class="form-group text-left">
 							<label for="signin-id" style="font-size: 20px;">id</label>
-							<form:input type="text" class="form-control" id="signin-id"
+							<form:input class="form-control" id="signin-id"
 								path="userId" />
 						</div>
 						<div class="form-group text-left">
 							<label for="signin-password" style="font-size: 20px;">password</label>
-							<form:input type="text" class="form-control" id="signin-password"
+							<form:password class="form-control" id="signin-password"
 								path="userpwd" />
 						</div>
 						<button type="submit" class="btn btn-primary"
@@ -142,7 +147,6 @@ body {
 				</div>
 			</div>
 		</div>
-	</div>
 
 	<!--회원가입 모달 창-->
 	<div class="modal" id="signup-modal">
