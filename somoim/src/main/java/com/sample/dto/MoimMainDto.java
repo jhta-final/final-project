@@ -19,7 +19,16 @@ public class MoimMainDto {
 	private Date createdDate;
 	private long subCateNo; 
 	private long locationNo;
+	private String locationName;
 	
+	
+	
+	public String getLocationName() {
+		return locationName;
+	}
+	public void setLocationName(String locationName) {
+		this.locationName = locationName;
+	}
 	public long getMoimNo() {
 		return moimNo;
 	}

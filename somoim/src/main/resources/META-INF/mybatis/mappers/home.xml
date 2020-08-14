@@ -53,8 +53,8 @@
 			join_date		as joinDate,
 			a.created_date	as createdDate,
 			sub_cate_no		as subCateNo,
-			a.location_no		as locationNo,
-			name			as name
+			a.location_no	as locationNo,
+			name			as locationName
 		from 
 			moim_main A, moim_location B
 		where
