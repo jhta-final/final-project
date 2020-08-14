@@ -63,7 +63,7 @@
 	<a href="#">카테고리</a>
 	<hr />
 	<a href="#">가입 모임</a>
-	<a href="#"><i class="far fa-heart"></i>모임</a>
+	<a href="#">모임<i class="far fa-heart"></i></a>
 	<a href="#">내 친구</a>
 	<a href="#">
 		<span class="nav-item avatar"> <img

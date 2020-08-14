@@ -75,7 +75,7 @@
 	          <a class="dropdown-item" href="/mypage/mypage.do">my page</a>
 	          <a class="dropdown-item" href="#">프로필 수정</a>
 	          <a class="dropdown-item" href="#">쪽지함</a>
-	          <a class="dropdown-item" href="#">로그아웃</a>
+	          <a class="dropdown-item" href="/signout.do">로그아웃</a>
 			</div>
 		</div>
 	</nav>

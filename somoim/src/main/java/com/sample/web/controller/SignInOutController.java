@@ -52,6 +52,6 @@ public class SignInOutController {
 	public String signout(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
 		
-		return "redirect:/home.do";
+		return "redirect:/";
 	}
 }
