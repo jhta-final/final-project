@@ -75,7 +75,6 @@
 		</div>
 		<div class="card-deck">
 			<c:forEach items="${locationMoims }" var="location">
-		<h1>${location.name }</h1>
 					<a href="/moim/moim.do?moimNo=${location.moimNo}"> 
 				<div class="card">
 					<img class="card-img-top" src="/resources/home_images/1.jpeg"
