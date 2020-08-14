@@ -152,7 +152,7 @@
                     <h4 class="modal-title">벙개 수정</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <form:form method="post" action="/moim/subadd.do" modelAttribute="subMoimForm">
+                <form:form method="post" action="/moim/submodify.do" modelAttribute="subMoimForm">
                     <div class="modal-body">
                         <input id="sub-modify-no" type="number" name="subMoimNo" value="0">
                         <input hidden="hidden" type="number" name="moimNo" value="${param.moimNo}" />
@@ -182,6 +182,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
                         <button type="submit" class="btn btn-primary">수정</button>
+                        <button type="button" onclick="deleteSubMoim(${param.moimNo})" class="btn btn-danger">삭제</button>
                     </div>
                 </form:form>
 
@@ -223,7 +224,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    <button type="submit" class="btn btn-primary" id="btn-participant"></button>
+                    <button class="btn btn-primary" id="btn-participant"></button>
                 </div>
 
             </div>
@@ -243,6 +244,7 @@
                 $("#sub-moim-location").text(subMoim.moimSubMoim.location);
                 $("#sub-moim-fee").text(subMoim.moimSubMoim.fee);
                 $("#btn-participant").text(subMoim.moimSubMoim.joinCount + "/" + subMoim.moimSubMoim.headCount);
+                console.log(subMoim.subJoinUsers);
             }
         })
     }
@@ -250,4 +252,18 @@
     function subMoimModify(subMoimNo) {
         $("#sub-modify-no").val(subMoimNo);
     }
+
+    function deleteSubMoim(moimNo) {
+        subMoimNo = $("#sub-modify-no").val();
+        $.ajax({
+            type:"GET",
+            url:"/moim/subdelete.do",
+            data: {
+                subMoimNo:subMoimNo,
+                moimNo:moimNo
+            },
+            dataType:"json"
+        })
+    }
+
 </script>
