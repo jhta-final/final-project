@@ -70,7 +70,7 @@
 		<a class="nav-link" href="#">인기</a>
       </li>
       <li class="nav-item mb-3">
-		<a class="nav-link" href="#">카테고리</a>
+		<a class="nav-link" href="/test.do">카테고리</a>
       </li>
       <li class="nav-item pt-2"  style="border-top: 1px solid lightgray">
 		<a class="nav-link" href="#">가입 모임</a>
