@@ -151,4 +151,16 @@
 		order by
 			likes desc, a.moim_no desc
 	</select>
+	
+	<select id="getSubCates" parameterType="long" resultType="SubCate">
+		select 
+			sub_cate_no		as subCateNo, 
+			a.name			as name
+		from 
+			moim_sub_cate A, moim_main_category B
+		where 
+			a.main_cate_no = b.main_cate_no
+		and 
+			a.main_cate_no = #{value}
+	</select>
 </mapper>

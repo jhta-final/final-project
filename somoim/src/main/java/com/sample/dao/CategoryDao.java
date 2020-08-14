@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sample.dto.MoimMainDto;
 import com.sample.vo.MoimDates;
+import com.sample.vo.MoimSubCate;
 
 public interface CategoryDao {
 
@@ -21,4 +22,7 @@ public interface CategoryDao {
 	
 	// 좋아요순 모임 조회
 	List<MoimMainDto> selectMoimsByLikes();
+	
+	// 메인카테No로 서브카테 조회
+	List<MoimSubCate> getSubCates(long mainCateNo);
 }
