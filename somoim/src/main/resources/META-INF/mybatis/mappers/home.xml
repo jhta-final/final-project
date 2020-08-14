@@ -69,4 +69,34 @@
 	) where rownum <= 5
 	]]>
 	</select>
+	
+	<select id="favoliteMoims" parameterType="long" resultType="MainDto">
+	
+	<![CDATA[
+	select * from(
+    select 
+			moim_no			as moimNo,
+			title			as title,
+			join_count		as joinCount,
+			head_count		as headCount,
+			content			as content,
+			image			as image,
+			fee				as fee,
+			likes			as likes,
+			primium_yn		as primiumYn,
+			join_date		as joinDate,
+			created_date	as createdDate,
+			sub_cate_no		as subCateNo,
+			location_no		as locationNo
+
+		from 
+			moim_main
+		where
+        	delete_yn = 'N'
+		order by
+			likes desc
+	) where rownum <= 5
+	]]>
+	
+	</select>
 </mapper>

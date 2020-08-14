@@ -13,5 +13,5 @@ public interface HomeDao {
 	List<MoimMainDto> locationMoims(long locationNo);
 	
 	// 인기모임 랜덤 표시
-	
+	List<MoimMainDto> favoliteMoims();
 }
