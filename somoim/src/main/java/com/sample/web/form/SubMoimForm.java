@@ -24,6 +24,8 @@ public class SubMoimForm {
 	
 	private long fee;
 	
+	private String deleteYN;
+	
 	private Date joinDate;
 	
 	private String userId;
@@ -63,6 +65,14 @@ public class SubMoimForm {
 		this.fee = fee;
 	}
 
+	public String getDeleteYN() {
+		return deleteYN;
+	}
+	
+	public void setDeleteYN(String deleteYN) {
+		this.deleteYN = deleteYN;
+	}
+	
 	public Date getJoinDate() {
 		return joinDate;
 	}
