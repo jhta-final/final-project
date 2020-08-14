@@ -45,15 +45,14 @@ public class MoimController {
 	}
 	
 	// 모임 정보 수정
-	// moimNo ???
 	@PostMapping("/modify.do")
-	public String modifyMoim(@ModelAttribute("moimForm") @Valid MoimForm moimForm) throws Exception {
-		MoimMainDto moimMainDto = new MoimMainDto();
+	public String modifyMoim(@ModelAttribute("moimForm") @Valid MoimForm moimForm, @RequestParam("moimNo") long moimNo) throws Exception {
+		MoimMainDto moimMainDto = moimService.getMoimByNo(moimNo);
 		
 		BeanUtils.copyProperties(moimForm, moimMainDto);
 		moimService.modifyMoim(moimMainDto);
 		
-		return "";
+		return "redirect:moim.do?moimNo=" + moimNo;
 	}
 	
 	// 모임 상세정보
