@@ -27,6 +27,10 @@ a > p {
 
 </style>
 <div class="main ">
+	<div style="position: fixed;bottom: 10px; right: 10px;">
+		<a href="/moim/add.do"><i class="fas fa-plus"></i></a>
+		<a href="#"><i class="fas fa-arrow-up"></i></a>
+	</div>
 	<!-- Swiper -->
 	<div class="swiper-container">
 		<div class="swiper-wrapper">

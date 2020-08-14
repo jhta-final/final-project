@@ -68,9 +68,6 @@
 </head>
 
 <body>
-<div style="position: fixed;bottom: 10px; right: 10px;">
-	<a href="/moim/add.do"><i class="fas fa-plus"></i></a>
-</div>
 
 <div class="container-fluid ">
 	<div class="row">
