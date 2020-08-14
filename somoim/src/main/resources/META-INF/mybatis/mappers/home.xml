@@ -35,7 +35,7 @@
 	
 	<!-- 지역 선호도 별로 표시 -->
 	<select id="locationMoims" parameterType="long" resultType="MainDto">
-    select 
+       select 
 			a.moim_no		as moimNo,
 			title			as title,
 			join_count		as joinCount,
@@ -51,9 +51,9 @@
 			a.location_no	as locationNo,
 			b.name			as locationName
 		from 
-			moim_main A, moim_location B, moim_user C
+			moim_main A, moim_location B
 		where
-			a.location_no = c.location_no and b.location_no = a.location_no
+			a.location_no = b.location_no
         and
             a.location_no = #{value}
         and
