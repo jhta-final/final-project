@@ -88,4 +88,13 @@ public class MoimController {
 		
 		return "";
 	}
+	
+	// 모임 탈퇴
+	@GetMapping("out.do")
+	public String outMoim(@RequestParam("moimNo") long moimNo, @RequestParam("userId") String userId) {
+		
+		moimService.outMoim(moimNo, userId);
+		
+		return "";
+	}
 }
