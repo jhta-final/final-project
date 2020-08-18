@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 public class MoimForm {
@@ -13,7 +15,8 @@ public class MoimForm {
 	@NotBlank(message = "제목을 입력해주세요.")
 	private String title;
 	
-	@NotBlank(message = "인원을 입력해주세요.")
+	@Min(message = "인원은 2~20명 까지입니다.", value = 2)
+	@Max(message = "인원은 2~60명 까지입니다.", value = 60)
 	private long headCount;
 	
 	@NotBlank(message = "내용을 입력해주세요.")
@@ -24,15 +27,17 @@ public class MoimForm {
 	
 	private long fee;
 	
+	private String premiumYN;
+	
 	private Date joinDate;
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
-	@NotBlank(message = "카테고리를 선택해주세요.")
 	private long subCateNo;
 	
-	@NotBlank(message = "지역을 선택해주세요.")
 	private long locationNo;
+	
+	private String userId;
 
 	public long getMoimNo() {
 		return moimNo;
@@ -110,7 +115,22 @@ public class MoimForm {
 	public void setLocationNo(long locationNo) {
 		this.locationNo = locationNo;
 	}
-	
+
+	public String getPremiumYN() {
+		return premiumYN;
+	}
+
+	public void setPremiumYN(String premiumYN) {
+		this.premiumYN = premiumYN;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	
 	
 }

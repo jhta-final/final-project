@@ -10,7 +10,6 @@ import com.sample.dao.MoimDao;
 import com.sample.dto.JoinUsers;
 import com.sample.dto.MoimMainDto;
 import com.sample.vo.MoimJoinUser;
-import com.sample.vo.MoimMain;
 
 @Service
 @Transactional
@@ -23,12 +22,13 @@ public class MoimServiceImpl implements MoimService {
 	@Override
 	public void addNewMoim(MoimMainDto moimMainDto) {
 		// 모임 방장 저장하기
+		moimDao.insertMoim(moimMainDto);
+		
 		MoimJoinUser moimJoinUser = new MoimJoinUser();
 		moimJoinUser.setMoimNo(moimMainDto.getMoimNo());
 		moimJoinUser.setUserId(moimMainDto.getUserId());
 		moimJoinUser.setUserRole("ADMIN");
-		
-		moimDao.insertMoim(moimMainDto);
+		System.out.println(moimMainDto.getMoimNo());
 		moimDao.insertJoinUser(moimJoinUser);
 	}
 
@@ -108,7 +108,7 @@ public class MoimServiceImpl implements MoimService {
 		
 		// 유저 프리미엄 결제??
 		
-		savedMoim.setPrimiumYn("Y");
+		savedMoim.setPremiumYn("Y");
 		
 		moimDao.updateMoim(savedMoim);
 	}

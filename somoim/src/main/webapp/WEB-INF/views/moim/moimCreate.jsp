@@ -8,31 +8,31 @@
 </style>
 
 <div class="container mt-5 ml-4">
-    <form class="form" method="post" action="/moim/add.do">
-        <input hidden="hidden" name="${longinedUser}">
+    <form:form class="form" method="post" action="/moim/add.do" modelAttribute="moimForm">
+        <form:input hidden="hidden" value="${longinedUser}" path="userId" />
         <div class="form-group mt-4">
             <i class="mr-2 fas fa-images" style="color: #0F4C81;"></i><label>기본 이미지</label>
             <br>
             <span id="image-check">
-	            <img class="mr-3" src="/resources/home_images/4.jpeg" width="150" height="150" />
-	            <img class="mr-3" src="/resources/home_images/5.jpg"  width="150" height="150" />
-	            <img class="mr-3" src="/resources/home_images/6.jpeg" width="150" height="150" />
-	            <img class="mr-3" src="/resources/home_images/7.jpg" width="150" height="150" />
+	            <img class="mr-3" data-no="default1" src="/resources/home_images/4.jpeg" width="150" height="150" />
+	            <img class="mr-3" data-no="default2" src="/resources/home_images/5.jpg"  width="150" height="150" />
+	            <img class="mr-3" data-no="default3" src="/resources/home_images/6.jpeg" width="150" height="150" />
+	            <img class="mr-3" data-no="default4" src="/resources/home_images/7.jpg" width="150" height="150" />
             </span>
             <br>
         </div>
-        <input hidden="hidden" name="img">
+        <form:input id="image-name" hidden="hidden" path="image" />
         <div class="form-group mt-4">
-            <i class="mr-2 fas fa-check" style="color: #0F4C81;"></i><label>벙개 이름</label>
-            <input type="text" class="form-control" name="title"/>
+            <i class="mr-2 fas fa-check" style="color: #0F4C81;"></i><label>모임 이름</label>
+            <form:input type="text" class="form-control" path="title"/>
         </div>
         <div class="form-group">
             <i class="mr-2 far fa-clock" style="color: #0F4C81;"></i><label>정모 일시</label>
-            <input type="datetime-local" class="form-control" name="title"/>
+            <form:input type="datetime-local" class="form-control" path="joinDate"/>
         </div>
         <div class="form-group">
             <i class="mr-2 fas fa-map-marker" style="color: #0F4C81;"></i><label>지역구</label>
-            <select name="location" class="form-control">
+            <form:select path="locationNo" class="form-control">
                 <option value=""selected="selected" disabled="disabled" class="text-center">지역</option>
                 <option value="1">강서구</option>
                 <option value="2">양천구</option>
@@ -59,7 +59,7 @@
                 <option value="23">도봉구</option>
                 <option value="24">노원구</option>
                 <option value="25">중랑구</option>
-            </select>
+            </form:select>
         </div>
         <div class="form-group">
             <i class="mr-2 fas fa-tags" style="color: #0F4C81;"></i><label>카테고리</label>
@@ -74,28 +74,34 @@
         </div>
         <div class="form-group">
             <i class="mr-2 fas fa-tags" style="color: #0F4C81;"></i><label>세부 카테고리</label>
-            <select id="sub-cate" name="category" class="form-control">
-            </select>
+            <form:select id="sub-cate" path="subCateNo" class="form-control">
+            </form:select>
         </div>
         <div class="form-group">
             <i class="mr-2 fas fa-won-sign" style="color: #0F4C81;"></i><label>참가비</label>
-            <input type="number" class="form-control" name="fee"/>
+            <form:input type="number" class="form-control" path="fee"/>
         </div>
         <div class="form-group">
             <i class="mr-2 fas fa-user-friends" style="color: #0F4C81;"></i><label>참가인원 (2 ~ 60명)</label>
-            <input type="number" min="2" max="20" class="form-control" name="headCount"/>
+            <form:input type="number" min="2" max="60" class="form-control" path="headCount"/>
         </div>
         <div class="form-group">
             <i class="mr-2 fas fa-edit" style="color: #0F4C81;"></i><label>상세 설명</label>
-            <textarea name="" id="ckeditor" rows="10" cols="80">
-
-            </textarea>
+            <form:textarea path="content" id="ckeditor" rows="10" cols="80"></form:textarea>
+        </div>
+        <div class="form-group d-inline-flex">
+            <i class="mr-2 fas fa-dollar-sign" style="color: #0F4C81;"></i><label>프리미엄 </label>
+            <form:input hidden="hidden" id="premium" type="text" value="N" path="premiumYN" />
+            <div class="custom-control custom-switch">
+			    <input type="checkbox" class="custom-control-input" onchange="checkBox()" id="switch1">
+			    <label class="custom-control-label" for="switch1"></label>
+		  	</div>
         </div>
         <div class="text-right">
             <a href="/home.do" class="btn btn-secondary">취소</a>
             <button type="submit" class="btn btn-primary">개설</button>
         </div>
-    </form>
+    </form:form>
 </div>
 
 <script>
@@ -104,6 +110,8 @@
     $("#image-check").on("click", "img", function () {
         $("#image-check img").removeClass("image-checked")
         $(this).addClass("image-checked");
+        $("#image-name").val($(this).data("no"));
+        console.log($("#image-name"))
     })
 
     // 세부 카테고리 가져오기
@@ -129,5 +137,13 @@
                 $select.append(options);
             }
         })
+    }
+
+    function checkBox() {
+        if($("#switch1").prop("checked")) {
+            $("#premium").val("Y");
+        } else {
+            $("#premium").val("N");
+        }
     }
 </script>
