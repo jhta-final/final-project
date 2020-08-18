@@ -126,7 +126,7 @@
 			<span class="nav-item avatar"> <img
 					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
 					class="rounded-circle z-depth-0" alt="avatar image" height="35">
-			${follow.nickname}</span>
+			${follow.nickName}</span>
 		</a>
 	  </li>
       </c:forEach>
