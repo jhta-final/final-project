@@ -102,6 +102,17 @@
             </c:if>
         </div>
     </c:forEach>
+    
+    <c:if test="${'ADMIN' eq role}">
+	    <div class="row mr-5 mb-5">
+	        <div class="col-12 text-right">
+	        	<a href="modify.do?moimNo=${param.moimNo}" class="btn btn-success">수정</a>
+	        	<a href="delete.do?moimNo=${param.moimNo}" class="btn btn-danger">삭제</a>
+	        </div>
+	    </div>
+    </c:if>
+    
+    <!--  벙개추가 모달 -->
     <div class="modal" id="sub-moim-create">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">

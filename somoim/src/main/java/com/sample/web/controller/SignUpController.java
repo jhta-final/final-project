@@ -4,9 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,11 +31,15 @@ public class SignUpController {
 	
 	@PostMapping("/signup1.do")
 	@ResponseBody
-	public Map<String, String> step1Submit (@RequestBody SignUpForm signUpForm1) {
-		System.out.println("과연 :" + signUpForm1);
-		System.out.println("id :" + signUpForm1.getId());
-		MoimUser user = userService.getUserDetail(signUpForm1.getId());
+	public Map<String, String> step1Submit (@RequestBody @Valid SignUpForm signUpForm1,
+			BindingResult errors) {
+		System.out.println("결과: " + signUpForm1);
 		Map<String, String> map = new HashMap<>();
+		if(errors.hasErrors()) {
+			map.put("status", "false");
+			return map;
+		}
+		MoimUser user = userService.getUserDetail(signUpForm1.getId());
 		if(user != null) {
 			map.put("status", "false");
 			return map;
@@ -47,23 +53,14 @@ public class SignUpController {
 		signUpForm.setBirth(signUpForm1.getBirth());
 		signUpForm.setGender(signUpForm1.getGender());
 		signUpForm.setContent(signUpForm1.getContent());
+		signUpForm.setLocationNo(signUpForm1.getLocationNo());
 		map.put("status", "true");
 		return map;
 	}
 	
 	@GetMapping("signup2.do")
-	@ResponseBody
-	public Map<String, String> step2Submit (@ModelAttribute("signUpForm") SignUpForm signUpForm2) {
-		signUpForm.setMainCateNo(signUpForm2.getMainCateNo());
-		Map<String, String> map = new HashMap<>();
-		map.put("status", "true");
-		return map;
-	}
-	
-	@GetMapping("final.do")
-	public String finalSubmit (@ModelAttribute("signUpForm") SignUpForm signUpForm3,HttpSession session) {
-		signUpForm.setLocationNo(signUpForm3.getLocationNo());
-		// insert
+	public String step2Submit (@ModelAttribute("signUpForm") SignUpForm signUpForm2, HttpSession session) {
+		
 		MoimUser user = new MoimUser();
 		user.setId(signUpForm.getId());
 		user.setName(signUpForm.getName());
@@ -75,12 +72,14 @@ public class SignUpController {
 		user.setGender(signUpForm.getGender());
 		user.setContent(signUpForm.getContent());
 		user.setLocationNo(signUpForm.getLocationNo());
+		
 		MoimUserCate userCate = new MoimUserCate();
 		userCate.setUserId(signUpForm.getId());
-		userCate.setMainCateNo(signUpForm.getMainCateNo());
+		userCate.setMainCateNo(signUpForm2.getMainCateNo());
 		
 		userService.signUpUser(user, userCate);
 		session.setAttribute("LOGIN_USER", user);
 		return "redirect:/home.do?status=new";
 	}
+	
 }

@@ -47,24 +47,8 @@ public class MoimServiceImpl implements MoimService {
 	// 모임 정보 수정
 	@Override
 	public void modifyMoim(MoimMainDto moimMainDto) {
-		MoimMainDto savedMoim = moimDao.selectMoim(moimMainDto.getMoimNo());
-		if(savedMoim == null) {
-			System.out.println("해당 모임이 존재하지 않음");
-			return;
-		}
 		
-		// 모임 작성자 비교??
-		
-		savedMoim.setTitle(moimMainDto.getTitle());
-		savedMoim.setHeadCount(moimMainDto.getHeadCount());
-		savedMoim.setContent(moimMainDto.getContent());
-		savedMoim.setImage(moimMainDto.getImage());
-		savedMoim.setFee(moimMainDto.getFee());
-		savedMoim.setJoinDate(moimMainDto.getJoinDate());
-		savedMoim.setSubCateNo(moimMainDto.getSubCateNo());
-		savedMoim.setLocationNo(moimMainDto.getLocationNo());
-		
-		moimDao.updateMoim(savedMoim);
+		moimDao.updateMoim(moimMainDto);
 	}
 
 	// 모임 삭제

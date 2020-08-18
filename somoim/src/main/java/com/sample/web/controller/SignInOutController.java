@@ -35,7 +35,7 @@ public class SignInOutController {
 			BindingResult errors, Model model) {
 		System.out.println("loginForm: " + loginForm);
 		if(errors.hasErrors()) {
-			return "loginform";
+			return "redirect:/?error=fail";
 		}
 		
 		MoimUser user = userService.login(loginForm.getUserId(), loginForm.getUserpwd());

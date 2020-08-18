@@ -131,6 +131,13 @@ public class MoimForm {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
+	@Override
+	public String toString() {
+		return "MoimForm [moimNo=" + moimNo + ", title=" + title + ", headCount=" + headCount + ", content=" + content
+				+ ", image=" + image + ", fee=" + fee + ", premiumYN=" + premiumYN + ", joinDate=" + joinDate
+				+ ", subCateNo=" + subCateNo + ", locationNo=" + locationNo + ", userId=" + userId + "]";
+	}
 	
 	
 }
