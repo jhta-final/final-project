@@ -41,15 +41,14 @@ public class MoimController {
 	
 	// 새 모임 등록
 	@PostMapping("/add.do")
-	//public String addMoim(@ModelAttribute("moimForm") @Valid MoimForm moimForm)
 	public String addMoim(@ModelAttribute("moimForm") @Valid MoimForm moimForm) throws Exception {
 		
-		//MoimMainDto moimMainDto = new MoimMainDto();
+		MoimMainDto moimMainDto = new MoimMainDto();
+		BeanUtils.copyProperties(moimForm, moimMainDto);
+		System.out.println(moimMainDto.getPremiumYn());
+		moimService.addNewMoim(moimMainDto);
 		
-		//BeanUtils.copyProperties(moimForm, moimMainDto);
-		//moimService.addNewMoim(moimMainDto);
-		
-		return "redirect:moim/moim.tiles";
+		return "redirect:moim/moim.do?moimNo=" + moimMainDto.getMoimNo();
 	}
 	
 	// 새 모임 등록 페이지
@@ -57,6 +56,8 @@ public class MoimController {
 	public String createMoim(Model model, HttpSession httpSession) {
 		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
 		model.addAttribute("longinedUser", user.getId());
+		
+		model.addAttribute("moimForm", new MoimForm());
 		
 		return "moim/moimCreate.tiles";
 	}

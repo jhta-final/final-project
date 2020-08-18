@@ -13,7 +13,7 @@
 		<result property="image" column="image"/>
 		<result property="fee" column="fee"/>
 		<result property="likes" column="likes"/>
-		<result property="primiumYn" column="primium_yn"/>
+		<result property="premiumYn" column="premium_yn"/>
 		<result property="deleteYn" column="delete_yn"/>
 		<result property="joinDate" column="join_date"/>
 		<result property="createdDate" column="created_date"/>
@@ -63,7 +63,7 @@
 	
 	<select id="selectMoimsByMainCategory" parameterType="long" resultMap="moims" >
 		select
-			a.moim_no, title, user_id, join_count, head_count, content, image, fee, likes, primium_yn, delete_yn,
+			a.moim_no, title, user_id, join_count, head_count, content, image, fee, likes, premium_yn, delete_yn,
 			join_date, a.created_date, a.sub_cate_no, location_no
 		from
 			moim_main A, moim_join_user B, moim_sub_cate C
@@ -91,7 +91,7 @@
 			image			as image,
 			fee				as fee,
 			likes			as likes,
-			primium_yn		as primiumYn,
+			premium_yn		as premiumYn,
 			delete_yn		as deleteYn,
 			join_date		as joinDate,
 			a.created_date	as createdDate,
@@ -123,7 +123,7 @@
 			image			as image,
 			fee				as fee,
 			likes			as likes,
-			primium_yn		as primiumYn,
+			premium_yn		as premiumYn,
 			delete_yn		as deleteYn,
 			join_date		as joinDate,
 			a.created_date	as createdDate,
@@ -152,7 +152,7 @@
 			image			as image,
 			fee				as fee,
 			likes			as likes,
-			primium_yn		as primiumYn,
+			premium_yn		as premiumYn,
 			delete_yn		as deleteYn,
 			join_date		as joinDate,
 			a.created_date	as createdDate,
@@ -182,7 +182,7 @@
 			image			as image,
 			fee				as fee,
 			likes			as likes,
-			primium_yn		as primiumYn,
+			premium_yn		as premiumYn,
 			delete_yn		as deleteYn,
 			join_date		as joinDate,
 			a.created_date	as createdDate,
@@ -214,7 +214,7 @@
 			image			as image,
 			fee				as fee,
 			likes			as likes,
-			primium_yn		as primiumYn,
+			premium_yn		as premiumYn,
 			delete_yn		as deleteYn,
 			join_date		as joinDate,
 			a.created_date	as createdDate,

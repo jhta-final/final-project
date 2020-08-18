@@ -16,7 +16,7 @@ public class MoimMainDto {
 	private String image;
 	private long fee;
 	private long likes;
-	private String primiumYn;
+	private String premiumYn;
 	private String deleteYn; 
 	private Date joinDate;
 	private Date createdDate;
@@ -102,11 +102,11 @@ public class MoimMainDto {
 	public void setLikes(long likes) {
 		this.likes = likes;
 	}
-	public String getPrimiumYn() {
-		return primiumYn;
+	public String getPremiumYn() {
+		return premiumYn;
 	}
-	public void setPrimiumYn(String primiumYn) {
-		this.primiumYn = primiumYn;
+	public void setPremiumYn(String premiumYn) {
+		this.premiumYn = premiumYn;
 	}
 	public String getDeleteYn() {
 		return deleteYn;
@@ -142,7 +142,7 @@ public class MoimMainDto {
 	public String toString() {
 		return "MoimMainDto [moimNo=" + moimNo + ", title=" + title + ", userId=" + userId + ", joinCount=" + joinCount
 				+ ", headCount=" + headCount + ", content=" + content + ", image=" + image + ", fee=" + fee + ", likes="
-				+ likes + ", primiumYn=" + primiumYn + ", deleteYn=" + deleteYn + ", joinDate=" + joinDate
+				+ likes + ", primiumYn=" + premiumYn + ", deleteYn=" + deleteYn + ", joinDate=" + joinDate
 				+ ", createdDate=" + createdDate + ", subCateNo=" + subCateNo + ", locationNo=" + locationNo + "]";
 	}
 	
