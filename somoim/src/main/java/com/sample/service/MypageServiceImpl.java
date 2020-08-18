@@ -9,14 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sample.dao.AlramDao;
 import com.sample.dao.BoardDao;
 import com.sample.dao.FollowerDao;
-import com.sample.dao.MessageDao;
 import com.sample.dao.PhotoDao;
 import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimJoinUserMoimDto;
 import com.sample.vo.MoimAlram;
 import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimFollow;
-import com.sample.vo.MoimMessage;
 import com.sample.vo.MoimPhoto;
 
 @Service
@@ -35,9 +33,6 @@ public class MypageServiceImpl implements MypageService {
 	
 	@Autowired
 	AlramDao alramDao;
-	
-	@Autowired
-	MessageDao messageDao;
 	
 	@Override
 	public void addFollower(MoimFollow moimFollow) {
@@ -69,8 +64,8 @@ public class MypageServiceImpl implements MypageService {
 		
 	}
 	@Override
-	public void AddMessage(MoimMessage moimMessage) {
-		messageDao.insertMessage(moimMessage);
+	public void AddMessage(MoimAlram moimAlram) {
+		alramDao.insertMessage(moimAlram);
 		
 	}
 }

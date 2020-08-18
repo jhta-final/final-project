@@ -19,7 +19,6 @@ import com.sample.service.UserService;
 import com.sample.vo.MoimAlram;
 import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimFollow;
-import com.sample.vo.MoimMessage;
 import com.sample.vo.MoimPhoto;
 import com.sample.vo.MoimUser;
 
@@ -73,15 +72,17 @@ public class FriendsPageController {
 		
 		// 쪽지보내기
 		@PostMapping("/sendmessage.do")
-		public String sendMessage(@ModelAttribute("messageForm") MoimMessage message) {
+		public String sendMessage(@ModelAttribute("messageForm") MoimAlram message) {
 			// 메세지 인서트
 			mypageService.AddMessage(message);
 			// 알람 인서트
 			MoimAlram alram = new MoimAlram();
 			alram.setType("쪽지");
-			alram.setUserId(message.getFromUser());
-			alram.setMessage(message.getToUser()+"님이 쪽지를 보내셨습니다.");
+			alram.setUserId(message.getUserId());
+			alram.setMessage(message.getLoginUserId()+"님이 쪽지를 보내셨습니다.");
 			mypageService.AddAlram(alram);
+			
+			mypageService.AddMessage(message);
 			return "friend/info.tiles";
 		}
 		
@@ -102,7 +103,7 @@ public class FriendsPageController {
 		
 		// 모임초대하기
 		@PostMapping("/invitemoim.do")
-		public String inviteMoim(@ModelAttribute("message") MoimMessage message, Model model) {
+		public String inviteMoim(@ModelAttribute("message") MoimAlram message, Model model) {
 			// 내가 개설한 모임의 제목, 번호 찾기 (혹은 다 찾기)
 			// List<moimUser> users = moimService.findAdmin(message.gettoUser());
 			/* if (users.isEmpty()) {
@@ -113,8 +114,8 @@ public class FriendsPageController {
 			 */
 			MoimAlram alram = new MoimAlram();
 			alram.setType("모임초대");
-			alram.setMessage(message.getToUser()+"님이 모임초대를 하였습니다.");
-			alram.setUserId(message.getFromUser());
+			alram.setMessage(message.getLoginUserId()+"님이 모임초대를 하였습니다.");
+			alram.setUserId(message.getUserId());
 			
 			return "friend/info.tiles";
 		}

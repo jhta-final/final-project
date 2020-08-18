@@ -6,5 +6,7 @@ public interface AlramDao {
 
 	void insertAlram(MoimAlram alram);
 	
+	void insertMessage(MoimAlram alram);
+	
 	void updateAlram(long alramNo);
 }

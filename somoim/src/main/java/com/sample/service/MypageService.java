@@ -7,7 +7,6 @@ import com.sample.dto.MoimJoinUserMoimDto;
 import com.sample.vo.MoimAlram;
 import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimFollow;
-import com.sample.vo.MoimMessage;
 import com.sample.vo.MoimPhoto;
 
 public interface MypageService {
@@ -25,7 +24,7 @@ public interface MypageService {
 	void AddAlram(MoimAlram moimAlram);
 	
 	// 쪽지 인서트
-	void AddMessage(MoimMessage moimMessage);
+	void AddMessage(MoimAlram moimAlram);
 	
 	
 }
