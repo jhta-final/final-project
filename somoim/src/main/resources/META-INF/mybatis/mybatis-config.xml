@@ -28,8 +28,9 @@
 		<typeAlias type="com.sample.dto.SubMoimDto" alias="SubMoimDto"/>
 		<typeAlias type="com.sample.vo.MoimUser" alias="User"/>
 		<typeAlias type="com.sample.vo.MoimUserCate" alias="UserCate"/>
-		<typeAlias type="com.sample.vo.MoimDates" alias="Dates"/>
+		<typeAlias type="com.sample.dto.MoimDates" alias="Dates"/>
 		<typeAlias type="com.sample.dto.MoimJoinUserMoimDto" alias="MoimJoinUser"/>
+		<typeAlias type="com.sample.dto.MoimFriends" alias="Friends"/>
 	</typeAliases>
 	
 	<mappers>
@@ -42,6 +43,7 @@
 		<mapper resource="META-INF/mybatis/mappers/follow.xml"/>
 		<mapper resource="META-INF/mybatis/mappers/category.xml"/>
 		<mapper resource="META-INF/mybatis/mappers/alrams.xml"/>
+		<mapper resource="META-INF/mybatis/mappers/searchbycategory.xml"/>
 	</mappers>
 </configuration>
 

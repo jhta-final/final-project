@@ -1,4 +1,4 @@
-package com.sample.vo;
+package com.sample.dto;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
