@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sample.dao.AlramDao">
+	<insert id="insertAlram" parameterType="Alram">
+		<selectKey keyProperty="alramNo" resultType="long" order="BEFORE">
+			select alram_seq.nextval from dual
+		</selectKey>
+		insert into moim_alram
+		(alram_no,message,type,user_id,login_user_id)
+		values
+		(#{alramNo},#{message},#{type},#{userId},#{loginUserId})
+		
+	</insert>
+	
+	<insert id="insertMessage" parameterType="Alram">
+		<selectKey keyProperty="alramNo" resultType="long" order="BEFORE">
+			select alram_seq.nextval from dual
+		</selectKey>
+		insert into moim_alram
+		(alram_no,message,type,user_id,login_user_id,content)
+		values
+		(#{alramNo},#{message},#{type},#{userId},#{loginUserId},#{content})
+		
+	</insert>
+	
+	<update id="updateAlram" parameterType="long">
+		update 
+			moim_alram
+		set
+			read_yn = 'Y'
+		where
+			alram_no = #{value}
+	</update>
+</mapper>

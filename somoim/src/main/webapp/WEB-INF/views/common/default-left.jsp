@@ -76,34 +76,82 @@
 		<a class="nav-link" href="#">가입 모임</a>
       </li>
       <li class="nav-item">
-	<a class="nav-link" href="#">모임<i class="far fa-heart"></i></a>
+		<a class="nav-link" href="#">
+			<span class="nav-item avatar"> <img
+					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+					class="rounded-circle z-depth-0" alt="avatar image" height="35">
+			모여라</span>
+		</a>
+	  </li>
+      <li class="nav-item">
+		<a class="nav-link" href="#">
+			<span class="nav-item avatar"> <img
+					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+					class="rounded-circle z-depth-0" alt="avatar image" height="35">
+			아아아</span>
+		</a>
+	  </li>
+      <li class="nav-item">
+		<a class="nav-link" href="#">
+			<span class="nav-item avatar"> <img
+					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+					class="rounded-circle z-depth-0" alt="avatar image" height="35">
+			커피커피</span>
+		</a>
+	  </li>
+      <li class="nav-item">
+		<a class="nav-link" href="#">모임<i class="far fa-heart"></i></a>
       </li>
       <li class="nav-item">
-	<a class="nav-link" href="#">내 친구</a>
+		<a class="nav-link" href="#">
+			<span class="nav-item avatar"> <img
+					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+					class="rounded-circle z-depth-0" alt="avatar image" height="35">
+			커피커피</span>
+		</a>
+	  </li>
+      <li class="nav-item">
+		<a class="nav-link" href="#">
+			<span class="nav-item avatar"> <img
+					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+					class="rounded-circle z-depth-0" alt="avatar image" height="35">
+			크레용</span>
+		</a>
+	  </li>
+      <li class="nav-item">
+		<a class="nav-link" href="#">
+			<span class="nav-item avatar"> <img
+					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+					class="rounded-circle z-depth-0" alt="avatar image" height="35">
+			게임게임</span>
+		</a>
+	  </li>
+      <li class="nav-item">
+		<a class="nav-link" href="#">내 친구</a>
       </li>
       <li class="nav-item">
-	<a class="nav-link" href="#">
-		<span class="nav-item avatar"> <img
-				src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-				class="rounded-circle z-depth-0" alt="avatar image" height="35">
-		박재형</span>
-	</a>
-      </li>
-      <li class="nav-item">
-	<a class="nav-link" href="#">
-		<span class="nav-item avatar"> <img
-				src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-				class="rounded-circle z-depth-0" alt="avatar image" height="35">
-		김민수</span>
-	</a>
-      </li>
-      <li class="nav-item">
-	<a class="nav-link" href="#">
-		<span class="nav-item avatar"> <img
-				src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-				class="rounded-circle z-depth-0" alt="avatar image" height="35">
-		장주리</span>
-	</a>
+		<a class="nav-link" href="#">
+			<span class="nav-item avatar"> <img
+					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+					class="rounded-circle z-depth-0" alt="avatar image" height="35">
+			박재형</span>
+		</a>
+	  </li>
+	  <li class="nav-item">
+		<a class="nav-link" href="#">
+			<span class="nav-item avatar"> <img
+					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+					class="rounded-circle z-depth-0" alt="avatar image" height="35">
+			김민수</span>
+		</a>
+	  </li>
+	  <li class="nav-item">
+		<a class="nav-link" href="#">
+			<span class="nav-item avatar"> <img
+					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+					class="rounded-circle z-depth-0" alt="avatar image" height="35">
+			장주리</span>
+		</a>
       </li>
     </ul>
 	<hr />
@@ -117,6 +165,8 @@
 		<p>이용약관개인정보</p>
 		<p>취급방침</p>
 		<p>ⓒ Friendscube</p>
+		<br/>
+		<br/>
 	</div>
 </div>
 

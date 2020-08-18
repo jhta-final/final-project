@@ -13,4 +13,6 @@ public interface UserService {
 	
 	void signUpUser(MoimUser user, MoimUserCate userCate);
 	
+	void modifyUser(MoimUser user);
+	
 }

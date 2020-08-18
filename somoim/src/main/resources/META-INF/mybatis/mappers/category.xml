@@ -3,6 +3,83 @@
 
 <mapper namespace="com.sample.dao.CategoryDao">
 	
+	<resultMap type="MainDto" id="moims">
+		<result property="moimNo" column="moim_no"/>
+		<result property="title" column="title"/>
+		<result property="userId" column="user_id"/>
+		<result property="joinCount" column="join_count"/>
+		<result property="headCount" column="head_count"/>
+		<result property="content" column="content"/>
+		<result property="image" column="image"/>
+		<result property="fee" column="fee"/>
+		<result property="likes" column="likes"/>
+		<result property="primiumYn" column="primium_yn"/>
+		<result property="deleteYn" column="delete_yn"/>
+		<result property="joinDate" column="join_date"/>
+		<result property="createdDate" column="created_date"/>
+		<result property="subCateNo" column="sub_cate_no"/>
+		<result property="locationNo" column="location_no"/>
+		<collection property="friends" resultMap="friends" select="selectFollowsByMoim" column="moim_no"></collection>
+	</resultMap>
+	
+	<resultMap type="User" id="friends">
+		<result property="id" column="user_id"/>
+		<result property="name" column="user_name"/>
+		<result property="tel" column="tel"/>
+		<result property="password" column="user_password"/>
+		<result property="nickname" column="nickname"/>
+		<result property="email" column="email"/>
+		<result property="birthDate" column="birth"/>
+		<result property="gender" column="gender"/>
+		<result property="content" column="user_content"/>
+		<result property="deleteYN" column="delete_yn"/>
+		<result property="createdDate" column="created_date"/>
+		<result property="locationNo" column="location_no"/>
+		<result property="profileImage" column="profile_image"/>
+	</resultMap>
+	
+	<select id="selectFollowsByMoim" parameterType="string" resultMap="friends">
+		select
+	    c.user_id, user_name, tel, user_password, nickname, email, birth, gender, user_content, delete_yn,
+	    created_date, location_no, profile_image
+		from (
+		        select user_id
+		        from moim_join_user
+		        where moim_no = #{moimNo}
+		    ) A,
+		    (
+		        select fol_user_id
+		        from moim_follow
+		        where user_id = #{userId}
+		    ) B,
+		    moim_user C
+		where
+		    a.user_id = b.fol_user_id
+		and
+		    a.user_id = c.user_id
+		and
+		    b.fol_user_id = c.user_id
+	</select>
+	
+	<select id="selectMoimsByMainCategory" parameterType="long" resultMap="moims">
+		select
+			a.moim_no, title, user_id, join_count, head_count, content, image, fee, likes, primium_yn, delete_yn,
+			join_date, a.created_date, a.sub_cate_no, location_no
+		from
+			moim_main A, moim_join_user B, moim_sub_cate C
+        where
+            b.user_role = 'ADMIN'
+        and
+            a.moim_no = b.moim_no
+        and
+            a.sub_cate_no = c.sub_cate_no
+        and
+            c.main_cate_no = #{value}
+		order by
+			a.moim_no desc
+	</select>
+	
+	<!--  
 	<select id="selectMoimsByMainCategory" parameterType="long" resultType="MainDto">
 		select
 			a.moim_no		as moimNo,
@@ -33,6 +110,7 @@
 		order by
 			a.moim_no desc
 	</select>
+	-->
 	
 	<select id="selectMoimsBySubCategory" parameterType="long" resultType="MainDto">
 		select

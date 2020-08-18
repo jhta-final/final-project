@@ -27,7 +27,6 @@ public class HomeServiceImpl implements HomeService{
 	public List<MoimMainDto> getlocationMoims(long locationNo) {
 		if(locationNo == 0) {
 			locationNo = (long)(Math.random()*25 +1);
-		System.out.println(locationNo);
 		}
 		return homeDao.locationMoims(locationNo);
 		

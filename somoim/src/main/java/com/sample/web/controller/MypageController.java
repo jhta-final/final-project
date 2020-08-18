@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimJoinUserMoimDto;
 import com.sample.service.MypageService;
+import com.sample.service.UserService;
 import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimPhoto;
 import com.sample.vo.MoimUser;
@@ -24,6 +27,9 @@ public class MypageController {
 
 	@Autowired
 	MypageService mypageService;
+	
+	@Autowired
+	UserService userService;
 	
 	private MoimUser user = new MoimUser();
 	
@@ -59,5 +65,12 @@ public class MypageController {
 	public List<MoimPhoto> userPhotos () {
 		
 		return mypageService.photosByUser(user.getId());
+	}
+	
+	// 내정보수정
+	@PostMapping("/modify.do")
+	public String modifyUser (@ModelAttribute("user") MoimUser user) {
+		userService.modifyUser(user);
+		return "mypage/mypage.tiles?modify=success";
 	}
 }

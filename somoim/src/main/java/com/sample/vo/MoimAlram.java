@@ -1,5 +1,7 @@
 package com.sample.vo;
 
+import java.util.Date;
+
 public class MoimAlram {
 
 	private long alramNo;
@@ -7,6 +9,9 @@ public class MoimAlram {
 	private String type;
 	private String readYn;
 	private String userId;
+	private String loginUserId;
+	private String content;
+	private Date createdDate;
 	
 	public MoimAlram() {}
 
@@ -48,6 +53,30 @@ public class MoimAlram {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public String getLoginUserId() {
+		return loginUserId;
+	}
+
+	public void setLoginUserId(String loginUserId) {
+		this.loginUserId = loginUserId;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 	
 	
