@@ -25,6 +25,9 @@ public interface HomeService {
 	// 내 친구 보기
 	List<MoimFollowDto> getfollowUsers(String userId);
 	
+	// 좋아요 기능 구현
+	void increaseLikesMoim(long moimNo, String userId);
+
 	
 	// 관심표시한 모임 표시
 //	List<MoimMainDto> getattentionMoim(String userId);
