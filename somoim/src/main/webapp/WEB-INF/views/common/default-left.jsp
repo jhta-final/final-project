@@ -73,7 +73,7 @@
 		<a class="nav-link" href="/test.do">카테고리</a>
       </li>
       <li class="nav-item pt-2"  style="border-top: 1px solid lightgray">
-		<a class="nav-link" href="#">가입 모임</a>
+		<a class="nav-link collapsible" href="#">가입 모임</a>
       </li>
       <c:forEach items="${joinedMoim}" var="joinedMoim">
       <li class="nav-item">
@@ -126,7 +126,7 @@
 			<span class="nav-item avatar"> <img
 					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
 					class="rounded-circle z-depth-0" alt="avatar image" height="35">
-			${follow.nickName}</span>
+			${follow.nickname }</span>
 		</a>
 	  </li>
       </c:forEach>
@@ -146,4 +146,22 @@
 		<br/>
 	</div>
 </div>
+<script type="text/javascript">
+<!--
 
+//-->
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
