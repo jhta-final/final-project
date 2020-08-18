@@ -48,7 +48,7 @@ public class MoimController {
 		System.out.println(moimMainDto.getPremiumYn());
 		moimService.addNewMoim(moimMainDto);
 		
-		return "redirect:moim/moim.do?moimNo=" + moimMainDto.getMoimNo();
+		return "redirect:moim.do?moimNo=" + moimMainDto.getMoimNo();
 	}
 	
 	// 새 모임 등록 페이지

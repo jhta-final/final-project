@@ -14,14 +14,14 @@
             <i class="mr-2 fas fa-images" style="color: #0F4C81;"></i><label>기본 이미지</label>
             <br>
             <span id="image-check">
-	            <img class="mr-3" data-no="default1" src="/resources/home_images/4.jpeg" width="150" height="150" />
+	            <img class="mr-3 image-checked" data-no="default1" src="/resources/home_images/4.jpeg" width="150" height="150" />
 	            <img class="mr-3" data-no="default2" src="/resources/home_images/5.jpg"  width="150" height="150" />
 	            <img class="mr-3" data-no="default3" src="/resources/home_images/6.jpeg" width="150" height="150" />
 	            <img class="mr-3" data-no="default4" src="/resources/home_images/7.jpg" width="150" height="150" />
             </span>
             <br>
         </div>
-        <form:input id="image-name" hidden="hidden" path="image" />
+        <form:input id="image-name" hidden="hidden" path="image" value="default1"/>
         <div class="form-group mt-4">
             <i class="mr-2 fas fa-check" style="color: #0F4C81;"></i><label>모임 이름</label>
             <form:input type="text" class="form-control" path="title"/>
@@ -74,7 +74,7 @@
         </div>
         <div class="form-group">
             <i class="mr-2 fas fa-tags" style="color: #0F4C81;"></i><label>세부 카테고리</label>
-            <form:select id="sub-cate" path="subCateNo" class="form-control">
+            <form:select id="sub-category" path="subCateNo" class="form-control">
             </form:select>
         </div>
         <div class="form-group">
@@ -117,7 +117,6 @@
     // 세부 카테고리 가져오기
     function getSubCate() {
         let mainCateNo = $("#main-category option:selected").val();
-		console.log(mainCateNo);
         $.ajax({
             type:"GET",
             url:"/moim/subCate.do",
@@ -126,11 +125,10 @@
             },
             dataType:"json",
             success:function (subCates) {
-                console.log(subCates);
-                let $select = $("#sub-cate").empty();
+                let $select = $("#sub-category").empty();
                 let options = "";
                 for(let subCate of subCates) {
-                    options += '<option value='+subCate.subCateNo+'>'
+                    options += '<option value='+subCate.subCateNo+'>';
                     options += subCate.name;
                     options += '</option>';
                 }
