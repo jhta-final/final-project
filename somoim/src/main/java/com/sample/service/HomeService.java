@@ -17,4 +17,10 @@ public interface HomeService {
 	
 	// 메안카테고리 랜덤표시
 	List<MoimMainDto> getMainCategoryMoims();
+	
+	// 가입한 모임 표시
+	List<MoimMainDto> getjoinedMoim(String userId);
+	
+	// 관심표시한 모임 표시
+	List<MoimMainDto> getattentionMoim(String userId);
 }

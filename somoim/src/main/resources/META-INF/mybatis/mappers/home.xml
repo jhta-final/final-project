@@ -87,7 +87,7 @@
         	delete_yn = 'N'
 		order by
 			likes desc
-	) where rownum <= 5
+	) where rownum <= 8
 	]]>
 	
 	</select>
@@ -119,6 +119,22 @@
         	a.delete_yn = 'N'
 	 ) order by 
 	 		dbms_random.random
+	
+	</select>
+	
+	<select id="joinedMoim" parameterType="string" resultType="MainDto">
+	select *
+	from 
+		moim_join_user A ,moim_main B
+	where 
+		user_id = #{value}
+	and 
+		A.moim_no = B.moim_no
+	order by 
+		join_date desc
+	</select>
+	
+	<select id="attentionMoim" parameterType="string" resultType="MainDto">
 	
 	</select>
 </mapper>

@@ -17,4 +17,10 @@ public interface HomeDao {
 	
 	// 메안카테고리 랜덤표시
 	List<MoimMainDto> mainCategoryMoims(long mainCateNo);
+	
+	// 가입한 모임 표시
+	List<MoimMainDto> joinedMoim(String userId);
+	
+	// 관심표시한 모임 표시
+	List<MoimMainDto> attentionMoim(String userId);
 }
