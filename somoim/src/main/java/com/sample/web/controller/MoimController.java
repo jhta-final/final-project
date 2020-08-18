@@ -85,9 +85,13 @@ public class MoimController {
 	@PostMapping("/modify.do")
 	public String modifyMoim(@ModelAttribute("moimForm") @Valid MoimForm moimForm, @RequestParam("moimNo") long moimNo) throws Exception {
 		MoimMainDto moimMainDto = moimService.getMoimByNo(moimNo);
-		
-		BeanUtils.copyProperties(moimForm, moimMainDto);
-		System.out.println(moimMainDto.toString());
+		moimMainDto.setContent(moimForm.getContent());
+		moimMainDto.setFee(moimForm.getFee());
+		moimMainDto.setHeadCount(moimForm.getHeadCount());
+		moimMainDto.setJoinDate(moimForm.getJoinDate());
+		moimMainDto.setLocationNo(moimForm.getLocationNo());
+		moimMainDto.setSubCateNo(moimForm.getSubCateNo());
+		moimMainDto.setTitle(moimForm.getTitle());
 		moimService.modifyMoim(moimMainDto);
 		
 		return "redirect:moim.do?moimNo=" + moimNo;

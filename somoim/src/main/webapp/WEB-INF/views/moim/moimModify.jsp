@@ -83,8 +83,8 @@
             <form:input type="number" class="form-control" path="fee" value="${moim.fee }"/>
         </div>
         <div class="form-group">
-            <i class="mr-2 fas fa-user-friends" style="color: #0F4C81;"></i><label>참가인원 (2 ~ 60명)</label>
-            <form:input type="number" min="2" max="60" class="form-control" path="headCount" value="${moim.headCount }"/>
+            <i class="mr-2 fas fa-user-friends" style="color: #0F4C81;"></i><label>참가인원 (${moim.joinCount } ~ 60명)</label>
+            <form:input type="number" min="${moim.joinCount })" max="60" class="form-control" path="headCount" value="${moim.headCount }"/>
         </div>
         <div class="form-group">
             <i class="mr-2 fas fa-edit" style="color: #0F4C81;"></i><label>상세 설명</label>
