@@ -147,4 +147,11 @@ public class MoimServiceImpl implements MoimService {
 		
 		return moimDao.selectJoinUsers(moimNo);
 	}
+
+	@Override
+	public String getJoinUser(long moimNo, String userId) {
+		return moimDao.selectJoinUser(new MoimJoinUser(moimNo, userId)).getUserRole();
+	}
+
+	
 }

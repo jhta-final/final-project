@@ -5,7 +5,6 @@ import java.util.List;
 import com.sample.dto.JoinUsers;
 import com.sample.dto.MoimMainDto;
 import com.sample.vo.MoimJoinUser;
-import com.sample.vo.MoimMain;
 
 public interface MoimDao {
 

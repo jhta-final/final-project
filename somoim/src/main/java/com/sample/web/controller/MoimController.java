@@ -91,7 +91,8 @@ public class MoimController {
 		model.addAttribute("subMoimForm", new SubMoimForm());
 		
 		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
-		model.addAttribute("longinedUser", user.getId());
+		model.addAttribute("loginedUser", user.getId());
+		model.addAttribute("role", moimService.getJoinUser(moimNo, user.getId()));
 		
 		return "moim/moim.tiles";
 	}

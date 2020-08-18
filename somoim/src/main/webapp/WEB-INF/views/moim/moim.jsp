@@ -66,12 +66,12 @@
                     </div>
                     <div>
                     	<c:choose>
-                    		<c:when test="${longinedUser eq subMoim.userId}">
+                    		<c:when test="${loginedUser eq subMoim.userId}">
                     			<button data-toggle="modal" onclick="subMoimModify(${subMoim.subMoimNo})"
 		                                class="btn btn-primary" data-target="#sub-moim-modify">수정</button>
                     		</c:when>
                     		<c:otherwise>
-		                        <button data-toggle="modal" onclick="getSubMoimDetail(${subMoim.subMoimNo}, '${longinedUser}')"
+		                        <button data-toggle="modal" onclick="getSubMoimDetail(${subMoim.subMoimNo}, '${loginedUser}')"
 		                                class="btn btn-success"  data-target="#sub-moim-participant">참가</button>
                     		</c:otherwise>
                     	</c:choose>
@@ -112,7 +112,7 @@
                     <form:form method="post" action="/moim/subadd.do" modelAttribute="subMoimForm">
                     <div class="modal-body">
                             <input hidden="hidden" type="number" name="moimNo" value="${param.moimNo}" />
-                            <input hidden="hidden" type="text" value="${longinedUser}" name="userId"/>
+                            <input hidden="hidden" type="text" value="${loginedUser}" name="userId"/>
                             <div class="form-group">
                                 <label>벙개 이름</label>
                                 <form:input type="text" class="form-control" path="title"/>
@@ -156,7 +156,7 @@
                     <div class="modal-body">
                         <input id="sub-modify-no" type="number" name="subMoimNo" value="0">
                         <input hidden="hidden" type="number" name="moimNo" value="${param.moimNo}" />
-                        <input hidden="hidden" type="text" value="${longinedUser}" name="userId"/>
+                        <input hidden="hidden" type="text" value="${loginedUser}" name="userId"/>
                         <div class="form-group">
                             <label>벙개 이름</label>
                             <form:input type="text" class="form-control" path="title"/>
@@ -224,7 +224,7 @@
     </div>
 </div>
 <script>
-    function getSubMoimDetail(subMoimNo, longinedUser) {
+    function getSubMoimDetail(subMoimNo, loginedUser) {
         $.ajax({
             type:"GET",
             url:"/moim/submoim.do",
@@ -248,7 +248,7 @@
                     div += '<strong class="ml-3" style="font-size: large">' +user.userId+ '</strong>';
                     div += '</span>';
                     div += '</div>';
-                    if(longinedUser === user.userId) {
+                    if(loginedUser === user.userId) {
                         $("#btn-participant").removeClass('btn-primary');
                         $("#btn-participant").addClass('btn-danger');
                     }

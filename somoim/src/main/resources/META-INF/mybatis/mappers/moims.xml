@@ -113,8 +113,12 @@
 	</select>
 	
 	<select id="selectJoinUser" parameterType="JoinUser" resultType="JoinUser">
-		select *
-		from moim_join_user
+		select 
+			moim_no			as moimNo,
+			user_id			as userId,
+			user_role		as userRole
+		from 
+			moim_join_user
 		where
 			moim_no = #{moimNo}
 		and
