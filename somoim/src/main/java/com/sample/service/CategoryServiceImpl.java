@@ -58,7 +58,6 @@ public class CategoryServiceImpl implements CategoryService {
 	// 메인카테No로 서브카테 조회
 	@Override
 	public List<MoimSubCate> getSubCates(long mainCateNo) {
-		// TODO Auto-generated method stub
 		return categoryDao.getSubCates(mainCateNo);
 	}
 }

@@ -66,6 +66,7 @@ public class MoimController {
 	@GetMapping("/subCate.do")
 	@ResponseBody
 	public List<MoimSubCate> getSubCate(@RequestParam("mainCateNo") long mainCateNo) {
+		System.out.println(mainCateNo);
 		return categoryService.getSubCates(mainCateNo);
 	}
 	
