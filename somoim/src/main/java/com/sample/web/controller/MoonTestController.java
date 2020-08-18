@@ -8,6 +8,6 @@ public class MoonTestController {
 
 	@RequestMapping("/test.do")
 	public String test() {
-		return "form/test.tiles";
+		return "manager/manager.tiles";
 	}
 }

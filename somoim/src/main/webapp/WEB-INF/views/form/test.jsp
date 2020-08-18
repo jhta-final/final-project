@@ -72,8 +72,5 @@
       </div>
     </div>
 
-
   </div>
-  <div class="col-2">
-    asdfsd</div>
 </div>
