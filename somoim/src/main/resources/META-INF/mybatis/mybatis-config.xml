@@ -41,6 +41,7 @@
 		<mapper resource="META-INF/mybatis/mappers/home.xml"/>
 		<mapper resource="META-INF/mybatis/mappers/follow.xml"/>
 		<mapper resource="META-INF/mybatis/mappers/alrams.xml"/>
+		<mapper resource="META-INF/mybatis/mappers/category.xml"/>
 	</mappers>
 </configuration>
 
