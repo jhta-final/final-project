@@ -20,7 +20,8 @@ public class MoimMainDto {
 	private String deleteYn; 
 	private Date joinDate;
 	private Date createdDate;
-	private long subCateNo; 
+	private long subCateNo;
+	private String subCateName;
 	private long locationNo;
 	private String locationName;
 	private long mainCateNo;
@@ -28,8 +29,12 @@ public class MoimMainDto {
 	private List<MoimUser> friends;
 	
 	
-	
-	
+	public String getSubCateName() {
+		return subCateName;
+	}
+	public void setSubCateName(String subCateName) {
+		this.subCateName = subCateName;
+	}
 	public long getMainCateNo() {
 		return mainCateNo;
 	}

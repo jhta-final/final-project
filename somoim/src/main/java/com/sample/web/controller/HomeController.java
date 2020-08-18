@@ -1,6 +1,5 @@
 package com.sample.web.controller;
 
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.sample.dto.MoimMainDto;
 import com.sample.service.HomeService;
 import com.sample.vo.MoimUser;
 
@@ -34,6 +32,14 @@ public class HomeController {
 		
 		// 메안카테고리 랜덤표시
 		model.addAttribute("mainCategoryMoims", homeService.getMainCategoryMoims());
+		
+		// 가입한 모임 표시
+		model.addAttribute("joinedMoim", homeService.getjoinedMoim(user.getId()));
+		
+		// 관심표시한 모임 표시
+		model.addAttribute("attentionMoim", homeService.getattentionMoim(user.getId()));
+		
+		
 			
 		return "main/main.tiles";
 	} 

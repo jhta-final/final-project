@@ -9,6 +9,13 @@ public class MoimDates {
 	private Date startDate;
 	private Date endDate;
 	
+	public MoimDates() {}
+	
+	public MoimDates(Date startDate, Date endDate) {
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
 	public Date getStartDate() {
