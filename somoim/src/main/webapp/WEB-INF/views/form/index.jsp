@@ -321,6 +321,7 @@
    <script>
       $(function () {
          $("#button-category").click(function () {
+        	 console.log(1);
             var signUpForm = {
                id: $("#signup-id").val(),
                name: $("#signup-name").val(),
