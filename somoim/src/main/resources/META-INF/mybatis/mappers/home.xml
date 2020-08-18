@@ -133,8 +133,4 @@
 	order by 
 		join_date desc
 	</select>
-	
-	<select id="attentionMoim" parameterType="string" resultType="MainDto">
-	
-	</select>
 </mapper>
