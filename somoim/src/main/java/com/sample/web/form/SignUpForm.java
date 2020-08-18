@@ -50,7 +50,6 @@ public class SignUpForm {
 	
 
 	public String getId() {
-		System.out.println("하이");
 		return id;
 	}
 

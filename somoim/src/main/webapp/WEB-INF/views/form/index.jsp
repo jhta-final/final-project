@@ -124,10 +124,10 @@
 					<div class="card-body">
 						<form:form action="/signin.do" method="post" modelAttribute="loginForm">
 							<div class="form-group text-left">
-								<form:input type="text" class="form-control" id="signin-id" path="userId" placeholder="아이디를 입력해주세요" />
+								<form:input type="text" class="form-control" path="userId" placeholder="아이디를 입력해주세요" />
 							</div>
 							<div class="form-group text-left">
-								<form:input type="password" class="form-control" id="signin-password" path="userpwd"
+								<form:input type="password" class="form-control" path="userpwd"
 									placeholder="비밀번호를 입력해주세요" />
 							</div>
 							<button type="submit" class="btn btn-primary"
@@ -162,26 +162,24 @@
 
 				<!-- Modal body -->
 				<div class="modal-body" style="margin: 0 45px;">
-					<form action="">
+					<form action="#">
 						<div class="form-group text-left">
-							<label for="signin-id" style="font-size: 20px;">아이디</label> <input type="text" class="form-control"
-								id="signup-id">
+							<label style="font-size: 20px;">아이디</label> <input type="text" class="form-control" id="signup-id">
 						</div>
 						<div class="form-group text-left">
 							<label for="signin-password" style="font-size: 20px;">password</label>
 							<input type="text" class="form-control" id="signup-password">
 						</div>
 						<div class="form-group text-left">
-							<label for="signin-id" style="font-size: 20px;">전화번호</label> <input type="text" class="form-control"
-								id="signup-tel">
+							<label style="font-size: 20px;">전화번호</label> <input type="text" class="form-control" id="signup-tel">
 						</div>
 						<div class="form-group text-left">
 							<label for="signin-id" style="font-size: 20px;">이름</label> <input type="text" class="form-control"
 								id="signup-name">
 						</div>
 						<div class="form-group text-left">
-							<label for="signin-id" style="font-size: 20px;">관심지역</label> <select name="locationNo"
-								class="form-control" id="signup-location">
+							<label style="font-size: 20px;">관심지역</label> <select name="locationNo" class="form-control"
+								id="signup-location">
 								<option value="" selected="selected" disabled="disabled" class="text-center">선택</option>
 								<option value="">없음</option>
 								<option value="1">강서구</option>
@@ -212,16 +210,13 @@
 							</select>
 						</div>
 						<div class="form-group text-left">
-							<label for="signin-id" style="font-size: 20px;">닉네임</label> <input type="text" class="form-control"
-								id="signup-nickname">
+							<label style="font-size: 20px;">닉네임</label> <input type="text" class="form-control" id="signup-nickname">
 						</div>
 						<div class="form-group text-left">
-							<label for="signin-id" style="font-size: 20px;">생년월일</label> <input type="text" class="form-control"
-								id="signup-birth">
+							<label style="font-size: 20px;">생년월일</label> <input type="text" class="form-control" id="signup-birth">
 						</div>
 						<div class="form-group text-left">
-							<label for="signin-id" style="font-size: 20px;">이메일</label> <input type="text" class="form-control"
-								id="signup-email">
+							<label style="font-size: 20px;">이메일</label> <input type="text" class="form-control" id="signup-email">
 						</div>
 					</form>
 				</div>
@@ -331,7 +326,8 @@
 					email: $("#signup-email").val(),
 					tel: $("#signup-tel").val(),
 					locationNo: $("#signup-location").val()
-				}
+				};
+				
 				console.log(signUpForm);
 				$.ajax({
 					type: "POST",
@@ -340,10 +336,11 @@
 					contentType: "application/json",
 					dataType: "json",
 					success: function (status) {
-						console.log(1);
+						console.log(status);
 					}
 				})
 			})
+
 			$("#select-category-image .card").click(
 				function () {
 
