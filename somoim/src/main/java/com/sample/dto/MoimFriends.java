@@ -1,5 +1,7 @@
 package com.sample.dto;
 
+/* 모임에 가입된 친구 조회에 쓰는 거 */
+
 public class MoimFriends {
 
 	private long moimNo;
