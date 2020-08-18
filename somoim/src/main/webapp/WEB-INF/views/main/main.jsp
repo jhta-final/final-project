@@ -100,7 +100,7 @@ a > p {
 			</c:forEach>
 		</div>
 		<hr />
-		<h1>카테고리별</h1>
+		<h1>${mainCategoryMoims[1].mainCateName }</h1>
 		<div class="card-deck mb-4">
 			<c:forEach items="${mainCategoryMoims }" var="category">
 				<a href="/moim/moim.do?moimNo=${category.moimNo}">
