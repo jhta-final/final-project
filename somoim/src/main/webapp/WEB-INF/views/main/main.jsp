@@ -8,10 +8,9 @@
 .card-deck{
 	margin-bottom: 50px;
 }
-.card{
+#card-list{
 	width: 350px;
 	height: 300px;
-	margin-bottom: 150px;
 }
 .card-img-top {
 	width: 348px;
@@ -49,7 +48,7 @@ h5 {
 			<c:forEach items="${favoliteMoims }" var="favolite">
 			<div class="swiper-slide">
 				<a href="/moim/moim.do?moimNo=${favolite.moimNo}"> 
-				<div class="card mb-4">
+				<div class="card mb-4" id="card-list">
 					<img class="card-img-top" src="/resources/home_images/11.png"
 						alt="Card image cap">
 					<div class="card-body">
@@ -86,7 +85,7 @@ h5 {
 			<h1>${locationMoims[0].locationName }</h1>
 		<div class="card-deck mb-4">
 			<a href="/moim/moim.do?moimNo=500000">
-				<div class="card mb-4">
+				<div class="card mb-4" id="card-list">
 					<img class="card-img-top" src="/resources/home_images/9.jpg"
 						alt="Card image cap">
 					<div class="card-body">
@@ -105,7 +104,7 @@ h5 {
 			</a>
 			<c:forEach items="${locationMoims }" var="location">
 					<a href="/moim/moim.do?moimNo=${location.moimNo}"> 
-				<div class="card mb-4">
+				<div class="card mb-4" id="card-list">
 					<img class="card-img-top" src="/resources/home_images/1.jpeg"
 						alt="Card image cap">
 						<div class="card-body">
@@ -128,7 +127,7 @@ h5 {
 		<div class="card-deck mb-4">
 			<c:forEach items="${mainCategoryMoims }" var="category">
 				<a href="/moim/moim.do?moimNo=${category.moimNo}">
-					<div class="card mb-4">
+					<div class="card mb-4" id="card-list">
 						<img class="card-img-top" src="/resources/home_images/7.jpg"
 							alt="Card image cap">
 						<div class="card-body">
@@ -151,7 +150,7 @@ h5 {
 		<div class="card-deck mb-4">
 			<c:forEach items="${allMoims }" var="moim">
 				<a href="/moim/moim.do?moimNo=${moim.moimNo}">
-					<div class="card mb-4">
+					<div class="card mb-4" id="card-list">
 						<img class="card-img-top" src="/resources/home_images/9.jpg"
 							alt="Card image cap">
 						<div class="card-body">

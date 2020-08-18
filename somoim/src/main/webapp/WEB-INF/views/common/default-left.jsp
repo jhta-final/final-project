@@ -18,8 +18,7 @@
 
 /* The navigation menu links */
 .sidenav a {
-	margin-left:50px;
-	padding: 8px 8px 8px 32px;
+	padding: 8px 8px 8px 8px;
 	text-decoration: none;
 	font-size: 20px;
 	color: gray;
@@ -36,9 +35,7 @@
 .sidenav .closebtn {
 	position: absolute;
 	top: 0;
-	right: 25px;
 	font-size: 36px;
-	margin-left: 50px;
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
@@ -50,17 +47,28 @@
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
 	.sidenav {
-		padding-top: 15px;
 		
 	}
 	.sidenav a {
 		font-size: 18px;
 	}
+
+.collapse{
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+	height: 200px;
+}
+
 }
 </style>
 
 <div id="mySidenav" class="sidenav">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav" style="text-align:center">
       <li class="nav-item active">
         <a class="nav-link" href="/home.do">Home
           <span class="sr-only">(current)</span>
@@ -72,65 +80,69 @@
       <li class="nav-item mb-3">
 		<a class="nav-link" href="/test.do">카테고리</a>
       </li>
-      <li class="nav-item pt-2"  style="border-top: 1px solid lightgray">
-		<a class="nav-link collapsible" href="#">가입 모임</a>
-      </li>
-      <c:forEach items="${joinedMoim}" var="joinedMoim">
-      <li class="nav-item">
-		<a class="nav-link" href="#">
-			<span class="nav-item avatar"> <img
-					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-					class="rounded-circle z-depth-0" alt="avatar image" height="35">
-			${joinedMoim.title }</span>
-		</a>
-	  </li>
-      </c:forEach>
-	  <li>
-	  	<a class="nav-link" href="#">
-			<span class="nav-item avatar">더보기</span>
-		</a>
-	  </li>
-      <li class="nav-item">
-		<a class="nav-link" href="#">모임<i class="far fa-heart"></i></a>
-      </li>
-      <li class="nav-item">
-		<a class="nav-link" href="#">
-			<span class="nav-item avatar"> <img
-					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-					class="rounded-circle z-depth-0" alt="avatar image" height="35">
-			커피커피</span>
-		</a>
-	  </li>
-      <li class="nav-item">
-		<a class="nav-link" href="#">
-			<span class="nav-item avatar"> <img
-					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-					class="rounded-circle z-depth-0" alt="avatar image" height="35">
-			크레용</span>
-		</a>
-	  </li>
-      <li class="nav-item">
-		<a class="nav-link" href="#">
-			<span class="nav-item avatar"> <img
-					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-					class="rounded-circle z-depth-0" alt="avatar image" height="35">
-			게임게임</span>
-		</a>
-	  </li>
-      <li class="nav-item">
-		<a class="nav-link" href="#">내 친구</a>
-      </li>
-      <c:forEach items="${followUsers}" var="follow">
-      <li class="nav-item">
-		<a class="nav-link" href="#">
-			<span class="nav-item avatar"> <img
-					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-					class="rounded-circle z-depth-0" alt="avatar image" height="35">
-			${follow.nickname }</span>
-		</a>
-	  </li>
-      </c:forEach>
     </ul>
+	<a class="btn" data-toggle="collapse" href="#collapseExample"
+		role="button" aria-expanded="false" aria-controls="collapseExample">
+		가입모임 </a>
+	<div class="collapse" id="collapseExample"
+		style="border-top: 1px solid lightgray">
+		<div class="card card-body">
+			<c:forEach items="${joinedMoim}" var="joinedMoim">
+				<a class="nav-link" href="#"> <span class="nav-item avatar">
+						<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+						class="rounded-circle z-depth-0" alt="avatar image" height="35">
+						${joinedMoim.title }
+				</span>
+				</a>
+			</c:forEach>
+			<a class="nav-link" href="#"> <span class="nav-item avatar">더보기</span>
+			</a>
+		</div>
+	</div>
+	<a class="btn" data-toggle="collapse" href="#collapseExample2"
+		role="button" aria-expanded="false" aria-controls="collapseExample">
+		모임<i class="far fa-heart"></i>
+	</a>
+	<div class="collapse" id="collapseExample2"
+		style="border-top: 1px solid lightgray">
+		<div class="card card-body">
+			<a class="nav-link" href="#"> <span class="nav-item avatar">
+					<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+					class="rounded-circle z-depth-0" alt="avatar image" height="35">
+					커피커피
+			</span>
+			</a> <a class="nav-link" href="#"> <span class="nav-item avatar">
+					<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+					class="rounded-circle z-depth-0" alt="avatar image" height="35">
+					크레용
+			</span>
+			</a> <a class="nav-link" href="#"> <span class="nav-item avatar">
+					<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+					class="rounded-circle z-depth-0" alt="avatar image" height="35">
+					게임게임
+			</span>
+			</a> <a class="nav-link" href="#"> <span class="nav-item avatar">더보기</span>
+			</a>
+		</div>
+	</div>
+	<a class="btn" data-toggle="collapse" href="#collapseExample3"
+		role="button" aria-expanded="false" aria-controls="collapseExample">
+		내 친구 </a>
+	<div class="collapse" id="collapseExample3"
+		style="border-top: 1px solid lightgray">
+		<div class="card card-body">
+			<c:forEach items="${followUsers}" var="follow">
+				<a class="nav-link" href="#"> <span class="nav-item avatar">
+						<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+						class="rounded-circle z-depth-0" alt="avatar image" height="35">
+						${follow.nickname }
+				</span>
+				</a>
+			</c:forEach>
+			<a class="nav-link" href="#"> <span class="nav-item avatar">더보기</span>
+			</a>
+		</div>
+	</div>
 	<hr />
 	<div class="" id="footer" style="font-size: 10px; margin-left:50px;">
 		<p>자주하는 질문</p>
