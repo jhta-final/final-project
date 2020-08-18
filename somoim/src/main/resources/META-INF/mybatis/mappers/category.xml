@@ -19,7 +19,7 @@
 		<result property="createdDate" column="created_date"/>
 		<result property="subCateNo" column="sub_cate_no"/>
 		<result property="locationNo" column="location_no"/>
-		<collection property="friends" resultMap="friends" select="selectFollowsByMoim" column="moim_no"></collection>
+		<collection property="friends" select="selectFollowsByMoim" column="moim_no"></collection>
 	</resultMap>
 	
 	<resultMap type="User" id="friends">
@@ -38,7 +38,7 @@
 		<result property="profileImage" column="profile_image"/>
 	</resultMap>
 	
-	<select id="selectFollowsByMoim" parameterType="string" resultMap="friends">
+	<select id="selectFollowsByMoim" parameterType="string" resultMap="friends" >
 		select
 	    c.user_id, user_name, tel, user_password, nickname, email, birth, gender, user_content, delete_yn,
 	    created_date, location_no, profile_image
@@ -50,7 +50,7 @@
 		    (
 		        select fol_user_id
 		        from moim_follow
-		        where user_id = #{userId}
+		        where user_id = #{id}
 		    ) B,
 		    moim_user C
 		where
@@ -61,7 +61,7 @@
 		    b.fol_user_id = c.user_id
 	</select>
 	
-	<select id="selectMoimsByMainCategory" parameterType="long" resultMap="moims">
+	<select id="selectMoimsByMainCategory" parameterType="long" resultMap="moims" >
 		select
 			a.moim_no, title, user_id, join_count, head_count, content, image, fee, likes, primium_yn, delete_yn,
 			join_date, a.created_date, a.sub_cate_no, location_no

@@ -25,7 +25,7 @@ public interface CategoryDao {
 	List<MoimMainDto> selectMoimsByLikes();
 
 	// 해당 모임에 가입된 친구들 조회
-	List<MoimUser> selectFollowsByMoim(long moimNo);
+	List<MoimUser> selectFollowsByMoim(String userId);
 
 	// 메인카테No로 서브카테 조회
 	List<MoimSubCate> getSubCates(long mainCateNo);

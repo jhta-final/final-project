@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sample.dto.MoimMainDto;
 import com.sample.service.CategoryService;
+import com.sample.vo.MoimUser;
 
 @Controller
 @RequestMapping("/cate")
@@ -22,10 +23,14 @@ public class CategoryController {
 	public String test() {
 		
 		List<MoimMainDto> list = categoryService.getMoimsByMainCategory(1);
-		for(MoimMainDto m : list) {
-			System.out.println(m.getFriends());
-		}
 		
+		for(MoimMainDto m : list) {
+			System.out.println(m.getMoimNo());
+			List<MoimUser> users = m.getFriends();
+			for(MoimUser u : users) {
+				System.out.println(u.getName());
+			}
+		}
 		return "";
 	}
 }
