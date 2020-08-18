@@ -33,6 +33,7 @@ public class SignUpController {
 	@ResponseBody
 	public Map<String, String> step1Submit (@RequestBody @Valid SignUpForm signUpForm1,
 			BindingResult errors) {
+		System.out.println("결과: " + signUpForm1);
 		Map<String, String> map = new HashMap<>();
 		if(errors.hasErrors()) {
 			map.put("status", "false");
