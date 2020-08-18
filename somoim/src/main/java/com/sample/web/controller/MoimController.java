@@ -71,6 +71,17 @@ public class MoimController {
 	}
 	
 	// 모임 정보 수정
+	@GetMapping("/modify.do")
+	public String modify(Model model, HttpSession httpSession, @RequestParam("moimNo") long moimNo) {
+		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
+		model.addAttribute("moim", moimService.getMoimByNo(moimNo));
+		model.addAttribute("loginedUser", user.getId());		
+		model.addAttribute("moimForm", new MoimForm());
+		model.addAttribute("moimNo", moimNo);
+		return "moim/moimModify.tiles";
+	}
+	
+	// 모임 정보 수정
 	@PostMapping("/modify.do")
 	public String modifyMoim(@ModelAttribute("moimForm") @Valid MoimForm moimForm, @RequestParam("moimNo") long moimNo) throws Exception {
 		MoimMainDto moimMainDto = moimService.getMoimByNo(moimNo);
@@ -101,10 +112,10 @@ public class MoimController {
 	@GetMapping("delete.do")
 	public String deleteMoim(@RequestParam("moimNo") long moimNo) {
 		
-		moimService.AllOutMoim(moimNo);
 		moimService.deleteMoim(moimNo);
+		moimService.AllOutMoim(moimNo);
 		
-		return "";
+		return "redirect:/home.do";
 	}
 	
 	// 모임 가입

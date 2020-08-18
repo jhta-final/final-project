@@ -54,16 +54,7 @@ public class MoimServiceImpl implements MoimService {
 		}
 		
 		// 모임 작성자 비교??
-		
-		savedMoim.setTitle(moimMainDto.getTitle());
-		savedMoim.setHeadCount(moimMainDto.getHeadCount());
-		savedMoim.setContent(moimMainDto.getContent());
-		savedMoim.setImage(moimMainDto.getImage());
-		savedMoim.setFee(moimMainDto.getFee());
-		savedMoim.setJoinDate(moimMainDto.getJoinDate());
-		savedMoim.setSubCateNo(moimMainDto.getSubCateNo());
-		savedMoim.setLocationNo(moimMainDto.getLocationNo());
-		
+				
 		moimDao.updateMoim(savedMoim);
 	}
 
