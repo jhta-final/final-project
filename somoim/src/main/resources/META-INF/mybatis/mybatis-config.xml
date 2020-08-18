@@ -32,6 +32,7 @@
 		<typeAlias type="com.sample.dto.MoimDates" alias="Dates"/>
 		<typeAlias type="com.sample.dto.MoimJoinUserMoimDto" alias="MoimJoinUser"/>
 		<typeAlias type="com.sample.dto.MoimFriends" alias="Friends"/>
+		<typeAlias type="com.sample.dto.MoimFollowDto" alias="MoimFollowDto"/>
 	</typeAliases>
 	
 	<mappers>
