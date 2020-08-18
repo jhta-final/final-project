@@ -9,6 +9,7 @@
 	
 	<typeAliases>
 		<typeAlias type="com.sample.vo.MoimAlram" alias="Alram"/>
+		<typeAlias type="com.sample.vo.MoimMessage" alias="Message"/>
 		<typeAlias type="com.sample.vo.MoimBoard" alias="Board"/>
 		<typeAlias type="com.sample.vo.MoimBoardCate" alias="BoardCate"/>
 		<typeAlias type="com.sample.vo.MoimComment" alias="Comment"/>
