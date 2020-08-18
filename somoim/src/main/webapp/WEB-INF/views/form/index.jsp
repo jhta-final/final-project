@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>소모임</title>
 <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.css">
 
 <script src="/resources/jquery/jquery.min.js"></script>
@@ -126,21 +126,22 @@ video {
 					<div style="font-size: 73px;">모임을 만들고 참여해 보세요.</div>
 				</div>
 				<div class="card-body">
-					<form action="">
+					<form:form action="/signin.do" method="post"
+						modelAttribute="loginForm">
 						<div class="form-group text-left">
-							<input type="text" class="form-control" id="signin-id"
-								placeholder="아이디를 입력해주세요">
+							<form:input type="text" class="form-control" id="signin-id" path="userId"
+								placeholder="아이디를 입력해주세요" />
 						</div>
 						<div class="form-group text-left">
-							<input type="text" class="form-control" id="signin-password"
-								placeholder="비밀번호를 입력해주세요">
+							<form:input type="password" class="form-control" id="signin-password" path="userpwd"
+								placeholder="비밀번호를 입력해주세요" />
 						</div>
-						<button type="button" class="btn btn-primary"
+						<button type="submit" class="btn btn-primary"
 							style="width: 150px; background-color: #0f4c81;">Signin</button>
 						<button type="button" class="btn btn-secondary"
 							data-toggle="modal" data-target="#signup-modal"
 							style="width: 150px;">Signup</button>
-					</form>
+					</form:form>
 				</div>
 				<div class="" style="padding: 10px 10px;">
 					<div class="mb-2">
@@ -193,37 +194,37 @@ video {
 								type="text" class="form-control" id="signup-name">
 						</div>
 						<div class="form-group text-left">
-							<label for="signin-id" style="font-size: 20px;">관심지역</label>
-						<select name="locationNo" class="form-control" id="signup-location">
-							<option value="" selected="selected" disabled="disabled"
-								class="text-center">선택</option>
-							<option value="">없음</option>
-							<option value="1">강서구</option>
-							<option value="2">양천구</option>
-							<option value="3">구로구</option>
-							<option value="4">금천구</option>
-							<option value="5">영등포구</option>
-							<option value="6">동작구</option>
-							<option value="7">관악구</option>
-							<option value="8">서초구</option>
-							<option value="9">강남구</option>
-							<option value="10">송파구</option>
-							<option value="11">강동구</option>
-							<option value="12">마포구</option>
-							<option value="13">용산구</option>
-							<option value="14">서대문구</option>
-							<option value="15">은평구</option>
-							<option value="16">중구</option>
-							<option value="17">종로구</option>
-							<option value="18">성동구</option>
-							<option value="19">광진구</option>
-							<option value="20">동대문구</option>
-							<option value="21">성북구</option>
-							<option value="22">강북구</option>
-							<option value="23">도봉구</option>
-							<option value="24">노원구</option>
-							<option value="25">중랑구</option>
-						</select>
+							<label for="signin-id" style="font-size: 20px;">관심지역</label> <select
+								name="locationNo" class="form-control" id="signup-location">
+								<option value="" selected="selected" disabled="disabled"
+									class="text-center">선택</option>
+								<option value="">없음</option>
+								<option value="1">강서구</option>
+								<option value="2">양천구</option>
+								<option value="3">구로구</option>
+								<option value="4">금천구</option>
+								<option value="5">영등포구</option>
+								<option value="6">동작구</option>
+								<option value="7">관악구</option>
+								<option value="8">서초구</option>
+								<option value="9">강남구</option>
+								<option value="10">송파구</option>
+								<option value="11">강동구</option>
+								<option value="12">마포구</option>
+								<option value="13">용산구</option>
+								<option value="14">서대문구</option>
+								<option value="15">은평구</option>
+								<option value="16">중구</option>
+								<option value="17">종로구</option>
+								<option value="18">성동구</option>
+								<option value="19">광진구</option>
+								<option value="20">동대문구</option>
+								<option value="21">성북구</option>
+								<option value="22">강북구</option>
+								<option value="23">도봉구</option>
+								<option value="24">노원구</option>
+								<option value="25">중랑구</option>
+							</select>
 						</div>
 						<div class="form-group text-left">
 							<label for="signin-id" style="font-size: 20px;">닉네임</label> <input
@@ -242,7 +243,8 @@ video {
 
 				<!-- Modal footer -->
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" id="button-category">카테고리 선택</button>
+					<button type="button" class="btn btn-primary" id="button-category">카테고리
+						선택</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 				</div>
 
@@ -343,6 +345,7 @@ video {
 	<script>
 		$(function() {
 			$("#button-category").click(function() {
+				console.log(1);
 				var signUpForm = {
 					id : $("#signup-id").val(),
 					name : $("#signup-name").val(),
