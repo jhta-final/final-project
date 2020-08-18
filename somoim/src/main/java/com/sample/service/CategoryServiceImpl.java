@@ -8,14 +8,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.dao.CategoryDao;
 import com.sample.dto.MoimDates;
+import com.sample.dto.MoimFriends;
 import com.sample.dto.MoimMainDto;
 import com.sample.vo.MoimSubCate;
+import com.sample.vo.MoimUser;
 
 @Service
 @Transactional
 public class CategoryServiceImpl implements CategoryService {
 
 	@Autowired CategoryDao categoryDao;
+	
+	// 해당 모임에 가입된 친구들 조회
+	@Override
+	public List<MoimUser> getFollowsByMoim(MoimFriends moimFriends) {
+		return categoryDao.selectFollowsByMoim(moimFriends);
+	}
 	
 	// 메인카테고리별 모임 조회
 	@Override
@@ -53,5 +61,4 @@ public class CategoryServiceImpl implements CategoryService {
 		// TODO Auto-generated method stub
 		return categoryDao.getSubCates(mainCateNo);
 	}
-
 }
