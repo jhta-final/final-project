@@ -12,7 +12,7 @@ public class MoimFollowDto {
 
 	// moim_user
 	private String image;
-	private String nickName;
+	private String nickname;
 	
 	public String getUserId() {
 		return userId;
