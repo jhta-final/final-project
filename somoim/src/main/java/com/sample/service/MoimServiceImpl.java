@@ -53,8 +53,6 @@ public class MoimServiceImpl implements MoimService {
 			return;
 		}
 		
-		// 모임 작성자 비교??
-				
 		moimDao.updateMoim(savedMoim);
 	}
 

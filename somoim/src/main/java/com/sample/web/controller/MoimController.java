@@ -87,6 +87,7 @@ public class MoimController {
 		MoimMainDto moimMainDto = moimService.getMoimByNo(moimNo);
 		
 		BeanUtils.copyProperties(moimForm, moimMainDto);
+		System.out.println(moimMainDto.toString());
 		moimService.modifyMoim(moimMainDto);
 		
 		return "redirect:moim.do?moimNo=" + moimNo;
