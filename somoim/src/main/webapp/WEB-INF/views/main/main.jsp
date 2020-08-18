@@ -21,9 +21,21 @@ h5 {
 	font-size: 12px;
 }
 
-a > p {
-	font-size: 8px;
+
+.card-text{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 300px;
+  height: 20px;
+  font-size: 10px;
+  line-height: 1;
+  margin-bottom:0px;
 }
+.text-muted{
+	line-height: 1;
+}
+
 
 </style>
 <div class="main ">
@@ -34,23 +46,27 @@ a > p {
 	<!-- Swiper -->
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
-				<c:forEach items="${favoliteMoims }" var="favolite">
+			<c:forEach items="${favoliteMoims }" var="favolite">
 			<div class="swiper-slide">
 				<a href="/moim/moim.do?moimNo=${favolite.moimNo}"> 
 				<div class="card mb-4">
 					<img class="card-img-top" src="/resources/home_images/11.png"
 						alt="Card image cap">
-						<div class="card-body">
+					<div class="card-body">
 							<h5 class="card-title">
 								<c:out value="${favolite.title }" />
+								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
 							</h5>
-							<p class="card-text">${favolite.content }</p>
+							  <p class="card-text">${favolite.content }</p>
+							<div class="">
 							<small class="text-muted">${favolite.createdDate}</small>
-						</div>
+					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
+					        </div>
+					</div>
 				</div>
-					</a>
+				</a>
 			</div>
-				</c:forEach>
+			</c:forEach>
 		</div>
 		<!-- Add Pagination -->
 		<div class="swiper-pagination"></div>
@@ -74,11 +90,15 @@ a > p {
 					<img class="card-img-top" src="/resources/home_images/9.jpg"
 						alt="Card image cap">
 					<div class="card-body">
-						<h5 class="card-title">
-							<c:out value="title" />
-						</h5>
-						<p class="card-text">정원이 원하는 페이지</p>
-						<small class="text-muted">ㅇㅇㅇㅇㅇㅇㅇ</small>
+							<h5 class="card-title">
+								정원이 원하는 페이지
+								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
+							</h5>
+							  <p class="card-text">ㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐ</p>
+							<div class="">
+							<small class="text-muted">대충 날짜라는 표시</small>
+					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
+					        </div>
 					</div>
 				</div>
 
@@ -91,9 +111,13 @@ a > p {
 						<div class="card-body">
 							<h5 class="card-title">
 								<c:out value="${location.title }" />
+								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
 							</h5>
-							<p class="card-text">${location.content }</p>
+							  <p class="card-text">${location.content }</p>
+							<div class="">
 							<small class="text-muted">${location.createdDate}</small>
+					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
+					        </div>
 						</div>
 				</div>
 					</a>
@@ -110,9 +134,13 @@ a > p {
 						<div class="card-body">
 							<h5 class="card-title">
 								<c:out value="${category.title }" />
+								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
 							</h5>
-							<p class="card-text">${category.content }</p>
+							  <p class="card-text">${category.content }</p>
+							<div class="">
 							<small class="text-muted">${category.createdDate}</small>
+					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
+					        </div>
 						</div>
 					</div>
 				</a>
@@ -129,9 +157,13 @@ a > p {
 						<div class="card-body">
 							<h5 class="card-title">
 								<c:out value="${moim.title }" />
+								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
 							</h5>
-							<p class="card-text">${moim.content }</p>
+							  <p class="card-text">${moim.content }</p>
+							<div class="">
 							<small class="text-muted">${moim.createdDate}</small>
+					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
+					        </div>
 						</div>
 					</div>
 				</a>

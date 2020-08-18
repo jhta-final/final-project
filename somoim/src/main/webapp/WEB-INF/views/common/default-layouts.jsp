@@ -18,20 +18,20 @@
     body {
       background: #eee;
       font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-      font-size: 14px;
+      font-size: 10px;
       color: #000;
       padding: 0;
     }
 
     .swiper-container {
       width: 100%;
-      height: 300px;
+      height: 500px;
       margin: 20px auto;
     }
 
     .swiper-slide {
-      text-align: center;
-      font-size: 18px;
+      text-align: left;
+      font-size: 10px;
       background: #fff;
 
       /* Center slide text vertically */
