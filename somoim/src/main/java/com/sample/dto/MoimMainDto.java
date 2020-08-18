@@ -26,9 +26,18 @@ public class MoimMainDto {
 	private String locationName;
 	private long mainCateNo;
 	private String mainCateName;
+	private String nickName;
 	private List<MoimUser> friends;
 	
 	
+	
+	
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
 	public String getSubCateName() {
 		return subCateName;
 	}
