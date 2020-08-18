@@ -22,5 +22,5 @@ public interface HomeService {
 	List<MoimMainDto> getjoinedMoim(String userId);
 	
 	// 관심표시한 모임 표시
-	List<MoimMainDto> getattentionMoim(String userId);
+//	List<MoimMainDto> getattentionMoim(String userId);
 }

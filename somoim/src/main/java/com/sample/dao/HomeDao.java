@@ -22,5 +22,5 @@ public interface HomeDao {
 	List<MoimMainDto> joinedMoim(String userId);
 	
 	// 관심표시한 모임 표시
-	List<MoimMainDto> attentionMoim(String userId);
+//	List<MoimMainDto> attentionMoim(String userId);
 }

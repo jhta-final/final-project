@@ -55,12 +55,12 @@ public class HomeServiceImpl implements HomeService{
 		return homeDao.joinedMoim(userId);
 	}
 	
-	// 관심표시한 모임 표시
-	@Override
-	public List<MoimMainDto> getattentionMoim(String userId) {
-		
-		return homeDao.attentionMoim(userId);
-	}
+//	// 관심표시한 모임 표시
+//	@Override
+//	public List<MoimMainDto> getattentionMoim(String userId) {
+//		
+//		return homeDao.attentionMoim(userId);
+//	}
 	
 	
 }

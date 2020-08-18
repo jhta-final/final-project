@@ -36,10 +36,8 @@ public class HomeController {
 		// 가입한 모임 표시
 		model.addAttribute("joinedMoim", homeService.getjoinedMoim(user.getId()));
 		
-		// 관심표시한 모임 표시
-		model.addAttribute("attentionMoim", homeService.getattentionMoim(user.getId()));
-		
-		
+//		// 관심표시한 모임 표시
+//		model.addAttribute("attentionMoim", homeService.getattentionMoim(user.getId()));
 			
 		return "main/main.tiles";
 	} 
