@@ -47,13 +47,8 @@ public class MoimServiceImpl implements MoimService {
 	// 모임 정보 수정
 	@Override
 	public void modifyMoim(MoimMainDto moimMainDto) {
-		MoimMainDto savedMoim = moimDao.selectMoim(moimMainDto.getMoimNo());
-		if(savedMoim == null) {
-			System.out.println("해당 모임이 존재하지 않음");
-			return;
-		}
 		
-		moimDao.updateMoim(savedMoim);
+		moimDao.updateMoim(moimMainDto);
 	}
 
 	// 모임 삭제
