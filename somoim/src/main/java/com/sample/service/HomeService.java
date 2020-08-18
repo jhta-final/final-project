@@ -2,6 +2,7 @@ package com.sample.service;
 
 import java.util.List;
 
+import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimMainDto;
 
 public interface HomeService {
@@ -20,6 +21,10 @@ public interface HomeService {
 	
 	// 가입한 모임 표시
 	List<MoimMainDto> getjoinedMoim(String userId);
+	
+	// 내 친구 보기
+	List<MoimFollowDto> getfollowUsers(String userId);
+	
 	
 	// 관심표시한 모임 표시
 //	List<MoimMainDto> getattentionMoim(String userId);

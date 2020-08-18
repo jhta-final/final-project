@@ -123,14 +123,47 @@
 	</select>
 	
 	<select id="joinedMoim" parameterType="string" resultType="MainDto">
-	select *
+	<![CDATA[
+	select * from(
+	select
+		a.moim_no		as moimNo,
+		title			as title,
+		join_count		as joinCount,
+		head_count		as headCount,
+		content			as content,
+		image			as image,
+		fee				as fee,
+		likes			as likes,
+		premium_yn		as premiumYn,
+		join_date		as joinDate,
+		a.created_date	as createdDate,
+		user_role		as userRole
 	from 
 		moim_join_user A ,moim_main B
 	where 
-		user_id = #{value}
+		user_id = 'kwon'
 	and 
 		A.moim_no = B.moim_no
+	and
+        delete_yn = 'N'
 	order by 
 		join_date desc
+	) where rownum <= 3
+	]]>
+	</select>
+	
+	<select id="followUsers" parameterType="string" resultType="MainDto">
+	select
+	A.user_id		as userId,
+	A.fol_user_id	as folUserId,
+	B.profile_image as image,
+	B.nickname		as nickname
+	
+	from
+		moim_follow A, moim_user B
+	where
+		A.user_id = #{value}
+	and
+		A.fol_user_id = B.user_id
 	</select>
 </mapper>

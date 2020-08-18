@@ -36,6 +36,9 @@ public class HomeController {
 		// 가입한 모임 표시
 		model.addAttribute("joinedMoim", homeService.getjoinedMoim(user.getId()));
 		
+		// 내 친구 보기
+		model.addAttribute("followUsers", homeService.getfollowUsers(user.getId()));
+		
 //		// 관심표시한 모임 표시
 //		model.addAttribute("attentionMoim", homeService.getattentionMoim(user.getId()));
 			

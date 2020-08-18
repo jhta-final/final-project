@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.dao.HomeDao;
+import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimMainDto;
 
 @Service
@@ -53,6 +54,12 @@ public class HomeServiceImpl implements HomeService{
 	public List<MoimMainDto> getjoinedMoim(String userId) {
 
 		return homeDao.joinedMoim(userId);
+	}
+
+	@Override
+	public List<MoimFollowDto> getfollowUsers(String userId) {
+		
+		return homeDao.followUsers(userId);
 	}
 	
 //	// 관심표시한 모임 표시

@@ -2,6 +2,7 @@ package com.sample.dao;
 
 import java.util.List;
 
+import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimMainDto;
 
 public interface HomeDao {
@@ -20,6 +21,9 @@ public interface HomeDao {
 	
 	// 가입한 모임 표시
 	List<MoimMainDto> joinedMoim(String userId);
+	
+	// 내 친구 보기
+	List<MoimFollowDto> followUsers(String userId);
 	
 	// 관심표시한 모임 표시
 //	List<MoimMainDto> attentionMoim(String userId);
