@@ -9,6 +9,7 @@
 	
 	<typeAliases>
 		<typeAlias type="com.sample.vo.MoimAlram" alias="Alram"/>
+		<typeAlias type="com.sample.vo.MoimWarning" alias="Warning"/>
 		<typeAlias type="com.sample.vo.MoimBoard" alias="Board"/>
 		<typeAlias type="com.sample.vo.MoimBoardCate" alias="BoardCate"/>
 		<typeAlias type="com.sample.vo.MoimComment" alias="Comment"/>
@@ -31,6 +32,7 @@
 		<typeAlias type="com.sample.dto.MoimDates" alias="Dates"/>
 		<typeAlias type="com.sample.dto.MoimJoinUserMoimDto" alias="MoimJoinUser"/>
 		<typeAlias type="com.sample.dto.MoimFriends" alias="Friends"/>
+		<typeAlias type="com.sample.dto.MoimFollowDto" alias="MoimFollowDto"/>
 	</typeAliases>
 	
 	<mappers>

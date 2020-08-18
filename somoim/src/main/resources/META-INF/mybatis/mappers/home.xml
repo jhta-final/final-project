@@ -152,7 +152,7 @@
 	]]>
 	</select>
 	
-	<select id="followUsers" parameterType="string" resultType="MainDto">
+	<select id="followUsers" parameterType="string" resultType="MoimFollowDto">
 	select
 	A.user_id		as userId,
 	A.fol_user_id	as folUserId,

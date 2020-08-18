@@ -73,30 +73,21 @@
 		<a class="nav-link" href="/test.do">카테고리</a>
       </li>
       <li class="nav-item pt-2"  style="border-top: 1px solid lightgray">
-		<a class="nav-link" href="#">가입 모임</a>
+		<a class="nav-link collapsible" href="#">가입 모임</a>
       </li>
+      <c:forEach items="${joinedMoim}" var="joinedMoim">
       <li class="nav-item">
 		<a class="nav-link" href="#">
 			<span class="nav-item avatar"> <img
 					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
 					class="rounded-circle z-depth-0" alt="avatar image" height="35">
-			모여라</span>
+			${joinedMoim.title }</span>
 		</a>
 	  </li>
-      <li class="nav-item">
-		<a class="nav-link" href="#">
-			<span class="nav-item avatar"> <img
-					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-					class="rounded-circle z-depth-0" alt="avatar image" height="35">
-			아아아</span>
-		</a>
-	  </li>
-      <li class="nav-item">
-		<a class="nav-link" href="#">
-			<span class="nav-item avatar"> <img
-					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-					class="rounded-circle z-depth-0" alt="avatar image" height="35">
-			커피커피</span>
+      </c:forEach>
+	  <li>
+	  	<a class="nav-link" href="#">
+			<span class="nav-item avatar">더보기</span>
 		</a>
 	  </li>
       <li class="nav-item">
@@ -129,30 +120,16 @@
       <li class="nav-item">
 		<a class="nav-link" href="#">내 친구</a>
       </li>
+      <c:forEach items="${followUsers}" var="follow">
       <li class="nav-item">
 		<a class="nav-link" href="#">
 			<span class="nav-item avatar"> <img
 					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
 					class="rounded-circle z-depth-0" alt="avatar image" height="35">
-			박재형</span>
+			${follow.nickname }</span>
 		</a>
 	  </li>
-	  <li class="nav-item">
-		<a class="nav-link" href="#">
-			<span class="nav-item avatar"> <img
-					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-					class="rounded-circle z-depth-0" alt="avatar image" height="35">
-			김민수</span>
-		</a>
-	  </li>
-	  <li class="nav-item">
-		<a class="nav-link" href="#">
-			<span class="nav-item avatar"> <img
-					src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-					class="rounded-circle z-depth-0" alt="avatar image" height="35">
-			장주리</span>
-		</a>
-      </li>
+      </c:forEach>
     </ul>
 	<hr />
 	<div class="" id="footer" style="font-size: 10px; margin-left:50px;">
@@ -169,4 +146,22 @@
 		<br/>
 	</div>
 </div>
+<script type="text/javascript">
+<!--
 
+//-->
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
