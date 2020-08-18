@@ -121,7 +121,7 @@
         and
             to_char(join_date, 'yyyy/MM/dd HH:mm') <= #{endDate}
 		order by
-			likes desc, a.moim_no desc
+			a.moim_no desc
 		]]>
 	</select>
 	
