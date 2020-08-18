@@ -63,8 +63,8 @@
         </div>
         <div class="form-group">
             <i class="mr-2 fas fa-tags" style="color: #0F4C81;"></i><label>카테고리</label>
-            <select id="main-cate" name="category" class="form-control" onchange="getSubCate()">
-                <option value=""selected="selected" disabled="disabled" class="text-center"></option>
+            <select id="main-category" name="category" class="form-control" onchange="getSubCate()">
+                <option value="0"selected="selected" disabled="disabled" class="text-center"></option>
                 <option value="1">게임/오락</option>
                 <option value="2">사교/인맥</option>
                 <option value="3">운동/스포츠</option>
@@ -116,8 +116,8 @@
 
     // 세부 카테고리 가져오기
     function getSubCate() {
-        mainCateNo = $("#main-cate option:selected").val()
-
+        let mainCateNo = $("#main-category option:selected").val();
+		console.log(mainCateNo);
         $.ajax({
             type:"GET",
             url:"/moim/subCate.do",
