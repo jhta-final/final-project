@@ -7,19 +7,30 @@
 <style>
 .card-deck{
 	margin-bottom: 50px;
+	border: none;
+}
+.card{
+	border: none;
 }
 #card-list{
 	width: 350px;
-	height: 300px;
+	height: 295px;
 }
 .card-img-top {
 	width: 348px;
 	height: 200px;
 }
 h5 {
-	font-size: 12px;
+	font-size: 15px;
 }
 
+.card-body{
+	padding: 8px;
+}
+.card-body p{
+	display: inline-block;
+	margin-bottom: 0px;
+}
 
 .card-text{
   overflow: hidden;
@@ -30,9 +41,6 @@ h5 {
   font-size: 10px;
   line-height: 1;
   margin-bottom:0px;
-}
-.text-muted{
-	line-height: 1;
 }
 
 
@@ -54,9 +62,8 @@ h5 {
 					<div class="card-body">
 							<h5 class="card-title">
 								<c:out value="${favolite.title }" />
-								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
+								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart" id="Like"></i></p>
 							</h5>
-							  <p class="card-text">${favolite.content }</p>
 							<div class="">
 							<small class="text-muted">${favolite.createdDate}</small>
 					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
@@ -93,11 +100,10 @@ h5 {
 								정원이 원하는 페이지
 								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
 							</h5>
-							  <p class="card-text">ㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐ</p>
-							<div class="">
+							<div>
 							<small class="text-muted">대충 날짜라는 표시</small>
-					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
-					        </div>
+					        <p class="ml-5" style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</p>
+							</div>
 					</div>
 				</div>
 
@@ -112,7 +118,6 @@ h5 {
 								<c:out value="${location.title }" />
 								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
 							</h5>
-							  <p class="card-text">${location.content }</p>
 							<div class="">
 							<small class="text-muted">${location.createdDate}</small>
 					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
@@ -135,7 +140,6 @@ h5 {
 								<c:out value="${category.title }" />
 								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
 							</h5>
-							  <p class="card-text">${category.content }</p>
 							<div class="">
 							<small class="text-muted">${category.createdDate}</small>
 					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
@@ -158,7 +162,6 @@ h5 {
 								<c:out value="${moim.title }" />
 								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
 							</h5>
-							  <p class="card-text">${moim.content }</p>
 							<div class="">
 							<small class="text-muted">${moim.createdDate}</small>
 					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
@@ -173,6 +176,19 @@ h5 {
 
 <!-- Initialize Swiper -->
 <script>
+
+var action = 1;
+function viewSomething() {
+       if ( action == 1 ) {
+    	   $('#Like').attr('class','fas fa-heart');
+           action = 2;
+       } else {
+    	   $('#Like').attr('class','far fa-heart');
+           action = 1;
+       }
+       $("#Like").toggle("fast");
+}
+
 	var swiper = new Swiper('.swiper-container', {
 		spaceBetween : 30,
 		centeredSlides : true,
