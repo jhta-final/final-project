@@ -1,6 +1,9 @@
 package com.sample.dto;
 
 import java.util.Date;
+import java.util.List;
+
+import com.sample.vo.MoimUser;
 
 public class MoimMainDto {
 
@@ -22,7 +25,7 @@ public class MoimMainDto {
 	private String locationName;
 	private long mainCateNo;
 	private String mainCateName;
-	
+	private List<MoimUser> friends;
 	
 	
 	
@@ -143,5 +146,11 @@ public class MoimMainDto {
 				+ ", createdDate=" + createdDate + ", subCateNo=" + subCateNo + ", locationNo=" + locationNo + "]";
 	}
 	
+	public List<MoimUser> getFriends() {
+		return friends;
+	}
 	
+	public void setFriends(List<MoimUser> friends) {
+		this.friends = friends;
+	}
 }

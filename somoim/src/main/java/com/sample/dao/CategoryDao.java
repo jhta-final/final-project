@@ -5,6 +5,7 @@ import java.util.List;
 import com.sample.dto.MoimMainDto;
 import com.sample.vo.MoimDates;
 import com.sample.vo.MoimSubCate;
+import com.sample.vo.MoimUser;
 
 public interface CategoryDao {
 
@@ -24,7 +25,7 @@ public interface CategoryDao {
 	List<MoimMainDto> selectMoimsByLikes();
 
 	// 해당 모임에 가입된 친구들 조회
-	List<String> selectFollowsByMoim(long moimNo);
+	List<MoimUser> selectFollowsByMoim(long moimNo);
 
 	// 메인카테No로 서브카테 조회
 	List<MoimSubCate> getSubCates(long mainCateNo);
