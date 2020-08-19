@@ -108,7 +108,12 @@ public class MoimController {
 		
 		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
 		model.addAttribute("loginedUser", user.getId());
-		model.addAttribute("role", moimService.getJoinUser(moimNo, user.getId()));
+		
+		String role = moimService.getJoinUser(moimNo, user.getId());		
+		if("reject".equals(role)) {
+			return "redirect:/home.do";
+		}		
+		model.addAttribute("role", role);
 		
 		return "moim/moim.tiles";
 	}
