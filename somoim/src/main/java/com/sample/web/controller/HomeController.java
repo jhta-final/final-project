@@ -19,7 +19,7 @@ public class HomeController {
 	HomeService homeService;
 	
 	@GetMapping("/home.do")
-	public String getAllMoims(Model model, HttpSession httpSession, @RequestParam("moimNo") long moimNo) {
+	public String getAllMoims(Model model, HttpSession httpSession) {
 		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
 
 		// 모든 카테고리 랜덤 모임 표시

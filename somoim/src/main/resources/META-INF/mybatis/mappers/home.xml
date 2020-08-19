@@ -199,7 +199,7 @@
 			user_id = #{userId}
 	</delete>
 	
-	<select id="selectMoim" parameterType="FavoriteMoim" resultType="FavoriteMoim">
+	<select id="selectMoim" parameterType="String" resultType="FavoriteMoim">
 	<![CDATA[
 	select * from(
 		select 
@@ -208,7 +208,7 @@
 			from
 				moim_favolite_moim
 			where
-				user_id = 'kwon'
+				user_id = #{value}
 	)where rownum <= 3
 	]]>
 	</select>
