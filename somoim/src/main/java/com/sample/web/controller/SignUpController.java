@@ -31,6 +31,17 @@ public class SignUpController {
 	
 	private SignUpForm signUpForm = new SignUpForm();
 	
+	@PostMapping("/check.do")
+	@ResponseBody
+	public Map<String, String> checkId (@RequestBody String userId) {
+		MoimUser user = userService.getUserDetail(userId);
+		Map<String, String> map = new HashMap<>();
+		if(user != null) {
+			map.put("status", "false");
+		}
+		return map;
+	}
+	
 	@PostMapping("/signup1.do")
 	@ResponseBody
 	public Map<String, String> step1Submit (@RequestBody @Valid SignUpForm signUpForm1,
