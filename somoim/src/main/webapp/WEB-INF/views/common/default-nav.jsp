@@ -83,26 +83,28 @@
 				</div>
 			</form>
 		</div>
-		<div class="dropdown" style="float: right;text-align: right">
-			<a class="nav-link navbar-toggler-right dropdown-toggle dropdown-toggle-right" id="navbarDropdownMenu1" data-toggle="dropdown">
-	          <i class="fas fa-bell fa-2x" style="color: lightgray;"></i>
-	        </a>
-	        <div class="dropdown-menu dropdown-menu-right">
-	          <a class="dropdown-item" href="#">알람</a>
-	          <a class="dropdown-item" href="#">경고:어쩌고 저쩌고</a>
-	          <a class="dropdown-item" href="#">친구:홍길동님이 팔로우 하셧습니다.</a>
+		<div class="" style="float: right">
+			<div class="dropdown" style="float: right;text-align: right">
+		        <a class="nav-link dropdown-toggle dropdown-toggle-right" id="navbarDropdownMenu2" data-toggle="dropdown">
+		          <img src="/resources/home_images/11.png" class="rounded-circle z-depth-0"
+		            alt="avatar image" height="35" width="35">
+		        </a>
+				<div class="dropdown-menu dropdown-menu-right">
+		          <a class="dropdown-item" href="/mypage/mypage.do">my page</a>
+		          <a class="dropdown-item" href="#">프로필 수정</a>
+		          <a class="dropdown-item" href="#">쪽지함</a>
+		          <a class="dropdown-item" href="/signout.do">로그아웃</a>
+				</div>
 			</div>
-		</div>
-		<div class="dropdown" style="float: right;text-align: right">
-	        <a class="nav-link dropdown-toggle dropdown-toggle-right" id="navbarDropdownMenu2" data-toggle="dropdown">
-	          <img src="/resources/home_images/11.png" class="rounded-circle z-depth-0"
-	            alt="avatar image" height="35" width="35">
-	        </a>
-			<div class="dropdown-menu dropdown-menu-right">
-	          <a class="dropdown-item" href="/mypage/mypage.do">my page</a>
-	          <a class="dropdown-item" href="#">프로필 수정</a>
-	          <a class="dropdown-item" href="#">쪽지함</a>
-	          <a class="dropdown-item" href="/signout.do">로그아웃</a>
+			<div class="dropdown" style="float: right;text-align: right">
+				<a class="nav-link navbar-toggler-right dropdown-toggle dropdown-toggle-right" id="navbarDropdownMenu1" data-toggle="dropdown">
+		          <i class="fas fa-bell fa-2x" style="color: lightgray;"></i>
+		        </a>
+		        <div class="dropdown-menu dropdown-menu-right">
+		          <a class="dropdown-item" href="#">알람</a>
+		          <a class="dropdown-item" href="#">경고:어쩌고 저쩌고</a>
+		          <a class="dropdown-item" href="#">친구:홍길동님이 팔로우 하셧습니다.</a>
+				</div>
 			</div>
 		</div>
 	</nav>

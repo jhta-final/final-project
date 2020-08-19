@@ -88,7 +88,7 @@
 		style="border-top: 1px solid lightgray">
 		<div class="card card-body">
 			<c:forEach items="${joinedMoim}" var="joinedMoim">
-				<a class="nav-link" href="#"> <span class="nav-item avatar">
+				<a class="nav-link" href="/moim/moim.do?moimNo=${joinedMoim.moimNo }"> <span class="nav-item avatar">
 						<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
 						class="rounded-circle z-depth-0" alt="avatar image" height="35">
 						${joinedMoim.title }
