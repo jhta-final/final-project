@@ -22,6 +22,12 @@ public interface CategoryService {
 	// 지역별 모임 조회
 	List<MoimMainDto> getMoimsByLocation(long locationNo);
 	
+	// 가입한 모임 조회
+	List<MoimMainDto> getMoimsByJoin(String userId);
+	
+	// 좋아요한 모임 조회
+	List<MoimMainDto> getMoimsByFavorite(String userId);
+	
 	// 날짜별 모임 조회
 	List<MoimMainDto> getMoimsByDate(MoimDates moimDates);
 	

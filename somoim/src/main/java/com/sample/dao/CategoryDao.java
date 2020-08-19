@@ -19,6 +19,12 @@ public interface CategoryDao {
 	// 지역별 모임 조회
 	List<MoimMainDto> selectMoimsByLocation(long locationNo);
 	
+	// 가입한 모임 조회
+	List<MoimMainDto> selectMoimsByJoin(String userId);
+	
+	// 좋아요한 모임 조회
+	List<MoimMainDto> selectMoimsByFavorite(String userId);
+	
 	// 날짜별 모임 조회
 	List<MoimMainDto> selectMoimsByDate(MoimDates moimDates);
 	

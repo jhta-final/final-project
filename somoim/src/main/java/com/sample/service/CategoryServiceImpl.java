@@ -42,7 +42,19 @@ public class CategoryServiceImpl implements CategoryService {
 	public List<MoimMainDto> getMoimsByLocation(long locationNo) {
 		return categoryDao.selectMoimsByLocation(locationNo);
 	}
+	
+	// 가입한 모임 조회
+	@Override
+	public List<MoimMainDto> getMoimsByJoin(String userId) {
+		return categoryDao.selectMoimsByJoin(userId);
+	}
 
+	// 좋아요한 모임 조회
+	@Override
+	public List<MoimMainDto> getMoimsByFavorite(String userId) {
+		return categoryDao.selectMoimsByFavorite(userId);
+	}
+	
 	// 날짜별 모임 조회
 	@Override
 	public List<MoimMainDto> getMoimsByDate(MoimDates moimDates) {

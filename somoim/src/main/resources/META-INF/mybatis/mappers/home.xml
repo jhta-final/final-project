@@ -198,4 +198,18 @@
 		and
 			user_id = #{userId}
 	</delete>
+	
+	<select id="selectMoim" parameterType="FavoriteMoim" resultType="FavoriteMoim">
+	<![CDATA[
+	select * from(
+		select 
+				moim_no		as moimNo,
+				user_id		as userId
+			from
+				moim_favolite_moim
+			where
+				user_id = 'kwon'
+	)where rownum <= 3
+	]]>
+	</select>
 </mapper>

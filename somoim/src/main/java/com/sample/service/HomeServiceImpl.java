@@ -92,6 +92,12 @@ public class HomeServiceImpl implements HomeService{
 		}
 		moimDao.updateMoim(savedMoim);
 	}
+
+	@Override
+	public List<MoimMainDto> getselectMoim(String userId) {
+		
+		return homeDao.selectMoim(userId);
+	}
 	
 	
 //	// 관심표시한 모임 표시

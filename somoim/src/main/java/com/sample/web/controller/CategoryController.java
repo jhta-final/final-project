@@ -40,7 +40,7 @@ public class CategoryController {
 		}
 		
 		
-		model.addAttribute("mainCateMoims", list);
+		model.addAttribute("cateMoims", list);
 		
 		return "";
 	}
@@ -57,10 +57,10 @@ public class CategoryController {
 			List<MoimUser> users = categoryService.getFollowsByMoim(new MoimFriends(moims.getMoimNo(), user.getId()));
 			moims.setFriends(users);
 		}
+		model.addAttribute("cateMoims", list);
+		model.addAttribute("title", list.get(0).getSubCateName());
 		
-		model.addAttribute("subCateMoims", list);
-		
-		return "";
+		return "form/test.tiles";
 	}
 	
 	// 지역별 조회 & 가입된 친구 조회
@@ -76,10 +76,50 @@ public class CategoryController {
 			moims.setFriends(users);
 		}
 		
-		model.addAttribute("locationMoims", list);
+		model.addAttribute("cateMoims", list);
+		model.addAttribute("title", list.get(0).getLocationName());
 		
-		return "";
+		return "form/test.tiles";
 	}
+	
+	// 가입한 모임 & 가입된 친구 조회
+	@GetMapping("/join.do")
+	public String join(Model model, HttpSession httpSession) {
+		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
+		List<MoimMainDto> list = categoryService.getMoimsByJoin(user.getId());
+		
+		for(MoimMainDto moims : list) {
+			List<MoimUser> users = categoryService.getFollowsByMoim(new MoimFriends(moims.getMoimNo(), user.getId()));
+			moims.setFriends(users);
+		}
+		
+		model.addAttribute("cateMoims", list);
+		model.addAttribute("title", "가입한 모임");
+		
+		return "form/test.tiles";
+	}
+	
+	// 좋아요한 모임 & 가입된 친구 조회
+	@GetMapping("/favorite.do")
+	public String favorite(Model model, HttpSession httpSession) {
+		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
+		List<MoimMainDto> list = categoryService.getMoimsByFavorite(user.getId());
+		
+		for(MoimMainDto moims : list) {
+			List<MoimUser> users = categoryService.getFollowsByMoim(new MoimFriends(moims.getMoimNo(), user.getId()));
+			moims.setFriends(users);
+		}
+		
+		model.addAttribute("cateMoims", list);
+		model.addAttribute("title", "즐겨찾기 모임");
+		
+		return "form/test.tiles";
+	}
+	
+	
+	
+	
+	
 	
 	// 날짜별 조회 & 가입된 친구 조회
 	// 안될수도
@@ -96,7 +136,7 @@ public class CategoryController {
 			moims.setFriends(users);
 		}
 		
-		model.addAttribute("datesMoims", list);
+		model.addAttribute("cateMoims", list);
 		
 		return "";
 	}
@@ -114,7 +154,7 @@ public class CategoryController {
 			moims.setFriends(users);
 		}
 		
-		model.addAttribute("likesMoims", list);
+		model.addAttribute("cateMoims", list);
 		
 		return "";
 	}
