@@ -158,7 +158,7 @@
 	select
 	A.user_id		as userId,
 	A.fol_user_id	as folUserId,
-	B.profile_image as image,
+	B.profile_image as profile_image,
 	B.nickname		as nickname
 	
 	from
@@ -204,18 +204,19 @@
 	select * from(
 		select 
 				a.moim_no		as moimNo,
-				user_id	 		as userId,
+				c.user_id	 	as userId,
 				title			as title,
 				content			as content,
-				liked_date		as likedDate
+				liked_date		as likedDate,
+				profile_image 	as profileImage
 			from
-				moim_favolite_moim A, moim_main B
+				moim_favolite_moim A, moim_main B, moim_user C
 			where
-				user_id = #{value}
+				c.user_id = #{value}
             and
-                A.moim_no = B.moim_no
+                A.moim_no = B.moim_no and A.user_id = C.user_id
 			and
-				delete_yn = 'N'
+				b.delete_yn = 'N'
             order by liked_date asc
 	)where rownum <= 3
 	]]>
