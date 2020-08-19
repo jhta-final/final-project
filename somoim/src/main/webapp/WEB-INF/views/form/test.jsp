@@ -45,7 +45,7 @@
 	    <c:forEach items="${moim.friends }" var="friend">
 	    <div class="mb-3">
 	      <a href="#"><img src="/resources/home_images/3.png" class="rounded-circle smallimage mr-3" alt="Cinque Terre">
-	        <span style="font-size: 15px; font-weight: bold;"><c:out value="${friend.name }"/></span></a>
+	        <span style="font-size: 15px; font-weight: bold;"><c:out value="${friend.nickname }"/></span></a>
 	    </div>
 	    </c:forEach>
 	  </div>
