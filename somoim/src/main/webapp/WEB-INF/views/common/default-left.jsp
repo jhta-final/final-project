@@ -10,7 +10,7 @@
 	left: 0px;
 	background-color: #FFFFF0; /* Black*/
 	overflow-x: hidden; /* Disable horizontal scroll */
-	padding-top: 60px; /* Place content 60px from the top */
+	padding-top: 20px; /* Place content 60px from the top */
 	transition: 0.2s;
 	/* 0.5 second transition effect to slide in the sidenav */
 	margin-top: 55px;
@@ -89,9 +89,7 @@
 		<div class="card card-body">
 			<c:forEach items="${joinedMoim}" var="joinedMoim">
 				<a class="nav-link" href="/moim/moim.do?moimNo=${joinedMoim.moimNo }"> <span class="nav-item avatar">
-						<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-						class="rounded-circle z-depth-0" alt="avatar image" height="35">
-						${joinedMoim.title }
+						${joinedMoim.title }<i class="fas fa-crown ml-2" style="color: yellow;"></i>
 				</span>
 				</a>
 			</c:forEach>
@@ -109,9 +107,7 @@
 			<c:forEach items="${selectMoim}" var="select">
 				<a class="nav-link" href="#">
 					<span class="nav-item avatar">
-						<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-						class="rounded-circle z-depth-0" alt="avatar image" height="35">
-						${select.title}
+						${select.title}<i class="fas fa-crown ml-2" style="color: yellow;"></i>
 					</span>
 				</a>
 			</c:forEach>
@@ -125,7 +121,7 @@
 		<div class="card card-body">
 			<c:forEach items="${followUsers}" var="follow">
 				<a class="nav-link" href="#"> <span class="nav-item avatar">
-						<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+						<img src="/resources/profileImage/"
 						class="rounded-circle z-depth-0" alt="avatar image" height="35">
 						${follow.nickname }
 				</span>
