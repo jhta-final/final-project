@@ -5,19 +5,20 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <style>
-.card-deck{
-	margin-bottom: 50px;
-	border: none;
-}
+
 .card{
 	border: none;
 }
-#card-list{
-	width: 350px;
-	height: 295px;
+.home-body {
+	padding: 16px;
+}
+.home-card {
+ 	width: 307px;
+ 	height: 300px;
+ 	margin: 12px;
 }
 .card-img-top {
-	width: 348px;
+	width: 300px;
 	height: 200px;
 }
 h5 {
@@ -45,112 +46,107 @@ h5 {
 
 
 </style>
-<div class="main ">
-	<div style="position: fixed;bottom: 10px; right: 10px;">
-		<a href="/moim/add.do"><i class="fas fa-plus"></i></a>
-		<a href="#"><i class="fas fa-arrow-up"></i></a>
+	
+<!-- Swiper -->
+<div class="row">
+	<div class="col-12">
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<c:forEach items="${favoliteMoims }" var="favolite">
+				<div class="swiper-slide">
+					<a href="#myModal" data-toggle="modal" data-no="${favolite.moimNo }"> 
+					<div class="card mb-4" id="card-list">
+						<img class="card-img-top" src="/resources/home_images/11.png"
+							alt="Card image cap">
+						<div class="card-body">
+								<h5 class="card-title">
+									<c:out value="${favolite.title }" />
+									<p class="ml-5" style="float: right"><span class="mr-3">${favolite.joinCount}/${favolite.headCount}</span> <i class="far fa-heart" id="Like"></i></p>
+								</h5>
+								<div class="text-right">
+								<small class="text-muted"><fmt:formatDate value="${favolite.createdDate}" /></small>
+						          
+						        </div>
+						</div>
+					</div>
+					</a>
+				</div>
+				</c:forEach>
+			</div>
+			<!-- Add Pagination -->
+			<div class="swiper-pagination"></div>
+			<!-- Add Arrows -->
+			<div class="swiper-button-next"></div>
+			<div class="swiper-button-prev"></div>
+		</div>
 	</div>
-	<!-- Swiper -->
-	<div class="swiper-container">
-		<div class="swiper-wrapper">
-			<c:forEach items="${favoliteMoims }" var="favolite">
-			<div class="swiper-slide">
-				<a href="#myModal" data-toggle="modal"> 
-				<div class="card mb-4" id="card-list">
-					<img class="card-img-top" src="/resources/home_images/11.png"
+</div>
+<!-- Swiper Finish -->
+<!-- 목록 -->
+<div style="padding-left:23px">
+<div class="row">
+	<div class="col-12">
+		<h1>${locationMoims[0].locationName }</h1>
+		<div class="mb-4">
+			<c:forEach items="${locationMoims }" var="location">
+				<div class="card mb-4 home-card">
+					<img class="card-img-top" src="/resources/home_images/1.jpeg"
 						alt="Card image cap">
 					<div class="card-body">
-							<h5 class="card-title">
-								<c:out value="${favolite.title }" />
-								<p class="ml-5" style="float: right"><span class="mr-3">${favolite.joinCount}/${favolite.headCount}</span> <i class="far fa-heart" id="Like"></i></p>
-							</h5>
-							<div class="text-right">
-							<small class="text-muted">${favolite.createdDate}</small>
-					          
-					        </div>
+						<div class="card-title">
+							<c:out value="${location.title }" />
+							<p class="ml-5" style="float: right">
+								<span class="mr-3">${location.joinCount }/${location.headCount }</span> <i class="far fa-heart"></i>
+							</p>
+						</div>
+						<div class="text-right">
+							<small class="text-muted"><fmt:formatDate value="${location.createdDate}" /></small>
+						</div>
 					</div>
 				</div>
-				</a>
-			</div>
 			</c:forEach>
 		</div>
-		<!-- Add Pagination -->
-		<div class="swiper-pagination"></div>
-		<!-- Add Arrows -->
-		<div class="swiper-button-next"></div>
-		<div class="swiper-button-prev"></div>
 	</div>
-	<p class="append-buttons">
-		<a href="#" class="prepend-2-slides">Prepend 2 Slides</a> <a href="#"
-			class="prepend-slide">Prepend Slide</a> <a href="#"
-			class="append-slide">Append Slide</a> <a href="#"
-			class="append-2-slides">Append 2 Slides</a>
-	</p>
-	<!-- Swiper Finish -->
-	<!-- 목록 -->
-	<div class="ml-4" id="test1">
-			<h1>${locationMoims[0].locationName }</h1>
-		<div class="card-deck mb-4">
-			<c:forEach items="${locationMoims }" var="location">
-				<a href="#myModal" data-toggle="modal">
-					<div class="card mb-4" id="card-list">
-						<img class="card-img-top" src="/resources/home_images/1.jpeg"
-							alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title">
-								<c:out value="${location.title }" />
-								<p class="ml-5" style="float: right">
-									<span class="mr-3">${location.joinCount }/${location.headCount }</span> <i class="far fa-heart"></i>
-								</p>
-							</h5>
-							<div class="text-right">
-								<small class="text-muted">${location.createdDate}</small>
-							</div>
-						</div>
-					</div>
-				</a>
-			</c:forEach>
-		</div>
-		<hr />
+</div>
+<div class="row">
+	<div class="col-12">
 		<h1>${mainCategoryMoims[1].mainCateName }</h1>
-		<div class="card-deck mb-4">
+		<div class="row home-body">
 			<c:forEach items="${mainCategoryMoims }" var="category">
-				<a href="#myModal" data-toggle="modal" >
-					<div class="card mb-4" id="card-list">
-						<img class="card-img-top" src="/resources/home_images/7.jpg"
-							alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title">
-								<c:out value="${category.title }" />
-								<p class="ml-5" style="float: right"><span class="mr-3">${category.joinCount }/${category.headCount }</span> <i class="far fa-heart"></i></p>
-							</h5>
-							<div class="text-right">
-							<small class="text-muted">${category.createdDate}</small>
-					        </div>
+				<div class="card mb-4 home-card">
+					<img class="card-img-top" src="/resources/home_images/7.jpg"
+						alt="Card image cap">
+					<div class="card-body">
+						<div class="card-title">
+							<c:out value="${category.title }" />
+							<p class="ml-5" style="float: right"><span class="mr-3">${category.joinCount }/${category.headCount }</span> <i class="far fa-heart"></i></p>
 						</div>
+						<div class="text-right">
+						<small class="text-muted"><fmt:formatDate value="${category.createdDate}" /></small>
+				        </div>
 					</div>
-				</a>
+				</div>
 			</c:forEach>
 		</div>
-		<hr />
+	</div>
+</div>
+		
 		<h1>전체모임</h1>
-		<div class="card-deck mb-4">
+		<div class="row">
 			<c:forEach items="${allMoims }" var="moim">
-				<a href="#myModal" data-toggle="modal">
-					<div class="card mb-4" id="card-list">
-						<img class="card-img-top" src="/resources/home_images/9.jpg"
-							alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title">
-								<c:out value="${moim.title }" />
-								<p class="ml-5" style="float: right"><span class="mr-3">${moim.joinCount }/${moim.headCount }</span> <i class="far fa-heart"></i></p>
-							</h5>
-							<div class="text-right">
-								<small class="text-muted">${moim.createdDate}</small>
-					        </div>
-						</div>
+				<div class="card mb-4" >
+					<img class="card-img-top" src="/resources/home_images/9.jpg"
+						alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">
+							<c:out value="${moim.title }" />
+							<p class="ml-5" style="float: right"><span class="mr-3">${moim.joinCount }/${moim.headCount }</span> <i class="far fa-heart"></i></p>
+						</h5>
+						<div class="text-right">
+							<small class="text-muted"><fmt:formatDate value="${moim.createdDate}"/></small>
+				        </div>
 					</div>
-				</a>
+				</div>
 			</c:forEach>
 		</div>
 	</div>
@@ -159,6 +155,7 @@ h5 {
 <div class="modal fade" id="myModal">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
+			<input type="text" name="bookId" id="bookId" value="moimNo" hidden="hidden"/>
 
 			<!-- Modal Header -->
 			<div class="modal-header">
@@ -174,7 +171,7 @@ h5 {
 					</div>
 					<div class="row">
 						<div class="col-12" style="padding: 30px;">
-						<h3>제목제목</h3>
+						<h3>${moimNo }제목제목</h3>
 							<p>0/6</p>
 							<p>내용내용내용</p>
 							<p><span><i class="fas fa-won-sign 2x"></i>10000원</span></p>
@@ -200,9 +197,18 @@ h5 {
 		</div>
 	</div>
 </div>
+</div>
+
+<!-- 바로가기 키 -->
+<div style="position: fixed;bottom: 10px; right: 10px;">
+	<a href="/moim/add.do"><i class="fas fa-plus"></i></a>
+	<a href="#"><i class="fas fa-arrow-up"></i></a>
+</div>
 
 <!-- Initialize Swiper -->
 <script>
+
+$(function() {
 	var action = 1;
 	function viewSomething() {
 		if (action == 1) {
@@ -285,4 +291,10 @@ h5 {
 						'<div class="swiper-slide">Slide ' + (++appendNumber)
 								+ '</div>' ]);
 			});
+	
+	// 모임 디테일 모달 창 
+	$("#home-moim-body ")
+   
+});
+
 </script>

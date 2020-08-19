@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!--Navbar -->
 <div class="my-nav">
-	<nav class="navbar navbar-dark" style="background-color: #FFFFF0;">
+	<nav class="navbar navbar-dark fixed-top" style="background-color: #FFFFF0;">
 		<div style="width: 20%;">
 			<button class="navbar-toggler mr-3 nav-white">
 				<span class="navbar-toggler-icon" style="color: lightgray ;background-color: lightgray;" id="sideMenu"></span>

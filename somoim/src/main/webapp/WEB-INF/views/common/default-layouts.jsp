@@ -76,8 +76,8 @@
 			<tiles:insertAttribute name="nav" />
 		</div>
 	</div>
-	<div class="row">
-		<div class ="test col-2">
+	<div class="row" style="margin-top: 76.53px	">
+		<div class="col-2">
 			<tiles:insertAttribute name="left" />
 		</div>
 		<div class="col-10 my-content">
@@ -91,7 +91,7 @@ $(function() {
 	function viewSomething() {
 	       if ( action == 1 ) {
 	           action = 2;
-	           $("#mySidenav").css("left", "-317px");
+	           $("#mySidenav").css("left", "-288px");
 	       } else {
 	    	   $("#mySidenav").css("left", "0px");
 	           action = 1;
@@ -106,7 +106,7 @@ $(function() {
 	       if ( action == 1 ) {
 	    	   $(".my-content").attr('class','my-content col-12');
 	    	   $("#mySidenav").attr('class', "sidenav");
-	           $("#mySidenav").css("left", "-317px");
+	           $("#mySidenav").css("left", "-288px");
 	           $("#test1").attr("class", "");
 	           action = 2;
 	       } else {
