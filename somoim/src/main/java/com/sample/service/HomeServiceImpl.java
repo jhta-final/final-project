@@ -90,7 +90,7 @@ public class HomeServiceImpl implements HomeService{
 			savedMoim.setLikes(savedMoim.getLikes() + 1);
 			
 		}
-		moimDao.updateMoim(savedMoim);			
+		moimDao.updateMoim(savedMoim);
 	}
 	
 	

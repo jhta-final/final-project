@@ -22,7 +22,7 @@ public class HomeController {
 		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
 
 		// 모든 카테고리 랜덤 모임 표시
-		model.addAttribute("allMoims", homeService.getAllMoims());
+		httpSession.setAttribute("allMoims", homeService.getAllMoims());
 		
 		// 지역별 선호 모임 랜덤 표시
 		model.addAttribute("locationMoims", homeService.getlocationMoims(user.getLocationNo()));
@@ -34,11 +34,12 @@ public class HomeController {
 		model.addAttribute("mainCategoryMoims", homeService.getMainCategoryMoims());
 		
 		// 가입한 모임 표시
-		model.addAttribute("joinedMoim", homeService.getjoinedMoim(user.getId()));
-		
+		//model.addAttribute("joinedMoim", homeService.getjoinedMoim(user.getId()));
+		httpSession.setAttribute("joinedMoim", homeService.getjoinedMoim(user.getId()));
 		// 내 친구 보기
-		model.addAttribute("followUsers", homeService.getfollowUsers(user.getId()));
-		
+		//model.addAttribute("followUsers", homeService.getfollowUsers(user.getId()));
+		httpSession.setAttribute("followUsers", homeService.getfollowUsers(user.getId()));
+
 		homeService.increaseLikesMoim(500000, user.getId());
 		
 		
