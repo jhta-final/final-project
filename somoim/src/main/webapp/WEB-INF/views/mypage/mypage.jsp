@@ -38,46 +38,7 @@
 <div class="row" style="background: rgba(211, 211, 211, 0.03); height: 500px; padding: 30px 35px;">
 	<div class="col-9">
 		<div id="mypage-body">
-			<div class="row">
-				<div class="col-9" >
-					<div class=" pb-4" style="border-bottom: 1px solid darkgray">
-						<p >소개</p>
-						<div class="row mx-auto">
-							<table class="table-borderless" style="width:700px">
-								<colgroup>
-									<col width="20%">
-									<col width="40%">
-									<col width="20%">
-									<col width="40%">
-								</colgroup>
-								<tr>
-									<th class="text-center">아이디</th>
-									<td>홍길동</td>
-									<th class="text-center">전화번호</th>
-									<td>홍길동</td>
-								</tr>
-								<tr>
-									<th class="text-center">이름</th>
-									<td>홍길동</td>
-									<th class="text-center">이메일</th>
-									<td>홍길동</td>
-								</tr>
-								<tr>
-									<th class="text-center">생일</th>
-									<td>홍길동</td>
-									
-								</tr>
-							</table>
-						</div>
-					</div>
-					<div class=" pb-4" style="border-bottom: 1px solid darkgray">
-						<p></p>
-					</div>
-				</div>
-				<div class="col-3" style="background-color: gray;">
-					asdf
-				</div>
-			</div>
+		
 		</div>
 	</div>
 	<div class="col-3">
@@ -85,8 +46,7 @@
 		<c:forEach items="${followers }" var="follower">
 			<div class="mb-3 pl-5">
 				<a href="/friend/info.do?userId=${follower.folUserId }">
-					<img src="/resources/profileImage/${follower.image }" class="rounded-circle smallimage mr-3"
-						alt="Cinque Terre">
+					<img src="/resources/profileImage/${follower.image }" class="rounded-circle smallimage mr-3" alt="Cinque Terre">
 					<span style="font-size: 15px; font-weight: bold;">${follower.nickname }</span>
 				</a>
 			</div>
@@ -98,15 +58,22 @@
 	$(function () {
 		var $mypageBody = $("#mypage-body");
 
-		/* var mypageInfo = "<div>";
-		mypageInfo += "닉네임";
-		mypageInfo += "<p>${LOGIN_USER.nickname }</p>"
-		mypageInfo += "<div>이름</div>"
-		mypageInfo += "<div>전화번호</div>"
-		mypageInfo += "<div>생년월일</div>"
-		mypageInfo += "<div>이메일</div>"
-		mypageInfo += "<div>지역</div>"; */
-
+		var mypageInfo =
+			"<div><div class='row'><div class='col-9'><div class='pb-4' style='border-bottom: 1px solid darkgray'>";
+		mypageInfo += "<p>Profile</p><div class='mx-auto'><table class='table-borderless' style='width:700px'>";
+		mypageInfo += "<colgroup><col width='20%'><col width='40%'><col width='20%'><col width='40%'></colgroup>";
+		mypageInfo +=
+			"<tr><th class='text-center'>아이디</th><td>${LOGIN_USER.id}</td><th class='text-center'>전화번호</th><td>${LOGIN_USER.tel}</td></tr>";
+		mypageInfo += "<tr><th class='text-center'>이름</th><td>${LOGIN_USER.name}</td><th class='text-center'>이메일</th><td>${LOGIN_USER.email}</td></>";
+		mypageInfo += "<tr><th class='text-center'>생일</th><td>${LOGIN_USER.birthDate}</td></tr></table></div></div>";
+		mypageInfo += "<div class='mt-3 pb-4' style='border-bottom: 1px solid darkgray'><p>Comment</p>";
+		mypageInfo += "<p>${LOGIN_USER.content}</p></div></div>";
+		mypageInfo +=
+			"<div class='col-3'><p>통계</p>	<div class='mx-auto'><table class='table-borderless' style='width:255px'>";
+		mypageInfo += "<colgroup><col width='50%'><col width='50%'></colgroup>";
+		mypageInfo += "<tr><th class='text-center'>가   입   일 </th><td><fmt:formatDate value='${LOGIN_USER.createdDate}'/></td></tr>";
+		mypageInfo += "<tr><th class='text-center'>팔로워 수</th><td>넣어야되</td></tr>";
+		mypageInfo += "</table></div></div></div>";
 		$mypageBody.append(mypageInfo);
 
 		$("#mypage-nav .nav-link").click(function () {
