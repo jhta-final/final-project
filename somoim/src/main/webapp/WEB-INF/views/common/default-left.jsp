@@ -86,10 +86,13 @@
 		가입모임 </a>
 	<div class="collapse" id="collapseExample"
 		style="border-top: 1px solid lightgray">
-		<div class="card card-body">
+		<div class="card card-body" style="background-color: #EDEDED">
 			<c:forEach items="${joinedMoim}" var="joinedMoim">
 				<a class="nav-link" href="/moim/moim.do?moimNo=${joinedMoim.moimNo }"> <span class="nav-item avatar">
-						${joinedMoim.title }<i class="fas fa-crown ml-2" style="color: yellow;"></i>
+						${joinedMoim.title }
+						<c:if test="${joinedMoim.premiumYn eq 'Y'}">
+							<i class="fas fa-crown ml-2" style="color: #6699FF;"></i>
+						</c:if>
 				</span>
 				</a>
 			</c:forEach>
@@ -103,11 +106,14 @@
 	</a>
 	<div class="collapse" id="collapseExample2"
 		style="border-top: 1px solid lightgray">
-		<div class="card card-body">
+		<div class="card card-body" style="background-color: #EDEDED">
 			<c:forEach items="${selectMoim}" var="select">
 				<a class="nav-link" href="#">
 					<span class="nav-item avatar">
-						${select.title}<i class="fas fa-crown ml-2" style="color: yellow;"></i>
+						${select.title}
+						<c:if test="${select.premiumYn eq 'Y'}">
+							<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>
+						</c:if>
 					</span>
 				</a>
 			</c:forEach>

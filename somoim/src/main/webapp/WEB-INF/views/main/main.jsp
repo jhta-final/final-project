@@ -169,14 +169,22 @@ h5 {
 			<!-- Modal body -->
 			<div class="modal-body" style="padding:0px;">
 					<div class="row">
-						<div class="col-md-12"><img class="card-img-top" src="/resources/home_images/9.jpg"
+						<div class="col-12"><img class="card-img-top" src="/resources/home_images/9.jpg"
 							alt="Card image cap" style="width: 100%; height: 450px;"></div>
 					</div>
 					<div class="row">
-					</div>
-					<div class="row">
-					</div>
-					<div class="row">
+						<div class="col-12" style="padding: 30px;">
+						<h3>제목제목</h3>
+							<p>0/6</p>
+							<p>내용내용내용</p>
+							<p><span><i class="fas fa-won-sign 2x"></i>10000원</span></p>
+							<p>좋아요수 : 5개</p>
+							<p><i class="fas fa-crown ml-2" style="color:#6699FF;"></i></p>
+							<p>모이는날 : 2020.10.19</p>
+							<p>만든날 : 2020.08.15</p>
+							<p>카테고리</p>
+							<p>모이는 위치</p>
+						</div>
 					</div>
 			</div>
 			<!-- Modal body end -->
