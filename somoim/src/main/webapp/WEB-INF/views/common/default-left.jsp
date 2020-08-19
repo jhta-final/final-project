@@ -121,7 +121,7 @@
 		<div class="card card-body">
 			<c:forEach items="${followUsers}" var="follow">
 				<a class="nav-link" href="#"> <span class="nav-item avatar">
-						<img src="/resources/profileImage/"
+						<img src="/resources/profileImage/${follow.image }"
 						class="rounded-circle z-depth-0" alt="avatar image" height="35">
 						${follow.nickname }
 				</span>
