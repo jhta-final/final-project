@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sample.service.HomeService;
 import com.sample.vo.MoimUser;
@@ -18,7 +19,7 @@ public class HomeController {
 	HomeService homeService;
 	
 	@GetMapping("/home.do")
-	public String getAllMoims(Model model, HttpSession httpSession) {
+	public String getAllMoims(Model model, HttpSession httpSession, @RequestParam("moimNo") long moimNo) {
 		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
 
 		// 모든 카테고리 랜덤 모임 표시
@@ -36,16 +37,17 @@ public class HomeController {
 		// 가입한 모임 표시
 		//model.addAttribute("joinedMoim", homeService.getjoinedMoim(user.getId()));
 		httpSession.setAttribute("joinedMoim", homeService.getjoinedMoim(user.getId()));
+		
 		// 내 친구 보기
 		//model.addAttribute("followUsers", homeService.getfollowUsers(user.getId()));
 		httpSession.setAttribute("followUsers", homeService.getfollowUsers(user.getId()));
+		
+		// 좋아요한 모임 표시
+		httpSession.setAttribute("selectMoim", homeService.getselectMoim(moimNo));
 
 		homeService.increaseLikesMoim(500000, user.getId());
 		
 		
-		
-//		// 관심표시한 모임 표시
-//		model.addAttribute("attentionMoim", homeService.getattentionMoim(user.getId()));
 			
 		return "main/main.tiles";
 	} 

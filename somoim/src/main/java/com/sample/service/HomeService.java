@@ -27,6 +27,9 @@ public interface HomeService {
 	
 	// 좋아요 기능 구현
 	void increaseLikesMoim(long moimNo, String userId);
+	
+	//
+	List<MoimMainDto> getselectMoim(long moimNo);
 
 	
 	// 관심표시한 모임 표시
