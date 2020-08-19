@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="jeong justify-content-center">
+<div class="justify-content-center">
     <div class="row mt-3" style="width: 95%">
         <div class="col-12">
             <img src="/resources/moim_images/longboard.jpg" width="100%" />
@@ -19,7 +19,7 @@
                         <a class="nav-link active" href="#">정보</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">게시판</a>
+                        <a class="nav-link" href="board.do?moimNo=${param.moimNo}">게시판</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">사진첩</a>
@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="row mt-4">
-        <div class="col-12 ml-3">
+        <div class="col-12 ml-3 pr-5">
             <p>${moim.content}</p>
         </div>
     </div>

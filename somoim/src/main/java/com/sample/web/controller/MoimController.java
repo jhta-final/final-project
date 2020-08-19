@@ -17,12 +17,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sample.dto.MoimMainDto;
+import com.sample.service.BoardService;
 import com.sample.service.CategoryService;
 import com.sample.service.MoimService;
 import com.sample.service.SubMoimService;
+import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimSubCate;
 import com.sample.vo.MoimSubMoim;
 import com.sample.vo.MoimUser;
+import com.sample.web.form.BoardForm;
 import com.sample.web.form.MoimForm;
 import com.sample.web.form.SubMoimForm;
 
@@ -38,6 +41,9 @@ public class MoimController {
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private BoardService boardService;
 	
 	// 새 모임 등록
 	@PostMapping("/add.do")
@@ -144,5 +150,33 @@ public class MoimController {
 		moimService.outMoim(moimNo, userId);
 		
 		return "";
+	}
+	
+	// 모임 게시판
+	@GetMapping("board.do")
+	public String moimBoard(@RequestParam("moimNo") long moimNo, Model model) {
+		model.addAttribute("moim", moimService.getMoimByNo(moimNo));
+		model.addAttribute("boards", boardService.getAllBoards(moimNo));	
+		return "moim/moimBoard.tiles";
+	}
+	
+	// 모임 게시판 글 등록 GET
+	@GetMapping("boardAdd.do")
+	public String boardAdd(@RequestParam("moimNo") long moimNo, Model model, HttpSession httpSession) {
+		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
+		model.addAttribute("loginedUser", user.getId());		
+		model.addAttribute("boardForm", new BoardForm());
+		
+		
+		return "moim/boardCreate.tiles";
+	}
+	
+	// 모임 게시판 글 등록 POST
+	@PostMapping("boardAdd.do")
+	public String boardAdd(@ModelAttribute("boardForm") @Valid BoardForm boardForm) {
+		MoimBoard board = new MoimBoard();
+		BeanUtils.copyProperties(boardForm, board);
+		boardService.addNewBoard(board);
+		return "redirect:board.do?moimNo=" + board.getMoimNo();
 	}
 }

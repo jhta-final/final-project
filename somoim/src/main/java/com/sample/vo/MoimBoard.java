@@ -87,6 +87,14 @@ public class MoimBoard {
 	public void setBoardCateNo(long boardCateNo) {
 		this.boardCateNo = boardCateNo;
 	}
+
+	@Override
+	public String toString() {
+		return "MoimBoard [boardNo=" + boardNo + ", title=" + title + ", content=" + content + ", views=" + views
+				+ ", deleteYn=" + deleteYn + ", createdDate=" + createdDate + ", moimNo=" + moimNo + ", userId="
+				+ userId + ", boardCateNo=" + boardCateNo + "]";
+	}
+	
 	
 	
 }

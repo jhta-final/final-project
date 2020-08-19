@@ -18,4 +18,8 @@ public interface BoardService {
 	void deleteBoard(long boardNo);
 	// 조회수 증가
 	void increaseBoardLikes(long boardNo);
+	// 카테고리별 조회
+	List<MoimBoard>getBoardsByCategory(MoimBoard moimBoard);
+	// 최근 3개의 공지를 가져온다
+	List<MoimBoard>getRecentBoardsByNotice(long moimNo);
 }

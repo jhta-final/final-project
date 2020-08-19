@@ -31,6 +31,7 @@ public class BoardServiceImpl implements BoardService {
 	// 게시글 상세 조회
 	@Override
 	public MoimBoard getBoardByNo(long boardNo) {
+		increaseBoardLikes(boardNo);
 		return boardDao.selectMoimBoard(boardNo);
 	}
 
@@ -76,6 +77,16 @@ public class BoardServiceImpl implements BoardService {
 		savedBoard.setViews(savedBoard.getViews() + 1);
 		
 		boardDao.updateMoimBoard(savedBoard);
+	}
+
+	@Override
+	public List<MoimBoard> getBoardsByCategory(MoimBoard moimBoard) {
+		return boardDao.getBoardsByCategory(moimBoard);
+	}
+
+	@Override
+	public List<MoimBoard> getRecentBoardsByNotice(long moimNo) {
+		return boardDao.getRecentBoardsByNotice(moimNo);
 	}
 
 }

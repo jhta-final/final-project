@@ -11,4 +11,7 @@ public interface BoardDao {
 	List<MoimBoard> selectMoimBoards(long moimNo);
 	MoimBoard selectMoimBoard(long moimNo);
 	List<MoimBoard> getBoardsByUserId(String userId);
+	
+	List<MoimBoard>getBoardsByCategory(MoimBoard moimBoard);
+	List<MoimBoard>getRecentBoardsByNotice(long moimNo);
 }
