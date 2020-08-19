@@ -55,7 +55,7 @@ h5 {
 		<div class="swiper-wrapper">
 			<c:forEach items="${favoliteMoims }" var="favolite">
 			<div class="swiper-slide">
-				<a href="/moim/moim.do?moimNo=${favolite.moimNo}"> 
+				<a href="#myModal" data-toggle="modal"> 
 				<div class="card mb-4" id="card-list">
 					<img class="card-img-top" src="/resources/home_images/11.png"
 						alt="Card image cap">
@@ -91,25 +91,8 @@ h5 {
 	<div class="ml-4" id="test1">
 			<h1>${locationMoims[0].locationName }</h1>
 		<div class="card-deck mb-4">
-			<a href="/moim/moim.do?moimNo=500000">
-				<div class="card mb-4" id="card-list">
-					<img class="card-img-top" src="/resources/home_images/9.jpg"
-						alt="Card image cap">
-					<div class="card-body">
-							<h5 class="card-title">
-								정원이 원하는 페이지
-								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
-							</h5>
-							<div>
-							<small class="text-muted">대충 날짜라는 표시</small>
-					        <p class="ml-5" style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</p>
-							</div>
-					</div>
-				</div>
-
-			</a>
 			<c:forEach items="${locationMoims }" var="location">
-					<a href="/moim/moim.do?moimNo=${location.moimNo}"> 
+					<a href="#myModal" data-toggle="modal"> 
 				<div class="card mb-4" id="card-list">
 					<img class="card-img-top" src="/resources/home_images/1.jpeg"
 						alt="Card image cap">
@@ -131,7 +114,7 @@ h5 {
 		<h1>${mainCategoryMoims[1].mainCateName }</h1>
 		<div class="card-deck mb-4">
 			<c:forEach items="${mainCategoryMoims }" var="category">
-				<a href="/moim/moim.do?moimNo=${category.moimNo}">
+				<a href="#myModal" data-toggle="modal" >
 					<div class="card mb-4" id="card-list">
 						<img class="card-img-top" src="/resources/home_images/7.jpg"
 							alt="Card image cap">
@@ -153,7 +136,7 @@ h5 {
 		<h1>전체모임</h1>
 		<div class="card-deck mb-4">
 			<c:forEach items="${allMoims }" var="moim">
-				<a href="/moim/moim.do?moimNo=${moim.moimNo}">
+				<a href="#myModal" data-toggle="modal">
 					<div class="card mb-4" id="card-list">
 						<img class="card-img-top" src="/resources/home_images/9.jpg"
 							alt="Card image cap">

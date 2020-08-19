@@ -106,23 +106,13 @@
 	<div class="collapse" id="collapseExample2"
 		style="border-top: 1px solid lightgray">
 		<div class="card card-body">
-			<a class="nav-link" href="#"> <span class="nav-item avatar">
-					<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-					class="rounded-circle z-depth-0" alt="avatar image" height="35">
-					커피커피
-			</span>
-			</a> <a class="nav-link" href="#"> <span class="nav-item avatar">
-					<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-					class="rounded-circle z-depth-0" alt="avatar image" height="35">
-					크레용
-			</span>
-			</a> <a class="nav-link" href="#"> <span class="nav-item avatar">
-					<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-					class="rounded-circle z-depth-0" alt="avatar image" height="35">
-					게임게임
-			</span>
-			</a> <a class="nav-link" href="#"> <span class="nav-item avatar">더보기</span>
-			</a>
+				<a class="nav-link" href="#">
+					<span class="nav-item avatar">
+						<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+						class="rounded-circle z-depth-0" alt="avatar image" height="35">
+						커피커피
+					</span>
+				</a>
 		</div>
 	</div>
 	<a class="btn" data-toggle="collapse" href="#collapseExample3"
@@ -143,6 +133,9 @@
 			</a>
 		</div>
 	</div>
+	<a class="btn btn-primary" href="/moim/moim.do?moimNo=500000">
+		정원 500000번 모임
+	</a>
 	<hr />
 	<div class="" id="footer" style="font-size: 10px; margin-left:50px;">
 		<p>자주하는 질문</p>
