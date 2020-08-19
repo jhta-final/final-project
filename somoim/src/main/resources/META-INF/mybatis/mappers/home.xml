@@ -203,12 +203,16 @@
 	<![CDATA[
 	select * from(
 		select 
-				moim_no		as moimNo,
-				user_id		as userId
+				a.moim_no		as moimNo,
+				user_id	 		as userId,
+				title			as title,
+				content			as content
 			from
-				moim_favolite_moim
+				moim_favolite_moim A, moim_main B
 			where
 				user_id = #{value}
+			and
+				delete_yn = 'N'
 	)where rownum <= 3
 	]]>
 	</select>
