@@ -153,6 +153,8 @@
 	</select>
 	
 	<select id="followUsers" parameterType="string" resultType="MoimFollowDto">
+	<![CDATA[
+	select * from(
 	select
 	A.user_id		as userId,
 	A.fol_user_id	as folUserId,
@@ -165,5 +167,35 @@
 		A.user_id = #{value}
 	and
 		A.fol_user_id = B.user_id
+	) where rownum <= 3
+	]]>
 	</select>
+
+	
+	<select id="likesMoim" parameterType="FavoriteMoim" resultType="FavoriteMoim">
+	select 
+		moim_no		as moimNo,
+		user_id		as userId
+	from
+		moim_favolite_moim
+	where
+		moim_no = #{moimNo}
+	and
+		user_id = #{userId}
+	</select>
+	
+	<insert id="addLikesMoim" parameterType="FavoriteMoim">
+	insert into moim_favolite_moim
+		(moim_no, user_id)
+		values
+		(#{moimNo}, #{userId})
+	</insert>
+	
+	<delete id="deleteLikesMoim" parameterType="FavoriteMoim">
+	delete from moim_favolite_moim
+		where
+			moim_no = #{moimNo}
+		and
+			user_id = #{userId}
+	</delete>
 </mapper>

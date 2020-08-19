@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.dao.HomeDao;
+import com.sample.dao.MoimDao;
 import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimMainDto;
+import com.sample.vo.MoimFavoriteMoim;
 
 @Service
 @Transactional
@@ -16,6 +18,8 @@ public class HomeServiceImpl implements HomeService{
 
 	@Autowired
 	private HomeDao homeDao;
+	@Autowired
+	private MoimDao moimDao;
 
 	// 전체 랜덤모임 조회
 	@Override
@@ -61,6 +65,34 @@ public class HomeServiceImpl implements HomeService{
 		
 		return homeDao.followUsers(userId);
 	}
+
+	// 좋아요 기능 구현
+	@Override
+	public void increaseLikesMoim(long moimNo, String userId) {
+		MoimMainDto savedMoim = moimDao.selectMoim(moimNo);
+		if(savedMoim == null) {
+			System.out.println("해당 게시글이 존재하지 않음");
+			return;
+		}
+		
+		// 유저 즐겨찾기모임 추가
+		MoimFavoriteMoim favoriteMoim = new MoimFavoriteMoim();
+		favoriteMoim.setMoimNo(moimNo);
+		favoriteMoim.setUserId(userId);
+		
+		MoimFavoriteMoim moimFavoriteMoim = homeDao.likesMoim(favoriteMoim);
+		
+		if(moimFavoriteMoim != null) {
+			homeDao.deleteLikesMoim(moimFavoriteMoim);
+		savedMoim.setLikes(savedMoim.getLikes() - 1);
+		}else {
+			homeDao.addLikesMoim(favoriteMoim);
+			savedMoim.setLikes(savedMoim.getLikes() + 1);
+			
+		}
+		moimDao.updateMoim(savedMoim);			
+	}
+	
 	
 //	// 관심표시한 모임 표시
 //	@Override

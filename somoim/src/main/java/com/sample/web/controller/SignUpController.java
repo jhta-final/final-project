@@ -33,14 +33,15 @@ public class SignUpController {
 	@ResponseBody
 	public Map<String, String> step1Submit (@RequestBody @Valid SignUpForm signUpForm1,
 			BindingResult errors) {
+		System.out.println("결과: " + signUpForm1);
 		Map<String, String> map = new HashMap<>();
 		if(errors.hasErrors()) {
-			map.put("status", "false");
+			map.put("status", "false1");
 			return map;
 		}
 		MoimUser user = userService.getUserDetail(signUpForm1.getId());
 		if(user != null) {
-			map.put("status", "false");
+			map.put("status", "false2");
 			return map;
 		}
 		signUpForm.setId(signUpForm1.getId());
@@ -57,7 +58,7 @@ public class SignUpController {
 		return map;
 	}
 	
-	@GetMapping("signup2.do")
+	@GetMapping("/signup2.do")
 	public String step2Submit (@ModelAttribute("signUpForm") SignUpForm signUpForm2, HttpSession session) {
 		
 		MoimUser user = new MoimUser();

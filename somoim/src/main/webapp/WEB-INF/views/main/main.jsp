@@ -7,20 +7,30 @@
 <style>
 .card-deck{
 	margin-bottom: 50px;
+	border: none;
 }
 .card{
+	border: none;
+}
+#card-list{
 	width: 350px;
-	height: 300px;
-	margin-bottom: 150px;
+	height: 295px;
 }
 .card-img-top {
 	width: 348px;
 	height: 200px;
 }
 h5 {
-	font-size: 12px;
+	font-size: 15px;
 }
 
+.card-body{
+	padding: 8px;
+}
+.card-body p{
+	display: inline-block;
+	margin-bottom: 0px;
+}
 
 .card-text{
   overflow: hidden;
@@ -31,9 +41,6 @@ h5 {
   font-size: 10px;
   line-height: 1;
   margin-bottom:0px;
-}
-.text-muted{
-	line-height: 1;
 }
 
 
@@ -49,15 +56,14 @@ h5 {
 			<c:forEach items="${favoliteMoims }" var="favolite">
 			<div class="swiper-slide">
 				<a href="/moim/moim.do?moimNo=${favolite.moimNo}"> 
-				<div class="card mb-4">
+				<div class="card mb-4" id="card-list">
 					<img class="card-img-top" src="/resources/home_images/11.png"
 						alt="Card image cap">
 					<div class="card-body">
 							<h5 class="card-title">
 								<c:out value="${favolite.title }" />
-								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
+								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart" id="Like"></i></p>
 							</h5>
-							  <p class="card-text">${favolite.content }</p>
 							<div class="">
 							<small class="text-muted">${favolite.createdDate}</small>
 					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
@@ -86,7 +92,7 @@ h5 {
 			<h1>${locationMoims[0].locationName }</h1>
 		<div class="card-deck mb-4">
 			<a href="/moim/moim.do?moimNo=500000">
-				<div class="card mb-4">
+				<div class="card mb-4" id="card-list">
 					<img class="card-img-top" src="/resources/home_images/9.jpg"
 						alt="Card image cap">
 					<div class="card-body">
@@ -94,18 +100,17 @@ h5 {
 								정원이 원하는 페이지
 								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
 							</h5>
-							  <p class="card-text">ㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐ</p>
-							<div class="">
+							<div>
 							<small class="text-muted">대충 날짜라는 표시</small>
-					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
-					        </div>
+					        <p class="ml-5" style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</p>
+							</div>
 					</div>
 				</div>
 
 			</a>
 			<c:forEach items="${locationMoims }" var="location">
 					<a href="/moim/moim.do?moimNo=${location.moimNo}"> 
-				<div class="card mb-4">
+				<div class="card mb-4" id="card-list">
 					<img class="card-img-top" src="/resources/home_images/1.jpeg"
 						alt="Card image cap">
 						<div class="card-body">
@@ -113,7 +118,6 @@ h5 {
 								<c:out value="${location.title }" />
 								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
 							</h5>
-							  <p class="card-text">${location.content }</p>
 							<div class="">
 							<small class="text-muted">${location.createdDate}</small>
 					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
@@ -128,7 +132,7 @@ h5 {
 		<div class="card-deck mb-4">
 			<c:forEach items="${mainCategoryMoims }" var="category">
 				<a href="/moim/moim.do?moimNo=${category.moimNo}">
-					<div class="card mb-4">
+					<div class="card mb-4" id="card-list">
 						<img class="card-img-top" src="/resources/home_images/7.jpg"
 							alt="Card image cap">
 						<div class="card-body">
@@ -136,7 +140,6 @@ h5 {
 								<c:out value="${category.title }" />
 								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
 							</h5>
-							  <p class="card-text">${category.content }</p>
 							<div class="">
 							<small class="text-muted">${category.createdDate}</small>
 					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
@@ -151,7 +154,7 @@ h5 {
 		<div class="card-deck mb-4">
 			<c:forEach items="${allMoims }" var="moim">
 				<a href="/moim/moim.do?moimNo=${moim.moimNo}">
-					<div class="card mb-4">
+					<div class="card mb-4" id="card-list">
 						<img class="card-img-top" src="/resources/home_images/9.jpg"
 							alt="Card image cap">
 						<div class="card-body">
@@ -159,7 +162,6 @@ h5 {
 								<c:out value="${moim.title }" />
 								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
 							</h5>
-							  <p class="card-text">${moim.content }</p>
 							<div class="">
 							<small class="text-muted">${moim.createdDate}</small>
 					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
@@ -174,6 +176,19 @@ h5 {
 
 <!-- Initialize Swiper -->
 <script>
+
+var action = 1;
+function viewSomething() {
+       if ( action == 1 ) {
+    	   $('#Like').attr('class','fas fa-heart');
+           action = 2;
+       } else {
+    	   $('#Like').attr('class','far fa-heart');
+           action = 1;
+       }
+       $("#Like").toggle("fast");
+}
+
 	var swiper = new Swiper('.swiper-container', {
 		spaceBetween : 30,
 		centeredSlides : true,
