@@ -1,11 +1,13 @@
 package com.sample.service;
 
+import java.util.List;
+
 import com.sample.vo.MoimAlram;
 
 public interface AlramService {
 
 	// 알림 5개 띄우기
-	MoimAlram getAlrams(String userId);
+	List<MoimAlram> getAlrams(String userId);
 	
 	// 알림 등록하기
 	void addAlram(MoimAlram moimAlram);

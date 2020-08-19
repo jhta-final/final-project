@@ -1,5 +1,7 @@
 package com.sample.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +18,7 @@ public class AlramServiceImpl implements AlramService {
 	
 	// 알림 조회하기
 	@Override
-	public MoimAlram getAlrams(String userId) {
+	public List<MoimAlram> getAlrams(String userId) {
 		return alramDao.selectAlrams(userId);
 	}
 	

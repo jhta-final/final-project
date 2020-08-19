@@ -42,9 +42,9 @@
 	    login_user_id   as loginUserId,
 	    content         as content,
 	    created_date    as createdDate
-	from
-	    moim_alram
-	where
-	    user_id = #{value}
+		from
+		    moim_alram
+		where
+		    user_id = #{value}
 	</select>
 </mapper>

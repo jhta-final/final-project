@@ -1,10 +1,12 @@
 package com.sample.dao;
 
+import java.util.List;
+
 import com.sample.vo.MoimAlram;
 
 public interface AlramDao {
 
-	MoimAlram selectAlrams(String userId);
+	List<MoimAlram> selectAlrams(String userId);
 	
 	void insertAlram(MoimAlram alram);
 	

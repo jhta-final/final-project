@@ -101,9 +101,9 @@
 		          <i class="fas fa-bell fa-2x" style="color: lightgray;"></i>
 		        </a>
 		        <div class="dropdown-menu dropdown-menu-right">
-		          <a class="dropdown-item" href="#">알람</a>
-		          <a class="dropdown-item" href="#">경고:어쩌고 저쩌고</a>
-		          <a class="dropdown-item" href="#">친구:홍길동님이 팔로우 하셧습니다.</a>
+		        	<c:forEach items="${alrams }" var="alram">
+		          <a class="dropdown-item" href="#"><c:out value="${alram.message }"></c:out> </a>
+		          </c:forEach>
 				</div>
 			</div>
 		</div>
