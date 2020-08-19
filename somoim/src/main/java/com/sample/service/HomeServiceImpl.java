@@ -94,9 +94,9 @@ public class HomeServiceImpl implements HomeService{
 	}
 
 	@Override
-	public List<MoimMainDto> getselectMoim(long moimNo) {
+	public List<MoimMainDto> getselectMoim(String userId) {
 		
-		return homeDao.selectMoim(moimNo);
+		return homeDao.selectMoim(userId);
 	}
 	
 	

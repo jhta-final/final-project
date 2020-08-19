@@ -29,7 +29,7 @@ public interface HomeService {
 	void increaseLikesMoim(long moimNo, String userId);
 	
 	//
-	List<MoimMainDto> getselectMoim(long moimNo);
+	List<MoimMainDto> getselectMoim(String userId);
 
 	
 	// 관심표시한 모임 표시

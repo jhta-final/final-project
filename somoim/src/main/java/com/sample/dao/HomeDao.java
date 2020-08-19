@@ -36,7 +36,7 @@ public interface HomeDao {
 	void deleteLikesMoim(MoimFavoriteMoim moimFavoriteMoim);
 	
 	// 좋아요 표시
-	List<MoimMainDto> selectMoim(long moimNo);
+	List<MoimMainDto> selectMoim(String userId);
 	
 	// 관심표시한 모임 표시
 //	List<MoimMainDto> attentionMoim(String userId);
