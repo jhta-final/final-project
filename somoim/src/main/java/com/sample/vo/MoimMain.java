@@ -12,7 +12,7 @@ public class MoimMain {
 	private String image;
 	private long fee;
 	private long likes;
-	private String primiumYn;
+	private String premiumYn;
 	private String deleteYn; 
 	private Date joinDate;
 	private Date createdDate;
@@ -71,12 +71,16 @@ public class MoimMain {
 	public void setLikes(long likes) {
 		this.likes = likes;
 	}
-	public String getPrimiumYn() {
-		return primiumYn;
+
+	public String getPremiumYn() {
+		return premiumYn;
 	}
-	public void setPrimiumYn(String primiumYn) {
-		this.primiumYn = primiumYn;
+
+
+	public void setPremiumYn(String premiumYn) {
+		this.premiumYn = premiumYn;
 	}
+
 	public String getDeleteYn() {
 		return deleteYn;
 	}
