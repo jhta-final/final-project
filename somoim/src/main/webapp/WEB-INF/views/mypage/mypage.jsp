@@ -17,7 +17,7 @@
 	}
 </style>
 <div class="ml-5 mt-3">
-	<img src="/resources/home_images/2.jpg" class="rounded-circle myimage mr-3" alt="Cinque Terre"> <span
+	<img src="/resources/profileImage/${LOGIN_USER.profileImage }" class="rounded-circle myimage mr-3" alt="Cinque Terre"> <span
 		style="font-size: large; font-weight: bold;">${LOGIN_USER.nickname }</span>
 </div>
 <div class="row mt-3" style="width: 95%">
@@ -30,27 +30,48 @@
 				</li>
 				<li class="nav-item"><a class="nav-link" href="#" id="mypage-images">사진첩</a></li>
 				<li class="nav-item"><a class="nav-link" href="#" id="mypage-board">내후기</a></li>
+				<li class="nav-item"><a class="nav-link" href="#" id="mypage-message">쪽지함</a></li>
 			</ul>
 		</nav>
 	</div>
 </div>
-<div class="row" style="background-color: rgba(211, 211, 211, 0.4); height: 500px;">
+<div class="row pt-5" style="background-color: rgba(211, 211, 211, 0.4); height: 500px;">
 	<div class="col-9">
 		<div id="mypage-body">
-
+			<div class="row">
+              <div class="col-9">
+                <p>소개</p>
+                <div class="row">
+                  <div class="col-5">
+                    <div><span>이름 </span><span>홍길동</span></div>
+                    <div><span>이름 </span><span>홍길동</span></div>
+                    <div><span>이름 </span><span>홍길동</span></div>
+                    <div><span>이름 </span><span>홍길동</span></div>
+                  </div>
+                  <div class="col-5">
+                    <div><span>이름 </span><span>홍길동</span></div>
+                    <div><span>이름 </span><span>홍길동</span></div>
+                    <div><span>이름 </span><span>홍길동</span></div>
+                    <div><span>이름 </span><span>홍길동</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3" style="background-color: gray;">
+                asdf
+              </div>
+            </div>
 		</div>
 	</div>
 	<div class="col-3">
-		<div style="padding: 30px;">
-			<div class="text-center">내 친구</div>
+			<div class="text-center"><strong>내 친구</strong></div>
 			<c:forEach items="${followers }" var="follower">
-				<div class="mb-3">
-				
-					<a href="/friend/info.do?userId=${follower.folUserId }"><img src="/resources/home_images/3.png" class="rounded-circle smallimage mr-3" alt="Cinque Terre"> <span
-						style="font-size: 15px; font-weight: bold;">${follower.nickname }</span></a>
+				<div class="mb-3 pl-4">
+					<a href="/friend/info.do?userId=${follower.folUserId }">
+						<img src="/resources/profileImage/${follower.image }" class="rounded-circle smallimage mr-3" alt="Cinque Terre">
+						<span style="font-size: 15px; font-weight: bold;">${follower.nickname }</span>
+					</a>
 				</div>
 			</c:forEach>
-		</div>
 	</div>
 </div>
 <script>
@@ -58,14 +79,14 @@
 	$(function () {
 		var $mypageBody = $("#mypage-body");
 		
-		var mypageInfo = "<div>";
+		/* var mypageInfo = "<div>";
 		mypageInfo += "닉네임";
 		mypageInfo += "<p>${LOGIN_USER.nickname }</p>"
-			mypageInfo += "<div>이름</div>"
-				mypageInfo += "<div>전화번호</div>"
-					mypageInfo += "<div>생년월일</div>"
-						mypageInfo += "<div>이메일</div>"
-							mypageInfo += "<div>지역</div>";
+		mypageInfo += "<div>이름</div>"
+		mypageInfo += "<div>전화번호</div>"
+		mypageInfo += "<div>생년월일</div>"
+		mypageInfo += "<div>이메일</div>"
+		mypageInfo += "<div>지역</div>"; */
 
 		$mypageBody.append(mypageInfo);
 

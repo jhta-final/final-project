@@ -253,14 +253,14 @@
 								aria-describedby="inputGroup-sizing-sm" id="signup-email">
 						</div>
 						<div class="form-check-inline">
-						  <label class="form-check-label">
-						    <input type="radio" class="form-check-input" value="남" name="gender">남
-						  </label>
+							<label class="form-check-label">
+								<input type="radio" class="form-check-input" value="남" name="gender">남
+							</label>
 						</div>
 						<div class="form-check-inline">
-						  <label class="form-check-label">
-						    <input type="radio" class="form-check-input" value="여" name="gender">여
-						  </label>
+							<label class="form-check-label">
+								<input type="radio" class="form-check-input" value="여" name="gender">여
+							</label>
 						</div>
 					</form>
 				</div>

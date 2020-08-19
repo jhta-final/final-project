@@ -86,7 +86,7 @@
 		<div class="" style="float: right">
 			<div class="dropdown" style="float: right;text-align: right">
 		        <a class="nav-link dropdown-toggle dropdown-toggle-right" id="navbarDropdownMenu2" data-toggle="dropdown">
-		          <img src="/resources/home_images/11.png" class="rounded-circle z-depth-0"
+		          <img src="/resources/profileImage/${LOGIN_USER.profileImage }" class="rounded-circle z-depth-0"
 		            alt="avatar image" height="35" width="35">
 		        </a>
 				<div class="dropdown-menu dropdown-menu-right">
