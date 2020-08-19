@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sample.service.UserService;
@@ -21,6 +22,7 @@ import com.sample.vo.MoimUserCate;
 import com.sample.web.form.SignUpForm;
 
 @Controller
+@RequestMapping("/login")
 public class SignUpController {
 
 	

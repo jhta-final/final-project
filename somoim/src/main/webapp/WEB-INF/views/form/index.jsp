@@ -122,7 +122,7 @@
 						<div style="font-size: 73px;">모임을 만들고 참여해 보세요.</div>
 					</div>
 					<div class="card-body">
-						<form:form action="/signin.do" method="post" modelAttribute="loginForm">
+						<form:form action="/login/signin.do" method="post" modelAttribute="loginForm">
 							<div class="form-group text-left">
 								<form:input type="text" class="form-control" path="userId" placeholder="아이디를 입력해주세요" />
 							</div>
@@ -327,7 +327,7 @@
 
 				$.ajax({
 					type: "POST",
-					url: "/signup1.do",
+					url: "/login/signup1.do",
 					data: JSON.stringify(signUpForm),
 					contentType: "application/json",
 					dataType: "json",

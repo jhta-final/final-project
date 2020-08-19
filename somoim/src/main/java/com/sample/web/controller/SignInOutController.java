@@ -30,7 +30,7 @@ public class SignInOutController {
 		return "form/index";
 	}
 	
-	@PostMapping("/signin.do")
+	@PostMapping("/login/signin.do")
 	public String login(@ModelAttribute("loginForm") @Valid LoginForm loginForm,
 			BindingResult errors, Model model) {
 		System.out.println("loginForm: " + loginForm);
@@ -48,7 +48,7 @@ public class SignInOutController {
 		return "redirect:/home.do";
 	}
 	
-	@GetMapping("/signout.do")
+	@GetMapping("/login/signout.do")
 	public String signout(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
 		
