@@ -325,15 +325,17 @@
 					locationNo: $("#signup-location").val()
 				};
 
-				console.log(signUpForm);
 				$.ajax({
 					type: "POST",
 					url: "/signup1.do",
 					data: JSON.stringify(signUpForm),
 					contentType: "application/json",
 					dataType: "json",
-					success: function (status) {
+					success: function (data) {
 						console.log(status);
+						if (status.status == false) {
+							alert("아이디 혹은 비밀번호가 틀리셨습니다.")
+						}
 					}
 				})
 			})
