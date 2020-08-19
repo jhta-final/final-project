@@ -50,15 +50,18 @@
 			join_date		as joinDate,
 			a.created_date	as createdDate,
 			a.sub_cate_no	as subCateNo,
+            c.name          as subCateName,
 			location_no		as locationNo
 		from
-			moim_main A, moim_join_user B
+			moim_main A, moim_join_user B, moim_sub_cate C
         where
             b.user_role = 'ADMIN'
         and
             a.moim_no = b.moim_no
         and
-            sub_cate_no = #{value}
+            a.sub_cate_no = c.sub_cate_no
+        and
+            a.sub_cate_no = #{value}
 		order by
 			a.moim_no desc
 	</select>
@@ -79,15 +82,76 @@
 			join_date		as joinDate,
 			a.created_date	as createdDate,
 			a.sub_cate_no	as subCateNo,
-			location_no		as locationNo
+			a.location_no	as locationNo,
+			c.name			as locationName
 		from
-			moim_main A, moim_join_user B
+			moim_main A, moim_join_user B, moim_location C
         where
             b.user_role = 'ADMIN'
         and
             a.moim_no = b.moim_no
         and
-            location_no = #{value}
+            a.location_no = c.location_no
+        and
+            a.location_no = #{value}
+		order by
+			a.moim_no desc
+	</select>
+	
+	<select id="selectMoimsByJoin" parameterType="string" resultType="MainDto">
+		select
+			a.moim_no		as moimNo,
+			title			as title,
+            b.user_id       as userId,
+			join_count		as joinCount,
+			head_count		as headCount,
+			content			as content,
+			image			as image,
+			fee				as fee,
+			likes			as likes,
+			premium_yn		as premiumYn,
+			delete_yn		as deleteYn,
+			join_date		as joinDate,
+			a.created_date	as createdDate,
+			a.sub_cate_no	as subCateNo,
+			location_no		as locationNo
+		from
+			moim_main A, moim_join_user B
+		 where
+            a.moim_no = b.moim_no
+        and
+            b.user_id = #{value}
+		order by
+			a.moim_no desc
+	</select>
+	
+	<select id="selectMoimsByFavorite" parameterType="string" resultType="MainDto">
+		select
+			a.moim_no		as moimNo,
+			title			as title,
+            b.user_id       as userId,
+			join_count		as joinCount,
+			head_count		as headCount,
+			content			as content,
+			image			as image,
+			fee				as fee,
+			likes			as likes,
+			premium_yn		as premiumYn,
+			delete_yn		as deleteYn,
+			join_date		as joinDate,
+			a.created_date	as createdDate,
+			a.sub_cate_no	as subCateNo,
+			location_no		as locationNo
+		from
+			moim_main A, moim_join_user B, moim_favolite_moim C
+		 where
+            b.user_role = 'ADMIN'
+        and
+            a.moim_no = b.moim_no
+        and
+            a.moim_no = c.moim_no
+        and
+            c.user_id = #{value}
 		order by
 			a.moim_no desc
 	</select>
@@ -151,6 +215,8 @@
 		order by
 			likes desc, a.moim_no desc
 	</select>
+	
+	
 	
 	<select id="getSubCates" parameterType="long" resultType="SubCate">
 		select 
