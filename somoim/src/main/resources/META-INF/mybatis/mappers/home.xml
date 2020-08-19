@@ -206,13 +206,17 @@
 				a.moim_no		as moimNo,
 				user_id	 		as userId,
 				title			as title,
-				content			as content
+				content			as content,
+				liked_date		as likedDate
 			from
 				moim_favolite_moim A, moim_main B
 			where
 				user_id = #{value}
+            and
+                A.moim_no = B.moim_no
 			and
 				delete_yn = 'N'
+            order by liked_date asc
 	)where rownum <= 3
 	]]>
 	</select>

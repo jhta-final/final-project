@@ -1,10 +1,23 @@
 package com.sample.vo;
 
+import java.util.Date;
+
 public class MoimFavoriteMoim {
 
 	private long moimNo;
 	private String userId;
+	private Date likedDate;
 	
+	
+	
+	public Date getLikedDate() {
+		return likedDate;
+	}
+
+	public void setLikedDate(Date likedDate) {
+		this.likedDate = likedDate;
+	}
+
 	public MoimFavoriteMoim() {}
 
 	public long getMoimNo() {
