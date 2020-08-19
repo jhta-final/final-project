@@ -9,8 +9,17 @@ public class MoimFavoriteMoim {
 	private String title;
 	private String content;
 	private Date likedDate;
+	private String profileImage;
 	
 	
+	public String getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
+	}
+
 	public String getTitle() {
 		return title;
 	}
