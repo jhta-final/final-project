@@ -30,7 +30,7 @@
 		insert into moim_user
 			(user_id, user_name, tel, user_password, nickname, email, birth, gender, user_content, location_no, profile_image)
 			values
-			(#{id}, #{name}, #{tel}, #{password}, #{nickname}, #{email}, #{birth}, #{gender}, #{content}, #{locationNo}, #{profileImage})
+			(#{id}, #{name}, #{tel}, #{password}, #{nickname}, #{email}, #{birthDate}, #{gender}, #{content}, #{locationNo}, #{profileImage})
 	</insert> 
 	
 	<!-- 유저 정보 업데이트 -->

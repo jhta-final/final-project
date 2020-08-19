@@ -89,7 +89,7 @@
 			color: rgb(209, 255, 4);
 		}
 
-		[type=radio] {
+		#select-category-image [type=radio] {
 			position: absolute;
 			opacity: 0;
 			width: 0;
@@ -97,16 +97,16 @@
 		}
 
 		/* IMAGE STYLES */
-		[type=radio]+.card {
+		#select-category-image [type=radio]+.card {
 			cursor: pointer;
 		}
 
-		[type=radio]+.card:hover {
+		#select-category-image [type=radio]+.card:hover {
 			opacity: 0.8;
 		}
 
 		/* CHECKED STYLES */
-		[type=radio]:checked+.card {
+		#select-category-image [type=radio]:checked+.card {
 			opacity: 0.6;
 		}
 	</style>
@@ -162,23 +162,46 @@
 				<!-- Modal body -->
 				<div class="modal-body" style="margin: 0 45px;">
 					<form action="#">
-						<div class="form-group text-left">
-							<label style="font-size: 20px;">아이디</label> <input type="text" class="form-control" id="signup-id">
+						<div class="input-group input-group-sm mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="inputGroup-sizing-sm">아이디</span>
+							</div>
+							<input type="text" class="form-control" aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-sm" id="signup-id">
 						</div>
-						<div class="form-group text-left">
-							<label for="signin-password" style="font-size: 20px;">password</label>
-							<input type="text" class="form-control" id="signup-password">
+						<div class="input-group input-group-sm mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="inputGroup-sizing-sm">비밀번호</span>
+							</div>
+							<input type="password" class="form-control" aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-sm" id="signup-password">
 						</div>
-						<div class="form-group text-left">
-							<label style="font-size: 20px;">전화번호</label> <input type="text" class="form-control" id="signup-tel">
+						<div class="input-group input-group-sm mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="inputGroup-sizing-sm">비밀번호 확인</span>
+							</div>
+							<input type="password" class="form-control" aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-sm" id="signup-password-check">
 						</div>
-						<div class="form-group text-left">
-							<label for="signin-id" style="font-size: 20px;">이름</label> <input type="text" class="form-control"
-								id="signup-name">
+						<div class="input-group input-group-sm mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="inputGroup-sizing-sm">전화번호</span>
+							</div>
+							<input type="text" class="form-control" aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-sm" id="signup-tel">
 						</div>
-						<div class="form-group text-left">
-							<label style="font-size: 20px;">관심지역</label> <select name="locationNo" class="form-control"
-								id="signup-location">
+						<div class="input-group input-group-sm mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="inputGroup-sizing-sm">이름</span>
+							</div>
+							<input type="text" class="form-control" aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-sm" id="signup-name">
+						</div>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<label class="input-group-text" for="signup-location">관심지역</label>
+							</div>
+							<select class="custom-select" id="signup-location">
 								<option value="" selected="selected" disabled="disabled" class="text-center">선택</option>
 								<option value="">없음</option>
 								<option value="1">강서구</option>
@@ -208,14 +231,36 @@
 								<option value="25">중랑구</option>
 							</select>
 						</div>
-						<div class="form-group text-left">
-							<label style="font-size: 20px;">닉네임</label> <input type="text" class="form-control" id="signup-nickname">
+						<div class="input-group input-group-sm mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="inputGroup-sizing-sm">닉네임</span>
+							</div>
+							<input type="text" class="form-control" aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-sm" id="signup-nickname">
 						</div>
-						<div class="form-group text-left">
-							<label style="font-size: 20px;">생년월일</label> <input type="text" class="form-control" id="signup-birth">
+						<div class="input-group input-group-sm mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="inputGroup-sizing-sm">생년월일</span>
+							</div>
+							<input type="text" class="form-control" aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-sm" id="signup-birth">
 						</div>
-						<div class="form-group text-left">
-							<label style="font-size: 20px;">이메일</label> <input type="text" class="form-control" id="signup-email">
+						<div class="input-group input-group-sm mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="inputGroup-sizing-sm">이메일</span>
+							</div>
+							<input type="text" class="form-control" aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-sm" id="signup-email">
+						</div>
+						<div class="form-check-inline">
+						  <label class="form-check-label">
+						    <input type="radio" class="form-check-input" value="남" name="gender">남
+						  </label>
+						</div>
+						<div class="form-check-inline">
+						  <label class="form-check-label">
+						    <input type="radio" class="form-check-input" value="여" name="gender">여
+						  </label>
 						</div>
 					</form>
 				</div>
@@ -241,8 +286,8 @@
 
 				<!-- Modal body -->
 				<div class="modal-body" style="margin: 5px 31px;" id="select-category-image">
-					<form action="">
-						<label> <input type="radio" name="test" value="small">
+					<form action="/login/signup2.do" method="GET" id="button-signup-final">
+						<label> <input type="radio" name="cateno" value="4">
 							<div class="card mycard">
 								<img class="card-img-top myimg" src="/resources/index_images/반려동물.png" alt="Card image">
 								<div class="card-img-overlay">
@@ -252,17 +297,17 @@
 									</div>
 								</div>
 							</div>
-						</label> <label> <input type="radio" name="test" value="small">
+						</label> <label> <input type="radio" name="cateno" value="1">
 							<div class="card mycard">
 								<img class="card-img-top myimg" src="/resources/index_images/게임.jpg" alt="Card image">
 								<div class="card-img-overlay">
-									<p class="card-title mycardp">게임</p>
+									<p class="card-title mycardp">게임/오락</p>
 									<div class="card-text">
 										<i class="fas fa-check card-check-mark"></i>
 									</div>
 								</div>
 							</div>
-						</label> <label> <input type="radio" name="test" value="small">
+						</label> <label> <input type="radio" name="cateno" value="2">
 							<div class="card mycard">
 								<img class="card-img-top myimg" src="/resources/index_images/사교인맥.png" alt="Card image">
 								<div class="card-img-overlay">
@@ -272,27 +317,27 @@
 									</div>
 								</div>
 							</div>
-						</label> <label> <input type="radio" name="test" value="small">
+						</label> <label> <input type="radio" name="cateno" value="3">
 							<div class="card mycard">
 								<img class="card-img-top myimg" src="/resources/index_images/스포츠.png" alt="Card image">
 								<div class="card-img-overlay">
-									<p class="card-title mycardp">스포츠</p>
+									<p class="card-title mycardp">운동/스포츠</p>
 									<div class="card-text">
 										<i class="fas fa-check card-check-mark"></i>
 									</div>
 								</div>
 							</div>
-						</label> <label> <input type="radio" name="test" value="small">
+						</label> <label> <input type="radio" name="cateno" value="5">
 							<div class="card mycard">
 								<img class="card-img-top myimg" src="/resources/index_images/문화공연.jpg" alt="Card image">
 								<div class="card-img-overlay">
-									<p class="card-title mycardp">문화/공연</p>
+									<p class="card-title mycardp">문화/공연/축제</p>
 									<div class="card-text">
 										<i class="fas fa-check card-check-mark"></i>
 									</div>
 								</div>
 							</div>
-						</label> <label> <input type="radio" name="test" value="small" disabled>
+						</label> <label> <input type="radio" name="cateno" value="" disabled>
 							<div class="card mycard" style="opacity: 0.5;">
 								<img class="card-img-top myimg" src="/resources/index_images/음악.png" alt="Card image">
 								<div class="card-img-overlay">
@@ -322,7 +367,8 @@
 					birth: $("#signup-birth").val(),
 					email: $("#signup-email").val(),
 					tel: $("#signup-tel").val(),
-					locationNo: $("#signup-location").val()
+					locationNo: $("#signup-location").val(),
+					gender: $(":input[name=gender]:checked").val()
 				};
 
 				$.ajax({
@@ -331,15 +377,25 @@
 					data: JSON.stringify(signUpForm),
 					contentType: "application/json",
 					dataType: "json",
-					success: function (data) {
+					success: function (status) {
 						console.log(status);
-						if (status.status == false) {
+						if (status == false) {
 							alert("아이디 혹은 비밀번호가 틀리셨습니다.")
+						} else {
+							console.log("성공?");
+							$("#signup-modal").modal("hide");
+							$("#select-category-modal").modal("show");
 						}
 					}
 				})
 			})
 
+			//최종 회원가입
+			$("#signup-button").click(function () {
+				$("#button-signup-final").submit();
+			})
+
+			// 카테고리 체크
 			$("#select-category-image .card").click(function () {
 				$("#select-category-image .card").find('.card-text')
 					.css('display', 'none');

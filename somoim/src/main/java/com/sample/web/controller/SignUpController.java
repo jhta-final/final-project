@@ -33,25 +33,22 @@ public class SignUpController {
 	
 	@PostMapping("/check.do")
 	@ResponseBody
-	public Map<String, String> checkId (@RequestBody String userId) {
+	public String checkId (@RequestBody String userId) {
 		MoimUser user = userService.getUserDetail(userId);
-		Map<String, String> map = new HashMap<>();
 		if(user != null) {
-			map.put("status", "false");
+			return "false";
 		}
-		return map;
+		return "true";
 	}
 	
 	@PostMapping("/signup1.do")
 	@ResponseBody
-	public Map<String, String> step1Submit (@RequestBody @Valid SignUpForm signUpForm1,
+	public String step1Submit (@RequestBody @Valid SignUpForm signUpForm1,
 			BindingResult errors) {
 		System.out.println("결과: " + signUpForm1);
-		Map<String, String> map = new HashMap<>();
-		if(errors.hasErrors()) {
-			map.put("status", "false");
-			return map;
-		}
+		/*if(errors.hasErrors()) {
+			return "false";
+		}*/
 		signUpForm.setId(signUpForm1.getId());
 		signUpForm.setName(signUpForm1.getName());
 		signUpForm.setNickname(signUpForm1.getNickname());
@@ -62,12 +59,11 @@ public class SignUpController {
 		signUpForm.setGender(signUpForm1.getGender());
 		signUpForm.setContent(signUpForm1.getContent());
 		signUpForm.setLocationNo(signUpForm1.getLocationNo());
-		map.put("status", "true");
-		return map;
+		return "true";
 	}
 	
 	@GetMapping("/signup2.do")
-	public String step2Submit (@ModelAttribute("signUpForm") SignUpForm signUpForm2, HttpSession session) {
+	public String step2Submit (@ModelAttribute("cateno") long cateNo, HttpSession session) {
 		
 		MoimUser user = new MoimUser();
 		user.setId(signUpForm.getId());
@@ -83,7 +79,7 @@ public class SignUpController {
 		
 		MoimUserCate userCate = new MoimUserCate();
 		userCate.setUserId(signUpForm.getId());
-		userCate.setMainCateNo(signUpForm2.getMainCateNo());
+		userCate.setMainCateNo(cateNo);
 		
 		userService.signUpUser(user, userCate);
 		session.setAttribute("LOGIN_USER", user);
