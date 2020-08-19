@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -12,7 +12,7 @@
 	<script src="/resources/jquery/jquery.min.js"></script>
 	<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/resources/bootstrap/js/popper.min.js"></script>
-	<script src="https://kit.fontawesome.com/7a2820e1a2.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/7a2820e1a2.js"></script>
 
 	<!-- Demo styles -->
 	<style>
@@ -127,8 +127,7 @@
 								<form:input type="text" class="form-control" path="userId" placeholder="아이디를 입력해주세요" />
 							</div>
 							<div class="form-group text-left">
-								<form:input type="password" class="form-control" path="userpwd"
-									placeholder="비밀번호를 입력해주세요" />
+								<form:input type="password" class="form-control" path="userpwd" placeholder="비밀번호를 입력해주세요" />
 							</div>
 							<button type="submit" class="btn btn-primary"
 								style="width: 150px; background-color: #0f4c81;">Signin</button>
@@ -309,8 +308,6 @@
 					<button type="button" class="btn btn-primary" id="signup-button">회원가입</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
@@ -327,7 +324,7 @@
 					tel: $("#signup-tel").val(),
 					locationNo: $("#signup-location").val()
 				};
-				
+
 				console.log(signUpForm);
 				$.ajax({
 					type: "POST",
@@ -341,13 +338,11 @@
 				})
 			})
 
-			$("#select-category-image .card").click(
-				function () {
-
-					$("#select-category-image .card").find('.card-text')
-						.css('display', 'none');
-					$(this).find('.card-text').css('display', 'block');
-				})
+			$("#select-category-image .card").click(function () {
+				$("#select-category-image .card").find('.card-text')
+					.css('display', 'none');
+				$(this).find('.card-text').css('display', 'block');
+			})
 		})
 	</script>
 </body>
