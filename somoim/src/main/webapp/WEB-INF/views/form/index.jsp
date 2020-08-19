@@ -286,7 +286,7 @@
 
 				<!-- Modal body -->
 				<div class="modal-body" style="margin: 5px 31px;" id="select-category-image">
-					<form action="/login/signup2.do" method="GET" id="button-signup-final">
+					<form action="/login/signup2.do" method="get" id="button-signup-final">
 						<label> <input type="radio" name="cateno" value="4">
 							<div class="card mycard">
 								<img class="card-img-top myimg" src="/resources/index_images/반려동물.png" alt="Card image">

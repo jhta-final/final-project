@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sample.service.UserService;
@@ -62,8 +64,8 @@ public class SignUpController {
 		return "true";
 	}
 	
-	@GetMapping("/signup2.do")
-	public String step2Submit (@ModelAttribute("cateno") long cateNo, HttpSession session) {
+	@RequestMapping(value="/signup2.do" , method = RequestMethod.GET)
+	public String step2Submit (@RequestParam("cateno") long cateNo, HttpSession session) {
 		
 		MoimUser user = new MoimUser();
 		user.setId(signUpForm.getId());
