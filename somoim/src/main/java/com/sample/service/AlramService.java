@@ -6,7 +6,7 @@ import com.sample.vo.MoimAlram;
 
 public interface AlramService {
 
-	// 알림 5개 띄우기
+	// 알림 띄우기
 	List<MoimAlram> getAlrams(String userId);
 	
 	// 알림 등록하기

@@ -101,9 +101,16 @@
 		          <i class="fas fa-bell fa-2x" style="color: lightgray;"></i>
 		        </a>
 		        <div class="dropdown-menu dropdown-menu-right">
-		        	<c:forEach items="${alrams }" var="alram">
-		          <a class="dropdown-item" href="#"><c:out value="${alram.message }"></c:out> </a>
-		          </c:forEach>
+		        	<c:choose>
+		        		<c:when test="${empty alrams }">
+		        			<p style="margin: 0;">새 알림이 없습니다.</p>
+		        		</c:when>
+		        		<c:otherwise>
+				        	<c:forEach items="${alrams }" var="alram">
+				          		<a class="dropdown-item" href="#"><c:out value="${alram.message }"></c:out> </a>
+				            </c:forEach>
+		        		</c:otherwise>
+		        	</c:choose>
 				</div>
 			</div>
 		</div>
