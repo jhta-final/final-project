@@ -44,8 +44,6 @@ public class HomeController {
 		
 		// 좋아요한 모임 표시
 		httpSession.setAttribute("selectMoim", homeService.getselectMoim(user.getId()));
-
-		homeService.increaseLikesMoim(500000, user.getId());
 		
 		
 			
