@@ -23,7 +23,7 @@
 	  <div class="col-9">
 	    <div class="row mb-4 mt-4">
 	      <div class="col-3">
-	        <img src="resources/index_images/10.jpg" alt="" class="rounded mx-auto d-block" width="250px">
+	        <img src="/resources/index_images/10.jpg" alt="" class="rounded mx-auto d-block" width="250px">
 	      </div>
 	      <div class="col-8 mt-3 float-left">
 	        <p class="myp" style="font-size: 50px; font-weight: bold;"><c:out value="${moim.title }"/> </p>
