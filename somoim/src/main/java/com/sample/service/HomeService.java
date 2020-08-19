@@ -2,6 +2,7 @@ package com.sample.service;
 
 import java.util.List;
 
+import com.sample.dto.DetailViewMoimsDto;
 import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimMainDto;
 
@@ -28,10 +29,10 @@ public interface HomeService {
 	// 좋아요 기능 구현
 	void increaseLikesMoim(long moimNo, String userId);
 	
-	//
+	// 좋아요 표시한 모임들 보기
 	List<MoimMainDto> getselectMoim(String userId);
-
 	
-	// 관심표시한 모임 표시
-//	List<MoimMainDto> getattentionMoim(String userId);
+	// 상세정보 보기
+	List<DetailViewMoimsDto> detailViewMoims(long moimNo);
+	
 }
