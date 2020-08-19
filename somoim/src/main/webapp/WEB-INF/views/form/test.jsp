@@ -36,7 +36,7 @@
 	          <span><fmt:formatNumber value="${moim.joinCount }"/>/<fmt:formatNumber value="${moim.headCount }"/></span>
 	        </div>
 	        <p class="myp mb-2"><c:out value="${moim.content }"></c:out> </p>
-	        <p class="text-right"><fmt:formatDate value="${joinDate }" pattern="yyyy-MM-dd"/></p>
+	        <p class="text-right"><fmt:formatDate value="${moim.joinDate }" pattern="yyyy-MM-dd"/></p>
 	      </div>
 	    </div>
 	  </div>
@@ -45,7 +45,7 @@
 	    <c:forEach items="${moim.friends }" var="friend">
 	    <div class="mb-3">
 	      <a href="#"><img src="/resources/home_images/3.png" class="rounded-circle smallimage mr-3" alt="Cinque Terre">
-	        <span style="font-size: 15px; font-weight: bold;"><c:out value="${friend.name }"/></span></a>
+	        <span style="font-size: 15px; font-weight: bold;"><c:out value="${friend.nickname }"/></span></a>
 	    </div>
 	    </c:forEach>
 	  </div>
