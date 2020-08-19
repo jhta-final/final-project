@@ -92,22 +92,25 @@ h5 {
 			<h1>${locationMoims[0].locationName }</h1>
 		<div class="card-deck mb-4">
 			<c:forEach items="${locationMoims }" var="location">
-					<a href="#myModal" data-toggle="modal"> 
-				<div class="card mb-4" id="card-list">
-					<img class="card-img-top" src="/resources/home_images/1.jpeg"
-						alt="Card image cap">
+				<a href="#myModal" data-toggle="modal">
+					<div class="card mb-4" id="card-list">
+						<img class="card-img-top" src="/resources/home_images/1.jpeg"
+							alt="Card image cap">
 						<div class="card-body">
 							<h5 class="card-title">
 								<c:out value="${location.title }" />
-								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
+								<p class="ml-5" style="float: right">
+									<span class="mr-3">0/6</span> <i class="far fa-heart"></i>
+								</p>
 							</h5>
 							<div class="">
-							<small class="text-muted">${location.createdDate}</small>
-					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
-					        </div>
+								<small class="text-muted">${location.createdDate}</small> <span
+									style="float: right"><i class="fas fa-won-sign 2x"></i>
+									0원</span>
+							</div>
 						</div>
-				</div>
-					</a>
+					</div>
+				</a>
 			</c:forEach>
 		</div>
 		<hr />
@@ -157,20 +160,72 @@ h5 {
 	</div>
 </div>
 
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h4 class="modal-title">상세정보</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<!-- Modal Header end -->
+			<!-- Modal body -->
+			<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12" style="padding: 0px"><img class="card-img-top" src="/resources/home_images/9.jpg"
+							alt="Card image cap" style="width: 100%; height: 450px;"></div>
+					</div>
+					<div class="row">
+						<div class="col-md-3 ml-auto"><img class="card-img-top" src="/resources/home_images/9.jpg"
+							alt="Card image cap" style="width: 100%"></div>
+						<div class="col-md-2 ml-auto"><img class="card-img-top" src="/resources/home_images/9.jpg"
+							alt="Card image cap" style="width: 100%"></div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 ml-auto"><img class="card-img-top" src="/resources/home_images/9.jpg"
+							alt="Card image cap" style="width: 100%"></div>
+					</div>
+					<div class="row">
+						<div class="col-sm-9">
+							<img class="card-img-top" src="/resources/home_images/9.jpg"
+							alt="Card image cap" style="width: 100%">
+							<div class="row">
+								<div class="col-8 col-sm-6"><img class="card-img-top" src="/resources/home_images/9.jpg"
+							alt="Card image cap" style="width: 100%"></div>
+								<div class="col-4 col-sm-6"><img class="card-img-top" src="/resources/home_images/9.jpg"
+							alt="Card image cap" style="width: 100%"></div>
+							</div>
+						</div>
+					</div>
+			</div>
+			<!-- Modal body end -->
+			<!-- Modal footer -->
+			<div class="modal-footer">
+				<a class="btn btn-danger" href="#"><i class="fas fa-heart"></i></a>
+				<a class="btn btn-primary" href="/moim/moim.do?moimNo=500000">모임가기</a>
+				<button type="button" class="btn btn-warning" data-dismiss="modal">회원탈퇴</button>
+				<button type="button" class="btn btn-success" data-dismiss="modal">모임가입</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+			<!-- Modal footer end -->
+		</div>
+	</div>
+</div>
+
 <!-- Initialize Swiper -->
 <script>
-
-var action = 1;
-function viewSomething() {
-       if ( action == 1 ) {
-    	   $('#Like').attr('class','fas fa-heart');
-           action = 2;
-       } else {
-    	   $('#Like').attr('class','far fa-heart');
-           action = 1;
-       }
-       $("#Like").toggle("fast");
-}
+	var action = 1;
+	function viewSomething() {
+		if (action == 1) {
+			$('#Like').attr('class', 'fas fa-heart');
+			action = 2;
+		} else {
+			$('#Like').attr('class', 'far fa-heart');
+			action = 1;
+		}
+		$("#Like").toggle("fast");
+	}
 
 	var swiper = new Swiper('.swiper-container', {
 		spaceBetween : 30,

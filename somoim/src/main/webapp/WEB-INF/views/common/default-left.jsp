@@ -106,13 +106,15 @@
 	<div class="collapse" id="collapseExample2"
 		style="border-top: 1px solid lightgray">
 		<div class="card card-body">
+			<c:forEach items="${selectMoim}" var="select">
 				<a class="nav-link" href="#">
 					<span class="nav-item avatar">
 						<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
 						class="rounded-circle z-depth-0" alt="avatar image" height="35">
-						커피커피
+						${select.title}
 					</span>
 				</a>
+			</c:forEach>
 		</div>
 	</div>
 	<a class="btn" data-toggle="collapse" href="#collapseExample3"
