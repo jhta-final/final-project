@@ -49,12 +49,7 @@ public class SignUpController {
 		System.out.println("결과: " + signUpForm1);
 		Map<String, String> map = new HashMap<>();
 		if(errors.hasErrors()) {
-			map.put("status", "false1");
-			return map;
-		}
-		MoimUser user = userService.getUserDetail(signUpForm1.getId());
-		if(user != null) {
-			map.put("status", "false2");
+			map.put("status", "false");
 			return map;
 		}
 		signUpForm.setId(signUpForm1.getId());
