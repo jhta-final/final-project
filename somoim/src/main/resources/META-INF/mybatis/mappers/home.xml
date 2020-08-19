@@ -158,7 +158,7 @@
 	select
 	A.user_id		as userId,
 	A.fol_user_id	as folUserId,
-	B.profile_image as profileImage,
+	B.profile_image as image,
 	B.nickname		as nickname
 	
 	from
