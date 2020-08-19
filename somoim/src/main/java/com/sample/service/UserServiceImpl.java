@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void signUpUser(MoimUser user, MoimUserCate userCate) {
 		userDao.insertUser(user);
+		userDao.insertUserCate(userCate);
 			
 	}
 	
