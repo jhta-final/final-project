@@ -122,6 +122,7 @@
 	
 	</select>
 	
+	<!--내가 가입한 모임 표시 -->
 	<select id="joinedMoim" parameterType="string" resultType="MainDto">
 	<![CDATA[
 	select * from(
@@ -152,6 +153,7 @@
 	]]>
 	</select>
 	
+	<!-- 나를 팔로워한 친구들 -->
 	<select id="followUsers" parameterType="string" resultType="MoimFollowDto">
 	<![CDATA[
 	select * from(
@@ -199,6 +201,7 @@
 			user_id = #{userId}
 	</delete>
 	
+	<!-- 좋아요한 모임 표시 -->
 	<select id="selectMoim" parameterType="String" resultType="FavoriteMoim">
 	<![CDATA[
 	select * from(
@@ -208,7 +211,7 @@
 				title			as title,
 				content			as content,
 				liked_date		as likedDate,
-				profile_image 	as profileImage
+				b.premium_yn	as premiumYn
 			from
 				moim_favolite_moim A, moim_main B, moim_user C
 			where
