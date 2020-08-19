@@ -10,8 +10,19 @@ public class MoimFavoriteMoim {
 	private String content;
 	private Date likedDate;
 	private String profileImage;
+	private String primiumYn;
 	
 	
+	
+	
+	public String getPrimiumYn() {
+		return primiumYn;
+	}
+
+	public void setPrimiumYn(String primiumYn) {
+		this.primiumYn = primiumYn;
+	}
+
 	public String getProfileImage() {
 		return profileImage;
 	}
