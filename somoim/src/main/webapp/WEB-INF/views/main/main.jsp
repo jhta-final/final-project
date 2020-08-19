@@ -62,11 +62,11 @@ h5 {
 					<div class="card-body">
 							<h5 class="card-title">
 								<c:out value="${favolite.title }" />
-								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart" id="Like"></i></p>
+								<p class="ml-5" style="float: right"><span class="mr-3">${favolite.joinCount}/${favolite.headCount}</span> <i class="far fa-heart" id="Like"></i></p>
 							</h5>
-							<div class="">
+							<div class="text-right">
 							<small class="text-muted">${favolite.createdDate}</small>
-					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
+					          
 					        </div>
 					</div>
 				</div>
@@ -100,13 +100,11 @@ h5 {
 							<h5 class="card-title">
 								<c:out value="${location.title }" />
 								<p class="ml-5" style="float: right">
-									<span class="mr-3">0/6</span> <i class="far fa-heart"></i>
+									<span class="mr-3">${location.joinCount }/${location.headCount }</span> <i class="far fa-heart"></i>
 								</p>
 							</h5>
-							<div class="">
-								<small class="text-muted">${location.createdDate}</small> <span
-									style="float: right"><i class="fas fa-won-sign 2x"></i>
-									0원</span>
+							<div class="text-right">
+								<small class="text-muted">${location.createdDate}</small>
 							</div>
 						</div>
 					</div>
@@ -124,11 +122,10 @@ h5 {
 						<div class="card-body">
 							<h5 class="card-title">
 								<c:out value="${category.title }" />
-								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
+								<p class="ml-5" style="float: right"><span class="mr-3">${category.joinCount }/${category.headCount }</span> <i class="far fa-heart"></i></p>
 							</h5>
-							<div class="">
+							<div class="text-right">
 							<small class="text-muted">${category.createdDate}</small>
-					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
 					        </div>
 						</div>
 					</div>
@@ -146,11 +143,10 @@ h5 {
 						<div class="card-body">
 							<h5 class="card-title">
 								<c:out value="${moim.title }" />
-								<p class="ml-5" style="float: right"><span class="mr-3">0/6</span> <i class="far fa-heart"></i></p>
+								<p class="ml-5" style="float: right"><span class="mr-3">${moim.joinCount }/${moim.headCount }</span> <i class="far fa-heart"></i></p>
 							</h5>
-							<div class="">
-							<small class="text-muted">${moim.createdDate}</small>
-					          <span style="float: right"><i class="fas fa-won-sign 2x"></i> 0원</span>
+							<div class="text-right">
+								<small class="text-muted">${moim.createdDate}</small>
 					        </div>
 						</div>
 					</div>
@@ -171,32 +167,16 @@ h5 {
 			</div>
 			<!-- Modal Header end -->
 			<!-- Modal body -->
-			<div class="modal-body">
+			<div class="modal-body" style="padding:0px;">
 					<div class="row">
-						<div class="col-md-12" style="padding: 0px"><img class="card-img-top" src="/resources/home_images/9.jpg"
+						<div class="col-md-12"><img class="card-img-top" src="/resources/home_images/9.jpg"
 							alt="Card image cap" style="width: 100%; height: 450px;"></div>
 					</div>
 					<div class="row">
-						<div class="col-md-3 ml-auto"><img class="card-img-top" src="/resources/home_images/9.jpg"
-							alt="Card image cap" style="width: 100%"></div>
-						<div class="col-md-2 ml-auto"><img class="card-img-top" src="/resources/home_images/9.jpg"
-							alt="Card image cap" style="width: 100%"></div>
 					</div>
 					<div class="row">
-						<div class="col-md-6 ml-auto"><img class="card-img-top" src="/resources/home_images/9.jpg"
-							alt="Card image cap" style="width: 100%"></div>
 					</div>
 					<div class="row">
-						<div class="col-sm-9">
-							<img class="card-img-top" src="/resources/home_images/9.jpg"
-							alt="Card image cap" style="width: 100%">
-							<div class="row">
-								<div class="col-8 col-sm-6"><img class="card-img-top" src="/resources/home_images/9.jpg"
-							alt="Card image cap" style="width: 100%"></div>
-								<div class="col-4 col-sm-6"><img class="card-img-top" src="/resources/home_images/9.jpg"
-							alt="Card image cap" style="width: 100%"></div>
-							</div>
-						</div>
 					</div>
 			</div>
 			<!-- Modal body end -->
