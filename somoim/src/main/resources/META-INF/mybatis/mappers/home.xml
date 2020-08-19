@@ -3,6 +3,42 @@
 
 <mapper namespace="com.sample.dao.HomeDao">
 
+	<!-- 검색기능 -->
+	<select id="detailViewMoims" parameterType="long" resultType="DetailViewMoimsDto">
+		select
+			a.moim_no		as moimNo,
+			title			as title,
+            b.user_id       as userId,
+			join_count		as joinCount,
+			head_count		as headCount,
+			content			as content,
+			image			as image,
+			fee				as fee,
+			likes			as likes,
+			premium_yn		as premiumYn,
+			f.delete_yn		as deleteYn,
+			join_date		as joinDate,
+			a.created_date	as createdDate,
+			d.sub_cate_no	as subCateNo,
+			d.name			as subCateName,
+			e.location_no	as locationNo,
+			e.name      	as locationName,
+			c.main_cate_no	as mainCateNo,
+			c.name			as mainCateName,
+			user_role		as userRole,
+            nickname        as nickName
+			
+		from 
+			moim_main A, moim_join_user B, moim_main_category C, 
+            moim_sub_cate D, moim_location E, moim_user F
+		where
+			a.moim_no = b.moim_no and c.main_cate_no = d.main_cate_no and
+			a.sub_cate_no = d.sub_Cate_no and e.location_no = a.location_no
+            and f.user_id = b.user_id
+		and
+			a.moim_no = #{value}
+	</select>
+
 	<!-- 랜덤 모임 표시 -->
 	<select id="randomMoims" resultType="MainDto">
 		select
@@ -142,7 +178,7 @@
 	from 
 		moim_join_user A ,moim_main B
 	where 
-		user_id = 'kwon'
+		user_id = #{value}
 	and 
 		A.moim_no = B.moim_no
 	and

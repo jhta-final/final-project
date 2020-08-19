@@ -76,7 +76,58 @@
 			moim_board
 		where
 			user_id = #{value}
+	</select>
+		
+	<select id="getBoardsByCategory" parameterType="Board" resultType="Board">
+		select
+			board_no		as boardNo,
+			title			as title,
+			content			as content,
+			views			as views,
+			delete_yn		as deleteYn,
+			created_date	as createdDate,
+			moim_no			as moimNo,
+			user_id			as userId,
+			board_cate_no	as boardCateNo
+		from
+			moim_board
+		where
+			board_cate_no = #{boardCateNo}
 		and
-			board_cate_no = 2
+			moim_no = #{moimNo}
+		order by board_no desc
+	</select>
+	
+	<select id="getRecentBoardsByNotice" parameterType="Long" resultType="Board">
+		select 
+			board_no			as boardNo,
+				title			as title,
+				content			as content,
+				views			as views,
+				delete_yn		as deleteYn,
+				created_date	as createdDate,
+				moim_no			as moimNo,
+				user_id			as userId,
+				board_cate_no	as boardCateNo
+		from
+			(select
+				board_no		
+				title			
+				content			
+				views			
+				delete_yn		
+				created_date	
+				moim_no			
+				user_id			
+				board_cate_no	
+			from
+				moim_board
+			where
+				board_cate_no = 1
+			and
+				moim_no = #{value}
+			order by board_no desc)
+		where
+			<![CDATA[rownum <= 3]]>
 	</select>
 </mapper>

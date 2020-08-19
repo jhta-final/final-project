@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.dao.HomeDao;
 import com.sample.dao.MoimDao;
+import com.sample.dto.DetailViewMoimsDto;
 import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimMainDto;
 import com.sample.vo.MoimFavoriteMoim;
@@ -98,14 +99,11 @@ public class HomeServiceImpl implements HomeService{
 		
 		return homeDao.selectMoim(userId);
 	}
-	
-	
-//	// 관심표시한 모임 표시
-//	@Override
-//	public List<MoimMainDto> getattentionMoim(String userId) {
-//		
-//		return homeDao.attentionMoim(userId);
-//	}
-	
-	
+
+	@Override
+	public List<DetailViewMoimsDto> detailViewMoims(long moimNo) {
+		
+		return homeDao.detailViewMoims(moimNo);
+	}
+
 }
