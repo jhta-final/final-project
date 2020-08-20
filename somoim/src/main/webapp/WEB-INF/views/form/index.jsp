@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>소모임</title>
 	<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.css">
+	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
 	<script src="/resources/jquery/jquery.min.js"></script>
 	<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
@@ -24,11 +25,46 @@
 
 		body {
 			background: #eee;
-			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-			font-size: 14px;
+			font-family:Jua, Helvetica Neue, Helvetica, Arial, sans-serif;
+			font-size: 15px;
 			color: #000;
 			margin: 0;
 			padding: 0;
+		}
+
+
+		.jb-box {
+			width: 100%;
+			height: auto;
+			overflow: hidden;
+			margin: 0px auto;
+			position: fixed;
+			box-sizing: border-box;
+		}
+		
+		.jb-box::before {
+		    content: "";
+		    position: fixed;
+		    top: 0;
+		    right: 0;
+		    bottom: 0;
+		    left: 0;
+		    background: rgba(0,0,0,.3);
+		    display: block;
+		}
+
+		video {
+			position: fixed;
+		    top: 50%; 
+		    left: 50%;
+		    -webkit-transform: translateX(-50%) translateY(-50%);
+		    transform: translateX(-50%) translateY(-50%);
+		    min-width: 100%; 
+		    min-height: 100%; 
+		    width: auto; 
+		    height: auto;
+		    z-index: -1000; 
+		    overflow: hidden;	
 		}
 
 		.bg-text {
@@ -41,20 +77,32 @@
 			z-index: 2;
 			width: 25%;
 			text-align: center;
+			box-sizing: border-box;
 		}
-
-		.jb-box {
-			width: 100%;
-			height: 937px;
-			overflow: hidden;
-			margin: 0px auto;
-			position: relative;
+		
+		.bg-text .title {
+		    font-size: 80px;
+		    color: #fff;
+		    text-shadow: 0 1px 1px rgba(0,0,0,.35),
+		                 0 1px 25px rgba(0,0,0,.75);
 		}
-
-		video {
-			width: 100%;
+		
+		.bg-text .btn {
+			border: 1px solid  #00284d;
+	    	border-radius: 3px;
+			width: 217px;
 		}
-
+		
+		.bg-text .btn-primary {
+			background-color: #00498c; 
+		}
+		.bg-text .btn-primary:hover {
+			background: #00498c linear-gradient(#00498c, #005cb3);
+		}
+		
+		.bg-text .btn-secondary:hover {
+			background: #6c757d linear-gradient(#6c757d , #848d94);
+		}
 		.myimg {
 			width: 250px;
 			height: 300px;
@@ -109,6 +157,7 @@
 		#select-category-image [type=radio]:checked+.card {
 			opacity: 0.6;
 		}
+		
 	</style>
 </head>
 
@@ -116,36 +165,38 @@
 	<div class="bg-imag">
 		<div class="jb-box">
 			<video muted autoplay loop>
-				<source src="/resources/index_images/indexVideo.mp4" video/mp4"> </video> </div> <div class="bg-text">
-				<div style="background-color: rgba(255, 248, 248, 0.00); border-radius: 6%;">
-					<div class="" style="color: rgb(255, 255, 255); font-weight: 700;">
-						<div style="font-size: 73px;">모임을 만들고 참여해 보세요.</div>
-					</div>
-					<div class="card-body">
-						<form:form action="/login/signin.do" method="post" modelAttribute="loginForm">
-							<div class="form-group text-left">
-								<form:input type="text" class="form-control" path="userId" placeholder="아이디를 입력해주세요" />
-							</div>
-							<div class="form-group text-left">
-								<form:input type="password" class="form-control" path="userpwd" placeholder="비밀번호를 입력해주세요" />
-							</div>
-							<button type="submit" class="btn btn-primary"
-								style="width: 150px; background-color: #0f4c81;">Signin</button>
-							<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#signup-modal"
-								style="width: 150px;">Signup</button>
-						</form:form>
-					</div>
-					<div class="" style="padding: 10px 10px;">
-						<div class="mb-2">
-							<span><img src="/resources/index_images/kakao_login_medium_narrow.png" alt="" width="40%"></span>
-							<span><img src="/resources/index_images/kakao_login_medium_narrow.png" alt="" width="40%"></span>
+				<source src="/resources/index_images/indexVideo.mp4" type="video/mp4">
+			</video> 
+		</div> 
+		<div class="bg-text">
+			<div style="background-color: rgba(255, 248, 248, 0.00); border-radius: 6%;">
+				<div class="" style="color: rgb(255, 255, 255); font-weight: 700;">
+					<div class="title">모임을 만들고 참여해 보세요.</div>
+				</div>
+				<div class="card-body">
+					<form:form action="/login/signin.do" method="post" modelAttribute="loginForm">
+						<div class="form-group text-left">
+							<form:input type="text" class="form-control" path="userId" placeholder="아이디를 입력해주세요" />
 						</div>
-						<div class="">
-							<span><img src="/resources/index_images/네이버 아이디로 로그인_완성형_Green.PNG" alt="" width="40%"></span> <span><img
-									src="/resources//index_images/네이버 아이디로 로그인_완성형_Green.PNG" alt="" width="40%"></span>
+						<div class="form-group text-left">
+							<form:input type="password" class="form-control" path="userpwd" placeholder="비밀번호를 입력해주세요" />
 						</div>
+						<button type="submit" class="btn btn-primary">Signin</button>
+						<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#signup-modal">
+						Signup</button>
+					</form:form>
+				</div>
+				<div class="" style="padding: 10px 10px;">
+					<div class="mb-2">
+						<span><img src="/resources/index_images/kakao_login_medium_narrow.png" alt="" width="40%"></span>
+						<span><img src="/resources/index_images/kakao_login_medium_narrow.png" alt="" width="40%"></span>
+					</div>
+					<div class="">
+						<span><img src="/resources/index_images/네이버 아이디로 로그인_완성형_Green.PNG" alt="" width="40%"></span> <span><img
+								src="/resources//index_images/네이버 아이디로 로그인_완성형_Green.PNG" alt="" width="40%"></span>
 					</div>
 				</div>
+			</div>
 		</div>
 	</div>
 	<!--회원가입 모달 창-->

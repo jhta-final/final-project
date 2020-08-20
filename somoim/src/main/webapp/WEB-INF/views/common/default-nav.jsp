@@ -1,11 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!--Navbar -->
-<div class="my-nav">
-	<nav class="navbar navbar-dark fixed-top" style="background-color: #FFFFF0;">
-		<div style="width: 20%;">
-			<button class="navbar-toggler mr-3 nav-white">
-				<span class="navbar-toggler-icon" style="color: lightgray ;background-color: lightgray;" id="sideMenu"></span>
-			</button>
+<style>
+	.my-nav {
+	    box-shadow: 0 0 2px rgba(0,0,0,.35);
+	    background: #fff;
+	    margin-bottom: -1px;
+	}
+	
+	.navbar-toggler {
+		display: inline;
+	}
+	.navbar-toggler:hover {
+		cursor: pointer;
+	}
+	
+	.my-nav .navbar-icon {
+		font-size: 25px;
+		color: black;
+	}
+</style>
+<div class="my-nav fixed-top">
+	<nav class="navbar">
+		<div>
+			<div class="navbar-toggler" id="sideMenu">
+				<i class="fas fa-bars navbar-icon"></i>
+			</div>
 			<a class="navbar-brand" href="/home.do" style="color: black"> <img src="/resources/home_images/logo_1.png"
 					height="30" class="d-inline-block align-top" alt="mdb logo">
 				somoim

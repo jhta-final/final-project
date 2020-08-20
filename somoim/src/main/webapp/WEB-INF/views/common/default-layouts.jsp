@@ -16,11 +16,12 @@
 	}
 
 	body {
-	  background: #eee;
+	  background: #FFF;
 	  font-family:Sunflower,Poor Story;
 	  color: #000;
 	  padding: 0;
 	  font-size: 20px;
+	  position: relative;
 	}
 	
 	.swiper-container {
