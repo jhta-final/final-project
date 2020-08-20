@@ -313,22 +313,22 @@
 						
 						$Rtbody.append(text);
 						
-						return;
+					} else {
+						$.each(messages.receiveMessages, function(index, message) {
+							var text = "<tr>";
+								text += "<td>"+message.sendUser+"</td>";
+								text += "<td data-toggle='collapse' data-target='#message-get-content-1'>"+message.title+"</td>";
+								text += "<td>"+message.createdDate+"</td>";
+								text += "<td><button class='btn btn-danger btn-sm' style='line-height:0.8'>x</button></td>";
+								text += "</tr>";
+								text += "<tr>";
+								text += "<td colspan='4' id='message-get-content-1' class='collapse' style='background: lightgray'>"+message.content+"</td>";
+								text += "</tr>";
+							
+							$Rtbody.append(text);
+						})
 					}
 					
-					$.each(messages.receiveMessages, function(index, message) {
-						var text = "<tr>";
-							text += "<td>"+message.sendUser+"</td>";
-							text += "<td data-toggle='collapse' data-target='#message-get-content-1'>"+message.title+"</td>";
-							text += "<td>"+message.createdDate+"</td>";
-							text += "<td><button class='btn btn-danger btn-sm' style='line-height:0.8'>x</button></td>";
-							text += "</tr>";
-							text += "<tr>";
-							text += "<td colspan='4' id='message-get-content-1' class='collapse' style='background: lightgray'>"+message.content+"</td>";
-							text += "</tr>";
-						
-						$Rtbody.append(text);
-					})
 					
 					// 보낸 쪽지 조회
 					if (messages.sendMessages.length == 0) {
@@ -338,22 +338,21 @@
 						
 						$Stbody.append(text);
 						
-						return;
+					} else {
+						$.each(messages.sendMessages, function(index, message) {
+							var text = "<tr>";
+								text += "<td>"+message.receiveUser+"</td>";
+								text += "<td data-toggle='collapse' data-target='#message-send-content-1'>"+message.title+"</td>";
+								text += "<td>"+message.createdDate+"</td>";
+								text += "<td><button class='btn btn-danger btn-sm' style='line-height:0.8'>x</button></td>";
+								text += "</tr>";
+								text += "<tr>";
+								text += "<td colspan='4' id='message-send-content-1' class='collapse' style='background: lightgray'>"+message.content+"</td>";
+								text += "</tr>";
+							
+							$Stbody.append(text);
+						})
 					}
-					
-					$.each(messages.sendMessages, function(index, message) {
-						var text = "<tr>";
-							text += "<td>"+message.receiveUser+"</td>";
-							text += "<td data-toggle='collapse' data-target='#message-send-content-1'>"+message.title+"</td>";
-							text += "<td>"+message.createdDate+"</td>";
-							text += "<td><button class='btn btn-danger btn-sm' style='line-height:0.8'>x</button></td>";
-							text += "</tr>";
-							text += "<tr>";
-							text += "<td colspan='4' id='message-send-content-1' class='collapse' style='background: lightgray'>"+message.content+"</td>";
-							text += "</tr>";
-						
-						$Stbody.append(text);
-					})
 				}
 			});
 		})
