@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -121,14 +123,20 @@ public class MypageController {
 	
 	// 쪽지합
 	@GetMapping("/message.do")
-	public String messageUser(Model model) {
+	@ResponseBody
+	public Map<String, Object> messageUser() {
+		Map<String, Object> messages = new HashMap<String, Object>();
+		
 		List<MoimAlram> sendMessages = alramService.sendMessages(user.getId());
 		// 보낸 쪽지함
-		model.addAttribute("sendMessages", sendMessages);
+		/*model.addAttribute("sendMessages", sendMessages);*/
+		messages.put("sendMessages", sendMessages);
 		List<MoimAlram> receiveMessages = alramService.receiveMessages(user.getId());
 		// 받은 쪽지함
-		model.addAttribute("receiveMessages", receiveMessages);
+		/*model.addAttribute("receiveMessages", receiveMessages);*/
+		messages.put("receiveMessages", receiveMessages);
 		
-		return "message.do";
+		
+		return messages;
 	}
 }
