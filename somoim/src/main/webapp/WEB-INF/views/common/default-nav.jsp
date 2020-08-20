@@ -142,30 +142,42 @@
 							<thead>
 								<tr>
 									<td>발신자</td>
-									<td>내용</td>
+									<td>제목</td>
 									<td>날짜</td>
 									<td></td>
 								</tr>
 							</thead>
 							<tbody>
+								<!-- 시작 -->
 								<tr>
 									<td>권영준</td>
-									<td>안녕하세요~~ 안녕하세요~~~~ </td>
+									<td data-toggle="collapse" data-target="#message-get-content-1">권영준님이 메세지를 보냈습니다.</td>
 									<td>2020.01.11</td>
 									<td><button class="btn btn-danger btn-sm" style="line-height:0.8">x</button></td>
 								</tr>
 								<tr>
+									<td colspan="4" id="message-get-content-1" class="collapse" style="background: lightgray">Lorem ipsum dolor text....</td>
+								</tr>
+								<!-- 끝 -->
+								<tr>
 									<td>권영준</td>
-									<td>안녕하세요~~ 안녕하세요~~~~ </td>
+									<td data-toggle="collapse" data-target="#message-get-content-2">권영준님이 메세지를 보냈습니다.</td>
 									<td>2020.01.11</td>
 									<td><button class="btn btn-danger btn-sm" style="line-height:0.8">x</button></td>
 								</tr>
 								<tr>
+									<td colspan="4" id="message-get-content-2" class="collapse" style="background: lightgray">Lorem ipsum dolor text....</td>
+								</tr>
+								<tr>
 									<td>권영준</td>
-									<td>안녕하세요~~ 안녕하세요~~~~ </td>
+									<td data-toggle="collapse" data-target="#message-get-content-3">권영준님이 메세지를 보냈습니다.</td>
 									<td>2020.01.11</td>
 									<td><button class="btn btn-danger btn-sm" style="line-height:0.8">x</button></td>
 								</tr>
+								<tr>
+									<td colspan="4" id="message-get-content-3" class="collapse" style="background: lightgray">Lorem ipsum dolor text....</td>
+								</tr>
+								
 							</tbody>
 						</table>
 					</div>
@@ -186,29 +198,40 @@
 							<thead>
 								<tr>
 									<td>수신자</td>
-									<td>내용</td>
+									<td>제목</td>
 									<td>날짜</td>
 									<td></td>
 								</tr>
 							</thead>
 							<tbody>
+								<!-- 시작 -->
 								<tr>
-									<td>권영준</td>
-									<td>안녕하세요~~ 안녕하세요~~~~ </td>
+									<td>아이디</td>
+									<td data-toggle="collapse" data-target="#message-send-content-1">권영준님이 메세지를 보냈습니다.</td>
 									<td>2020.01.11</td>
 									<td><button class="btn btn-danger btn-sm" style="line-height:0.8">x</button></td>
 								</tr>
 								<tr>
+									<td colspan="4" id="message-send-content-1" class="collapse" style="background: lightgray">Lorem ipsum dolor text....</td>
+								</tr>
+								<!-- 끝 -->
+								<tr>
 									<td>권영준</td>
-									<td>안녕하세요~~ 안녕하세요~~~~ </td>
+									<td data-toggle="collapse" data-target="#message-send-content-2">권영준님이 메세지를 보냈습니다.</td>
 									<td>2020.01.11</td>
 									<td><button class="btn btn-danger btn-sm" style="line-height:0.8">x</button></td>
 								</tr>
 								<tr>
+									<td colspan="4" id="message-send-content-2" class="collapse" style="background: lightgray">Lorem ipsum dolor text....</td>
+								</tr>
+								<tr>
 									<td>권영준</td>
-									<td>안녕하세요~~ 안녕하세요~~~~ </td>
+									<td data-toggle="collapse" data-target="#message-send-content-3">권영준님이 메세지를 보냈습니다.</td>
 									<td>2020.01.11</td>
 									<td><button class="btn btn-danger btn-sm" style="line-height:0.8">x</button></td>
+								</tr>
+								<tr>
+									<td colspan="4" id="message-send-content-3" class="collapse" style="background: lightgray">Lorem ipsum dolor text....</td>
 								</tr>
 							</tbody>
 						</table>

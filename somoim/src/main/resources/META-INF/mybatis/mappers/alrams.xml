@@ -59,6 +59,8 @@
 	
 	<select id="getAllSendMessages" parameterType="string" resultType="Alram">
 		select
+			alram_no		as alramNo,
+			user_id			as userId,
 			message			as message,
 			content			as content,
 			created_date	as createdDate
@@ -72,6 +74,8 @@
 	
 	<select id="getAllReceiveMessages" parameterType="string" resultType="Alram">
 		select
+			alram_no		as alramNo,
+			login_user_id	as loginUserId,
 			message			as message,
 			content			as content,
 			created_date	as createdDate
