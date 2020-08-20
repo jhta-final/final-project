@@ -38,15 +38,16 @@ public class BoardServiceImpl implements BoardService {
 	// 게시글 수정
 	@Override
 	public void modifyBoard(MoimBoard moimBoard) {
-		MoimBoard savedBoard = boardDao.selectMoimBoard(moimBoard.getBoardNo());
-		if(savedBoard == null) {
-			System.out.println("해당 게시글이 존재하지 않습니다.");
-			return;
-		}
+		MoimBoard savedBoard = boardDao.selectMoimBoard(moimBoard.getBoardNo());		
+		
+		System.out.println(moimBoard.toString());
+		System.out.println(savedBoard.toString());
 		
 		savedBoard.setTitle(moimBoard.getTitle());
 		savedBoard.setContent(moimBoard.getContent());
 		savedBoard.setBoardCateNo(moimBoard.getBoardCateNo());
+		
+		moimBoard.setMoimNo(savedBoard.getMoimNo());
 		
 		boardDao.updateMoimBoard(savedBoard);
 	}

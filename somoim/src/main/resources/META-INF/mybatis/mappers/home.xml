@@ -5,11 +5,26 @@
 
 	<!-- 검색기능-->
 	<select id="searchFunction" parameterType="map" resultType="MainDto"> 
-	select 
-		title		as title,
-		content		as content
-	from
-		moim_main
+		select 
+			title			as title,
+			content			as content,
+			image			as image,
+			fee				as fee,
+			join_date		as joinDate,
+			a.created_date	as createdDate,
+			c.sub_cate_no	as subCateNo,
+			c.name			as subCateName,
+			d.location_no	as locationNo,
+			d.name      	as locationName,
+			b.main_cate_no	as mainCateNo,
+			b.name			as mainCateName
+		from
+			moim_main A, moim_main_category B, 
+            moim_sub_cate C, moim_location d
+        where
+        	b.main_cate_no = c.main_cate_no and
+			a.sub_cate_no = c.sub_Cate_no and 
+			d.location_no = a.location_no
 		<where>
 			<if test="title != null">
 				title like '%' || #{title} || '%'
@@ -17,6 +32,24 @@
 			<if test="content != null">
 				content like '%' || #{content} || '%'
 			</if>
+			<if test="b.name != null">
+				and B.moim_main_category in
+				<foreach item="b.name" index="index" collection="b.name" open="(" separator="," close=")">
+					#{b.name}
+				</foreach>
+			</if>
+			<if test="c.name != null">
+				and c.name in
+				<foreach item="c.name" index="index" collection="c.name" open="(" separator="," close=")">
+					#{c.name}
+				</foreach>
+			</if>
+			<if test="d.name != null">
+				and d.name in
+				<foreach item="d.name" index="index" collection="d.name" open="(" separator="," close=")">
+					#{d.name}
+				</foreach>
+			</if>d.name
 		</where>
 	</select>
 

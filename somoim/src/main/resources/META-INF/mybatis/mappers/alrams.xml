@@ -12,6 +12,7 @@
 		
 	</insert>
 	
+	 
 	<insert id="insertMessage" parameterType="Alram">
 		<selectKey keyProperty="alramNo" resultType="long" order="BEFORE">
 			select alram_seq.nextval from dual
@@ -22,6 +23,7 @@
 		(#{alramNo},#{message},#{type},#{userId},#{loginUserId},#{content})
 		
 	</insert>
+	
 	
 	<update id="updateAlram" parameterType="long">
 		update 
@@ -57,33 +59,57 @@
     ]]>
 	</select>
 	
-	<select id="getAllSendMessages" parameterType="string" resultType="Alram">
+	
+	
+	<!-- 메시지 -->
+	
+	<select id="getAllSendMessages" parameterType="string" resultType="Message">
 		select
-			alram_no		as alramNo,
-			user_id			as userId,
-			message			as message,
-			content			as content,
-			created_date	as createdDate
+		    message_no      as messageNo,
+		    title           as title,
+		    content         as content,
+		    send_user       as sendUser,
+		    receive_user    as receiveUser,
+		    read_yn         as readYn,
+		    created_date    as createdDate,
+		    user_id         as userId
 		from
-			moim_alram
+		    moim_message
 		where
-			content is not null
+		    user_id = #{value}
 		and
-			login_user_id = #{value}	
+		    send_user = #{value}
+		order by
+		    message_no desc	
 	</select>
 	
-	<select id="getAllReceiveMessages" parameterType="string" resultType="Alram">
+	<select id="getAllReceiveMessages" parameterType="string" resultType="Message">
 		select
-			alram_no		as alramNo,
-			login_user_id	as loginUserId,
-			message			as message,
-			content			as content,
-			created_date	as createdDate
+		    message_no      as messageNo,
+		    title           as title,
+		    content         as content,
+		    send_user       as sendUser,
+		    receive_user    as receiveUser,
+		    read_yn         as readYn,
+		    created_date    as createdDate,
+		    user_id         as userId
 		from
-			moim_alram
+		    moim_message
 		where
-			content is not null
+		    user_id = #{value}
 		and
-			user_id = #{value}
+		    receive_user = #{value}
+		order by
+		    message_no desc	
 	</select>
+	
+	<insert id="insertMessageNew" parameterType="Message">
+		<selectKey keyProperty="messageNo" resultType="long" order="BEFORE">
+			select message_seq.nextval from dual
+		</selectKey>
+		insert into moim_message
+		(message_no, title, content, send_user, receive_user, user_id)
+		values
+		(#{messageNo}, #{title}, #{content}, #{sendUser}, #{receiveUser}, #{userId})
+	</insert>
 </mapper>

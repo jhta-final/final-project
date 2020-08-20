@@ -132,7 +132,7 @@
 				<div class="mt-3 pb-3" style='border-bottom: 1px solid darkgray'>
 					<p>받은 쪽지</p>
 					<div style="width:100%; height:200px; overflow:auto">						
-						<table class="table" style="font-size: 14px">
+						<table id="receive-table" class="table" style="font-size: 14px">
 							<colgroup>
 								<col width="10%">
 								<col width="75%">
@@ -188,7 +188,7 @@
 				<div class="mt-3 pb-3" style='border-bottom: 1px solid darkgray'>
 					<p>보낸 쪽지</p>
 					<div style="width:100%; height:200px; overflow:auto">
-						<table class="table" style="font-size: 14px">
+						<table id="send-table" class="table" style="font-size: 14px">
 							<colgroup>
 								<col width="10%">
 								<col width="75%">
@@ -295,6 +295,66 @@
 		// 쪽지함 모달창 관련 JS
 		$("#nav-message-button").click(function () {
 			$("#nav-message-modal").modal('show');
+			
+			// 쪽지 조회
+			$.ajax({
+				type: "GET",
+				url: "/alram/message.do",
+				dataType: "json",
+				success: function (messages) {
+					var $Rtbody = $("#receive-table tbody").empty();
+					var $Stbody = $("#send-table tbody").empty();
+					
+					// 받은 쪽지 조회
+					if (messages.receiveMessages.length == 0) {
+						var text = "<tr>";
+						text += "<td colspan='4'>새로운 쪽지가 없습니다.</td>";
+						text += "</tr>";
+						
+						$Rtbody.append(text);
+						
+					} else {
+						$.each(messages.receiveMessages, function(index, message) {
+							var text = "<tr>";
+								text += "<td>"+message.sendUser+"</td>";
+								text += "<td data-toggle='collapse' data-target='#message-get-content-1'>"+message.title+"</td>";
+								text += "<td>"+message.createdDate+"</td>";
+								text += "<td><button class='btn btn-danger btn-sm' style='line-height:0.8'>x</button></td>";
+								text += "</tr>";
+								text += "<tr>";
+								text += "<td colspan='4' id='message-get-content-1' class='collapse' style='background: lightgray'>"+message.content+"</td>";
+								text += "</tr>";
+							
+							$Rtbody.append(text);
+						})
+					}
+					
+					
+					// 보낸 쪽지 조회
+					if (messages.sendMessages.length == 0) {
+						var text = "<tr>";
+						text += "<td colspan='4'>보낸 쪽지가 없습니다.</td>";
+						text += "</tr>";
+						
+						$Stbody.append(text);
+						
+					} else {
+						$.each(messages.sendMessages, function(index, message) {
+							var text = "<tr>";
+								text += "<td>"+message.receiveUser+"</td>";
+								text += "<td data-toggle='collapse' data-target='#message-send-content-1'>"+message.title+"</td>";
+								text += "<td>"+message.createdDate+"</td>";
+								text += "<td><button class='btn btn-danger btn-sm' style='line-height:0.8'>x</button></td>";
+								text += "</tr>";
+								text += "<tr>";
+								text += "<td colspan='4' id='message-send-content-1' class='collapse' style='background: lightgray'>"+message.content+"</td>";
+								text += "</tr>";
+							
+							$Stbody.append(text);
+						})
+					}
+				}
+			});
 		})
 	});
 </script>

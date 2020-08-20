@@ -69,6 +69,14 @@ public class MoimComment {
 	public void setMainCommentNo(long mainCommentNo) {
 		this.mainCommentNo = mainCommentNo;
 	}
+
+	@Override
+	public String toString() {
+		return "MoimComment [commentNo=" + commentNo + ", title=" + title + ", deleteYn=" + deleteYn + ", createdDate="
+				+ createdDate + ", userId=" + userId + ", boardNo=" + boardNo + ", mainCommentNo=" + mainCommentNo
+				+ "]";
+	}
+	
 	
 	
 }
