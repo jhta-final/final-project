@@ -2,6 +2,8 @@ package com.sample.vo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class MoimAlram {
 
 	private long alramNo;
@@ -11,6 +13,7 @@ public class MoimAlram {
 	private String userId;
 	private String loginUserId;
 	private String content;
+	@JsonFormat(pattern="yyyy.MM.dd")
 	private Date createdDate;
 	
 	public MoimAlram() {}

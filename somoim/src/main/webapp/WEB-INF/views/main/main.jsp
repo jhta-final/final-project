@@ -10,16 +10,20 @@
 	border: none;
 }
 .home-body {
-	padding: 16px;
+	margin-left: 3px;
+	padding: 35px;
 }
 .home-card {
- 	width: 307px;
- 	height: 300px;
- 	margin: 12px;
+ 	width: 345px;
+ 	height: 330px;
+ 	margin: 8px;
+}
+.home-card:hover {
+	cursor: pointer;
 }
 .card-img-top {
-	width: 300px;
-	height: 200px;
+	width: 343px;
+	height: 250px;
 }
 h5 {
 	font-size: 15px;
@@ -32,19 +36,6 @@ h5 {
 	display: inline-block;
 	margin-bottom: 0px;
 }
-
-.card-text{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 300px;
-  height: 20px;
-  font-size: 10px;
-  line-height: 1;
-  margin-bottom:0px;
-}
-
-
 </style>
 	
 <!-- Swiper -->
@@ -54,8 +45,7 @@ h5 {
 			<div class="swiper-wrapper">
 				<c:forEach items="${favoliteMoims }" var="favolite">
 				<div class="swiper-slide">
-					<a href="#myModal" data-toggle="modal" data-no="${favolite.moimNo }"> 
-					<div class="card mb-4" id="card-list">
+					<div class="card mb-4 home-card" id="card-list" data-no="${favolite.moimNo }">
 						<img class="card-img-top" src="/resources/home_images/11.png"
 							alt="Card image cap">
 						<div class="card-body">
@@ -64,11 +54,10 @@ h5 {
 								<p class="ml-5" style="float: right"><span class="mr-3">${favolite.joinCount}/${favolite.headCount}</span> <i class="far fa-heart" id="Like"></i></p>
 							</h5>
 							<div class="text-right">
-							<small class="text-muted"><fmt:formatDate value="${favolite.createdDate}" /></small>
+								<small class="text-muted"><fmt:formatDate value="${favolite.createdDate}" /></small>
 					        </div>
 						</div>
 					</div>
-					</a>
 				</div>
 				</c:forEach>
 			</div>
@@ -82,13 +71,13 @@ h5 {
 </div>
 <!-- Swiper Finish -->
 <!-- 목록 -->
-<div style="padding-left:23px">
+<div class="" style="margin-top: 35px;">
 <div class="row">
 	<div class="col-12">
 		<h1>${locationMoims[0].locationName }</h1>
 		<div class="row home-body">
 			<c:forEach items="${locationMoims }" var="location">
-				<div class="card mb-4 home-card">
+				<div class="card mb-4 home-card" data-no="${location.moimNo }">
 					<img class="card-img-top" src="/resources/home_images/1.jpeg"
 						alt="Card image cap">
 					<div class="card-body">
@@ -112,7 +101,7 @@ h5 {
 		<h1>${mainCategoryMoims[1].mainCateName }</h1>
 		<div class="row home-body">
 			<c:forEach items="${mainCategoryMoims }" var="category">
-				<div class="card mb-4 home-card">
+				<div class="card mb-4 home-card" data-no="${category.moimNo }">
 					<img class="card-img-top" src="/resources/home_images/7.jpg"
 						alt="Card image cap">
 					<div class="card-body">
@@ -121,7 +110,7 @@ h5 {
 							<p class="ml-5" style="float: right"><span class="mr-3">${category.joinCount }/${category.headCount }</span> <i class="far fa-heart"></i></p>
 						</div>
 						<div class="text-right">
-						<small class="text-muted"><fmt:formatDate value="${category.createdDate}" /></small>
+							<small class="text-muted"><fmt:formatDate value="${category.createdDate}" /></small>
 				        </div>
 					</div>
 				</div>
@@ -134,7 +123,7 @@ h5 {
 		<h1>전체모임</h1>
 		<div class="row home-body">
 			<c:forEach items="${allMoims }" var="moim">
-				<div class="card mb-4" >
+				<div class="card mb-4 home-card" data-no="${moim.moimNo }">
 					<img class="card-img-top" src="/resources/home_images/9.jpg"
 						alt="Card image cap">
 					<div class="card-body">
@@ -173,16 +162,14 @@ h5 {
 					</div>
 					<div class="row">
 						<div class="col-12" style="padding: 30px;">
-						<h3>${moimNo }제목제목</h3>
-							<p>0/6</p>
-							<p>내용내용내용</p>
-							<p><span><i class="fas fa-won-sign 2x"></i>10000원</span></p>
-							<p>좋아요수 : 5개</p>
-							<p><i class="fas fa-crown ml-2" style="color:#6699FF;"></i></p>
-							<p>모이는날 : 2020.10.19</p>
-							<p>만든날 : 2020.08.15</p>
-							<p>카테고리</p>
-							<p>모이는 위치</p>
+						<h3 id="detail-title"></h3>
+							<p id="detail-count"></p>
+							<p id="detail-content"></p>
+							<p><i class="fas fa-won-sign 2x"></i><span id="detail-fee"></span></p>
+							<p id="detail-likes"></p>
+							<p id="detail-premium"></p>
+							<p id="detail-joinDate">모이는날 : 2020.10.19</p>
+							<p id="detail-createDate">만든날 : 2020.08.15</p>
 						</div>
 					</div>
 			</div>
@@ -223,79 +210,54 @@ $(function() {
 		$("#Like").toggle("fast");
 	}
 
-	var swiper = new Swiper('.swiper-container', {
-		spaceBetween : 30,
-		centeredSlides : true,
-		autoplay : {
-			delay : 2500,
-			disableOnInteraction : false,
-		},
-		pagination : {
-			el : '.swiper-pagination',
-			clickable : true,
-		},
-		navigation : {
-			nextEl : '.swiper-button-next',
-			prevEl : '.swiper-button-prev',
-		},
-	});
-
-	var appendNumber = 4;
-	var prependNumber = 1;
-	var swiper = new Swiper('.swiper-container', {
-		slidesPerView : 3,
-		centeredSlides : true,
-		spaceBetween : 30,
-		autoplay : {
-			delay : 2500,
-			disableOnInteraction : false,
-		},
-		pagination : {
-			el : '.swiper-pagination',
-			clickable : true,
-		},
-		navigation : {
-			nextEl : '.swiper-button-next',
-			prevEl : '.swiper-button-prev',
-		},
-	});
-	document.querySelector('.prepend-2-slides').addEventListener(
-			'click',
-			function(e) {
-				e.preventDefault();
-				swiper.prependSlide([
-						'<div class="swiper-slide">Slide ' + (--prependNumber)
-								+ '</div>',
-						'<div class="swiper-slide">Slide ' + (--prependNumber)
-								+ '</div>' ]);
-			});
-	document.querySelector('.prepend-slide').addEventListener(
-			'click',
-			function(e) {
-				e.preventDefault();
-				swiper.prependSlide('<div class="swiper-slide">Slide '
-						+ (--prependNumber) + '</div>');
-			});
-	document.querySelector('.append-slide').addEventListener(
-			'click',
-			function(e) {
-				e.preventDefault();
-				swiper.appendSlide('<div class="swiper-slide">Slide '
-						+ (++appendNumber) + '</div>');
-			});
-	document.querySelector('.append-2-slides').addEventListener(
-			'click',
-			function(e) {
-				e.preventDefault();
-				swiper.appendSlide([
-						'<div class="swiper-slide">Slide ' + (++appendNumber)
-								+ '</div>',
-						'<div class="swiper-slide">Slide ' + (++appendNumber)
-								+ '</div>' ]);
-			});
+	 var swiper = new Swiper('.swiper-container', {
+	      slidesPerView: 3,
+	      spaceBetween: 30,
+	      freeMode: true,
+	      autoplay: {
+	          delay: 2500,
+	          disableOnInteraction: false,
+	      },
+	      pagination: {
+	        el: '.swiper-pagination',
+	        clickable: true,
+	      }
+	    });
 	
 	// 모임 디테일 모달 창 
-	$("#home-moim-body ")
+	$(".home-card").click(function() {
+		var moimNo = $(this).data("no");
+		$("#myModal").modal('show');
+
+		$.ajax({
+			type: "GET",
+			url: "/detail.do",
+			data: {moimNo: moimNo},
+			dataType: "json",
+			success: function (moim) {
+				console.log(moim);
+				$("#detail-title").text(moim.moimMainDto.title)
+				$("#detail-count").text(moim.moimMainDto.joinCount + "/" + moim.moimMainDto.headCount)
+				$("#detail-content").text(moim.moimMainDto.content)
+				$("#detail-fee").text(moim.moimMainDto.fee + "원")
+				$("#detail-likes").text("좋아요수 : " + moim.moimMainDto.likes + "개")
+				$("#detail-joinDate").text("모이는날 : " + moim.moimMainDto.joinDate)
+				$("#detail-createDate").text("만든날 : " + moim.moimMainDto.createdDate)
+
+
+
+				if(moim.moimMainDto.premiumYn == 'Y') {
+					let premium = '<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>';
+					$("#detail-premium").append(premium);
+				} else {
+					$("#detail-premium").empty();
+				}
+
+
+			}
+		})
+
+	})
    
 });
 

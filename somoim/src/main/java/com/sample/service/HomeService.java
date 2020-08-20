@@ -34,7 +34,7 @@ public interface HomeService {
 	List<MoimMainDto> getselectMoim(String userId);
 	
 	// 상세정보 보기
-	List<DetailViewMoimsDto> detailViewMoims(long moimNo);
+	DetailViewMoimsDto detailViewMoims(long moimNo);
 	
 	// 검색조건
 	List<MoimMainDto> getsearchFunction(Map<String, Object> map);

@@ -1,6 +1,8 @@
 package com.sample.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sample.service.AlramService;
 import com.sample.vo.MoimAlram;
@@ -21,6 +24,8 @@ public class AlramController {
 
 	@Autowired
 	private AlramService alramService;
+	
+	/* 알람 관련 */
 	
 	// 관리자 -> 사용자 경고 추가
 	@GetMapping("warning.do")
@@ -51,5 +56,36 @@ public class AlramController {
 		alramService.addAlram(moimAlram);
 		
 		return "";
+	}
+	
+	// 알림 클릭 -> 삭제 후 다음 알림 뿌리기
+	@GetMapping("read.do")
+	@ResponseBody
+	public List<MoimAlram> show(@RequestParam("alramNo") long alramNo, @RequestParam("userId") String userId) {
+		alramService.readAlram(alramNo);
+		return alramService.getAlrams(userId);
+	}
+	
+	
+	
+	/* 쪽지 관련 */
+	@GetMapping("/message.do")
+	@ResponseBody
+	public Map<String, Object> messageUser(HttpSession session) {
+		MoimUser user = (MoimUser) session.getAttribute("LOGIN_USER");
+		
+		Map<String, Object> messages = new HashMap<String, Object>();
+		
+		List<MoimAlram> sendMessages = alramService.sendMessages(user.getId());
+		// 보낸 쪽지함
+		/*model.addAttribute("sendMessages", sendMessages);*/
+		messages.put("sendMessages", sendMessages);
+		List<MoimAlram> receiveMessages = alramService.receiveMessages(user.getId());
+		// 받은 쪽지함
+		/*model.addAttribute("receiveMessages", receiveMessages);*/
+		messages.put("receiveMessages", receiveMessages);
+		
+		
+		return messages;
 	}
 }

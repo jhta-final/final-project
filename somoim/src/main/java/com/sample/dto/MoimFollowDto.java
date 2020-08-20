@@ -14,6 +14,7 @@ public class MoimFollowDto {
 	private String image;
 	private String nickname;
 	
+	
 	public String getUserId() {
 		return userId;
 	}

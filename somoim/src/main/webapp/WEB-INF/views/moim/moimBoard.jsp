@@ -63,7 +63,9 @@
 							<td class="text-center">일반</td>
                 	</c:otherwise>
               	</c:choose>
-	              			<td>${board.title }</td>
+	              			<td>
+                                <a href="boardDetail.do?boardNo=${board.boardNo}">${board.title }</a>
+                            </td>
 							<td>${board.userId }</td>
 							<td><fmt:formatDate value="${board.createdDate }"/> </td>
 							<td>${board.views }</td>

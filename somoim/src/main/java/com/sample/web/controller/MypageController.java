@@ -1,9 +1,16 @@
 package com.sample.web.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,15 +18,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimJoinUserMoimDto;
+import com.sample.service.AlramService;
 import com.sample.service.MypageService;
 import com.sample.service.UserService;
+import com.sample.vo.MoimAlram;
 import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimPhoto;
 import com.sample.vo.MoimUser;
+import com.sample.web.form.ModifyForm;
 
 @Controller
 @RequestMapping("/mypage")
@@ -31,6 +43,9 @@ public class MypageController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	AlramService alramService;
+	
 	private MoimUser user = new MoimUser();
 	
 	
@@ -39,6 +54,7 @@ public class MypageController {
 		this.user = (MoimUser)session.getAttribute("LOGIN_USER");
 		List<MoimFollowDto> followers = mypageService.allFollower(user.getId());
 		model.addAttribute("followers", followers);
+		model.addAttribute("followersCnt", followers.size());
 		
 		return "mypage/mypage.tiles";
 	}
@@ -69,8 +85,58 @@ public class MypageController {
 	
 	// 내정보수정
 	@PostMapping("/modify.do")
-	public String modifyUser (@ModelAttribute("user") MoimUser user) {
-		userService.modifyUser(user);
+	public String modifyUser (@ModelAttribute("modifyform") ModifyForm modifyForm) {
+		MoimUser modifyUser = new MoimUser();
+		modifyUser.setId(user.getId());
+		BeanUtils.copyProperties(modifyForm, modifyUser);
+		
+		MultipartFile upfile = modifyForm.getUpfile();
+		String filename = upfile.getOriginalFilename();
+			
+		File file = new File("C:\\final_project\\workspace\\somoim\\src\\main\\webapp\\resources\\profileImage"+filename);
+		FileOutputStream fos;
+		try {
+			file.createNewFile();
+			fos = new FileOutputStream(file);
+			fos.write(upfile.getBytes());
+			fos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		modifyUser.setProfileImage(filename);
+		userService.modifyUser(modifyUser);
 		return "mypage/mypage.tiles?modify=success";
+	}
+	
+	// 회원탈퇴
+	@PostMapping("/delete.do")
+	public String deleteUser (@RequestParam("password")String password) {
+		 if(password.equals(user.getPassword())) {
+	         userService.deleteUser(user.getId());
+	         return "mypage/mypage.tiles?delete=success";
+	      } else {
+	         return "mypage/mypage.tiles?delete=fail";         
+	      }
+	}
+	
+	// 쪽지합
+	@GetMapping("/message.do")
+	@ResponseBody
+	public Map<String, Object> messageUser() {
+		Map<String, Object> messages = new HashMap<String, Object>();
+		
+		List<MoimAlram> sendMessages = alramService.sendMessages(user.getId());
+		// 보낸 쪽지함
+		/*model.addAttribute("sendMessages", sendMessages);*/
+		messages.put("sendMessages", sendMessages);
+		List<MoimAlram> receiveMessages = alramService.receiveMessages(user.getId());
+		// 받은 쪽지함
+		/*model.addAttribute("receiveMessages", receiveMessages);*/
+		messages.put("receiveMessages", receiveMessages);
+		
+		
+		return messages;
 	}
 }
