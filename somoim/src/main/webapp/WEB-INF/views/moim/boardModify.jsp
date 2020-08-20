@@ -77,7 +77,7 @@
 					<div class="row">
 						<div class="text-right" style="width: 90%">
 							<a href="board.do?moimNo=${param.moimNo}" class="btn btn-secondary">취소</a>
-							<button type="submit" class="btn btn-primary">개설</button>
+							<button type="submit" class="btn btn-primary">수정</button>
 						</div>
 					</div>
 				</div>
