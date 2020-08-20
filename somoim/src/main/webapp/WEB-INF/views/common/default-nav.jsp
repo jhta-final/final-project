@@ -12,7 +12,7 @@
 			</a>
 		</div>
 		<div style="width: 40%;">
-			<form class="form-inline my-1">
+			<form class="form-inline my-1" action="/test.do">
 				<div class="md-form form-sm my-0">
 					<input class="form-control form-control-sm" style="width: 500px;" type="text" placeholder="Search"
 						aria-label="Search">
@@ -132,7 +132,7 @@
 				<div class="mt-3 pb-3" style='border-bottom: 1px solid darkgray'>
 					<p>받은 쪽지</p>
 					<div style="width:100%; height:200px; overflow:auto">						
-						<table class="table" style="font-size: 14px">
+						<table id="receive-table" class="table" style="font-size: 14px">
 							<colgroup>
 								<col width="10%">
 								<col width="75%">
@@ -142,30 +142,42 @@
 							<thead>
 								<tr>
 									<td>발신자</td>
-									<td>내용</td>
+									<td>제목</td>
 									<td>날짜</td>
 									<td></td>
 								</tr>
 							</thead>
 							<tbody>
+								<!-- 시작 -->
 								<tr>
 									<td>권영준</td>
-									<td>안녕하세요~~ 안녕하세요~~~~ </td>
+									<td data-toggle="collapse" data-target="#message-get-content-1">권영준님이 메세지를 보냈습니다.</td>
 									<td>2020.01.11</td>
 									<td><button class="btn btn-danger btn-sm" style="line-height:0.8">x</button></td>
 								</tr>
 								<tr>
+									<td colspan="4" id="message-get-content-1" class="collapse" style="background: lightgray">Lorem ipsum dolor text....</td>
+								</tr>
+								<!-- 끝 -->
+								<tr>
 									<td>권영준</td>
-									<td>안녕하세요~~ 안녕하세요~~~~ </td>
+									<td data-toggle="collapse" data-target="#message-get-content-2">권영준님이 메세지를 보냈습니다.</td>
 									<td>2020.01.11</td>
 									<td><button class="btn btn-danger btn-sm" style="line-height:0.8">x</button></td>
 								</tr>
 								<tr>
+									<td colspan="4" id="message-get-content-2" class="collapse" style="background: lightgray">Lorem ipsum dolor text....</td>
+								</tr>
+								<tr>
 									<td>권영준</td>
-									<td>안녕하세요~~ 안녕하세요~~~~ </td>
+									<td data-toggle="collapse" data-target="#message-get-content-3">권영준님이 메세지를 보냈습니다.</td>
 									<td>2020.01.11</td>
 									<td><button class="btn btn-danger btn-sm" style="line-height:0.8">x</button></td>
 								</tr>
+								<tr>
+									<td colspan="4" id="message-get-content-3" class="collapse" style="background: lightgray">Lorem ipsum dolor text....</td>
+								</tr>
+								
 							</tbody>
 						</table>
 					</div>
@@ -176,7 +188,7 @@
 				<div class="mt-3 pb-3" style='border-bottom: 1px solid darkgray'>
 					<p>보낸 쪽지</p>
 					<div style="width:100%; height:200px; overflow:auto">
-						<table class="table" style="font-size: 14px">
+						<table id="send-table" class="table" style="font-size: 14px">
 							<colgroup>
 								<col width="10%">
 								<col width="75%">
@@ -186,29 +198,40 @@
 							<thead>
 								<tr>
 									<td>수신자</td>
-									<td>내용</td>
+									<td>제목</td>
 									<td>날짜</td>
 									<td></td>
 								</tr>
 							</thead>
 							<tbody>
+								<!-- 시작 -->
 								<tr>
-									<td>권영준</td>
-									<td>안녕하세요~~ 안녕하세요~~~~ </td>
+									<td>아이디</td>
+									<td data-toggle="collapse" data-target="#message-send-content-1">권영준님이 메세지를 보냈습니다.</td>
 									<td>2020.01.11</td>
 									<td><button class="btn btn-danger btn-sm" style="line-height:0.8">x</button></td>
 								</tr>
 								<tr>
+									<td colspan="4" id="message-send-content-1" class="collapse" style="background: lightgray">Lorem ipsum dolor text....</td>
+								</tr>
+								<!-- 끝 -->
+								<tr>
 									<td>권영준</td>
-									<td>안녕하세요~~ 안녕하세요~~~~ </td>
+									<td data-toggle="collapse" data-target="#message-send-content-2">권영준님이 메세지를 보냈습니다.</td>
 									<td>2020.01.11</td>
 									<td><button class="btn btn-danger btn-sm" style="line-height:0.8">x</button></td>
 								</tr>
 								<tr>
+									<td colspan="4" id="message-send-content-2" class="collapse" style="background: lightgray">Lorem ipsum dolor text....</td>
+								</tr>
+								<tr>
 									<td>권영준</td>
-									<td>안녕하세요~~ 안녕하세요~~~~ </td>
+									<td data-toggle="collapse" data-target="#message-send-content-3">권영준님이 메세지를 보냈습니다.</td>
 									<td>2020.01.11</td>
 									<td><button class="btn btn-danger btn-sm" style="line-height:0.8">x</button></td>
+								</tr>
+								<tr>
+									<td colspan="4" id="message-send-content-3" class="collapse" style="background: lightgray">Lorem ipsum dolor text....</td>
 								</tr>
 							</tbody>
 						</table>
@@ -272,6 +295,66 @@
 		// 쪽지함 모달창 관련 JS
 		$("#nav-message-button").click(function () {
 			$("#nav-message-modal").modal('show');
+			
+			// 쪽지 조회
+			$.ajax({
+				type: "GET",
+				url: "/alram/message.do",
+				dataType: "json",
+				success: function (messages) {
+					var $Rtbody = $("#receive-table tbody").empty();
+					var $Stbody = $("#send-table tbody").empty();
+					
+					// 받은 쪽지 조회
+					if (messages.receiveMessages.length == 0) {
+						var text = "<tr>";
+						text += "<td colspan='4'>새로운 쪽지가 없습니다.</td>";
+						text += "</tr>";
+						
+						$Rtbody.append(text);
+						
+					} else {
+						$.each(messages.receiveMessages, function(index, message) {
+							var text = "<tr>";
+								text += "<td>"+message.sendUser+"</td>";
+								text += "<td data-toggle='collapse' data-target='#message-get-content-1'>"+message.title+"</td>";
+								text += "<td>"+message.createdDate+"</td>";
+								text += "<td><button class='btn btn-danger btn-sm' style='line-height:0.8'>x</button></td>";
+								text += "</tr>";
+								text += "<tr>";
+								text += "<td colspan='4' id='message-get-content-1' class='collapse' style='background: lightgray'>"+message.content+"</td>";
+								text += "</tr>";
+							
+							$Rtbody.append(text);
+						})
+					}
+					
+					
+					// 보낸 쪽지 조회
+					if (messages.sendMessages.length == 0) {
+						var text = "<tr>";
+						text += "<td colspan='4'>보낸 쪽지가 없습니다.</td>";
+						text += "</tr>";
+						
+						$Stbody.append(text);
+						
+					} else {
+						$.each(messages.sendMessages, function(index, message) {
+							var text = "<tr>";
+								text += "<td>"+message.receiveUser+"</td>";
+								text += "<td data-toggle='collapse' data-target='#message-send-content-1'>"+message.title+"</td>";
+								text += "<td>"+message.createdDate+"</td>";
+								text += "<td><button class='btn btn-danger btn-sm' style='line-height:0.8'>x</button></td>";
+								text += "</tr>";
+								text += "<tr>";
+								text += "<td colspan='4' id='message-send-content-1' class='collapse' style='background: lightgray'>"+message.content+"</td>";
+								text += "</tr>";
+							
+							$Stbody.append(text);
+						})
+					}
+				}
+			});
 		})
 	});
 </script>

@@ -1,6 +1,10 @@
 package com.sample.web.controller;
 
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.sample.dto.MoimMainDto;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sample.dto.DetailViewMoimsDto;
@@ -55,6 +62,35 @@ public class HomeController {
 		
 		return "main/main.tiles";
 	} 
+
+	@GetMapping("/test.do")
+	public String searchFunction(@RequestParam(value="title", required= false) String title,
+			@RequestParam(value="content", required= false) String content, 
+			@RequestParam(value="locationName", required= false) List<String> locationName,
+			@RequestParam(value="mainCateName", required= false) List<String> mainCateName,
+			@RequestParam(value="subCateName", required= false) List<String> subCateName,
+			Model model){
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		if(title != null && !title.isEmpty()) {
+			params.put("title", title);
+		}
+		if(content != null && !content.isEmpty()) {
+			params.put("content", content);
+		}
+		if(locationName != null && !locationName.isEmpty()) {
+			params.put("locationName", locationName);
+		}
+		if(mainCateName != null && !mainCateName.isEmpty()) {
+			params.put("mainCateName", mainCateName);
+		}
+		if(subCateName != null && !subCateName.isEmpty()) {
+			params.put("subCateName", subCateName);
+		}
+		List<MoimMainDto> searchDto = homeService.getsearchFunction(params);
+		model.addAttribute("searchDto", searchDto);
+		return "redirect:/test.do";
+	}
 	
 	@GetMapping("/detail.do")
 	@ResponseBody

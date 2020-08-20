@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sample.service.AlramService;
 import com.sample.vo.MoimAlram;
+import com.sample.vo.MoimMessage;
 import com.sample.vo.MoimUser;
 
 @Controller
@@ -69,6 +70,12 @@ public class AlramController {
 	
 	
 	/* 쪽지 관련 */
+	
+	// 쪽지 보내기
+//	@PostMapping("/addmessage.do")
+//	public String addMessage()
+	
+	// 쪽지함 조회하기
 	@GetMapping("/message.do")
 	@ResponseBody
 	public Map<String, Object> messageUser(HttpSession session) {
@@ -76,11 +83,11 @@ public class AlramController {
 		
 		Map<String, Object> messages = new HashMap<String, Object>();
 		
-		List<MoimAlram> sendMessages = alramService.sendMessages(user.getId());
+		List<MoimMessage> sendMessages = alramService.sendMessages(user.getId());
 		// 보낸 쪽지함
 		/*model.addAttribute("sendMessages", sendMessages);*/
 		messages.put("sendMessages", sendMessages);
-		List<MoimAlram> receiveMessages = alramService.receiveMessages(user.getId());
+		List<MoimMessage> receiveMessages = alramService.receiveMessages(user.getId());
 		// 받은 쪽지함
 		/*model.addAttribute("receiveMessages", receiveMessages);*/
 		messages.put("receiveMessages", receiveMessages);

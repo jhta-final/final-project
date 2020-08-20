@@ -127,14 +127,14 @@ public class MypageController {
 	public Map<String, Object> messageUser() {
 		Map<String, Object> messages = new HashMap<String, Object>();
 		
-		List<MoimAlram> sendMessages = alramService.sendMessages(user.getId());
+		//List<MoimAlram> sendMessages = alramService.sendMessages(user.getId());
 		// 보낸 쪽지함
 		/*model.addAttribute("sendMessages", sendMessages);*/
-		messages.put("sendMessages", sendMessages);
-		List<MoimAlram> receiveMessages = alramService.receiveMessages(user.getId());
+		//messages.put("sendMessages", sendMessages);
+		//List<MoimAlram> receiveMessages = alramService.receiveMessages(user.getId());
 		// 받은 쪽지함
 		/*model.addAttribute("receiveMessages", receiveMessages);*/
-		messages.put("receiveMessages", receiveMessages);
+		//messages.put("receiveMessages", receiveMessages);
 		
 		
 		return messages;
