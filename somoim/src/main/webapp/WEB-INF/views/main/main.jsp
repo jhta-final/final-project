@@ -83,7 +83,7 @@ h5 {
 </div>
 <!-- Swiper Finish -->
 <!-- 목록 -->
-<div style="padding-left:23px">
+<div style="padding-left:23px;margin-top: 35px;">
 <div class="row">
 	<div class="col-12">
 		<h1>${locationMoims[0].locationName }</h1>
@@ -224,22 +224,19 @@ $(function() {
 		$("#Like").toggle("fast");
 	}
 
-	var swiper = new Swiper('.swiper-container', {
-		spaceBetween : 30,
-		centeredSlides : true,
-		autoplay : {
-			delay : 2500,
-			disableOnInteraction : false,
-		},
-		pagination : {
-			el : '.swiper-pagination',
-			clickable : true,
-		},
-		navigation : {
-			nextEl : '.swiper-button-next',
-			prevEl : '.swiper-button-prev',
-		},
-	});
+	 var swiper = new Swiper('.swiper-container', {
+	      slidesPerView: 3,
+	      spaceBetween: 30,
+	      freeMode: true,
+	      autoplay: {
+	          delay: 2500,
+	          disableOnInteraction: false,
+	      },
+	      pagination: {
+	        el: '.swiper-pagination',
+	        clickable: true,
+	      }
+	    });
 	
 	// 모임 디테일 모달 창 
 	$(".home-card").click(function() {
