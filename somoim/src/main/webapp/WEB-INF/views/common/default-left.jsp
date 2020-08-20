@@ -18,11 +18,15 @@
 .sidenav a {
 	padding: 8px 8px 8px 8px;
 	text-decoration: none;
-	font-size: 20px;
+	font-size: 20px;	
 	color: gray;
 	display: block;
 	transition: 0.2s;
 }
+
+.navbar-nav .dropdown-menu {
+}
+
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
@@ -55,6 +59,31 @@
 }
 
 }
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu a::after {
+  transform: rotate(-90deg);
+  position: absolute;
+  right: 6px;
+  top: .8em;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: .1rem;
+  margin-right: .1rem;
+}
+
+.dropright .dropdown-toggle::after {
+    border-top: .3em solid transparent !important;
+    border-right: 0 !important;
+    border-bottom: 0.3em solid transparent !important;
+    border-left: 0.3em solid !important;
+}
+}
 </style>
 
 <div id="mySidenav" class="sidenav">
@@ -63,17 +92,39 @@
 			<a class="nav-link" href="/home.do">Home</a>
 		</li>
 		<li class="nav-item"><a class="nav-link" href="#">인기</a></li>
-		<li class="nav-item dropdown dropright">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          	카테고리
+
+        <li class="nav-item dropdown dropright">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown link
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			<a class="dropdown-item" href="#">게임/오락</a>
-			<a class="dropdown-item" href="#">사교/인맥</a>
-			<a class="dropdown-item" href="#">운동/스포츠</a>
-			<a class="dropdown-item" href="#">반려동물</a>
-			<a class="dropdown-item" href="#">문화/공연/축제</a>
-        </div>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li class="dropdown-submenu">
+            <a class="dropdown-item dropdown-toggle" href="#">Submenu</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Submenu action</a></li>
+              <li><a class="dropdown-item" href="#">Another submenu action</a></li>
+
+
+              <li class="dropdown-submenu">
+                <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                  <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-submenu">
+                <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+                  <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
       </li>
 	</ul>
 	<a class="btn" data-toggle="collapse" href="#collapseExample"
@@ -172,9 +223,22 @@
 </div>
 <script type="text/javascript">
 $(function() {
-	$("#nav-dropdown-button").click(function() {
-		$("#nav-dropdown-menu").css('display','show');
-	})
+	$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+		  if (!$(this).next().hasClass('show')) {
+		    $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
+		  }
+		  var $subMenu = $(this).next('.dropdown-menu');
+		  $subMenu.toggleClass('show');
+		  $subMenu.css('position','absolute')
+
+
+		  $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+		    $('.dropdown-submenu .show').removeClass('show');
+		  });
+
+
+		  return false;
+		});
 
 var coll = document.getElementsByClassName("collapsible");
 var i;
