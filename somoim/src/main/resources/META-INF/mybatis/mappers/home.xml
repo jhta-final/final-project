@@ -3,7 +3,24 @@
 
 <mapper namespace="com.sample.dao.HomeDao">
 
-	<!-- 검색기능 -->
+	<!-- 검색기능-->
+	<select id="searchFunction" parameterType="map" resultType="MainDto"> 
+	select 
+		title		as title,
+		content		as content
+	from
+		moim_main
+		<where>
+			<if test="title != null">
+				title like '%' || #{title} || '%'
+			</if>
+			<if test="content != null">
+				content like '%' || #{content} || '%'
+			</if>
+		</where>
+	</select>
+
+	<!-- 상세정보 -->
 	<select id="detailViewMoims" parameterType="long" resultType="DetailViewMoimsDto">
 		select
 			a.moim_no		as moimNo,

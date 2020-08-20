@@ -1,16 +1,27 @@
 package com.sample.web.controller;
 
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.sample.dto.MoimMainDto;
 import com.sample.service.AlramService;
 import com.sample.service.HomeService;
 import com.sample.vo.MoimUser;
+import com.sample.web.form.SearchForm;
 
 @Controller
 public class HomeController {
@@ -52,4 +63,22 @@ public class HomeController {
 		
 		return "main/main.tiles";
 	} 
+	@GetMapping("/search.do")
+	public String searchFunction(@RequestParam(value="title", required= false) String title,
+			@RequestParam(value="content", required= false) String content, 
+			Model model){
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		if(title != null && !title.isEmpty()) {
+			params.put("title", title);
+		}else {
+			System.out.println("검색어가 없습니다.");
+		}
+		if(content != null && !content.isEmpty()) {
+			params.put("content", content);
+		}
+		List<MoimMainDto> searchDto = homeService.getsearchFunction(params);
+		model.addAttribute("searchDto", searchDto);
+		return "";
+	}
 }

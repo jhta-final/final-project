@@ -1,6 +1,7 @@
 package com.sample.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.sample.dto.DetailViewMoimsDto;
 import com.sample.dto.MoimFollowDto;
@@ -41,8 +42,9 @@ public interface HomeDao {
 	
 	// 상세보기
 	List<DetailViewMoimsDto> detailViewMoims(long moimNo);
- 
 	
-	// 관심표시한 모임 표시
-//	List<MoimMainDto> attentionMoim(String userId);
+	// 검색조건
+	List<MoimMainDto> searchFunction(Map<String, Object> map);
+	
+ 
 }

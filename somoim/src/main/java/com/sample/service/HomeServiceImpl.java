@@ -1,6 +1,7 @@
 package com.sample.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -104,6 +105,12 @@ public class HomeServiceImpl implements HomeService{
 	public List<DetailViewMoimsDto> detailViewMoims(long moimNo) {
 		
 		return homeDao.detailViewMoims(moimNo);
+	}
+
+	@Override
+	public List<MoimMainDto> getsearchFunction(Map<String, Object> map) {
+		
+		return homeDao.searchFunction(map);
 	}
 
 }
