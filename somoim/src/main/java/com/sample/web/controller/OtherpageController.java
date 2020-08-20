@@ -1,6 +1,10 @@
 package com.sample.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimJoinUserMoimDto;
 import com.sample.service.MoimService;
 import com.sample.service.MypageService;
@@ -23,8 +28,8 @@ import com.sample.vo.MoimPhoto;
 import com.sample.vo.MoimUser;
 
 @Controller
-@RequestMapping("/friend")
-public class FriendsPageController {
+@RequestMapping("/other")
+public class OtherpageController {
 
 	@Autowired
 	MypageService mypageService;
@@ -35,39 +40,80 @@ public class FriendsPageController {
 	@Autowired
 	MoimService moimService;
 	
-	private MoimUser user = new MoimUser();
+	private MoimUser loginedUser = new MoimUser();
+	private MoimFollow moimFollow = new MoimFollow();
 	
 	@GetMapping("/info.do")
-	public String friendPage1(@RequestParam("userId") String foluserId, Model model) {
-		this.user = userService.getUserDetail(foluserId);
+	public String friendPage1(@RequestParam("userId") String foluserId, Model model, HttpSession session) {
+		this.loginedUser = (MoimUser)session.getAttribute("LOGIN_USER");
+		MoimUser otherUser = userService.getUserDetail(foluserId);
+		List<MoimFollowDto> followers = mypageService.allFollower(foluserId);
 		
-		model.addAttribute("friendUser", user);
+		MoimFollow moim = new MoimFollow();
+		moim.setFolUserId(foluserId);
+		moim.setUserId(loginedUser.getId());
+		this.moimFollow = moim;
 		
+		model.addAttribute("otherUser", otherUser);
+		model.addAttribute("followerCnt", followers.size());
 		return "friend/info.tiles";
 	}
 	
 		// 가입한모임
 		@GetMapping("/usermoim.do")
 		@ResponseBody
-		public List<MoimJoinUserMoimDto> joinMoims (){
-			
-			return mypageService.allJoinMoims(user.getId());
+		public Map<String, Object> joinMoims (){
+			Map<String, Object> infos = new HashMap<String, Object>();
+			long followYn = mypageService.followYn(moimFollow);
+			List<MoimJoinUserMoimDto> moims = mypageService.allJoinMoims(moimFollow.getFolUserId());
+			// 팔로우 상태일떄
+			if(followYn == 1) {
+				infos.put("status", "true");
+				infos.put("joinmoim", moims);
+			}
+			// 팔로우 상태가 아닐때
+			if(followYn == 0) {
+				infos.put("status", "false");
+			}
+			return infos;
 		}
 		
 		// 작성글
 		@GetMapping("/board.do")
 		@ResponseBody
-		public List<MoimBoard> userBoards (){
-			
-			return mypageService.boardsByUser(user.getId());
+		public Map<String, Object> userBoards (){
+			Map<String, Object> infos = new HashMap<String, Object>();
+			long followYn = mypageService.followYn(moimFollow);
+			List<MoimBoard> boards = mypageService.boardsByUser(moimFollow.getFolUserId());
+			// 팔로우 상태일떄
+			if(followYn == 1) {
+				infos.put("status", "true");
+				infos.put("boards", boards);
+			}
+			// 팔로우 상태가 아닐때
+			if(followYn == 0) {
+				infos.put("status", "false");
+			}
+			return infos;
 		}
 		
 		// 올린사진
 		@GetMapping("/photo.do")
 		@ResponseBody
-		public List<MoimPhoto> userPhotos () {
-			
-			return mypageService.photosByUser(user.getId());
+		public Map<String, Object> userPhotos () {
+			Map<String, Object> infos = new HashMap<String, Object>();
+			long followYn = mypageService.followYn(moimFollow);
+			List<MoimPhoto> photos = mypageService.photosByUser(moimFollow.getFolUserId());
+			// 팔로우 상태일떄
+			if(followYn == 1) {
+				infos.put("status", "true");
+				infos.put("photos", photos);
+			}
+			// 팔로우 상태가 아닐때
+			if(followYn == 0) {
+				infos.put("status", "false");
+			}
+			return infos;
 		}
 		
 		// 쪽지보내기
@@ -97,25 +143,6 @@ public class FriendsPageController {
 			alram.setMessage(follow.getUserId()+"님이 팔로우 신청을 하였습니다.");
 			alram.setUserId(follow.getFolUserId());
 			mypageService.AddAlram(alram);
-			
-			return "friend/info.tiles";
-		}
-		
-		// 모임초대하기
-		@PostMapping("/invitemoim.do")
-		public String inviteMoim(@ModelAttribute("message") MoimAlram message, Model model) {
-			// 내가 개설한 모임의 제목, 번호 찾기 (혹은 다 찾기)
-			// List<moimUser> users = moimService.findAdmin(message.gettoUser());
-			/* if (users.isEmpty()) {
-			 * return "friend/info.tiles?error=fail"
-			 * } else {
-			 * model.addAttribute("moim",users);
-			 * }
-			 */
-			MoimAlram alram = new MoimAlram();
-			alram.setType("모임초대");
-			alram.setMessage(message.getLoginUserId()+"님이 모임초대를 하였습니다.");
-			alram.setUserId(message.getUserId());
 			
 			return "friend/info.tiles";
 		}

@@ -40,4 +40,15 @@
 		values
 		(#{userId}, #{folUserId})
 	</insert>
+	
+	<select id="findFollower" parameterType="Follow" resultType="long">
+		select
+			count(*)
+		from
+			moim_follow
+		where
+			user_id = #{userId}
+		and
+			fol_user_id = #{folUserId}
+	</select>
 </mapper>

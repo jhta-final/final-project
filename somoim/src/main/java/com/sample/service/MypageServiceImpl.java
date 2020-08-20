@@ -68,4 +68,9 @@ public class MypageServiceImpl implements MypageService {
 		alramDao.insertMessage(moimAlram);
 		
 	}
+	
+	@Override
+	public long followYn(MoimFollow moimFollow) {
+		return followerDao.findFollower(moimFollow);
+	}
 }
