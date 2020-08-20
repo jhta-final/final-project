@@ -72,7 +72,7 @@
 			"<div class='col-3'><p>통계</p>	<div class='mx-auto'><table class='table-borderless' style='width:255px'>";
 		mypageInfo += "<colgroup><col width='50%'><col width='50%'></colgroup>";
 		mypageInfo += "<tr><th class='text-center'>가   입   일 </th><td><fmt:formatDate value='${LOGIN_USER.createdDate}'/></td></tr>";
-		mypageInfo += "<tr><th class='text-center'>팔로워 수</th><td>넣어야되</td></tr>";
+		mypageInfo += "<tr><th class='text-center'>팔로워 수</th><td>${followersCnt}</td></tr>";
 		mypageInfo += "</table></div></div></div>";
 		$mypageBody.append(mypageInfo);
 
@@ -164,6 +164,16 @@
 
 						})
 					}
+				}
+			})
+		})
+		$("#mypage-message").click(function () {
+			$.ajax({
+				type: "GET",
+				url: "/mypage/message.do",
+				dataType: "json",
+				success: function (message) {
+					console.log(message);
 				}
 			})
 		})

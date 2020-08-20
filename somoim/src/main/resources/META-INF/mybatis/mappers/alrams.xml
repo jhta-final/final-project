@@ -33,19 +33,28 @@
 	</update>
 	
 	<select id="selectAlrams" parameterType="string" resultType="Alram">
-		select
-	    alram_no        as alramNo,
-	    message         as message,
-	    type            as type,
-	    read_yn         as readYn,
-	    user_id         as userId,
-	    login_user_id   as loginUserId,
-	    content         as content,
-	    created_date    as createdDate
-		from
-		    moim_alram
-		where
-		    user_id = #{value}
+	<![CDATA[
+		select * from (
+		    select
+		            alram_no        as alramNo,
+		            message         as message,
+		            type            as type,
+		            read_yn         as readYn,
+		            user_id         as userId,
+		            login_user_id   as loginUserId,
+		            content         as content,
+		            created_date    as createdDate
+		            from
+		                moim_alram
+		            where
+		                user_id = #{value}
+		            and
+		                read_yn = 'N'
+		            order by
+		                alram_no desc
+		        )
+    	where rownum <= 5
+    ]]>
 	</select>
 	
 	<select id="getAllSendMessages" parameterType="string" resultType="Alram">

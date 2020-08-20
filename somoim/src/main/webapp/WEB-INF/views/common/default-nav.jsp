@@ -88,6 +88,7 @@
 		        <a class="nav-link dropdown-toggle-right" id="navbarDropdownMenu2" data-toggle="dropdown">
 		          <img src="/resources/profileImage/${LOGIN_USER.profileImage }" class="rounded-circle z-depth-0"
 		            alt="avatar image" height="35" width="35">
+		          <input id="userId" type="hidden" value="${LOGIN_USER.id }">
 		        </a>
 				<div class="dropdown-menu dropdown-menu-right">
 		          <a class="dropdown-item" href="/mypage/mypage.do">my page</a>
@@ -100,14 +101,14 @@
 				<a class="nav-link navbar-toggler-right" id="navbarDropdownMenu1" data-toggle="dropdown">
 		          <i class="fas fa-bell fa-2x" style="color: lightgray;"></i>
 		        </a>
-		        <div class="dropdown-menu dropdown-menu-right">
+		        <div id="alram-dropdown" class="dropdown-menu dropdown-menu-right">
 		        	<c:choose>
 		        		<c:when test="${empty alrams }">
 		        			<p style="margin: 0;">새 알림이 없습니다.</p>
 		        		</c:when>
 		        		<c:otherwise>
 				        	<c:forEach items="${alrams }" var="alram">
-				          		<a class="dropdown-item" href="#"><c:out value="${alram.message }"></c:out> </a>
+				          		<a data-alram-no="${alram.alramNo }" class="dropdown-item " href="#"><strong><c:out value="[${alram.type }]"></c:out></strong> <c:out value="${alram.message }"></c:out> </a>
 				            </c:forEach>
 		        		</c:otherwise>
 		        	</c:choose>
@@ -142,4 +143,43 @@
             }
         })
     }
+    
+$(function() {
+	
+	// 드롭다운 꺼지지 않게 하기
+	$("#alram-dropdown").click(function(event) {
+		event.stopPropagation();
+	});
+	
+	// 알림 읽은거 지우고 새로운거 띄우기
+	$("#alram-dropdown").on("click", "a", function() {
+		var alramNo = $(this).data("alram-no");
+		var userId = $("#userId").val();
+		
+		$.ajax({
+			type:"GET",
+			url:"/alram/read.do",
+			data: {
+				alramNo:alramNo,
+				userId:userId
+			},
+			dataType:"json",
+			success:function (alrams) {
+				var $dropdown = $("#alram-dropdown").empty();
+				
+				if(alrams.length == 0) {
+					var text = "<p style='margin: 0;'>새 알림이 없습니다.</p>"
+					$dropdown.append(text);
+					return;
+				}
+				
+				$.each(alrams, function(index, alram) {
+					var text = "<a data-alram-no='"+alram.alramNo+"' class='dropdown-item' href='#'><strong>["+alram.type+"]</strong>"+alram.message+"</a>"
+					
+					$dropdown.append(text);
+				});
+			}
+		})
+	});
+});
 </script>

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sample.service.AlramService;
 import com.sample.vo.MoimAlram;
@@ -51,5 +52,13 @@ public class AlramController {
 		alramService.addAlram(moimAlram);
 		
 		return "";
+	}
+	
+	// 알림 클릭 -> 삭제 후 다음 알림 뿌리기
+	@GetMapping("read.do")
+	@ResponseBody
+	public List<MoimAlram> show(@RequestParam("alramNo") long alramNo, @RequestParam("userId") String userId) {
+		alramService.readAlram(alramNo);
+		return alramService.getAlrams(userId);
 	}
 }
