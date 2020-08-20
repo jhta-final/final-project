@@ -27,5 +27,6 @@ public interface MypageService {
 	// 쪽지 인서트
 	void AddMessage(MoimAlram moimAlram);
 	
+	long followYn(MoimFollow moimFollow);
 	
 }
