@@ -12,7 +12,7 @@
 			</a>
 		</div>
 		<div style="width: 40%;">
-			<form class="form-inline my-1">
+			<form class="form-inline my-1" action="/test.do">
 				<div class="md-form form-sm my-0">
 					<input class="form-control form-control-sm" style="width: 500px;" type="text" placeholder="Search"
 						aria-label="Search">

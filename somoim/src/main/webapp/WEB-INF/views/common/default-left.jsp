@@ -194,9 +194,19 @@
 	</div>
 </div>
 <script type="text/javascript">
-<!--
+$(function() {
+	var action = 1;
+	$(".dropdown").click(function() {
+		if (action == 1) {
+			$('#Like').attr('class', 'fas fa-heart');
+			action = 2;
+		} else {
+			$('#Like').attr('class', 'far fa-heart');
+			action = 1;
+		}
+		$("#Like").toggle("fast");
+	}
 
-//-->
 var coll = document.getElementsByClassName("collapsible");
 var i;
 
@@ -211,4 +221,5 @@ for (i = 0; i < coll.length; i++) {
     } 
   });
 }
+})
 </script>
