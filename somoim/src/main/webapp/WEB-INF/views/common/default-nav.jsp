@@ -308,7 +308,7 @@
 					// 받은 쪽지 조회
 					if (messages.receiveMessages.length == 0) {
 						var text = "<tr>";
-						text += "<td colspan='4'>새로운 메시지가 없습니다.</td>";
+						text += "<td colspan='4'>새로운 쪽지가 없습니다.</td>";
 						text += "</tr>";
 						
 						$Rtbody.append(text);
@@ -333,7 +333,7 @@
 					// 보낸 쪽지 조회
 					if (messages.sendMessages.length == 0) {
 						var text = "<tr>";
-						text += "<td colspan='4'>보낸 메시지가 없습니다.</td>";
+						text += "<td colspan='4'>보낸 쪽지가 없습니다.</td>";
 						text += "</tr>";
 						
 						$Stbody.append(text);
