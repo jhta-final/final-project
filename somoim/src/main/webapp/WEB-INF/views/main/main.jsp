@@ -64,7 +64,7 @@ h5 {
 								<p class="ml-5" style="float: right"><span class="mr-3">${favolite.joinCount}/${favolite.headCount}</span> <i class="far fa-heart" id="Like"></i></p>
 							</h5>
 							<div class="text-right">
-							<small class="text-muted"><fmt:formatDate value="${favolite.createdDate}" /></small>
+								<small class="text-muted"><fmt:formatDate value="${favolite.createdDate}" /></small>
 					        </div>
 						</div>
 					</div>
@@ -121,7 +121,7 @@ h5 {
 							<p class="ml-5" style="float: right"><span class="mr-3">${category.joinCount }/${category.headCount }</span> <i class="far fa-heart"></i></p>
 						</div>
 						<div class="text-right">
-						<small class="text-muted"><fmt:formatDate value="${category.createdDate}" /></small>
+							<small class="text-muted"><fmt:formatDate value="${category.createdDate}" /></small>
 				        </div>
 					</div>
 				</div>
@@ -134,7 +134,7 @@ h5 {
 		<h1>전체모임</h1>
 		<div class="row home-body">
 			<c:forEach items="${allMoims }" var="moim">
-				<div class="card mb-4" >
+				<div class="card mb-4 home-card" >
 					<img class="card-img-top" src="/resources/home_images/9.jpg"
 						alt="Card image cap">
 					<div class="card-body">
