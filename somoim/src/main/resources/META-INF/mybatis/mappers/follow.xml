@@ -25,7 +25,9 @@
 			A.created_date as createdDate,
 			B.title		   as title,
 			B.image		   as image,
-			B.content	   as content
+			B.content	   as content,
+			B.join_count   as joinCount,
+			B.head_count   as headCount
 		from
 			moim_join_user A, moim_main B
 		where
@@ -40,4 +42,15 @@
 		values
 		(#{userId}, #{folUserId})
 	</insert>
+	
+	<select id="findFollower" parameterType="Follow" resultType="long">
+		select
+			count(*)
+		from
+			moim_follow
+		where
+			user_id = #{userId}
+		and
+			fol_user_id = #{folUserId}
+	</select>
 </mapper>

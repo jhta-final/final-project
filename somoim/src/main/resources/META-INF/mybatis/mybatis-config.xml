@@ -34,6 +34,7 @@
 		<typeAlias type="com.sample.dto.MoimFriends" alias="Friends"/>
 		<typeAlias type="com.sample.dto.MoimFollowDto" alias="MoimFollowDto"/>
 		<typeAlias type="com.sample.dto.DetailViewMoimsDto" alias="DetailViewMoimsDto"/>
+		<typeAlias type="com.sample.vo.MoimMessage" alias="Message"/>
 	</typeAliases>
 	
 	<mappers>
@@ -46,6 +47,7 @@
 		<mapper resource="META-INF/mybatis/mappers/follow.xml"/>
 		<mapper resource="META-INF/mybatis/mappers/friends.xml"/>
 		<mapper resource="META-INF/mybatis/mappers/alrams.xml"/>
+		<mapper resource="META-INF/mybatis/mappers/comment.xml"/>
 		<mapper resource="META-INF/mybatis/mappers/searchbycategory.xml"/>
 	</mappers>
 </configuration>

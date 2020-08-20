@@ -2,18 +2,24 @@ package com.sample.dto;
 
 import java.util.Date;
 
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class MoimJoinUserMoimDto {
 
 		// moim_join_user
 		private long moimNo;
 		private String userId;
 		private String userRole;
+		@JsonFormat(pattern="yyyy.MM.dd")
 		private Date createdDate;
 		
 		// moim_main
 		private String title;
 		private String image;
 		private String content;
+		private long joinCount;
+		private long headCount;
 		
 		public long getMoimNo() {
 			return moimNo;
@@ -57,5 +63,18 @@ public class MoimJoinUserMoimDto {
 		public void setContent(String content) {
 			this.content = content;
 		}
+		public long getJoinCount() {
+			return joinCount;
+		}
+		public void setJoinCount(long joinCount) {
+			this.joinCount = joinCount;
+		}
+		public long getHeadCount() {
+			return headCount;
+		}
+		public void setHeadCount(long headCount) {
+			this.headCount = headCount;
+		}
+		
 		
 }

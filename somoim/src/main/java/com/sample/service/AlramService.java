@@ -3,6 +3,7 @@ package com.sample.service;
 import java.util.List;
 
 import com.sample.vo.MoimAlram;
+import com.sample.vo.MoimMessage;
 
 public interface AlramService {
 
@@ -16,8 +17,11 @@ public interface AlramService {
 	void readAlram(long alramNo);
 	
 	// 보낸쪽지
-	List<MoimAlram> sendMessages(String userId);
+	List<MoimMessage> sendMessages(String userId);
 	
 	// 받은쪽지
-	List<MoimAlram> receiveMessages(String userId);
+	List<MoimMessage> receiveMessages(String userId);
+	
+	// 쪽지 보내기
+	void addMessage(MoimMessage moimMessage);
 }

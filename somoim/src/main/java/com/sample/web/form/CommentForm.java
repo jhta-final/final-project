@@ -1,6 +1,5 @@
 package com.sample.web.form;
 
-public class SearchForm {
+public class CommentForm {
 
-	
 }

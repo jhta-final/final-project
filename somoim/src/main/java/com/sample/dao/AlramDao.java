@@ -3,6 +3,7 @@ package com.sample.dao;
 import java.util.List;
 
 import com.sample.vo.MoimAlram;
+import com.sample.vo.MoimMessage;
 
 public interface AlramDao {
 
@@ -15,7 +16,10 @@ public interface AlramDao {
 	void updateAlram(long alramNo);
 	
 	// 보낸쪽지함
-	List<MoimAlram> getAllSendMessages(String userId);
+	List<MoimMessage> getAllSendMessages(String userId);
 	// 받은쪽지함
-	List<MoimAlram> getAllReceiveMessages(String userId);
+	List<MoimMessage> getAllReceiveMessages(String userId);
+	
+	// 쪽지 보내기
+	void insertMessageNew(MoimMessage moimMessage);
 }

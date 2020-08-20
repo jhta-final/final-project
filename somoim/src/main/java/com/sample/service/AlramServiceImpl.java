@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.dao.AlramDao;
 import com.sample.vo.MoimAlram;
+import com.sample.vo.MoimMessage;
 
 @Service
 @Transactional
@@ -36,14 +37,20 @@ public class AlramServiceImpl implements AlramService {
 	
 	// 보낸 쪽지
 	@Override
-	public List<MoimAlram> sendMessages(String userId) {
+	public List<MoimMessage> sendMessages(String userId) {
 		return alramDao.getAllSendMessages(userId);
 	}
 	
 	// 받은 쪽지
 	@Override
-	public List<MoimAlram> receiveMessages(String userId) {
+	public List<MoimMessage> receiveMessages(String userId) {
 		return alramDao.getAllReceiveMessages(userId);
+	}
+
+	// 쪽지 보내기
+	@Override
+	public void addMessage(MoimMessage moimMessage) {
+		alramDao.insertMessageNew(moimMessage);
 	}
 
 }

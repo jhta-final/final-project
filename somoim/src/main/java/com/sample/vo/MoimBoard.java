@@ -14,6 +14,7 @@ public class MoimBoard {
 	
 	@JsonFormat(pattern="yyyy. MM. dd HH:mm")
 	private Date createdDate;
+	
 	private long moimNo;
 	private String userId;
 	private long boardCateNo;

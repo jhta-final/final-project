@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sample.dto.MoimMainDto;
 import com.sample.service.BoardService;
 import com.sample.service.CategoryService;
+import com.sample.service.CommentService;
 import com.sample.service.MoimService;
 import com.sample.service.SubMoimService;
 import com.sample.vo.MoimBoard;
+import com.sample.vo.MoimComment;
 import com.sample.vo.MoimSubCate;
 import com.sample.vo.MoimSubMoim;
 import com.sample.vo.MoimUser;
@@ -44,6 +46,9 @@ public class MoimController {
 	
 	@Autowired
 	private BoardService boardService;
+	
+	@Autowired
+	private CommentService commentService;
 	
 	// 새 모임 등록
 	@PostMapping("/add.do")
@@ -187,11 +192,52 @@ public class MoimController {
 		model.addAttribute("loginedUser", user.getId());	
 		
 		model.addAttribute("board", boardService.getBoardByNo(boardNo));
+		model.addAttribute("comments", commentService.getCommentsByNo(boardNo));
 		
+		model.addAttribute("comment", new MoimComment());
 		
 		return "moim/boardDetail.tiles";
 	}
 	
+	// 모임 게시판 댓글
+	@PostMapping("comment.do")
+	public String boardComment(@ModelAttribute("comment") @Valid MoimComment moimComment, @RequestParam("boardNo") long boardNo) {
+		MoimComment comment = new MoimComment(); 
+		BeanUtils.copyProperties(moimComment, comment);
+		commentService.insertComment(comment);
+		
+		return "redirect:boardDetail.do?boardNo=" + boardNo;
+	}
 	
+	// 모임 게시판 글 수정 GET
+	@GetMapping("boardModify.do")
+	public String boardModify(@RequestParam("moimNo") long moimNo, @RequestParam("boardNo") long boardNo, Model model, HttpSession httpSession) {
+		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
+		model.addAttribute("loginedUser", user.getId());		
+		model.addAttribute("board", boardService.getBoardByNo(boardNo));
+		model.addAttribute("boardForm", new BoardForm());
+		
+		
+		return "moim/boardModify.tiles";
+	}
+	
+	// 모임 게시판 글 수정 POST
+	@PostMapping("boardModify.do")
+	public String boardModify(@RequestParam("boardNo") long boardNo, @ModelAttribute("boardForm") @Valid BoardForm boardForm) {
+		MoimBoard board = boardService.getBoardByNo(boardNo);
+		BeanUtils.copyProperties(boardForm, board);
+		
+		boardService.modifyBoard(board);
+		return "redirect:board.do?moimNo=" + board.getMoimNo();
+	}
+	
+	// 모임 게시판 삭제
+	@GetMapping("boardDelete.do")
+	public String boardDelete(@RequestParam("boardNo") long boardNo) {
+		MoimBoard board = boardService.getBoardByNo(boardNo);
+		System.out.println(board.toString());
+		boardService.deleteBoard(boardNo);
+		return "redirect:board.do?moimNo=" + board.getMoimNo();
+	}
 	
 }
