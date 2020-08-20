@@ -174,16 +174,14 @@ h5 {
 					</div>
 					<div class="row">
 						<div class="col-12" style="padding: 30px;">
-						<h3>${moimNo }제목제목</h3>
-							<p>0/6</p>
-							<p>내용내용내용</p>
-							<p><span><i class="fas fa-won-sign 2x"></i>10000원</span></p>
-							<p>좋아요수 : 5개</p>
-							<p><i class="fas fa-crown ml-2" style="color:#6699FF;"></i></p>
-							<p>모이는날 : 2020.10.19</p>
-							<p>만든날 : 2020.08.15</p>
-							<p>카테고리</p>
-							<p>모이는 위치</p>
+						<h3 id="detail-title"></h3>
+							<p id="detail-count"></p>
+							<p id="detail-content"></p>
+							<p><i class="fas fa-won-sign 2x"></i><span id="detail-fee"></span></p>
+							<p id="detail-likes"></p>
+							<p id="detail-premium"></p>
+							<p id="detail-joinDate">모이는날 : 2020.10.19</p>
+							<p id="detail-createDate">만든날 : 2020.08.15</p>
 						</div>
 					</div>
 			</div>
@@ -245,6 +243,35 @@ $(function() {
 	$(".home-card").click(function() {
 		var moimNo = $(this).data("no");
 		$("#myModal").modal('show');
+
+		$.ajax({
+			type: "GET",
+			url: "/detail.do",
+			data: {moimNo: moimNo},
+			dataType: "json",
+			success: function (moim) {
+				console.log(moim);
+				$("#detail-title").text(moim.moimMainDto.title)
+				$("#detail-count").text(moim.moimMainDto.joinCount + "/" + moim.moimMainDto.headCount)
+				$("#detail-content").text(moim.moimMainDto.content)
+				$("#detail-fee").text(moim.moimMainDto.fee + "원")
+				$("#detail-likes").text("좋아요수 : " + moim.moimMainDto.likes + "개")
+				$("#detail-joinDate").text("모이는날 : " + moim.moimMainDto.joinDate)
+				$("#detail-createDate").text("만든날 : " + moim.moimMainDto.createdDate)
+
+
+
+				if(moim.moimMainDto.premiumYn == 'Y') {
+					let premium = '<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>';
+					$("#detail-premium").append(premium);
+				} else {
+					$("#detail-premium").empty();
+				}
+
+
+			}
+		})
+
 	})
    
 });

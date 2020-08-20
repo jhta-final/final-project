@@ -21,6 +21,7 @@ public class HomeServiceImpl implements HomeService{
 	private HomeDao homeDao;
 	@Autowired
 	private MoimDao moimDao;
+	
 
 	// 전체 랜덤모임 조회
 	@Override
@@ -101,9 +102,9 @@ public class HomeServiceImpl implements HomeService{
 	}
 
 	@Override
-	public List<DetailViewMoimsDto> detailViewMoims(long moimNo) {
+	public DetailViewMoimsDto detailViewMoims(long moimNo) {
 		
-		return homeDao.detailViewMoims(moimNo);
+		return new DetailViewMoimsDto(moimDao.selectMoim(moimNo), moimDao.selectJoinUsers(moimNo));
 	}
 
 }
