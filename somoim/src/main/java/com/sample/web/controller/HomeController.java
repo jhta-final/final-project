@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sample.dto.DetailViewMoimsDto;
 import com.sample.service.AlramService;
 import com.sample.service.HomeService;
 import com.sample.vo.MoimUser;
@@ -52,4 +55,10 @@ public class HomeController {
 		
 		return "main/main.tiles";
 	} 
+	
+	@GetMapping("/detail.do")
+	@ResponseBody
+	public DetailViewMoimsDto getDetailViewMoims(@RequestParam("moimNo") long moimNo) {
+		return homeService.detailViewMoims(moimNo);
+	}
 }
