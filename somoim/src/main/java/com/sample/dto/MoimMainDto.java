@@ -3,6 +3,7 @@ package com.sample.dto;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sample.vo.MoimUser;
 
 public class MoimMainDto {
@@ -18,8 +19,12 @@ public class MoimMainDto {
 	private long likes;
 	private String premiumYn;
 	private String deleteYn; 
+	
+	@JsonFormat(pattern="yyyy. MM. dd HH:mm")
 	private Date joinDate;
+	@JsonFormat(pattern="yyyy. MM. dd HH:mm")
 	private Date createdDate;
+	
 	private long subCateNo;
 	private String subCateName;
 	private long locationNo;
