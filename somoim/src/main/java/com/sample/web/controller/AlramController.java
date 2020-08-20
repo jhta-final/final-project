@@ -1,6 +1,8 @@
 package com.sample.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,6 +24,8 @@ public class AlramController {
 
 	@Autowired
 	private AlramService alramService;
+	
+	/* 알람 관련 */
 	
 	// 관리자 -> 사용자 경고 추가
 	@GetMapping("warning.do")
@@ -60,5 +64,28 @@ public class AlramController {
 	public List<MoimAlram> show(@RequestParam("alramNo") long alramNo, @RequestParam("userId") String userId) {
 		alramService.readAlram(alramNo);
 		return alramService.getAlrams(userId);
+	}
+	
+	
+	
+	/* 쪽지 관련 */
+	@GetMapping("/message.do")
+	@ResponseBody
+	public Map<String, Object> messageUser(HttpSession session) {
+		MoimUser user = (MoimUser) session.getAttribute("LOGIN_USER");
+		
+		Map<String, Object> messages = new HashMap<String, Object>();
+		
+		List<MoimAlram> sendMessages = alramService.sendMessages(user.getId());
+		// 보낸 쪽지함
+		/*model.addAttribute("sendMessages", sendMessages);*/
+		messages.put("sendMessages", sendMessages);
+		List<MoimAlram> receiveMessages = alramService.receiveMessages(user.getId());
+		// 받은 쪽지함
+		/*model.addAttribute("receiveMessages", receiveMessages);*/
+		messages.put("receiveMessages", receiveMessages);
+		
+		
+		return messages;
 	}
 }
