@@ -17,6 +17,9 @@
  	height: 300px;
  	margin: 12px;
 }
+.home-card:hover {
+	cursor: pointer;
+}
 .card-img-top {
 	width: 300px;
 	height: 200px;
@@ -54,8 +57,7 @@ h5 {
 			<div class="swiper-wrapper">
 				<c:forEach items="${favoliteMoims }" var="favolite">
 				<div class="swiper-slide">
-					<a href="#myModal" data-toggle="modal" data-no="${favolite.moimNo }"> 
-					<div class="card mb-4" id="card-list">
+					<div class="card mb-4 home-card" id="card-list" data-no="${favolite.moimNo }">
 						<img class="card-img-top" src="/resources/home_images/11.png"
 							alt="Card image cap">
 						<div class="card-body">
@@ -68,7 +70,6 @@ h5 {
 					        </div>
 						</div>
 					</div>
-					</a>
 				</div>
 				</c:forEach>
 			</div>
@@ -88,7 +89,7 @@ h5 {
 		<h1>${locationMoims[0].locationName }</h1>
 		<div class="row home-body">
 			<c:forEach items="${locationMoims }" var="location">
-				<div class="card mb-4 home-card">
+				<div class="card mb-4 home-card" data-no="${location.moimNo }">
 					<img class="card-img-top" src="/resources/home_images/1.jpeg"
 						alt="Card image cap">
 					<div class="card-body">
@@ -112,7 +113,7 @@ h5 {
 		<h1>${mainCategoryMoims[1].mainCateName }</h1>
 		<div class="row home-body">
 			<c:forEach items="${mainCategoryMoims }" var="category">
-				<div class="card mb-4 home-card">
+				<div class="card mb-4 home-card" data-no="${category.moimNo }">
 					<img class="card-img-top" src="/resources/home_images/7.jpg"
 						alt="Card image cap">
 					<div class="card-body">
@@ -134,7 +135,7 @@ h5 {
 		<h1>전체모임</h1>
 		<div class="row home-body">
 			<c:forEach items="${allMoims }" var="moim">
-				<div class="card mb-4 home-card" >
+				<div class="card mb-4 home-card" data-no="${moim.moimNo }">
 					<img class="card-img-top" src="/resources/home_images/9.jpg"
 						alt="Card image cap">
 					<div class="card-body">
@@ -239,63 +240,12 @@ $(function() {
 			prevEl : '.swiper-button-prev',
 		},
 	});
-
-	var appendNumber = 4;
-	var prependNumber = 1;
-	var swiper = new Swiper('.swiper-container', {
-		slidesPerView : 3,
-		centeredSlides : true,
-		spaceBetween : 30,
-		autoplay : {
-			delay : 2500,
-			disableOnInteraction : false,
-		},
-		pagination : {
-			el : '.swiper-pagination',
-			clickable : true,
-		},
-		navigation : {
-			nextEl : '.swiper-button-next',
-			prevEl : '.swiper-button-prev',
-		},
-	});
-	document.querySelector('.prepend-2-slides').addEventListener(
-			'click',
-			function(e) {
-				e.preventDefault();
-				swiper.prependSlide([
-						'<div class="swiper-slide">Slide ' + (--prependNumber)
-								+ '</div>',
-						'<div class="swiper-slide">Slide ' + (--prependNumber)
-								+ '</div>' ]);
-			});
-	document.querySelector('.prepend-slide').addEventListener(
-			'click',
-			function(e) {
-				e.preventDefault();
-				swiper.prependSlide('<div class="swiper-slide">Slide '
-						+ (--prependNumber) + '</div>');
-			});
-	document.querySelector('.append-slide').addEventListener(
-			'click',
-			function(e) {
-				e.preventDefault();
-				swiper.appendSlide('<div class="swiper-slide">Slide '
-						+ (++appendNumber) + '</div>');
-			});
-	document.querySelector('.append-2-slides').addEventListener(
-			'click',
-			function(e) {
-				e.preventDefault();
-				swiper.appendSlide([
-						'<div class="swiper-slide">Slide ' + (++appendNumber)
-								+ '</div>',
-						'<div class="swiper-slide">Slide ' + (++appendNumber)
-								+ '</div>' ]);
-			});
 	
 	// 모임 디테일 모달 창 
-	$("#home-moim-body ")
+	$(".home-card").click(function() {
+		var moimNo = $(this).data("no");
+		$("#myModal").modal('show');
+	})
    
 });
 

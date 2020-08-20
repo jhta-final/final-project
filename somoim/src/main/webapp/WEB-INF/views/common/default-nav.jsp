@@ -97,7 +97,7 @@
 				</div>
 			</div>
 			<div class="dropdown" style="float: right;text-align: right">
-				<a class="nav-link navbar-toggler-right dropdown-toggle dropdown-toggle-right" id="navbarDropdownMenu1" data-toggle="dropdown">
+				<a class="nav-link navbar-toggler-right" id="navbarDropdownMenu1" data-toggle="dropdown">
 		          <i class="fas fa-bell fa-2x" style="color: lightgray;"></i>
 		        </a>
 		        <div class="dropdown-menu dropdown-menu-right">
