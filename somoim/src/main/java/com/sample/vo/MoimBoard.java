@@ -2,6 +2,8 @@ package com.sample.vo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class MoimBoard {
 
 	private long boardNo;
@@ -9,6 +11,8 @@ public class MoimBoard {
 	private String content;
 	private long views;
 	private String deleteYn;
+	
+	@JsonFormat(pattern="yyyy. MM. dd HH:mm")
 	private Date createdDate;
 	private long moimNo;
 	private String userId;
