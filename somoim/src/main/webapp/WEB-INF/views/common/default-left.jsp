@@ -47,42 +47,38 @@
 		font-size: 18px;
 	}
 
-.collapse{
-  background-color: #777;
-  color: white;
-  cursor: pointer;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-	height: 200px;
+	.collapse{
+	  background-color: #777;
+	  color: white;
+	  cursor: pointer;
+	  width: 100%;
+	  border: none;
+	  text-align: left;
+	  outline: none;
+		height: 200px;
+	}
 }
 
+#left-main-dropdown {
+	padding: 15px 20px;
+	transform: translate3d(212px, 12px, 0px) !important; 
 }
+
 .dropdown-submenu {
   position: relative;
 }
 
 .dropdown-submenu a::after {
-  transform: rotate(-90deg);
   position: absolute;
   right: 6px;
   top: .8em;
 }
 
 .dropdown-submenu .dropdown-menu {
-  top: 0;
+  top: 10px;
   left: 100%;
   margin-left: .1rem;
   margin-right: .1rem;
-}
-
-.dropright .dropdown-toggle::after {
-    border-top: .3em solid transparent !important;
-    border-right: 0 !important;
-    border-bottom: 0.3em solid transparent !important;
-    border-left: 0.3em solid !important;
-}
 }
 </style>
 
@@ -95,36 +91,50 @@
 
         <li class="nav-item dropdown dropright">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
+          카테고리
         </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
+        <ul id="left-main-dropdown" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <li class="dropdown-submenu">
-            <a class="dropdown-item dropdown-toggle" href="#">Submenu</a>
+            <a class="dropdown-item dropdown-toggle" href="#">게임/오락</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Submenu action</a></li>
-              <li><a class="dropdown-item" href="#">Another submenu action</a></li>
-
-
-              <li class="dropdown-submenu">
-                <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
-                  <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-                </ul>
-              </li>
-              <li class="dropdown-submenu">
-                <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
-                  <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-                </ul>
-              </li>
-            </ul>
+              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700011">리그오브레전드</a></li>
+              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700012">배틀그라운드</a></li>
+              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700013">피파온라인4</a></li>
+             </ul>
+          </li>
+          <li class="dropdown-submenu">
+            <a class="dropdown-item dropdown-toggle" href="#">사교/인맥</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700014">싱글/연애</a></li>
+              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700015">술/커피/차</a></li>
+              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700016">맛집/미식회</a></li>
+             </ul>
+          </li>
+          <li class="dropdown-submenu">
+            <a class="dropdown-item dropdown-toggle" href="#">운동/스포츠</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700017">축구/풋살</a></li>
+              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700018">농구</a></li>
+              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700019">스케이트/인라인</a></li>
+             </ul>
+          </li>
+          <li class="dropdown-submenu">
+            <a class="dropdown-item dropdown-toggle" href="#">반려동물</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700020">강아지</a></li>
+              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700021">고양이</a></li>
+              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700022">파충류</a></li>
+             </ul>
+          </li>
+          <li class="dropdown-submenu">
+            <a class="dropdown-item dropdown-toggle" href="#">문화/공연/축제</a>
+            <ul class="dropdown-menu">
+      		  <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700023">공연/연극</a></li>
+              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700024">영화</a></li>
+              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700025">파티/페스티벌</a></li>
+             </ul>
           </li>
         </ul>
-      </li>
       </li>
 	</ul>
 	<a class="btn" data-toggle="collapse" href="#collapseExample"
