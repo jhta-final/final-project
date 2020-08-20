@@ -38,7 +38,7 @@
 		update
 			moim_user
 		set
-			user_password = #{password},
+			nickname = #{nickname},
 			tel = #{tel},
 			email = #{email},
 			user_content = #{content},
