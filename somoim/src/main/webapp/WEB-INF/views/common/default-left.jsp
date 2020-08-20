@@ -3,7 +3,7 @@
 /* The side navigation menu */
 .sidenav {
 	height: 100%; /* 100% Full-height */
-	width: 288px; /* 0 width - change this with JavaScript */
+	width: 317px; /* 0 width - change this with JavaScript */
 	position: fixed; /* Stay in place */
 	z-index: 1; /* Stay on top */
 	left: 0px;

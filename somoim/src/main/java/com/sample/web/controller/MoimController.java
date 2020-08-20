@@ -179,4 +179,19 @@ public class MoimController {
 		boardService.addNewBoard(board);
 		return "redirect:board.do?moimNo=" + board.getMoimNo();
 	}
+	
+	// 모임 게시판 디테일
+	@GetMapping("boardDetail.do")
+	public String boardDetail(@RequestParam("boardNo") long boardNo, Model model, HttpSession httpSession) {
+		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
+		model.addAttribute("loginedUser", user.getId());	
+		
+		model.addAttribute("board", boardService.getBoardByNo(boardNo));
+		
+		
+		return "moim/boardDetail.tiles";
+	}
+	
+	
+	
 }
