@@ -21,6 +21,7 @@ public interface MypageService {
 	
 	List<MoimPhoto> photosByUser(String userId);
 	
+	
 	void AddAlram(MoimAlram moimAlram);
 	
 	// 쪽지 인서트

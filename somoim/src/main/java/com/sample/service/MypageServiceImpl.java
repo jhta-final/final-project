@@ -58,6 +58,7 @@ public class MypageServiceImpl implements MypageService {
 		return photoDao.getPhotosByUserId(userId);
 	}
 	
+	
 	@Override
 	public void AddAlram(MoimAlram moimAlram) {
 		alramDao.insertAlram(moimAlram);
@@ -68,4 +69,5 @@ public class MypageServiceImpl implements MypageService {
 		alramDao.insertMessage(moimAlram);
 		
 	}
+	
 }
