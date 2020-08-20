@@ -48,6 +48,8 @@
       -webkit-align-items: center;
       align-items: center;
     }
+    
+    .clearfix:after{content:"";display:block;clear:both}
 
 </style>
 </head>

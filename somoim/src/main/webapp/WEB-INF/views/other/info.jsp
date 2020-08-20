@@ -11,9 +11,15 @@
 		height: 50px;
 	}
 
-	.card {
-		width: 200px;
-		height: 200px;
+	#otherpage-body .card {
+		width: 300px;
+		border: 0;
+		position: relative;
+		margin-right: 35px;
+	}
+
+	#otherpage-body .card-body {
+		padding: 0;
 	}
 </style>
 <div class="ml-5 mt-3">
@@ -57,8 +63,8 @@
 		</nav>
 	</div>
 </div>
-<div class="row" style="background: rgba(211, 211, 211, 0.03); height: 500px; padding: 30px 35px;">
-	<div class="col-9">
+<div class="row" style="padding: 30px 35px;">
+	<div class="col-12">
 		<div id="otherpage-body">
 		
 		</div>
@@ -69,6 +75,13 @@
 	$(function () {
 		var $otherpageBody = $("#otherpage-body");
 
+		$("#otherpage-nav .nav-link").click(function () {
+			$("#otherpage-nav .nav-link").removeClass('active');
+			$(this).addClass('active');
+			$otherpageBody.empty();
+		})
+
+		// 사용자 정보 저장
 		var otherpageInfo =
 			"<div><div class='row'><div class='col-9'><div class='pb-4' style='border-bottom: 1px solid darkgray'>";
 			otherpageInfo += "<p>Profile</p><div class='mx-auto'><table class='table-borderless' style='width:700px'>";
@@ -87,41 +100,44 @@
 			otherpageInfo += "</table></div></div></div>";
 		$otherpageBody.append(otherpageInfo);
 
-		$("#otherpage-nav .nav-link").click(function () {
-			$("#otherpage-nav .nav-link").removeClass('active');
-			$(this).addClass('active');
-			$otherpageBody.empty();
-		})
 
 		$("#otherpage-info").click(function () {
 			$otherpageBody.append(otherpageInfo);
 		})
+		
 		$("#otherpage-mymoim").click(function () {
 			$.ajax({
 				type: "GET",
 				url: "/other/usermoim.do",
 				dataType: "json",
-				success: function (joinmoim) {
-					if(joinmoim.status == 'false'){
+				success: function (joinmoims) {
+					if(joinmoims.status == 'false'){
 						var empty = "<div>비공개입니다. 내용을 보실려면 팔로우하세요</div>"
 						$otherpageBody.append(empty);
-					} else{
-						$.each(joinmoim.joinmoim, function (index,moim) {
-							var tr = "<div class='card'>";
-							tr += "<a href='/moim/moim.do?moimNo=" + moim.moimNo + "'>";
-							tr +=
-								"<img class='card-img-top' src='/resources/home_images/9.jpg' alt='Card image cap'>";
-							tr += "<div class='card-body'>";
-							tr += "<h5 class='card-title'>" + moim.title + "</h5>"
-							tr += "<p class='card-text'>" + moim.content + "</p>";
-							tr += "</div><div class='card-footer'>";
-							tr += "<small class='text-muted'>" + moim.createdDate + "</small>";
-							tr += "</div></a></div>";
-
-							$otherpageBody.append(tr);
-						
-						})
+						return;
 					}
+					
+					if (joinmoims.joinmoim.length == 0) {
+						var empty = "<div><p>내가 가입한 모임이 존재하지않습니다.</p></div>";
+						$otherpageBody.append(empty);
+						return;
+					}
+					
+					var moimPage = "<div class='clearfix'>";
+
+					$.each(joinmoims.joinmoim, function (index,moim) {
+						moimPage +=
+							"<div class='card float-left'><img class='card-img-top' src='/resources/index_images/10.jpg' alt='Card image'>";
+						moimPage += "<div class='card-body mt-2'><div class='card-title'><div class='clearfix'>";
+						moimPage +=
+							"<span class='float-left'>"+moim.title+"</span><span class='float-right'>"+moim.joinCount+"/"+moim.headCount+"<i class='far fa-heart ml-4'></i></span>";
+						moimPage +=
+							"	</div></div><div class='text-right'><small class='text-muted'>2020.11.22</small>";
+						moimPage += "</div></div>	</div>";
+
+					})
+					moimPage += "</div>";
+					$otherpageBody.append(moimPage);
 				}
 			})
 		})
@@ -167,6 +183,7 @@
 				url: "/other/board.do",
 				dataType: "json",
 				success: function (boards) {
+					console.log(boards);
 					if (boards.status == 'false') {
 						var empty = "<div>비공개입니다. 내용을 보실려면 팔로우하세요</div>"
 							$otherpageBody.append(empty);

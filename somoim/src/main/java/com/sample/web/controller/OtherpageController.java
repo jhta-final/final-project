@@ -56,7 +56,7 @@ public class OtherpageController {
 		
 		model.addAttribute("otherUser", otherUser);
 		model.addAttribute("followerCnt", followers.size());
-		return "friend/info.tiles";
+		return "other/info.tiles";
 	}
 	
 		// 가입한모임
@@ -129,7 +129,7 @@ public class OtherpageController {
 			mypageService.AddAlram(alram);
 			
 			mypageService.AddMessage(message);
-			return "friend/info.tiles";
+			return "other/info.tiles";
 		}
 		
 		// 팔로우하기
@@ -144,7 +144,7 @@ public class OtherpageController {
 			alram.setUserId(follow.getFolUserId());
 			mypageService.AddAlram(alram);
 			
-			return "friend/info.tiles";
+			return "other/info.tiles";
 		}
 		
 		

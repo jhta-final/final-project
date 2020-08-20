@@ -12,12 +12,12 @@
 			</a>
 		</div>
 		<div style="width: 40%;">
-			<form class="form-inline my-1" action="/test.do">
+			<form class="form-inline my-1" action="/test.do" method="get">
 				<div class="md-form form-sm my-0">
 					<input class="form-control form-control-sm" style="width: 500px;" type="text" placeholder="Search"
 						aria-label="Search">
 				</div>
-				<button class="btn btn-outline-primary btn-sm ml-1 my-0" type="submit">Search</button>
+				<button class="btn btn-outline-primary btn-sm ml-1 my-0" type="submit" >Search</button>
 				<div class="dropdown">
 					<button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle" data-toggle="dropdown"></button>
 					<div class="dropdown-menu dropdown-menu-right" style="width: 595px;">
