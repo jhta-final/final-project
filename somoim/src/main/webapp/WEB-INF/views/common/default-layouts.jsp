@@ -64,7 +64,7 @@
 		<div class="left col-2">
 			<tiles:insertAttribute name="left" />
 		</div>
-		<div class="col-10 my-content">
+		<div class="my-content col-10">
 			<tiles:insertAttribute name="content" />
 		</div>
 	</div>
@@ -75,9 +75,9 @@ $(function() {
 	function viewSomething() {
 	       if ( action == 1 ) {
 	           action = 2;
-	           $("#mySidenav").css("left", "-317px");
+	           $(".left").attr("class", "left col-2");
 	       } else {
-	    	   $("#mySidenav").css("left", "0px");
+	           $(".left").attr("class", "left");
 	           action = 1;
 	       }
 	       $("#sideMenu").toggle("fast");
@@ -89,15 +89,11 @@ $(function() {
 	function viewSomething() {
 	       if ( action == 1 ) {
 	    	   $(".my-content").attr('class','my-content col-12');
-	    	   $("#mySidenav").attr('class', "sidenav");
 	           $("#mySidenav").css("left", "-317px");
-	           $("#test1").attr("class", "");
 	           action = 2;
 	       } else {
 	    	   $(".my-content").attr('class','my-content col-10');
-	    	   $("#mySidenav").attr('class', "sidenav col-2");
 	    	   $("#mySidenav").css("left", "0px");
-	           $("#test1").attr("class", "ml-4");
 	           action = 1;
 	       }
 	}

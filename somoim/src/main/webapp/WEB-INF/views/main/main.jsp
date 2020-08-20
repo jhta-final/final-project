@@ -10,19 +10,20 @@
 	border: none;
 }
 .home-body {
-	padding: 16px;
+	margin-left: 3px;
+	padding: 35px;
 }
 .home-card {
- 	width: 307px;
- 	height: 300px;
- 	margin: 12px;
+ 	width: 345px;
+ 	height: 330px;
+ 	margin: 8px;
 }
 .home-card:hover {
 	cursor: pointer;
 }
 .card-img-top {
-	width: 300px;
-	height: 200px;
+	width: 343px;
+	height: 250px;
 }
 h5 {
 	font-size: 15px;
@@ -35,19 +36,6 @@ h5 {
 	display: inline-block;
 	margin-bottom: 0px;
 }
-
-.card-text{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 300px;
-  height: 20px;
-  font-size: 10px;
-  line-height: 1;
-  margin-bottom:0px;
-}
-
-
 </style>
 	
 <!-- Swiper -->
@@ -83,7 +71,7 @@ h5 {
 </div>
 <!-- Swiper Finish -->
 <!-- 목록 -->
-<div style="padding-left:23px;margin-top: 35px;">
+<div class="" style="margin-top: 35px;">
 <div class="row">
 	<div class="col-12">
 		<h1>${locationMoims[0].locationName }</h1>
