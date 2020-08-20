@@ -33,5 +33,17 @@ public class AlramServiceImpl implements AlramService {
 	public void readAlram(long alramNo) {
 		alramDao.updateAlram(alramNo);
 	}
+	
+	// 보낸 쪽지
+	@Override
+	public List<MoimAlram> sendMessages(String userId) {
+		return alramDao.getAllSendMessages(userId);
+	}
+	
+	// 받은 쪽지
+	@Override
+	public List<MoimAlram> receiveMessages(String userId) {
+		return alramDao.getAllReceiveMessages(userId);
+	}
 
 }

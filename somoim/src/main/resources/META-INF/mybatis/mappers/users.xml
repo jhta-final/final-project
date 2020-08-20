@@ -50,8 +50,12 @@
 	
 	<!-- 유저 ID삭제 -->
 	<delete id="deleteUser" parameterType="string">
-		delete from moim_user
-		where user_id = #{value}
+		update
+			moim_user
+		set
+			delete_yn = 'Y'
+		where
+			user_id = #{id}
 	</delete>
 	
 	<insert id="insertUserCate" parameterType="UserCate">

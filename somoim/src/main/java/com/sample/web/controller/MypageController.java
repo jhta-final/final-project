@@ -16,13 +16,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimJoinUserMoimDto;
+import com.sample.service.AlramService;
 import com.sample.service.MypageService;
 import com.sample.service.UserService;
+import com.sample.vo.MoimAlram;
 import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimPhoto;
 import com.sample.vo.MoimUser;
@@ -38,6 +41,9 @@ public class MypageController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	AlramService alramService;
+	
 	private MoimUser user = new MoimUser();
 	
 	
@@ -46,6 +52,7 @@ public class MypageController {
 		this.user = (MoimUser)session.getAttribute("LOGIN_USER");
 		List<MoimFollowDto> followers = mypageService.allFollower(user.getId());
 		model.addAttribute("followers", followers);
+		model.addAttribute("followersCnt", followers.size());
 		
 		return "mypage/mypage.tiles";
 	}
@@ -99,5 +106,29 @@ public class MypageController {
 		modifyUser.setProfileImage(filename);
 		userService.modifyUser(modifyUser);
 		return "mypage/mypage.tiles?modify=success";
+	}
+	
+	// 회원탈퇴
+	@PostMapping("/delete.do")
+	public String deleteUser (@RequestParam("password")String password) {
+		 if(password.equals(user.getPassword())) {
+	         userService.deleteUser(user.getId());
+	         return "mypage/mypage.tiles?delete=success";
+	      } else {
+	         return "mypage/mypage.tiles?delete=fail";         
+	      }
+	}
+	
+	// 쪽지합
+	@GetMapping("/message.do")
+	public String messageUser(Model model) {
+		List<MoimAlram> sendMessages = alramService.sendMessages(user.getId());
+		// 보낸 쪽지함
+		model.addAttribute("sendMessages", sendMessages);
+		List<MoimAlram> receiveMessages = alramService.receiveMessages(user.getId());
+		// 받은 쪽지함
+		model.addAttribute("receiveMessages", receiveMessages);
+		
+		return "message.do";
 	}
 }
