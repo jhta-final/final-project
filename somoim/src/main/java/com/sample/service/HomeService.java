@@ -1,6 +1,7 @@
 package com.sample.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.sample.dto.DetailViewMoimsDto;
 import com.sample.dto.MoimFollowDto;
@@ -34,5 +35,8 @@ public interface HomeService {
 	
 	// 상세정보 보기
 	DetailViewMoimsDto detailViewMoims(long moimNo);
+	
+	// 검색조건
+	List<MoimMainDto> getsearchFunction(Map<String, Object> map);
 	
 }
