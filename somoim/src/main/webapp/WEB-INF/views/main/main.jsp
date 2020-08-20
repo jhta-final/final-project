@@ -59,14 +59,13 @@ h5 {
 						<img class="card-img-top" src="/resources/home_images/11.png"
 							alt="Card image cap">
 						<div class="card-body">
-								<h5 class="card-title">
-									<c:out value="${favolite.title }" />
-									<p class="ml-5" style="float: right"><span class="mr-3">${favolite.joinCount}/${favolite.headCount}</span> <i class="far fa-heart" id="Like"></i></p>
-								</h5>
-								<div class="text-right">
-								<small class="text-muted"><fmt:formatDate value="${favolite.createdDate}" /></small>
-						          
-						        </div>
+							<h5 class="card-title">
+								<c:out value="${favolite.title }" />
+								<p class="ml-5" style="float: right"><span class="mr-3">${favolite.joinCount}/${favolite.headCount}</span> <i class="far fa-heart" id="Like"></i></p>
+							</h5>
+							<div class="text-right">
+							<small class="text-muted"><fmt:formatDate value="${favolite.createdDate}" /></small>
+					        </div>
 						</div>
 					</div>
 					</a>
@@ -87,7 +86,7 @@ h5 {
 <div class="row">
 	<div class="col-12">
 		<h1>${locationMoims[0].locationName }</h1>
-		<div class="mb-4">
+		<div class="row home-body">
 			<c:forEach items="${locationMoims }" var="location">
 				<div class="card mb-4 home-card">
 					<img class="card-img-top" src="/resources/home_images/1.jpeg"
@@ -130,9 +129,10 @@ h5 {
 		</div>
 	</div>
 </div>
-		
+<div class="row">
+	<div class="col-12">
 		<h1>전체모임</h1>
-		<div class="row">
+		<div class="row home-body">
 			<c:forEach items="${allMoims }" var="moim">
 				<div class="card mb-4" >
 					<img class="card-img-top" src="/resources/home_images/9.jpg"
@@ -151,7 +151,9 @@ h5 {
 		</div>
 	</div>
 </div>
+</div>
 
+<!-- 모달창 -->
 <div class="modal fade" id="myModal">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
