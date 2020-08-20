@@ -39,11 +39,11 @@
         <div class="container border" style="margin-bottom: 20px; padding-top: 10px;">
             <h3 class="mt-4">${board.title}</h3>
             <div class="row">
-                <div class="ml-3">
+                <div class="ml-3" style="width: 10%">
                     <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
                          class="rounded-circle" alt="avatar image" height="55px">
                 </div>
-                <div class="ml-4">
+                <div class="ml-4" style="width: 80%">
                     <div class="row">
                         <span>${board.userId}</span>
                     </div>
@@ -51,8 +51,16 @@
                         <span>${board.createdDate}</span><span class="ml-3">조회 ${board.views}</span>
                     </div>
                 </div>
-                <div class="text-right" style="width:50%">
-                    <i class="fas fa-ellipsis-v" style="color: gray"></i>
+                <div style="float: right">
+                    <div class="dropdown" style="float: right;text-align: right">
+                        <a data-toggle="dropdown">
+                            <i class="fas fa-ellipsis-v" style="color: gray"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">수정</a>
+                            <a class="dropdown-item bg-danger" href="#">삭제</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <hr>
