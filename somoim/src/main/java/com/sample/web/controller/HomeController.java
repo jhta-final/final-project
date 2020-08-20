@@ -12,19 +12,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sample.dto.MoimMainDto;
-=======
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sample.dto.DetailViewMoimsDto;
->>>>>>> ea40b9a3ec3b5bc132d91b50288df65cb0be49d2
 import com.sample.service.AlramService;
 import com.sample.service.HomeService;
 import com.sample.vo.MoimUser;
@@ -70,7 +68,7 @@ public class HomeController {
 		
 		return "main/main.tiles";
 	} 
-<<<<<<< HEAD
+
 	@GetMapping("/search.do")
 	public String searchFunction(@RequestParam(value="title", required= false) String title,
 			@RequestParam(value="content", required= false) String content, 
@@ -88,12 +86,12 @@ public class HomeController {
 		List<MoimMainDto> searchDto = homeService.getsearchFunction(params);
 		model.addAttribute("searchDto", searchDto);
 		return "";
-=======
+
+	}
 	
 	@GetMapping("/detail.do")
 	@ResponseBody
 	public DetailViewMoimsDto getDetailViewMoims(@RequestParam("moimNo") long moimNo) {
 		return homeService.detailViewMoims(moimNo);
->>>>>>> ea40b9a3ec3b5bc132d91b50288df65cb0be49d2
 	}
 }
