@@ -25,7 +25,9 @@
 			A.created_date as createdDate,
 			B.title		   as title,
 			B.image		   as image,
-			B.content	   as content
+			B.content	   as content,
+			B.join_count   as joinCount,
+			B.head_count   as headCount
 		from
 			moim_join_user A, moim_main B
 		where
