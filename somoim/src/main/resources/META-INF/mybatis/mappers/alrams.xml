@@ -56,4 +56,30 @@
     	where rownum <= 5
     ]]>
 	</select>
+	
+	<select id="getAllSendMessages" parameterType="string" resultType="Alram">
+		select
+			message			as message,
+			content			as content,
+			created_date	as createdDate
+		from
+			moim_alram
+		where
+			content is not null
+		and
+			login_user_id = #{value}	
+	</select>
+	
+	<select id="getAllReceiveMessages" parameterType="string" resultType="Alram">
+		select
+			message			as message,
+			content			as content,
+			created_date	as createdDate
+		from
+			moim_alram
+		where
+			content is not null
+		and
+			user_id = #{value}
+	</select>
 </mapper>

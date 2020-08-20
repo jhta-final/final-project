@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.dao.HomeDao;
 import com.sample.dao.MoimDao;
+import com.sample.dto.DetailViewMoimsDto;
 import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimMainDto;
 import com.sample.vo.MoimFavoriteMoim;
@@ -20,6 +21,7 @@ public class HomeServiceImpl implements HomeService{
 	private HomeDao homeDao;
 	@Autowired
 	private MoimDao moimDao;
+	
 
 	// 전체 랜덤모임 조회
 	@Override
@@ -98,14 +100,11 @@ public class HomeServiceImpl implements HomeService{
 		
 		return homeDao.selectMoim(userId);
 	}
-	
-	
-//	// 관심표시한 모임 표시
-//	@Override
-//	public List<MoimMainDto> getattentionMoim(String userId) {
-//		
-//		return homeDao.attentionMoim(userId);
-//	}
-	
-	
+
+	@Override
+	public DetailViewMoimsDto detailViewMoims(long moimNo) {
+		
+		return new DetailViewMoimsDto(moimDao.selectMoim(moimNo), moimDao.selectJoinUsers(moimNo));
+	}
+
 }

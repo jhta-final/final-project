@@ -3,17 +3,15 @@
 /* The side navigation menu */
 .sidenav {
 	height: 100%; /* 100% Full-height */
-	width: 317px; /* 0 width - change this with JavaScript */
+	width: 288px; /* 0 width - change this with JavaScript */
 	position: fixed; /* Stay in place */
 	z-index: 1; /* Stay on top */
-	top: 0;
 	left: 0px;
 	background-color: #FFFFF0; /* Black*/
 	overflow-x: hidden; /* Disable horizontal scroll */
 	padding-top: 20px; /* Place content 60px from the top */
 	transition: 0.2s;
 	/* 0.5 second transition effect to slide in the sidenav */
-	margin-top: 55px;
 }
 
 /* The navigation menu links */

@@ -14,4 +14,10 @@ public interface AlramService {
 	
 	// 알림 읽음표시
 	void readAlram(long alramNo);
+	
+	// 보낸쪽지
+	List<MoimAlram> sendMessages(String userId);
+	
+	// 받은쪽지
+	List<MoimAlram> receiveMessages(String userId);
 }

@@ -2,6 +2,7 @@ package com.sample.dao;
 
 import java.util.List;
 
+import com.sample.dto.DetailViewMoimsDto;
 import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimMainDto;
 import com.sample.vo.MoimFavoriteMoim;
@@ -37,6 +38,10 @@ public interface HomeDao {
 	
 	// 좋아요 표시
 	List<MoimMainDto> selectMoim(String userId);
+	
+	// 상세보기
+	List<DetailViewMoimsDto> detailViewMoims(long moimNo);
+ 
 	
 	// 관심표시한 모임 표시
 //	List<MoimMainDto> attentionMoim(String userId);

@@ -24,46 +24,30 @@
 	}
 	
 	.swiper-container {
-	  width: 100%;
-	  height: 500px;
-	  margin: 20px auto;
-	}
-	
-	.swiper-slide {
-	  text-align: left;
-	  font-size: 10px;
-	  background: #fff;
-	
-	  /* Center slide text vertically */
-	  display: -webkit-box;
-	  display: -ms-flexbox;
-	  display: -webkit-flex;
-	  display: flex;
-	  -webkit-box-pack: center;
-	  -ms-flex-pack: center;
-	  -webkit-justify-content: center;
-	  justify-content: center;
-	  -webkit-box-align: center;
-	  -ms-flex-align: center;
-	  -webkit-align-items: center;
-	  align-items: center;
-	}
-	
-	.append-buttons {
-	  text-align: center;
-	  margin-top: 20px;
-	}
-	
-	.append-buttons a {
-	  display: inline-block;
-	  border: 1px solid #007aff;
-	  color: #007aff;
-	  text-decoration: none;
-	  padding: 4px 10px;
-	  border-radius: 4px;
-	  margin: 0 10px;
-	  font-size: 13px;
-	}
+	  margin-top: 30px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
 
 </style>
 </head>
@@ -76,8 +60,8 @@
 			<tiles:insertAttribute name="nav" />
 		</div>
 	</div>
-	<div class="row">
-		<div class ="test col-2">
+	<div class="row" style="margin-top: 76.53px	">
+		<div class="left col-2">
 			<tiles:insertAttribute name="left" />
 		</div>
 		<div class="col-10 my-content">

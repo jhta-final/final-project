@@ -15,4 +15,5 @@ public interface UserService {
 	
 	void modifyUser(MoimUser user);
 	
+	void deleteUser(String userId);
 }

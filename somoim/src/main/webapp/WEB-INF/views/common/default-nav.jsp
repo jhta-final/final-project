@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!--Navbar -->
 <div class="my-nav">
-	<nav class="navbar navbar-dark" style="background-color: #FFFFF0;">
+	<nav class="navbar navbar-dark fixed-top" style="background-color: #FFFFF0;">
 		<div style="width: 20%;">
 			<button class="navbar-toggler mr-3 nav-white">
 				<span class="navbar-toggler-icon" style="color: lightgray ;background-color: lightgray;" id="sideMenu"></span>
@@ -85,7 +85,7 @@
 		</div>
 		<div class="" style="float: right">
 			<div class="dropdown" style="float: right;text-align: right">
-		        <a class="nav-link dropdown-toggle dropdown-toggle-right" id="navbarDropdownMenu2" data-toggle="dropdown">
+		        <a class="nav-link dropdown-toggle-right" id="navbarDropdownMenu2" data-toggle="dropdown">
 		          <img src="/resources/profileImage/${LOGIN_USER.profileImage }" class="rounded-circle z-depth-0"
 		            alt="avatar image" height="35" width="35">
 		          <input id="userId" type="hidden" value="${LOGIN_USER.id }">
@@ -98,7 +98,7 @@
 				</div>
 			</div>
 			<div class="dropdown" style="float: right;text-align: right">
-				<a class="nav-link navbar-toggler-right dropdown-toggle dropdown-toggle-right" id="navbarDropdownMenu1" data-toggle="dropdown">
+				<a class="nav-link navbar-toggler-right" id="navbarDropdownMenu1" data-toggle="dropdown">
 		          <i class="fas fa-bell fa-2x" style="color: lightgray;"></i>
 		        </a>
 		        <div id="alram-dropdown" class="dropdown-menu dropdown-menu-right">
