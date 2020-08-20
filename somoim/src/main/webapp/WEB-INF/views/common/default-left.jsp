@@ -5,10 +5,10 @@
 	height: 100%; /* 100% Full-height */
 	width: 317px; /* 0 width - change this with JavaScript */
 	position: fixed; /* Stay in place */
-	z-index: 1; /* Stay on top */
+	z-index: 10; /* Stay on top */
 	left: 0px;
 	background-color: #FFFFF0; /* Black*/
-	overflow-x: hidden; /* Disable horizontal scroll */
+	/* overflow-x: hidden; /* Disable horizontal scroll */ */
 	padding-top: 20px; /* Place content 60px from the top */
 	transition: 0.2s;
 	/* 0.5 second transition effect to slide in the sidenav */
@@ -34,7 +34,6 @@
 	transition: margin-left .1s;
 	padding: 20px;
 }
-
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
 	.sidenav {
@@ -64,40 +63,18 @@
 			<a class="nav-link" href="/home.do">Home</a>
 		</li>
 		<li class="nav-item"><a class="nav-link" href="#">인기</a></li>
-		<li class="nav-item mb-3">
-			<div class="dropdown dropright">
-				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					카테고리
-				</a>
-				<div class="dropdown-menu" style="z-index:1; position:absolute; transform:translate3d(235px,0,-1px);">
-					<a class="dropdown-item dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">게임/오락</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">롤</a>
-						<a class="dropdown-item" href="#">배그</a>
-						<a class="dropdown-item" href="#">서든</a>
-					</div>
-					<a class="dropdown-item dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">사교/인맥</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">롤</a>
-						<a class="dropdown-item" href="#">배그</a>
-						<a class="dropdown-item" href="#">서든</a>
-					</div>
-					<a class="dropdown-item dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">운동/스포츠</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">롤</a>
-						<a class="dropdown-item" href="#">배그</a>
-						<a class="dropdown-item" href="#">서든</a>
-					</div>
-					<a class="dropdown-item dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">반려동물</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">롤</a>
-						<a class="dropdown-item" href="#">배그</a>
-						<a class="dropdown-item" href="#">서든</a>
-					</div>
-					<a class="dropdown-item dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">문화/공연/축제</a>
-				</div>
-			</div>
-		</li>
+		<li class="nav-item dropdown dropright">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          	카테고리
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+			<a class="dropdown-item" href="#">게임/오락</a>
+			<a class="dropdown-item" href="#">사교/인맥</a>
+			<a class="dropdown-item" href="#">운동/스포츠</a>
+			<a class="dropdown-item" href="#">반려동물</a>
+			<a class="dropdown-item" href="#">문화/공연/축제</a>
+        </div>
+      </li>
 	</ul>
 	<a class="btn" data-toggle="collapse" href="#collapseExample"
 		role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -195,17 +172,9 @@
 </div>
 <script type="text/javascript">
 $(function() {
-	var action = 1;
-	$(".dropdown").click(function() {
-		if (action == 1) {
-			$('#Like').attr('class', 'fas fa-heart');
-			action = 2;
-		} else {
-			$('#Like').attr('class', 'far fa-heart');
-			action = 1;
-		}
-		$("#Like").toggle("fast");
-	}
+	$("#nav-dropdown-button").click(function() {
+		$("#nav-dropdown-menu").css('display','show');
+	})
 
 var coll = document.getElementsByClassName("collapsible");
 var i;
