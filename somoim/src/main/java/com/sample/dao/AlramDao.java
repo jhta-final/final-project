@@ -28,4 +28,7 @@ public interface AlramDao {
 	
 	// 쪽지 전체 삭제하기
 	void deleteAllMessage(MoimMessage moimMessage);
+	
+	// 쪽지 수정하기 (readYn)
+	void updateMessage(long messageNo);
 }
