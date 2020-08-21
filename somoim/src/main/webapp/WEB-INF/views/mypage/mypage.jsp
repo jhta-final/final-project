@@ -63,11 +63,37 @@
 		</div>
 	</div>
 </div>
+
+<!-- 회원정보 수정 모달창 -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Modal body..
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 <script>
 	//가입모임 데이터 가져오는 AJAX
 	$(function () {
 		var $mypageBody = $("#mypage-body");
 
+		// 정보탭 JS
 		var mypageInfo =
 			"<div><div class='row'><div class='col-9'><div class='pb-4' style='border-bottom: 1px solid darkgray'>";
 		mypageInfo += "<p>Profile</p><div class='mx-auto'><table class='table-borderless' style='width:700px'>";
@@ -85,7 +111,9 @@
 		mypageInfo +=
 			"<tr><th class='text-center'>가   입   일 </th><td><fmt:formatDate value='${LOGIN_USER.createdDate}'/></td></tr>";
 		mypageInfo += "<tr><th class='text-center'>팔로워 수</th><td>${followersCnt}</td></tr>";
-		mypageInfo += "</table></div></div></div>";
+		mypageInfo += "</table></div>";
+		mypageInfo += "<div class='text-right mt-5'><button type='button' class='btn btn-info' id='mypage-modify-button'><i class='fas fa-wrench mr-1'></i>수정</button></div></div></div>";
+	
 		$mypageBody.append(mypageInfo);
 
 		$("#mypage-nav .nav-link").click(function () {
@@ -96,7 +124,13 @@
 
 		$("#mypage-info").click(function () {
 			$mypageBody.append(mypageInfo);
+		});
+		
+		$("#mypage-modify-button").on('click', function() {
+			console.log(123);
 		})
+		
+		// 가입모임 JS
 		$("#mypage-mymoim").click(function () {
 			$.ajax({
 				type: "GET",
@@ -125,7 +159,7 @@
 					$mypageBody.append(moimPage);
 				}
 			})
-		})
+		});
 
 		$("#mypage-images").click(function () {
 			$.ajax({
@@ -155,7 +189,8 @@
 					}
 				}
 			})
-		})
+		});
+		
 		$("#mypage-board").click(function () {
 			$.ajax({
 				type: "GET",

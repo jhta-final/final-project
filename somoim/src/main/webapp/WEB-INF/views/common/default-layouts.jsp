@@ -6,14 +6,6 @@
 <head>
 <tiles:insertAttribute name="header" />
 <style type="text/css">
-	.my-back {
-		padding-top: 0px;
-		padding-left: 0px;
-		padding-right: 0px;
-	}
-	.my-content {
-		background-color: #f5f5f5;
-	}
 
 	body {
 	  background: #FFF;
@@ -23,33 +15,16 @@
 	  font-size: 20px;
 	  position: relative;
 	}
-	
-	.swiper-container {
-	  margin-top: 30px;
-      width: 100%;
-      height: 100%;
-    }
-
-    .swiper-slide {
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-
-      /* Center slide text vertically */
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-    }
-    
+		
+	.my-back {
+		padding-top: 0px;
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	.my-content {
+		background-color: #f5f5f5;
+		min-height: 860px;
+	}
     .card {
     	background-color: #f5f5f5;
     }
@@ -67,7 +42,7 @@
 			<tiles:insertAttribute name="nav" />
 		</div>
 	</div>
-	<div class="row" style="margin-top: 76.53px	">
+	<div class="row" style="margin-top: 76.53px;">
 		<div class="left col-2">
 			<tiles:insertAttribute name="left" />
 		</div>
