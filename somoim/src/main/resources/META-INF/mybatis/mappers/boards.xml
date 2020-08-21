@@ -13,25 +13,41 @@
 		(#{boardNo}, #{title}, #{content}, #{moimNo}, #{userId}, #{boardCateNo})
 	</insert>
 	
-	<select id="selectMoimBoards" parameterType="long" resultType="Board">
-		select
-			board_no		as boardNo,
-			title			as title,
-			content			as content,
-			views			as views,
-			delete_yn		as deleteYn,
-			created_date	as createdDate,
-			moim_no			as moimNo,
-			user_id			as userId,
-			board_cate_no	as boardCateNo
+	<select id="selectMoimBoards" parameterType="Page" resultType="Board">
+		select 
+		    board_no		as boardNo,
+		    title			as title,
+		    content			as content,
+		    views			as views,
+		    delete_yn		as deleteYn,
+		    created_date	as createdDate,
+		    moim_no			as moimNo,
+		    user_id			as userId,
+		    board_cate_no	as boardCateNo
 		from
-			moim_board
-		where
-			moim_no = #{value}
-		and
-			delete_yn = 'N'
-		order by
-			board_no desc
+			(select
+			    board_no,
+			    title,
+			    content,
+			    views,
+			    delete_yn,
+			    created_date,
+			    moim_no,
+			    user_id,
+			    board_cate_no,
+			    row_number() over(order by board_no desc) rn
+			from
+			    moim_board
+			where
+			    moim_no = #{no}
+			and
+			    delete_yn = 'N'
+			and 
+			    (board_cate_no = 2 or board_cate_no = 3)    
+			order by
+			    board_no desc)
+		where 
+			<![CDATA[rn >= #{begin} and rn <= #{end}]]>
 	</select>
 	
 	<select id="selectMoimBoard" parameterType="long" resultType="Board">
@@ -113,14 +129,14 @@
 				board_cate_no	as boardCateNo
 		from
 			(select
-				board_no		
-				title			
-				content			
-				views			
-				delete_yn		
-				created_date	
-				moim_no			
-				user_id			
+				board_no,		
+				title,
+				content,
+				views,
+				delete_yn,
+				created_date,
+				moim_no,
+				user_id,
 				board_cate_no	
 			from
 				moim_board
@@ -132,4 +148,19 @@
 		where
 			<![CDATA[rownum <= 3]]>
 	</select>
+	
+	<select id="getTotalRowCount" parameterType="long" resultType="int">
+		select 
+			count(*)
+		from 
+			moim_board
+		where 
+			moim_no = #{value}
+		and 
+			(board_cate_no = 2 or board_cate_no = 3)
+		and 
+			delete_yn = 'N'
+	</select>
+	
+	
 </mapper>

@@ -27,6 +27,7 @@ import com.sample.vo.MoimComment;
 import com.sample.vo.MoimSubCate;
 import com.sample.vo.MoimSubMoim;
 import com.sample.vo.MoimUser;
+import com.sample.vo.Pagination;
 import com.sample.web.form.BoardForm;
 import com.sample.web.form.MoimForm;
 import com.sample.web.form.SubMoimForm;
@@ -159,9 +160,39 @@ public class MoimController {
 	
 	// 모임 게시판
 	@GetMapping("board.do")
-	public String moimBoard(@RequestParam("moimNo") long moimNo, Model model) {
+	public String moimBoard(@RequestParam("moimNo") long moimNo, @RequestParam("pageNo") String pageNo,  Model model) {
+		
+		Pagination pagination = new Pagination(10, 5, stringToInt(pageNo, 1), boardService.getTotalRowCount(moimNo));
 		model.addAttribute("moim", moimService.getMoimByNo(moimNo));
-		model.addAttribute("boards", boardService.getAllBoards(moimNo));	
+		
+		List<MoimBoard> notice = boardService.getRecentBoardsByNotice(moimNo);
+		List<MoimBoard> boards = boardService.getAllBoards(moimNo, pagination);
+		
+		for(MoimBoard board : boards) {
+			notice.add(board);
+		}
+		
+		model.addAttribute("boards", notice);	
+		model.addAttribute("page", pagination);
+		return "moim/moimBoard.tiles";
+	}
+	
+	// 모임 공지
+	@GetMapping("notice.do")
+	public String boardNotice(@RequestParam("moimNo") long moimNo, @RequestParam("pageNo") String pageNo,  Model model) {
+		
+		Pagination pagination = new Pagination(10, 5, stringToInt(pageNo, 1), boardService.getTotalRowCount(moimNo));
+		
+		MoimBoard moimBoard = new MoimBoard();
+		moimBoard.setMoimNo(moimNo);
+		moimBoard.setBoardCateNo(1);
+		boardService.getBoardsByCategory(moimBoard);
+
+		model.addAttribute("moim", moimService.getMoimByNo(moimNo));
+		
+		
+		model.addAttribute("boards", boardService.getBoardsByCategory(moimBoard));	
+		model.addAttribute("page", pagination);
 		return "moim/moimBoard.tiles";
 	}
 	
@@ -182,7 +213,7 @@ public class MoimController {
 		MoimBoard board = new MoimBoard();
 		BeanUtils.copyProperties(boardForm, board);
 		boardService.addNewBoard(board);
-		return "redirect:board.do?moimNo=" + board.getMoimNo();
+		return "redirect:board.do?moimNo=" + board.getMoimNo() + "&pageNo=1";
 	}
 	
 	// 모임 게시판 디테일
@@ -194,7 +225,7 @@ public class MoimController {
 		model.addAttribute("board", boardService.getBoardByNo(boardNo));
 		model.addAttribute("comments", commentService.getCommentsByNo(boardNo));
 		
-		model.addAttribute("comment", new MoimComment());
+		model.addAttribute("comment", new MoimComment());		
 		
 		return "moim/boardDetail.tiles";
 	}
@@ -228,7 +259,7 @@ public class MoimController {
 		BeanUtils.copyProperties(boardForm, board);
 		
 		boardService.modifyBoard(board);
-		return "redirect:board.do?moimNo=" + board.getMoimNo();
+		return "redirect:board.do?moimNo=" + board.getMoimNo() + "&pageNo=1";
 	}
 	
 	// 모임 게시판 삭제
@@ -238,6 +269,19 @@ public class MoimController {
 		System.out.println(board.toString());
 		boardService.deleteBoard(boardNo);
 		return "redirect:board.do?moimNo=" + board.getMoimNo();
+	}
+	
+	
+	
+	
+	
+	
+	public static int stringToInt(String str, int defaultNumber) {
+		try {
+			return Integer.parseInt(str);
+		} catch (NumberFormatException e){
+			return defaultNumber;
+		}
 	}
 	
 }

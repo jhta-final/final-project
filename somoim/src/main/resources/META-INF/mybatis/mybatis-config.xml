@@ -35,6 +35,7 @@
 		<typeAlias type="com.sample.dto.MoimFollowDto" alias="MoimFollowDto"/>
 		<typeAlias type="com.sample.dto.DetailViewMoimsDto" alias="DetailViewMoimsDto"/>
 		<typeAlias type="com.sample.vo.MoimMessage" alias="Message"/>
+		<typeAlias type="com.sample.dto.PageDto" alias="Page"/>
 	</typeAliases>
 	
 	<mappers>
