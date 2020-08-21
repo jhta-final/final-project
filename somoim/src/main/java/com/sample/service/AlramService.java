@@ -30,4 +30,7 @@ public interface AlramService {
 	
 	// 쪽지 전체 삭제하기
 	void removeAllMessage(MoimMessage moimMessage);
+	
+	// 쪽지 읽음표시
+	void readMessage(long messageNo);
 }

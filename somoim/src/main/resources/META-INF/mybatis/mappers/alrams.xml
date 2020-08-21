@@ -12,7 +12,7 @@
 		
 	</insert>
 	
-	 
+	 <!-- 이제 안쓰는거 -->
 	<insert id="insertMessage" parameterType="Alram">
 		<selectKey keyProperty="alramNo" resultType="long" order="BEFORE">
 			select alram_seq.nextval from dual
@@ -132,4 +132,12 @@
 		and
 			user_id = #{userId}
 	</delete>
+	
+	<update id="updateMessage" parameterType="long">
+		update moim_message
+		set
+			read_yn = 'Y'
+		where
+			message_no = #{value}
+	</update>
 </mapper>

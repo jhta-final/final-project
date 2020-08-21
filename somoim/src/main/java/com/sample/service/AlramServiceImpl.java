@@ -65,4 +65,9 @@ public class AlramServiceImpl implements AlramService {
 		alramDao.deleteAllMessage(moimMessage);
 	}
 
+	// 쪽지 읽음표시
+	@Override
+	public void readMessage(long messageNo) {
+		alramDao.updateMessage(messageNo);
+	}
 }

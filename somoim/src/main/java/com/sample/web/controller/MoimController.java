@@ -146,7 +146,7 @@ public class MoimController {
 		
 		moimService.joinMoim(moimNo, userId);
 		
-		return "";
+		return "redirect:moim.do?moimNo=" + moimNo;
 	}
 	
 	// 모임 탈퇴
@@ -259,7 +259,7 @@ public class MoimController {
 		BeanUtils.copyProperties(boardForm, board);
 		
 		boardService.modifyBoard(board);
-		return "redirect:board.do?moimNo=" + board.getMoimNo() + "&pageNo=1";
+		return "redirect:boardDetail.do?boardNo=" + board.getMoimNo();
 	}
 	
 	// 모임 게시판 삭제
@@ -268,9 +268,15 @@ public class MoimController {
 		MoimBoard board = boardService.getBoardByNo(boardNo);
 		System.out.println(board.toString());
 		boardService.deleteBoard(boardNo);
-		return "redirect:board.do?moimNo=" + board.getMoimNo();
+		return "redirect:board.do?moimNo=" + board.getMoimNo() + "&pageNo=1";
 	}
 	
+	// 사진첩
+	@GetMapping("photo.do")
+	public String photo(@RequestParam("moimNo") long moimNo) {
+		
+		return "moim/photo.tiles";
+	}
 	
 	
 	

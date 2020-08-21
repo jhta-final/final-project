@@ -103,12 +103,17 @@ public class MoimServiceImpl implements MoimService {
 	// 모임 가입하기
 	@Override
 	public void joinMoim(long moimNo, String userId) {
-		MoimJoinUser savedUser = moimDao.selectJoinUser(new MoimJoinUser(moimNo, userId));
+		MoimJoinUser user = new MoimJoinUser(moimNo, userId);
+		MoimJoinUser savedUser = moimDao.selectJoinUser(user);
 		if(savedUser != null) {
 			System.out.println("이미 가입된 모임입니다");
+			return;
 		}
 		
-		moimDao.insertJoinUser(savedUser);
+		MoimMainDto moim = moimDao.selectMoim(moimNo);
+		moim.setJoinCount(moim.getJoinCount() + 1);
+		moimDao.insertJoinUser(user);
+		moimDao.updateMoim(moim);
 	}
 	
 	// 모임 탈퇴하기

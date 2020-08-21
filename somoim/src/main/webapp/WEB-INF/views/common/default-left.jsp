@@ -180,8 +180,8 @@
       	  </li>
 	      <li class="nav-item">
 	      	<a class="btn" data-toggle="collapse" href="#left-select-moim"
-			role="button" aria-expanded="false" aria-controls="collapseExample">
-			모임<i class="far fa-heart"></i>
+			role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-thumbs-up"></i>
+			모임<i class="fas fa-heart"></i>
 			</a>
 			<div class="collapse" id="left-select-moim" style="border-top: 1px solid lightgray">
 				<div>
@@ -275,14 +275,14 @@
 					</div>
 					<div class="row">
 						<div class="col-12" style="padding: 30px;">
-						<h3 id="detail-title"></h3>
-							<p id="detail-count"></p>
-							<p id="detail-content"></p>
-							<p><i class="fas fa-won-sign 2x"></i><span id="detail-fee"></span></p>
-							<p id="detail-likes"></p>
-							<p id="detail-premium"></p>
-							<p id="detail-joinDate">모이는날 : 2020.10.19</p>
-							<p id="detail-createDate">만든날 : 2020.08.15</p>
+						<h3 id="left-detail-title"></h3>
+							<p id="left-detail-count"></p>
+							<p id="left-detail-content"></p>
+							<p><i class="fas fa-won-sign 2x"></i><span id="left-detail-fee"></span></p>
+							<p id="left-detail-likes"></p>
+							<p id="left-detail-premium"></p>
+							<p id="left-detail-joinDate">모이는날 : 2020.10.19</p>
+							<p id="left-detail-createDate">만든날 : 2020.08.15</p>
 						</div>
 					</div>
 			</div>
@@ -290,9 +290,9 @@
 			<!-- Modal footer -->
 			<div class="modal-footer">
 				<a id="like-button" class="btn btn-danger" href="#"><i class="fas fa-heart"></i></a>
-				<a id="moim-rink-btn" class="btn btn-primary" href="/moim/moim.do?moimNo=${moimNo}">모임가기</a>
+				<a id="left-moim-link-btn" class="btn btn-primary" href="/moim/moim.do?moimNo=">모임가기</a>
 				<button type="button" class="btn btn-warning" data-dismiss="modal">회원탈퇴</button>
-				<button type="button" class="btn btn-success" data-dismiss="modal">모임가입</button>
+				<a id="left-moim-join-btn" class="btn btn-success" href="/moim/join.do?moimNo=${moimNo}&userId=${loginedUser}">모임가입</a>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
 			<!-- Modal footer end -->
@@ -355,21 +355,24 @@ $(function() {
 			dataType: "json",
 			success: function (moim) {
 				console.log(moim);
-				$("#detail-title").text(moim.moimMainDto.title)
-				$("#detail-count").text(moim.moimMainDto.joinCount + "/" + moim.moimMainDto.headCount)
-				$("#detail-content").text(moim.moimMainDto.content)
-				$("#detail-fee").text(moim.moimMainDto.fee + "원")
-				$("#detail-likes").text("좋아요수 : " + moim.moimMainDto.likes + "개")
-				$("#detail-joinDate").text("모이는날 : " + moim.moimMainDto.joinDate)
-				$("#detail-createDate").text("만든날 : " + moim.moimMainDto.createdDate)
+				$("#left-detail-title").text(moim.moimMainDto.title)
+				$("#left-detail-count").text(moim.moimMainDto.joinCount + "/" + moim.moimMainDto.headCount)
+				$("#left-detail-content").text(moim.moimMainDto.content)
+				$("#left-detail-fee").text(moim.moimMainDto.fee + "원")
+				$("#left-detail-likes").text("좋아요수 : " + moim.moimMainDto.likes + "개")
+				$("#left-detail-joinDate").text("모이는날 : " + moim.moimMainDto.joinDate)
+				$("#left-detail-createDate").text("만든날 : " + moim.moimMainDto.createdDate)
 				
 				var link = '/moim/moim.do?moimNo='+moim.moimMainDto.moimNo+'';
+				var join = '/moim/join.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${loginedUser}';
 				
-				$("#moim-rink-btn").attr("href", link);
-				$("#detail-premium").empty();
+				$("#left-moim-join-btn").attr('href', join);
+				$("#left-moim-link-btn").attr("href", link);
+				
+				$("#left-detail-premium").empty();
 				if(moim.moimMainDto.premiumYn == 'Y') {
 					let premium = '<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>';
-					$("#detail-premium").append(premium);
+					$("#left-detail-premium").append(premium);
 				}
 			}
 		});

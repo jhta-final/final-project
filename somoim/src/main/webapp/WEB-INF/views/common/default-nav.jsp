@@ -19,6 +19,10 @@
 		font-size: 25px;
 		color: black;
 	}
+	
+	.message-active {
+		color: lightgray;
+	}
 </style>
 <div class="my-nav fixed-top">
 	<nav class="navbar">
@@ -270,11 +274,11 @@
 				url: "/alram/delete.do",
 				data: {
 					messageNo: messageNo
-				},
-				dataType: "json"
+				}
 			});
 			
 			showMessage();
+			
 		});
 		
 		// 쪽지 전체 지우기
@@ -286,12 +290,27 @@
 				url: "/alram/deleteall.do",
 				data: {
 					type: type
-				},
-				dataType: "json"
+				}
 			});
 			
 			showMessage();
 		});
+		
+		
+		// 쪽지 읽음표시
+		$("#nav-message-modal tbody").on("click", "td:nth-child(2)", function() {
+			var messageNo = $(this).data("message-no");
+			console.log(messageNo);
+			$.ajax({
+				type: "GET",
+				url: "/alram/msgread.do",
+				data: {
+					messageNo:messageNo
+				}
+			})
+			var tr = ($(this).closest("tr"));
+			tr.addClass("message-active");
+		})
 		
 		// 쪽지 조회
 		function showMessage() {
@@ -313,9 +332,9 @@
 						
 					} else {
 						$.each(messages.receiveMessages, function(index, message) {
-							var text = "<tr>";
+							var text = "<tr class="+(message.readYn == "Y" ? "message-active" : "" )+">";
 								text += "<td>"+message.sendUser+"</td>";
-								text += "<td data-toggle='collapse' data-target='#message-get-content-"+index+"'>"+message.title+"</td>";
+								text += "<td data-toggle='collapse' data-target='#message-get-content-"+index+"' data-message-no="+message.messageNo+">"+message.title+"</td>";
 								text += "<td>"+message.createdDate+"</td>";
 								text += "<td><button class='btn btn-danger btn-sm' style='line-height:0.8' data-message-no="+ message.messageNo +">x</button></td>";
 								text += "</tr>";
@@ -338,9 +357,9 @@
 						
 					} else {
 						$.each(messages.sendMessages, function(index, message) {
-							var text = "<tr>";
+							var text = "<tr class="+(message.readYn == "Y" ? "message-active" : "" )+">";
 								text += "<td>"+message.receiveUser+"</td>";
-								text += "<td data-toggle='collapse' data-target='#message-send-content-"+index+"'>"+message.title+"</td>";
+								text += "<td data-toggle='collapse' data-target='#message-send-content-"+index+"' data-message-no="+message.messageNo+">"+message.title+"</td>";
 								text += "<td>"+message.createdDate+"</td>";
 								text += "<td><button class='btn btn-danger btn-sm' style='line-height:0.8' data-message-no="+message.messageNo+">x</button></td>";
 								text += "</tr>";
