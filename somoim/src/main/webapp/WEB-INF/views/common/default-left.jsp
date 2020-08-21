@@ -17,6 +17,10 @@
 	/* 0.5 second transition effect to slide in the sidenav */
 }
 
+.nav-link :hover {
+	cursor: pointer;
+}
+
 /* The navigation menu links */
 #mySidenav a {
 	padding: 8px 8px 8px 8px;
@@ -148,16 +152,16 @@
 	        </ul>
       	</li>
       	<li class="nav-item">
-			<a data-toggle="collapse" href="#collapseExample"
-				role="button" aria-expanded="false" aria-controls="collapseExample">
+			<a data-toggle="collapse" href="#left-joined-moim"
+				role="button" aria-expanded="false" aria-controls="left-joined-moim">
 				가입모임 
 			</a>
-			<div class="collapse" id="collapseExample">
+			<div class="collapse" id="left-joined-moim" style="border-top: 1px solid lightgray">
 				<div>
 					<c:choose>
 						<c:when test="${not empty joinedMoim }">
 							<c:forEach items="${joinedMoim}" var="joinedMoim">
-								<a class="nav-link" href="/moim/moim.do?moimNo=${joinedMoim.moimNo }"> <span class="nav-item avatar">
+								<a id="left-modal" class="nav-link" data-no="${joinedMoim.moimNo }"> <span class="nav-item avatar">
 										${joinedMoim.title }
 										<c:if test="${joinedMoim.premiumYn eq 'Y'}">
 											<i class="fas fa-crown ml-2" style="color: #6699FF;"></i>
@@ -170,22 +174,21 @@
 							<p class="text-center">가입한 모임이 없습니다.</p>
 						</c:otherwise>
 					</c:choose>
-					<a class="nav-link text-center" href="#" style="color: black;">더보기</a>
+					<a class="text-center" href="#" style="color: black;">더보기</a>
 				</div>
 			</div>
       	  </li>
 	      <li class="nav-item">
-	      	<a class="btn" data-toggle="collapse" href="#collapseExample2"
+	      	<a class="btn" data-toggle="collapse" href="#left-select-moim"
 			role="button" aria-expanded="false" aria-controls="collapseExample">
 			모임<i class="far fa-heart"></i>
 			</a>
-			<div class="collapse" id="collapseExample2"
-				style="border-top: 1px solid lightgray">
-				<div class="card card-body" style="background-color: #EDEDED">
+			<div class="collapse" id="left-select-moim" style="border-top: 1px solid lightgray">
+				<div>
 					<c:choose>
-						<c:when test="${not empty select}">
+						<c:when test="${not empty selectMoim}">
 							<c:forEach items="${selectMoim}" var="select">
-								<a class="nav-link" href="#">
+								<a class="nav-link" data-no="${select.moimNo }">
 									<span class="nav-item avatar">
 										${select.title}
 										<c:if test="${select.premiumYn eq 'Y'}">
@@ -199,18 +202,17 @@
 							<p class="text-center">좋아요한 모임이 없습니다.</p>
 						</c:otherwise>
 					</c:choose>
-					<a class="nav-link text-center" href="#" style="color: black;">더보기</a>
+					<a class="text-center" href="#" style="color: black;">더보기</a>
 				</div>
 			</div>
 	      </li>
 	      <li class="nav-item">
-	      	<a class="btn" data-toggle="collapse" href="#collapseExample3"
+	      	<a class="btn" data-toggle="collapse" href="#left-myfriends"
 			role="button" aria-expanded="false" aria-controls="collapseExample">
 			내 친구 
 			</a>
-			<div class="collapse" id="collapseExample3"
-				style="border-top: 1px solid lightgray">
-				<div class="card card-body" style="background-color: #EDEDED">
+			<div class="collapse" id="left-myfriends" style="border-top: 1px solid lightgray">
+				<div>
 					<c:choose>
 						<c:when test="${not empty followUsers}">
 							<c:forEach items="${followUsers}" var="follow">
@@ -227,7 +229,7 @@
 							<p class="text-center">팔로잉한 사람이 없습니다.</p>
 						</c:otherwise>
 					</c:choose>
-					<a class="nav-link text-center" href="#" style="color: black;">더보기</a>
+					<a class="text-center" href="#" style="color: black;">더보기</a>
 				</div>
 			</div>
 	      </li>      
@@ -250,6 +252,51 @@
 		<p>ⓒ Friendscube</p>
 		<br/>
 		<br/>
+	</div>
+</div>
+
+<!-- 모달창 -->
+<div class="modal fade" id="leftModal">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<input type="text" name="bookId" id="bookId" value="moimNo" hidden="hidden"/>
+
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h4 class="modal-title">상세정보</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<!-- Modal Header end -->
+			<!-- Modal body -->
+			<div class="modal-body" style="padding:0px;">
+					<div class="row">
+						<div class="col-12"><img class="card-img-top" src="/resources/home_images/9.jpg"
+							alt="Card image cap" style="width: 100%; height: 450px;"></div>
+					</div>
+					<div class="row">
+						<div class="col-12" style="padding: 30px;">
+						<h3 id="detail-title"></h3>
+							<p id="detail-count"></p>
+							<p id="detail-content"></p>
+							<p><i class="fas fa-won-sign 2x"></i><span id="detail-fee"></span></p>
+							<p id="detail-likes"></p>
+							<p id="detail-premium"></p>
+							<p id="detail-joinDate">모이는날 : 2020.10.19</p>
+							<p id="detail-createDate">만든날 : 2020.08.15</p>
+						</div>
+					</div>
+			</div>
+			<!-- Modal body end -->
+			<!-- Modal footer -->
+			<div class="modal-footer">
+				<a id="like-button" class="btn btn-danger" href="#"><i class="fas fa-heart"></i></a>
+				<a id="moim-rink-btn" class="btn btn-primary" href="/moim/moim.do?moimNo=${moimNo}">모임가기</a>
+				<button type="button" class="btn btn-warning" data-dismiss="modal">회원탈퇴</button>
+				<button type="button" class="btn btn-success" data-dismiss="modal">모임가입</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+			<!-- Modal footer end -->
+		</div>
 	</div>
 </div>
 <script type="text/javascript">
@@ -282,19 +329,60 @@ $(function() {
 		  return false;
 		});
 
-var coll = document.getElementsByClassName("collapsible");
-var i;
+	var coll = document.getElementsByClassName("collapsible");
+	var i;
+	
+	for (i = 0; i < coll.length; i++) {
+	  coll[i].addEventListener("click", function() {
+	    this.classList.toggle("active");
+	    var content = this.nextElementSibling;
+	    if (content.style.maxHeight){
+	      content.style.maxHeight = null;
+	    } else {
+	      content.style.maxHeight = content.scrollHeight + "px";
+	    } 
+	  });
+	}
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    } 
-  });
-}
-})
+
+	function leftDetailModal(moimNo) {
+		$("#leftModal").modal('show');
+		
+		$.ajax({
+			type: "GET",
+			url: "/detail.do",
+			data: {moimNo: moimNo},
+			dataType: "json",
+			success: function (moim) {
+				console.log(moim);
+				$("#detail-title").text(moim.moimMainDto.title)
+				$("#detail-count").text(moim.moimMainDto.joinCount + "/" + moim.moimMainDto.headCount)
+				$("#detail-content").text(moim.moimMainDto.content)
+				$("#detail-fee").text(moim.moimMainDto.fee + "원")
+				$("#detail-likes").text("좋아요수 : " + moim.moimMainDto.likes + "개")
+				$("#detail-joinDate").text("모이는날 : " + moim.moimMainDto.joinDate)
+				$("#detail-createDate").text("만든날 : " + moim.moimMainDto.createdDate)
+				
+				var link = '/moim/moim.do?moimNo='+moim.moimMainDto.moimNo+'';
+				
+				$("#moim-rink-btn").attr("href", link);
+				$("#detail-premium").empty();
+				if(moim.moimMainDto.premiumYn == 'Y') {
+					let premium = '<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>';
+					$("#detail-premium").append(premium);
+				}
+			}
+		});
+	};
+	
+	$("#left-joined-moim .nav-link").click(function() {
+		var moimNo = $(this).data("no");
+		leftDetailModal(moimNo);
+	});
+	
+	$("#left-select-moim .nav-link").click(function() {
+		var moimNo = $(this).data("no");
+		leftDetailModal(moimNo);
+	});
+});
 </script>

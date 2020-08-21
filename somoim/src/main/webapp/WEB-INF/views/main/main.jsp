@@ -207,7 +207,6 @@ h5 {
 		</div>
 	</div>
 </div>
-</div>
 
 <!-- 바로가기 키 -->
 <div style="position: fixed;bottom: 10px; right: 10px;">
@@ -265,21 +264,14 @@ $(function() {
 				$("#detail-joinDate").text("모이는날 : " + moim.moimMainDto.joinDate)
 				$("#detail-createDate").text("만든날 : " + moim.moimMainDto.createdDate)
 				
-				var rink = '/moim/moim.do?moimNo='+moim.moimMainDto.moimNo+'';
+				var link = '/moim/moim.do?moimNo='+moim.moimMainDto.moimNo+'';
 				
-				$("#moim-rink-btn").attr("href", rink);
-				
-
-
-
+				$("#moim-rink-btn").attr("href", link);
+				$("#detail-premium").empty();
 				if(moim.moimMainDto.premiumYn == 'Y') {
 					let premium = '<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>';
 					$("#detail-premium").append(premium);
-				} else {
-					$("#detail-premium").empty();
 				}
-
-
 			}
 		})
 
