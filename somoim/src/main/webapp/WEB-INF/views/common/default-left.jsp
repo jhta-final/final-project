@@ -180,8 +180,8 @@
       	  </li>
 	      <li class="nav-item">
 	      	<a class="btn" data-toggle="collapse" href="#left-select-moim"
-			role="button" aria-expanded="false" aria-controls="collapseExample">
-			모임<i class="far fa-heart"></i>
+			role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-thumbs-up"></i>
+			모임<i class="fas fa-heart"></i>
 			</a>
 			<div class="collapse" id="left-select-moim" style="border-top: 1px solid lightgray">
 				<div>
