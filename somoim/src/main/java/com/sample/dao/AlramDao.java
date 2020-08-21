@@ -22,4 +22,10 @@ public interface AlramDao {
 	
 	// 쪽지 보내기
 	void insertMessageNew(MoimMessage moimMessage);
+	
+	// 쪽지 삭제하기
+	void deleteMessage(long messageNo);
+	
+	// 쪽지 전체 삭제하기
+	void deleteAllMessage(MoimMessage moimMessage);
 }

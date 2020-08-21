@@ -167,41 +167,12 @@
 								</tr>
 							</thead>
 							<tbody>
-								<!-- 시작 -->
-								<tr>
-									<td>권영준</td>
-									<td data-toggle="collapse" data-target="#message-get-content-1">권영준님이 메세지를 보냈습니다.</td>
-									<td>2020.01.11</td>
-									<td><button class="btn btn-danger btn-sm" style="line-height:0.8">x</button></td>
-								</tr>
-								<tr>
-									<td colspan="4" id="message-get-content-1" class="collapse" style="background: lightgray">Lorem ipsum dolor text....</td>
-								</tr>
-								<!-- 끝 -->
-								<tr>
-									<td>권영준</td>
-									<td data-toggle="collapse" data-target="#message-get-content-2">권영준님이 메세지를 보냈습니다.</td>
-									<td>2020.01.11</td>
-									<td><button class="btn btn-danger btn-sm" style="line-height:0.8">x</button></td>
-								</tr>
-								<tr>
-									<td colspan="4" id="message-get-content-2" class="collapse" style="background: lightgray">Lorem ipsum dolor text....</td>
-								</tr>
-								<tr>
-									<td>권영준</td>
-									<td data-toggle="collapse" data-target="#message-get-content-3">권영준님이 메세지를 보냈습니다.</td>
-									<td>2020.01.11</td>
-									<td><button class="btn btn-danger btn-sm" style="line-height:0.8">x</button></td>
-								</tr>
-								<tr>
-									<td colspan="4" id="message-get-content-3" class="collapse" style="background: lightgray">Lorem ipsum dolor text....</td>
-								</tr>
 								
 							</tbody>
 						</table>
 					</div>
 					<div class="text-right mt-3">
-						<button type="button" class="btn btn-secondary">비우기</button>
+						<button data-type="receive" type="button" class="btn btn-secondary">비우기</button>
 					</div>
 				</div>
 				<div class="mt-3 pb-3" style='border-bottom: 1px solid darkgray'>
@@ -223,40 +194,12 @@
 								</tr>
 							</thead>
 							<tbody>
-								<!-- 시작 -->
-								<tr>
-									<td>아이디</td>
-									<td data-toggle="collapse" data-target="#message-send-content-1">권영준님이 메세지를 보냈습니다.</td>
-									<td>2020.01.11</td>
-									<td><button class="btn btn-danger btn-sm" style="line-height:0.8">x</button></td>
-								</tr>
-								<tr>
-									<td colspan="4" id="message-send-content-1" class="collapse" style="background: lightgray">Lorem ipsum dolor text....</td>
-								</tr>
-								<!-- 끝 -->
-								<tr>
-									<td>권영준</td>
-									<td data-toggle="collapse" data-target="#message-send-content-2">권영준님이 메세지를 보냈습니다.</td>
-									<td>2020.01.11</td>
-									<td><button class="btn btn-danger btn-sm" style="line-height:0.8">x</button></td>
-								</tr>
-								<tr>
-									<td colspan="4" id="message-send-content-2" class="collapse" style="background: lightgray">Lorem ipsum dolor text....</td>
-								</tr>
-								<tr>
-									<td>권영준</td>
-									<td data-toggle="collapse" data-target="#message-send-content-3">권영준님이 메세지를 보냈습니다.</td>
-									<td>2020.01.11</td>
-									<td><button class="btn btn-danger btn-sm" style="line-height:0.8">x</button></td>
-								</tr>
-								<tr>
-									<td colspan="4" id="message-send-content-3" class="collapse" style="background: lightgray">Lorem ipsum dolor text....</td>
-								</tr>
+								
 							</tbody>
 						</table>
 					</div>
 					<div class="text-right mt-3">
-						<button type="button" class="btn btn-secondary">비우기</button>
+						<button data-type="send" type="button" class="btn btn-secondary">비우기</button>
 					</div>
 				</div>
 			</div>
@@ -314,8 +257,43 @@
 		// 쪽지함 모달창 관련 JS
 		$("#nav-message-button").click(function () {
 			$("#nav-message-modal").modal('show');
+			showMessage();
+		});
+		
+		// 쪽지 지우기
+		$("#nav-message-modal").on("click", "td button", function() {
+			var messageNo = $(this).data("message-no");
 			
-			// 쪽지 조회
+			$.ajax({
+				type: "GET",
+				url: "/alram/delete.do",
+				data: {
+					messageNo: messageNo
+				},
+				dataType: "json"
+			});
+			
+			showMessage();
+		});
+		
+		// 쪽지 전체 지우기
+		$("#nav-message-modal button:contains('비우기')").click(function() {
+			var type = $(this).data("type");
+			
+			$.ajax({
+				type: "GET",
+				url: "/alram/deleteall.do",
+				data: {
+					type: type
+				},
+				dataType: "json"
+			});
+			
+			showMessage();
+		});
+		
+		// 쪽지 조회
+		function showMessage() {
 			$.ajax({
 				type: "GET",
 				url: "/alram/message.do",
@@ -336,12 +314,12 @@
 						$.each(messages.receiveMessages, function(index, message) {
 							var text = "<tr>";
 								text += "<td>"+message.sendUser+"</td>";
-								text += "<td data-toggle='collapse' data-target='#message-get-content-1'>"+message.title+"</td>";
+								text += "<td data-toggle='collapse' data-target='#message-get-content-"+index+"'>"+message.title+"</td>";
 								text += "<td>"+message.createdDate+"</td>";
-								text += "<td><button class='btn btn-danger btn-sm' style='line-height:0.8'>x</button></td>";
+								text += "<td><button class='btn btn-danger btn-sm' style='line-height:0.8' data-message-no="+ message.messageNo +">x</button></td>";
 								text += "</tr>";
 								text += "<tr>";
-								text += "<td colspan='4' id='message-get-content-1' class='collapse' style='background: lightgray'>"+message.content+"</td>";
+								text += "<td colspan='4' id='message-get-content-"+index+"' class='collapse' style='background: lightgray'>"+message.content+"</td>";
 								text += "</tr>";
 							
 							$Rtbody.append(text);
@@ -361,12 +339,12 @@
 						$.each(messages.sendMessages, function(index, message) {
 							var text = "<tr>";
 								text += "<td>"+message.receiveUser+"</td>";
-								text += "<td data-toggle='collapse' data-target='#message-send-content-1'>"+message.title+"</td>";
+								text += "<td data-toggle='collapse' data-target='#message-send-content-"+index+"'>"+message.title+"</td>";
 								text += "<td>"+message.createdDate+"</td>";
-								text += "<td><button class='btn btn-danger btn-sm' style='line-height:0.8'>x</button></td>";
+								text += "<td><button class='btn btn-danger btn-sm' style='line-height:0.8' data-message-no="+message.messageNo+">x</button></td>";
 								text += "</tr>";
 								text += "<tr>";
-								text += "<td colspan='4' id='message-send-content-1' class='collapse' style='background: lightgray'>"+message.content+"</td>";
+								text += "<td colspan='4' id='message-send-content-"+index+"' class='collapse' style='background: lightgray'>"+message.content+"</td>";
 								text += "</tr>";
 							
 							$Stbody.append(text);
@@ -374,6 +352,6 @@
 					}
 				}
 			});
-		})
+		}
 	});
 </script>

@@ -53,4 +53,16 @@ public class AlramServiceImpl implements AlramService {
 		alramDao.insertMessageNew(moimMessage);
 	}
 
+	// 쪽지 삭제하기
+	@Override
+	public void removeMessage(long messageNo) {
+		alramDao.deleteMessage(messageNo);
+	}
+
+	// 쪽지 전체 삭제하기
+	@Override
+	public void removeAllMessage(MoimMessage moimMessage) {
+		alramDao.deleteAllMessage(moimMessage);
+	}
+
 }

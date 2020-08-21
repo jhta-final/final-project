@@ -95,4 +95,29 @@ public class AlramController {
 		
 		return messages;
 	}
+	
+	// 쪽지 삭제하기
+	@GetMapping("/delete.do")
+	@ResponseBody
+	public void delete(@RequestParam("messageNo") long messageNo) {
+		alramService.removeMessage(messageNo);
+	}
+	
+	// 쪽지 전체 삭제하기
+	@GetMapping("deleteall.do")
+	@ResponseBody
+	public void deleteAll(@RequestParam("type") String type, HttpSession session) {
+		MoimUser user = (MoimUser) session.getAttribute("LOGIN_USER");
+		MoimMessage moimMessage = new MoimMessage();
+		moimMessage.setUserId(user.getId());
+		System.out.println(type);
+		if(type.equals("send")) {
+			moimMessage.setSendUser(user.getId());
+		}
+		else if(type.equals("receive")) {
+			moimMessage.setReceiveUser(user.getId());
+		}
+		
+		alramService.removeAllMessage(moimMessage);
+	}
 }
