@@ -289,7 +289,7 @@
 							<div class="input-group-text">전화번호</div>
 							<div class="index-join-check">
 								<input type="text" class="form-control" id="signup-tel" placeholder=" - 없이 입력해주세요">
-								<a class="btn">인증</a>
+								<a class="btn" id="signup-tel-check">인증</a>
 							</div>
 						</div>
 						<div class="input-group">
@@ -490,6 +490,20 @@
 				$("#button-signup-final").submit();
 			})
 
+			// 인증
+			$("#signup-tel-check").click(function () {
+				var tel = $("#signup-tel").val();
+				$.ajax({
+					type: "POST",
+					url: "/login/sendSMS.do",
+					data: JSON.stringify(tel),
+					contentType: "application/json",
+					dataType: "json",
+					success: function (status) {
+						console.log(status);
+					}
+				})
+			})
 			// 카테고리 체크
 			$("#select-category-image .card").click(function () {
 				$("#select-category-image .card").find('.card-text')
