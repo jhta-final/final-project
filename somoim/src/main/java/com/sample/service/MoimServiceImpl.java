@@ -107,9 +107,13 @@ public class MoimServiceImpl implements MoimService {
 		MoimJoinUser savedUser = moimDao.selectJoinUser(user);
 		if(savedUser != null) {
 			System.out.println("이미 가입된 모임입니다");
+			return;
 		}
 		
+		MoimMainDto moim = moimDao.selectMoim(moimNo);
+		moim.setJoinCount(moim.getJoinCount() + 1);
 		moimDao.insertJoinUser(user);
+		moimDao.updateMoim(moim);
 	}
 	
 	// 모임 탈퇴하기
