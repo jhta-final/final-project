@@ -303,8 +303,8 @@
 
 					$.each(alrams, function (index, alram) {
 						var text = "<a data-alram-no='" + alram.alramNo +
-							"' class='dropdown-item' href = '#' > < strong > [" + alram.type + "] < /strong>" + alram
-							.message + "</a > ";
+							"' class='dropdown-item' href = '#' > <strong> [" + alram.type + "] </strong>" + alram
+							.message + "</a> ";
 
 						$dropdown.append(text);
 					});
