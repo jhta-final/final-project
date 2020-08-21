@@ -112,4 +112,24 @@
 		values
 		(#{messageNo}, #{title}, #{content}, #{sendUser}, #{receiveUser}, #{userId})
 	</insert>
+	
+	<delete id="deleteMessage" parameterType="long">
+		delete from moim_message
+		where
+			message_no = #{value}
+	</delete>
+	
+	<delete id="deleteAllMessage" parameterType="Message">
+		delete from moim_message
+		<where>
+			<if test="sendUser != null">
+				send_user = #{sendUser}
+			</if>
+			<if test="receiveUser != null">
+				receive_user = #{receiveUser}
+			</if>
+		</where>
+		and
+			user_id = #{userId}
+	</delete>
 </mapper>

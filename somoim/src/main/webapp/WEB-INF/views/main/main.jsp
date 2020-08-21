@@ -197,8 +197,8 @@ h5 {
 			<!-- Modal body end -->
 			<!-- Modal footer -->
 			<div class="modal-footer">
-				<a class="btn btn-danger" href="#"><i class="fas fa-heart"></i></a>
-				<a class="btn btn-primary" href="/moim/moim.do?moimNo=${moimNo}">모임가기</a>
+				<a id="like-button" class="btn btn-danger" href="#"><i class="fas fa-heart"></i></a>
+				<a id="moim-rink-btn" class="btn btn-primary" href="/moim/moim.do?moimNo=${moimNo}">모임가기</a>
 				<button type="button" class="btn btn-warning" data-dismiss="modal">회원탈퇴</button>
 				<button type="button" class="btn btn-success" data-dismiss="modal">모임가입</button>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -264,6 +264,11 @@ $(function() {
 				$("#detail-likes").text("좋아요수 : " + moim.moimMainDto.likes + "개")
 				$("#detail-joinDate").text("모이는날 : " + moim.moimMainDto.joinDate)
 				$("#detail-createDate").text("만든날 : " + moim.moimMainDto.createdDate)
+				
+				var rink = '/moim/moim.do?moimNo='+moim.moimMainDto.moimNo+'';
+				
+				$("#moim-rink-btn").attr("href", rink);
+				
 
 
 

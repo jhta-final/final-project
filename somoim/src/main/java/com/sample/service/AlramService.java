@@ -24,4 +24,10 @@ public interface AlramService {
 	
 	// 쪽지 보내기
 	void addMessage(MoimMessage moimMessage);
+	
+	// 쪽지 삭제하기
+	void removeMessage(long messageNo);
+	
+	// 쪽지 전체 삭제하기
+	void removeAllMessage(MoimMessage moimMessage);
 }
