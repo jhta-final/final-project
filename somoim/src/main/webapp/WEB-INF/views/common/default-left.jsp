@@ -7,7 +7,7 @@
 	position: fixed; /* Stay in place */
 	z-index: 10; /* Stay on top */
 	left: 0px;
-	background-color: #FFFFF0; /* Black*/
+	background-color: #FFF; /* Black*/
 	/* overflow-x: hidden; /* Disable horizontal scroll */ */
 	padding-top: 20px; /* Place content 60px from the top */
 	transition: 0.2s;
@@ -24,13 +24,15 @@
 	transition: 0.2s;
 }
 
-.navbar-nav .dropdown-menu {
+/* When you mouse over the navigation links, change their color */
+.sidenav .nav-item:hover {
+	background-color: rgba(0,073,140, .5);
+	color: #FFF;
 }
 
-
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-	color: #f1f1f1;
+.sidenav-active {
+	background-color: rgba(0,073,140, .8);
+	color: #FFF;
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
@@ -84,7 +86,7 @@
 
 <div id="mySidenav" class="sidenav">
 	<ul class="navbar-nav" style="text-align: center">
-		<li class="nav-item active">
+		<li class="nav-item">
 			<a class="nav-link" href="/home.do">Home</a>
 		</li>
 		<li class="nav-item"><a class="nav-link" href="#">인기</a></li>
@@ -136,83 +138,94 @@
           </li>
         </ul>
       </li>
-	</ul>
-	<a class="btn" data-toggle="collapse" href="#collapseExample"
-		role="button" aria-expanded="false" aria-controls="collapseExample">
-		가입모임 </a>
-	<div class="collapse" id="collapseExample"
-		style="border-top: 1px solid lightgray">
-		<div class="card card-body" style="background-color: #EDEDED">
-			<c:choose>
-				<c:when test="${not empty joinedMoim }">
-					<c:forEach items="${joinedMoim}" var="joinedMoim">
-						<a class="nav-link" href="/moim/moim.do?moimNo=${joinedMoim.moimNo }"> <span class="nav-item avatar">
-								${joinedMoim.title }
-								<c:if test="${joinedMoim.premiumYn eq 'Y'}">
-									<i class="fas fa-crown ml-2" style="color: #6699FF;"></i>
-								</c:if>
-						</span>
-						</a>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<p class="text-center">가입한 모임이 없습니다.</p>
-				</c:otherwise>
-			</c:choose>
-			<a class="nav-link text-center" href="#" style="color: black;">더보기</a>
+      <li class="nav-item">
+		<a class="btn" data-toggle="collapse" href="#collapseExample"
+			role="button" aria-expanded="false" aria-controls="collapseExample">
+			가입모임 
+		</a>
+		<div class="collapse" id="collapseExample"
+			style="border-top: 1px solid lightgray">
+			<div class="card card-body" style="background-color: #EDEDED">
+				<c:choose>
+					<c:when test="${not empty joinedMoim }">
+						<c:forEach items="${joinedMoim}" var="joinedMoim">
+							<a class="nav-link" href="/moim/moim.do?moimNo=${joinedMoim.moimNo }"> <span class="nav-item avatar">
+									${joinedMoim.title }
+									<c:if test="${joinedMoim.premiumYn eq 'Y'}">
+										<i class="fas fa-crown ml-2" style="color: #6699FF;"></i>
+									</c:if>
+							</span>
+							</a>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<p class="text-center">가입한 모임이 없습니다.</p>
+					</c:otherwise>
+				</c:choose>
+				<a class="nav-link text-center" href="#" style="color: black;">더보기</a>
+			</div>
 		</div>
-	</div>
-	<a class="btn" data-toggle="collapse" href="#collapseExample2"
+      </li>
+      <li class="nav-item">
+      	<a class="btn" data-toggle="collapse" href="#collapseExample2"
 		role="button" aria-expanded="false" aria-controls="collapseExample">
 		모임<i class="far fa-heart"></i>
-	</a>
-	<div class="collapse" id="collapseExample2"
-		style="border-top: 1px solid lightgray">
-		<div class="card card-body" style="background-color: #EDEDED">
-			<c:choose>
-				<c:when test="${not empty select}">
-					<c:forEach items="${selectMoim}" var="select">
-						<a class="nav-link" href="#">
-							<span class="nav-item avatar">
-								${select.title}
-								<c:if test="${select.premiumYn eq 'Y'}">
-									<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>
-								</c:if>
-							</span>
-						</a>
-					</c:forEach>
-					</c:when>
-				<c:otherwise>
-					<p class="text-center">좋아요한 모임이 없습니다.</p>
-				</c:otherwise>
-			</c:choose>
-			<a class="nav-link text-center" href="#" style="color: black;">더보기</a>
+		</a>
+		<div class="collapse" id="collapseExample2"
+			style="border-top: 1px solid lightgray">
+			<div class="card card-body" style="background-color: #EDEDED">
+				<c:choose>
+					<c:when test="${not empty select}">
+						<c:forEach items="${selectMoim}" var="select">
+							<a class="nav-link" href="#">
+								<span class="nav-item avatar">
+									${select.title}
+									<c:if test="${select.premiumYn eq 'Y'}">
+										<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>
+									</c:if>
+								</span>
+							</a>
+						</c:forEach>
+						</c:when>
+					<c:otherwise>
+						<p class="text-center">좋아요한 모임이 없습니다.</p>
+					</c:otherwise>
+				</c:choose>
+				<a class="nav-link text-center" href="#" style="color: black;">더보기</a>
+			</div>
 		</div>
-	</div>
-	<a class="btn" data-toggle="collapse" href="#collapseExample3"
+      </li>
+      <li class="nav-item">
+      	<a class="btn" data-toggle="collapse" href="#collapseExample3"
 		role="button" aria-expanded="false" aria-controls="collapseExample">
-		내 친구 </a>
-	<div class="collapse" id="collapseExample3"
-		style="border-top: 1px solid lightgray">
-		<div class="card card-body" style="background-color: #EDEDED">
-			<c:choose>
-				<c:when test="${not empty followUsers}">
-					<c:forEach items="${followUsers}" var="follow">
-						<a class="nav-link" href="#"> <span class="nav-item avatar">
+		내 친구 
+		</a>
+		<div class="collapse" id="collapseExample3"
+			style="border-top: 1px solid lightgray">
+			<div class="card card-body" style="background-color: #EDEDED">
+				<c:choose>
+					<c:when test="${not empty followUsers}">
+						<c:forEach items="${followUsers}" var="follow">
+							<a class="nav-link" href="#"> 
+								<span class="nav-item avatar">
 								<img src="/resources/profileImage/${follow.image }"
-								class="rounded-circle z-depth-0" alt="avatar image" height="35">
-								${follow.nickname }
-						</span>
-						</a>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<p class="text-center">팔로잉한 사람이 없습니다.</p>
-				</c:otherwise>
-			</c:choose>
-			<a class="nav-link text-center" href="#" style="color: black;">더보기</a>
+									class="rounded-circle z-depth-0" alt="avatar image" height="35">
+									${follow.nickname }
+								</span>
+							</a>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<p class="text-center">팔로잉한 사람이 없습니다.</p>
+					</c:otherwise>
+				</c:choose>
+				<a class="nav-link text-center" href="#" style="color: black;">더보기</a>
+			</div>
 		</div>
-	</div>
+      </li>      
+	</ul>
+	
+	
 	<a class="btn btn-primary" href="/moim/moim.do?moimNo=500000">
 		정원 500000번 모임
 	</a>
