@@ -12,7 +12,7 @@
 		padding-right: 0px;
 	}
 	.my-content {
-		background-color: white;
+		background-color: #f5f5f5;
 	}
 
 	body {
@@ -48,6 +48,10 @@
       -ms-flex-align: center;
       -webkit-align-items: center;
       align-items: center;
+    }
+    
+    .card {
+    	background-color: #f5f5f5;
     }
     
     .clearfix:after{content:"";display:block;clear:both}
