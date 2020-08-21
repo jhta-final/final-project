@@ -1,10 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <style>
+
+.swiper-container {
+	  margin-top: 30px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #f5f5f5;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
 
 .card{
 	border: none;
@@ -176,8 +197,8 @@ h5 {
 			<!-- Modal body end -->
 			<!-- Modal footer -->
 			<div class="modal-footer">
-				<a class="btn btn-danger" href="#"><i class="fas fa-heart"></i></a>
-				<a class="btn btn-primary" href="/moim/moim.do?moimNo=${moimNo}">모임가기</a>
+				<a id="like-button" class="btn btn-danger" href="#"><i class="fas fa-heart"></i></a>
+				<a id="moim-rink-btn" class="btn btn-primary" href="/moim/moim.do?moimNo=${moimNo}">모임가기</a>
 				<button type="button" class="btn btn-warning" data-dismiss="modal">회원탈퇴</button>
 				<button type="button" class="btn btn-success" data-dismiss="modal">모임가입</button>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -243,6 +264,11 @@ $(function() {
 				$("#detail-likes").text("좋아요수 : " + moim.moimMainDto.likes + "개")
 				$("#detail-joinDate").text("모이는날 : " + moim.moimMainDto.joinDate)
 				$("#detail-createDate").text("만든날 : " + moim.moimMainDto.createdDate)
+				
+				var rink = '/moim/moim.do?moimNo='+moim.moimMainDto.moimNo+'';
+				
+				$("#moim-rink-btn").attr("href", rink);
+				
 
 
 

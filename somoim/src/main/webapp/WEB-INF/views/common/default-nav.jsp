@@ -7,6 +7,7 @@
 	    margin-bottom: -1px;
 	}
 	
+	
 	.navbar-toggler {
 		display: inline;
 	}
