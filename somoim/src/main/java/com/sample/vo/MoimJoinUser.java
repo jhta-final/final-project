@@ -40,6 +40,13 @@ public class MoimJoinUser {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+
+	@Override
+	public String toString() {
+		return "MoimJoinUser [moimNo=" + moimNo + ", userId=" + userId + ", userRole=" + userRole + ", createdDate="
+				+ createdDate + "]";
+	}
+	
 	
 	
 }

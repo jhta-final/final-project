@@ -110,7 +110,7 @@ public class AlramController {
 		MoimUser user = (MoimUser) session.getAttribute("LOGIN_USER");
 		MoimMessage moimMessage = new MoimMessage();
 		moimMessage.setUserId(user.getId());
-		System.out.println(type);
+		
 		if(type.equals("send")) {
 			moimMessage.setSendUser(user.getId());
 		}
@@ -119,5 +119,12 @@ public class AlramController {
 		}
 		
 		alramService.removeAllMessage(moimMessage);
+	}
+	
+	// 쪽지 읽음표시하기
+	@GetMapping("msgread.do")
+	@ResponseBody
+	public void messageRead(@RequestParam("messageNo") long messageNo) {
+		alramService.readMessage(messageNo);
 	}
 }

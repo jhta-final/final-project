@@ -42,7 +42,7 @@
 			<tiles:insertAttribute name="nav" />
 		</div>
 	</div>
-	<div class="row" style="margin-top: 76.53px;">
+	<div class="row" style="margin-top: 71.53px;">
 		<div class="left col-2">
 			<tiles:insertAttribute name="left" />
 		</div>
@@ -62,10 +62,8 @@ $(function() {
 	           $(".left").attr("class", "left");
 	           action = 1;
 	       }
-	       $("#sideMenu").toggle("fast");
+	       //$("#sideMenu").toggle("fast");
 	}
-	
-
 	$("#sideMenu").on("click", viewSomething);
 
 	function viewSomething() {

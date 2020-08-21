@@ -63,6 +63,9 @@ public class HomeController {
 		// 알람서비스
 		httpSession.setAttribute("alrams", alramService.getAlrams(user.getId()));
 		
+		// 유저 아이디 넘기기
+		model.addAttribute("loginedUser", user.getId());
+		
 		return "main/main.tiles";
 	} 
 

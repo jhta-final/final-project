@@ -1,10 +1,15 @@
 package com.sample.web.controller;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.objenesis.instantiator.annotations.Typology;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,9 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sample.service.UserService;
+import com.sample.utils.TempKey;
 import com.sample.vo.MoimUser;
 import com.sample.vo.MoimUserCate;
 import com.sample.web.form.SignUpForm;
+
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Controller
 @RequestMapping("/login")
@@ -83,5 +92,31 @@ public class SignUpController {
 		session.setAttribute("LOGIN_USER", user);
 		return "redirect:/home.do?status=new";
 	}
+	
+	@PostMapping("/sendSMS.do")
+	@ResponseBody
+	public Map<String, String> sendSMS(@RequestBody HashMap<String, String> tel) {
+		String api_key = "NCSDOW14BPDDNDI5";
+		String api_secret = "PYPRCYLXGCOK62GYZWZDEZJARATEFYUV";
+		Message coolsms = new Message(api_key, api_secret);
+		String key = new TempKey().getNumKey(6);
+		HashMap<String, String> params = new HashMap<String,String>();
+		Map<String, String> data  = new HashMap<String,String>();
+		
+		params.put("to", tel.get("phone"));
+	    params.put("from", "01050193184");
+	    params.put("type", "SMS");
+	    params.put("text", "안녕하세요 소모임입니다. 인증번호는 [" + key + "] 입니다.");
+	    try {
+	        JSONObject obj = (JSONObject) coolsms.send(params);
+	        System.out.println(obj.toString());
+	      } catch (CoolsmsException e) {
+	        System.out.println(e.getMessage());
+	        System.out.println(e.getCode());
+	      }
+	    data.put("key", key);
+	    return data;
+	}
+	
 	
 }

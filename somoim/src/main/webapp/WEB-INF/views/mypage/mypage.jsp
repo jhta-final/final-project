@@ -65,23 +65,21 @@
 </div>
 
 <!-- 회원정보 수정 모달창 -->
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
+<div class="modal fade" id="mypage-modify-modal">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
 
-      <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
+        <h4 class="modal-title">사용자 정보 수정</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
-      <!-- Modal body -->
       <div class="modal-body">
         Modal body..
       </div>
 
-      <!-- Modal footer -->
       <div class="modal-footer">
+        <button type="button" class="btn btn-primary">수정</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
 
@@ -127,7 +125,7 @@
 		});
 		
 		$("#mypage-modify-button").on('click', function() {
-			console.log(123);
+			$("#mypage-modify-modal").modal('show');
 		})
 		
 		// 가입모임 JS
