@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.dao.BoardDao;
+import com.sample.dto.PageDto;
 import com.sample.vo.MoimBoard;
+import com.sample.vo.Pagination;
 
 @Service
 @Transactional
@@ -24,10 +26,12 @@ public class BoardServiceImpl implements BoardService {
 
 	// 모임 내의 전체 게시글 조회
 	@Override
-	public List<MoimBoard> getAllBoards(long moimNo) {
-		return boardDao.selectMoimBoards(moimNo);
-	}
-
+	public List<MoimBoard> getAllBoards(long moimNo, Pagination page) {
+		
+		PageDto paging = new PageDto(moimNo, page.getBeginIndex(), page.getEndIndex());		
+		return boardDao.selectMoimBoards(paging);
+	}	
+	
 	// 게시글 상세 조회
 	@Override
 	public MoimBoard getBoardByNo(long boardNo) {
@@ -80,14 +84,26 @@ public class BoardServiceImpl implements BoardService {
 		boardDao.updateMoimBoard(savedBoard);
 	}
 
+	// 카테고리별 게시글 가져오기
 	@Override
 	public List<MoimBoard> getBoardsByCategory(MoimBoard moimBoard) {
 		return boardDao.getBoardsByCategory(moimBoard);
 	}
 
+	// 공지 3개 가져오기
 	@Override
 	public List<MoimBoard> getRecentBoardsByNotice(long moimNo) {
 		return boardDao.getRecentBoardsByNotice(moimNo);
 	}
+
+	// 게시글 숫자 가져오기
+	@Override
+	public int getTotalRowCount(long moimNo) {
+		return boardDao.getTotalRowCount(moimNo);
+	}
+
+	
+	
+	
 
 }

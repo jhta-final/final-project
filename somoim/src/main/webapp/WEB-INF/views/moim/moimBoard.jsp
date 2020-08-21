@@ -21,7 +21,7 @@
 						<a class="nav-link" href="moim.do?moimNo=${param.moimNo}">정보</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link active" href="#">게시판</a>
+						<a class="nav-link active" href="board.do?moimNo=${param.moimNo}&pageNo=1">게시판</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">사진첩</a>
@@ -36,7 +36,10 @@
 			</nav>
 		</div>
 	</div>
-	<div class="row mt-5 justify-content-center">
+	<div class="row mt-5">
+			<a href="notice.do?moimNo=${param.moimNo }&pageNo=1&category=notice" class="ml-3">공지</a>
+	</div>
+	<div class="row justify-content-center">
 		<table class="table table-hover" style="width: 80%">
 			<thead>
 			<tr>
@@ -79,18 +82,24 @@
 			<a href="boardAdd.do?moimNo=${param.moimNo}" class="btn btn-primary">글 쓰기</a>
 		</div>
 	</div>
-	<div class="row justify-content-center">
-		<ul class="pagination">
-		
-			<li class="page-item"><a class="page-link" href="#"><</a></li>
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#">4</a></li>
-			<li class="page-item"><a class="page-link" href="#">5</a></li>
-			<li class="page-item"><a class="page-link" href="#">></a></li>
-		</ul>
-	</div>
+	<c:if test="${param.category eq notice }">
+		<div class="row justify-content-center">
+			<ul class="pagination">
+				<c:if test="${page.pageNo gt 1 }">
+					<li class="page-item"><a class="page-link" href="board.do?moimNo=${param.moimNo}&pageNo=${page.pageNo - 1}"><</a></li>
+				</c:if>
+				
+				<c:forEach var="num" begin="${page.beginPage }" end="${page.endPage }">
+					<li class='page-item ${param.pageNo eq num ? "active" : "" }'><a class="page-link" href="board.do?moimNo=${param.moimNo}&pageNo=${num}">${num }</a></li>
+				</c:forEach>
+				
+				<c:if test="${page.pageNo lt page.totalPages}">
+					<li class="page-item"><a class="page-link" href="board.do?moimNo=${param.moimNo}&pageNo=${page.pageNo + 1}">></a></li>
+				</c:if>
+				
+			</ul>
+		</div>
+	</c:if>
 
 
 </div>
