@@ -37,6 +37,9 @@ public interface HomeService {
 	DetailViewMoimsDto detailViewMoims(long moimNo);
 	
 	// 검색조건
-	List<MoimMainDto> getsearchFunction(Map<String, Object> map);
+	List<MoimMainDto> getsearchFunction(String keyword);
+	
+//	// 검색조건 2
+//	List<MoimMainDto> getsearchFunction(String keyword);
 	
 }
