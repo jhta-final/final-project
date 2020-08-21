@@ -108,10 +108,18 @@ public class HomeServiceImpl implements HomeService{
 		return new DetailViewMoimsDto(moimDao.selectMoim(moimNo), moimDao.selectJoinUsers(moimNo));
 	}
 
+//	@Override
+//	public List<MoimMainDto> getsearchFunction(String keyword) {
+//		
+//		return homeDao.searchFunction(keyword);
+//	}
+
 	@Override
-	public List<MoimMainDto> getsearchFunction(Map<String, Object> map) {
+	public List<MoimMainDto> getsearchFunction(String keyword) {
 		
-		return homeDao.searchFunction(map);
+		return homeDao.searchFunction(keyword);
 	}
+	
+	
 
 }

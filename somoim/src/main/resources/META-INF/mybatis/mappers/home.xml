@@ -2,57 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.sample.dao.HomeDao">
-
-	<!-- 검색기능-->
-	<select id="searchFunction" parameterType="map" resultType="MainDto"> 
-		select 
-			title			as title,
-			content			as content,
-			image			as image,
-			fee				as fee,
-			join_date		as joinDate,
-			a.created_date	as createdDate,
-			c.sub_cate_no	as subCateNo,
-			c.name			as subCateName,
-			d.location_no	as locationNo,
-			d.name      	as locationName,
-			b.main_cate_no	as mainCateNo,
-			b.name			as mainCateName
-		from
-			moim_main A, moim_main_category B, 
-            moim_sub_cate C, moim_location d
-        where
-        	b.main_cate_no = c.main_cate_no and
-			a.sub_cate_no = c.sub_Cate_no and 
-			d.location_no = a.location_no
-		<where>
-			<if test="title != null">
-				title like '%' || #{title} || '%'
-			</if>
-			<if test="content != null">
-				content like '%' || #{content} || '%'
-			</if>
-			<if test="b.name != null">
-				and B.moim_main_category in
-				<foreach item="b.name" index="index" collection="b.name" open="(" separator="," close=")">
-					#{b.name}
-				</foreach>
-			</if>
-			<if test="c.name != null">
-				and c.name in
-				<foreach item="c.name" index="index" collection="c.name" open="(" separator="," close=")">
-					#{c.name}
-				</foreach>
-			</if>
-			<if test="d.name != null">
-				and d.name in
-				<foreach item="d.name" index="index" collection="d.name" open="(" separator="," close=")">
-					#{d.name}
-				</foreach>
-			</if>d.name
-		</where>
+	<!-- 검색기능 -->
+	<select id="searchFunction" parameterType="string" resultType="MainDto"> 
+	select *
+		from moim_main a
+		join moim_location b on a.location_no = b.location_no
+		join moim_sub_cate c on a.sub_cate_no = c.sub_cate_no
+		join moim_main_category d on c.main_cate_no = d.main_cate_no
+		where a.title like '%' || '#{value}' || '%'
+		or a.content like '%' || '#{value}' || '%'
+		or b.name like '%' || '#{value}' || '%'
+		or c.name like '%' || '#{value}' || '%'
+		or d.name like '%' || '#{value}' || '%'
+		order by a.created_date desc
 	</select>
-
 	<!-- 상세정보 -->
 	<select id="detailViewMoims" parameterType="long" resultType="DetailViewMoimsDto">
 		select
@@ -234,7 +197,7 @@
 	and
         delete_yn = 'N'
 	order by 
-		join_date desc
+		join_date asc
 	) where rownum <= 3
 	]]>
 	</select>

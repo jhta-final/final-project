@@ -44,7 +44,8 @@ public interface HomeDao {
 	List<DetailViewMoimsDto> detailViewMoims(long moimNo);
 	
 	// 검색조건
-	List<MoimMainDto> searchFunction(Map<String, Object> map);
+	List<MoimMainDto> searchFunction(String keyword);
+
 	
  
 }
