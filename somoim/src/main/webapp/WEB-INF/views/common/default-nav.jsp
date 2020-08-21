@@ -274,8 +274,7 @@
 				url: "/alram/delete.do",
 				data: {
 					messageNo: messageNo
-				},
-				dataType: "json"
+				}
 			});
 			
 			showMessage();
@@ -291,8 +290,7 @@
 				url: "/alram/deleteall.do",
 				data: {
 					type: type
-				},
-				dataType: "json"
+				}
 			});
 			
 			showMessage();
