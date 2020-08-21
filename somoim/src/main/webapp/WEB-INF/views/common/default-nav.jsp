@@ -324,6 +324,9 @@
 				url: "/alram/msgread.do",
 				data: {
 					messageNo:messageNo
+				},
+				success: function () {
+					
 				}
 			})
 			var tr = ($(this).closest("tr"));
