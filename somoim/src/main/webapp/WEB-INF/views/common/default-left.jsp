@@ -85,20 +85,24 @@
   margin-left: .1rem;
   margin-right: .1rem;
 }
+
+#collapseExample {
+	background-color: #cccccc;
+}
 </style>
 
 <div id="mySidenav" class="sidenav">
 	<ul class="navbar-nav" style="text-align: center">
 		<li class="nav-item active">
-			<a class="nav-link" href="/home.do">Home</a>
+			<a class="nav-link" href="/home.do"><i class="fas fa-home"></i>Home</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="#">인기</a>
+			<a class="nav-link" href="#"><i class="fab fa-hotjar"></i>인기</a>
 		</li>
         <li class="nav-item dropdown dropright">
 	        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" href="/cate/subCate.do"
 	        	aria-haspopup="true" aria-expanded="false">
-	          	카테고리
+	          	<i class="fas fa-tags"></i>카테고리
 	        </a>
 	        <ul id="left-main-dropdown" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 	          <li class="dropdown-submenu">
@@ -144,13 +148,12 @@
 	        </ul>
       	</li>
       	<li class="nav-item">
-			<a class="btn" data-toggle="collapse" href="#collapseExample"
+			<a data-toggle="collapse" href="#collapseExample"
 				role="button" aria-expanded="false" aria-controls="collapseExample">
 				가입모임 
 			</a>
-			<div class="collapse" id="collapseExample"
-				style="border-top: 1px solid lightgray">
-				<div class="card card-body" style="background-color: #EDEDED">
+			<div class="collapse" id="collapseExample">
+				<div>
 					<c:choose>
 						<c:when test="${not empty joinedMoim }">
 							<c:forEach items="${joinedMoim}" var="joinedMoim">
@@ -251,6 +254,7 @@
 </div>
 <script type="text/javascript">
 $(function() {
+	
 	$("#mySidenav .nav-item").removeClass('active');
 	var path = window.location.pathname;
 	$("#mySidenav .nav-item>a").each(function () {
