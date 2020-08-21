@@ -158,6 +158,63 @@
 			opacity: 0.6;
 		}
 		
+		#signup-modal {
+		
+		}
+		
+		#index-join-form .input-group{
+			display: block;
+		}
+		
+		#index-join-form .input-group-text {
+			display: flex;
+		    -ms-flex-align: center;
+		    align-items: center;
+		    padding: 0px 10px;
+		    margin-bottom: 0px;
+		    font-size: 1rem;
+		    font-weight: 400;
+		    line-height: 1.5;
+		    color: #495057;
+		    text-align: center;
+		    white-space: nowrap;
+		    background-color: #FFF;
+		    border: none;
+		    border-radius: 0.25rem;
+		}
+		
+		#index-join-form .form-control {
+			width: 100%;
+		    padding: 10px;
+		    font-size: 16px;
+		    border: 1px solid rgba(0,0,0,.5);
+		    border-radius: 5px;
+		    outline: none;
+		    box-sizing: border-box;
+		    box-shadow: inset 0 1px 2px rgba(0,0,0,.075);  /* .75 아니고 .075 주의 */
+		    margin-bottom: 4px;
+		}
+		
+		#index-join-form .index-join-check {
+			position: relative;
+		}
+		
+		#index-join-form .btn {
+			top: 0;
+		    right: 0;
+		    position: absolute;
+		    z-index: 2999;
+		    background-color: #f5f5f5;
+		    font-weight: 100;
+		    border: 1px solid #000;
+		    color: #666;
+		    min-width: 78.56px;
+		}
+		
+		#index-join-form .btn:hover {
+			background-color: #ccc;
+		}
+		
 	</style>
 </head>
 
@@ -201,58 +258,76 @@
 	</div>
 	<!--회원가입 모달 창-->
 	<div class="modal" id="signup-modal">
-		<div class="modal-dialog  modal-lg modal-dialog-centered" style="max-width: 500px;">
+		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 
 				<!-- Modal Header -->
 				<div class="modal-header">
-					<h4 class="modal-title">고민될때는 그냥 혀~~</h4>
+					<h4 class="modal-title">회원가입</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 
 				<!-- Modal body -->
-				<div class="modal-body" style="margin: 0 45px;">
-					<form action="#">
-						<div class="input-group input-group-sm mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="inputGroup-sizing-sm">아이디</span>
+				<div class="modal-body">
+					<form action="#" id="index-join-form">
+						<div class="input-group">
+							<div class="input-group-text">아이디</div>
+							<div class="index-join-check">
+								<input type="text" class="form-control" id="signup-id" placeholder="아이디를 입력해주세요">
+								<a class="btn">중복확인</a>
 							</div>
-							<input type="text" class="form-control" aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" id="signup-id">
 						</div>
-						<div class="input-group input-group-sm mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="inputGroup-sizing-sm">비밀번호</span>
-							</div>
-							<input type="password" class="form-control" aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" id="signup-password">
+						<div class="input-group">
+							<div class="input-group-text">비밀번호</div>
+							<input type="password" class="form-control" id="signup-password" placeholder="비밀번호를 입력해주세요">
 						</div>
-						<div class="input-group input-group-sm mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="inputGroup-sizing-sm">비밀번호 확인</span>
-							</div>
-							<input type="password" class="form-control" aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" id="signup-password-check">
+						<div class="input-group">
+							<div class="input-group-text">비밀번호 확인</div>
+							<input type="password" class="form-control" id="signup-password-check" placeholder="비밀번호를 입력해주세요">
 						</div>
-						<div class="input-group input-group-sm mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="inputGroup-sizing-sm">전화번호</span>
+						<div class="input-group">
+							<div class="input-group-text">전화번호</div>
+							<div class="index-join-check">
+								<input type="text" class="form-control" id="signup-tel" placeholder=" - 없이 입력해주세요">
+								<a class="btn">인증</a>
 							</div>
-							<input type="text" class="form-control" aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" id="signup-tel">
 						</div>
-						<div class="input-group input-group-sm mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="inputGroup-sizing-sm">이름</span>
-							</div>
-							<input type="text" class="form-control" aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" id="signup-name">
+						<div class="input-group">
+							<div class="input-group-text" id="inputGroup-sizing-sm">이름</div>
+							<input type="text" class="form-control" id="signup-name" placeholder="이름을 입력해주세요">
 						</div>
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text" for="signup-location">관심지역</label>
+						
+						<div class="input-group">
+							<div class="input-group-text">닉네임</div>
+							<input type="text" class="form-control" id="signup-nickname" placeholder="닉네임을 입력해주세요">
+						</div>
+						<div class="input-group">
+							<div class="input-group-text">생년월일</div>
+							<input type="text" class="form-control" id="signup-birth" placeholder="( ex: xxxxxx )">
+						</div>
+						<div class="input-group">
+							<div class="input-group-text">이메일</div>
+							<div class="index-join-check">
+								<input type="email" class="form-control" id="signup-email" placeholder="이메일을 입력해주세요">
+								<a class="btn">인증</a>
 							</div>
-							<select class="custom-select" id="signup-location">
+						</div>
+						<div class="input-group">
+							<div class="input-group-text">성별</div>
+							<div class="form-control" style="border: none; box-shadow: none;">
+								<div class="form-check-inline">
+									<input type="radio" class="form-radio" value="남" name="gender" checked>
+									<label class="input-group-text">남자</label>
+								</div>
+								<div class="form-check-inline">
+									<input type="radio" class="form-radio" value="여" name="gender">
+									<label class="input-group-text">여자</label>
+								</div>
+							</div>
+						</div>
+						<div class="input-group">
+							<div class="input-group-text" for="signup-location">관심지역</div>
+							<select class="form-control" id="signup-location">
 								<option value="" selected="selected" disabled="disabled" class="text-center">선택</option>
 								<option value="">없음</option>
 								<option value="1">강서구</option>
@@ -281,37 +356,6 @@
 								<option value="24">노원구</option>
 								<option value="25">중랑구</option>
 							</select>
-						</div>
-						<div class="input-group input-group-sm mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="inputGroup-sizing-sm">닉네임</span>
-							</div>
-							<input type="text" class="form-control" aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" id="signup-nickname">
-						</div>
-						<div class="input-group input-group-sm mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="inputGroup-sizing-sm">생년월일</span>
-							</div>
-							<input type="text" class="form-control" aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" id="signup-birth">
-						</div>
-						<div class="input-group input-group-sm mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="inputGroup-sizing-sm">이메일</span>
-							</div>
-							<input type="text" class="form-control" aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-sm" id="signup-email">
-						</div>
-						<div class="form-check-inline">
-							<label class="form-check-label">
-								<input type="radio" class="form-check-input" value="남" name="gender">남
-							</label>
-						</div>
-						<div class="form-check-inline">
-							<label class="form-check-label">
-								<input type="radio" class="form-check-input" value="여" name="gender">여
-							</label>
 						</div>
 					</form>
 				</div>
