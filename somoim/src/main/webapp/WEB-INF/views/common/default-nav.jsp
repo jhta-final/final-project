@@ -5,6 +5,7 @@
 	    box-shadow: 0 0 2px rgba(0,0,0,.35);
 	    background: #fff;
 	    margin-bottom: -1px;
+	    padding: 10px 0px 5px 0px;
 	}
 	
 	
@@ -23,9 +24,26 @@
 	.message-active {
 		color: lightgray;
 	}
+	
+	.nav-right {
+		margin-right: 10px;
+		display: flex;
+	}
+	
+	.nav-right .nav-right-alram .fa-bell {
+		padding: 4px;
+    	font-size: 29px;
+    	color: #606060;
+    	margin-right: 10px;
+    	cursor: pointer;
+	}
+
+	.nav-right .nav-right-alram .dropdown-menu {
+	}
 </style>
 <div class="my-nav fixed-top">
 	<nav class="navbar">
+		<!-- 왼쪽 구역 -->
 		<div>
 			<div class="navbar-toggler" id="sideMenu">
 				<i class="fas fa-bars navbar-icon"></i>
@@ -35,6 +53,8 @@
 				somoim
 			</a>
 		</div>
+		
+		<!-- 중앙구역 -->
 		<div style="width: 40%;">
 			<form class="form-inline my-1" action="/test.do" method="POST">
 				<div class="md-form form-sm my-0">
@@ -101,28 +121,17 @@
 				</div>
 			</form>
 		</div>
-		<div class="" style="float: right">
-			<div class="dropdown" style="float: right;text-align: right">
-				<a class="nav-link dropdown-toggle-right" id="navbarDropdownMenu2" data-toggle="dropdown">
-					<img src="/resources/profileImage/${LOGIN_USER.profileImage }" class="rounded-circle z-depth-0"
-						alt="avatar image" height="35" width="35">
-					<input id="userId" type="hidden" value="${LOGIN_USER.id }">
-				</a>
-				<div class="dropdown-menu dropdown-menu-right">
-					<a class="dropdown-item" href="/mypage/mypage.do">my page</a>
-					<a class="dropdown-item" href="#">프로필 수정</a>
-					<button class="dropdown-item" id="nav-message-button">쪽지함</button>
-					<a class="dropdown-item" href="/login/signout.do">로그아웃</a>
+		
+		<!-- 오른쪽 구역 -->
+		<div class="nav-right">
+			<div class="nav-right-alram">
+				<div >
 				</div>
-			</div>
-			<div class="dropdown" style="float: right;text-align: right">
-				<a class="nav-link navbar-toggler-right" id="navbarDropdownMenu1" data-toggle="dropdown">
-					<i class="fas fa-bell fa-2x" style="color: lightgray;"></i>
-				</a>
+					<i class="fas fa-bell" data-toggle="dropdown"></i>
 				<div id="alram-dropdown" class="dropdown-menu dropdown-menu-right">
 					<c:choose>
 						<c:when test="${empty alrams }">
-							<p style="margin: 0;">새 알림이 없습니다.</p>
+							<p>새 알림이 없습니다.</p>
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${alrams }" var="alram">
@@ -134,6 +143,20 @@
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
+				</div>
+			</div>
+			
+			<div class="nav-right-profile">
+				<div data-toggle="dropdown">
+					<img src="/resources/profileImage/${LOGIN_USER.profileImage }" class="rounded-circle z-depth-0"
+						alt="avatar image" height="35" width="35">
+					<input id="userId" type="hidden" value="${LOGIN_USER.id }">
+				</div>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a class="dropdown-item" href="/mypage/mypage.do">my page</a>
+					<a class="dropdown-item" href="#">프로필 수정</a>
+					<button class="dropdown-item" id="nav-message-button">쪽지함</button>
+					<a class="dropdown-item" href="/login/signout.do">로그아웃</a>
 				</div>
 			</div>
 		</div>
@@ -221,11 +244,6 @@
 <!--/.Navbar -->
 <script type="text/javascript">
 	$(function () {
-		// 드롭다운 꺼지지 않게 하기
-		$("#alram-dropdown").click(function (event) {
-			event.stopPropagation();
-		});
-
 		// 알림 읽은거 지우고 새로운거 띄우기
 		$("#alram-dropdown").on("click", "a", function () {
 			var alramNo = $(this).data("alram-no");
