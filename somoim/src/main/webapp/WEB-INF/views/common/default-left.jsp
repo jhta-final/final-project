@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <style>
-/* The side navigation menu */
-.sidenav {
+
+#mySidenav {
+	 box-shadow: 0 0 1px rgba(0,0,0,.35);
+	 background: #fff;
+	 margin-bottom: -1px;
 	height: 100%; /* 100% Full-height */
 	width: 317px; /* 0 width - change this with JavaScript */
 	position: fixed; /* Stay in place */
@@ -15,7 +18,7 @@
 }
 
 /* The navigation menu links */
-.sidenav a {
+#mySidenav a {
 	padding: 8px 8px 8px 8px;
 	text-decoration: none;
 	font-size: 20px;	
@@ -25,12 +28,12 @@
 }
 
 /* When you mouse over the navigation links, change their color */
-.sidenav .nav-item:hover {
+#mySidenav .nav-item>a:hover {
 	background-color: rgba(0,073,140, .5);
 	color: #FFF;
 }
 
-.sidenav-active {
+#mySidenav .active>a {
 	background-color: rgba(0,073,140, .8);
 	color: #FFF;
 }
@@ -57,7 +60,7 @@
 	  border: none;
 	  text-align: left;
 	  outline: none;
-		height: 200px;
+	  height: 200px;
 	}
 }
 
@@ -86,151 +89,153 @@
 
 <div id="mySidenav" class="sidenav">
 	<ul class="navbar-nav" style="text-align: center">
-		<li class="nav-item">
+		<li class="nav-item active">
 			<a class="nav-link" href="/home.do">Home</a>
 		</li>
-		<li class="nav-item"><a class="nav-link" href="#">인기</a></li>
-
+		<li class="nav-item">
+			<a class="nav-link" href="#">인기</a>
+		</li>
         <li class="nav-item dropdown dropright">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          카테고리
-        </a>
-        <ul id="left-main-dropdown" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <li class="dropdown-submenu">
-            <a class="dropdown-item dropdown-toggle" href="#">게임/오락</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700011">리그오브레전드</a></li>
-              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700012">배틀그라운드</a></li>
-              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700013">피파온라인4</a></li>
-             </ul>
-          </li>
-          <li class="dropdown-submenu">
-            <a class="dropdown-item dropdown-toggle" href="#">사교/인맥</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700014">싱글/연애</a></li>
-              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700015">술/커피/차</a></li>
-              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700016">맛집/미식회</a></li>
-             </ul>
-          </li>
-          <li class="dropdown-submenu">
-            <a class="dropdown-item dropdown-toggle" href="#">운동/스포츠</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700017">축구/풋살</a></li>
-              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700018">농구</a></li>
-              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700019">스케이트/인라인</a></li>
-             </ul>
-          </li>
-          <li class="dropdown-submenu">
-            <a class="dropdown-item dropdown-toggle" href="#">반려동물</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700020">강아지</a></li>
-              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700021">고양이</a></li>
-              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700022">파충류</a></li>
-             </ul>
-          </li>
-          <li class="dropdown-submenu">
-            <a class="dropdown-item dropdown-toggle" href="#">문화/공연/축제</a>
-            <ul class="dropdown-menu">
-      		  <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700023">공연/연극</a></li>
-              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700024">영화</a></li>
-              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700025">파티/페스티벌</a></li>
-             </ul>
-          </li>
-        </ul>
-      </li>
-      <li class="nav-item">
-		<a class="btn" data-toggle="collapse" href="#collapseExample"
-			role="button" aria-expanded="false" aria-controls="collapseExample">
-			가입모임 
-		</a>
-		<div class="collapse" id="collapseExample"
-			style="border-top: 1px solid lightgray">
-			<div class="card card-body" style="background-color: #EDEDED">
-				<c:choose>
-					<c:when test="${not empty joinedMoim }">
-						<c:forEach items="${joinedMoim}" var="joinedMoim">
-							<a class="nav-link" href="/moim/moim.do?moimNo=${joinedMoim.moimNo }"> <span class="nav-item avatar">
-									${joinedMoim.title }
-									<c:if test="${joinedMoim.premiumYn eq 'Y'}">
-										<i class="fas fa-crown ml-2" style="color: #6699FF;"></i>
-									</c:if>
-							</span>
-							</a>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
-						<p class="text-center">가입한 모임이 없습니다.</p>
-					</c:otherwise>
-				</c:choose>
-				<a class="nav-link text-center" href="#" style="color: black;">더보기</a>
-			</div>
-		</div>
-      </li>
-      <li class="nav-item">
-      	<a class="btn" data-toggle="collapse" href="#collapseExample2"
-		role="button" aria-expanded="false" aria-controls="collapseExample">
-		모임<i class="far fa-heart"></i>
-		</a>
-		<div class="collapse" id="collapseExample2"
-			style="border-top: 1px solid lightgray">
-			<div class="card card-body" style="background-color: #EDEDED">
-				<c:choose>
-					<c:when test="${not empty select}">
-						<c:forEach items="${selectMoim}" var="select">
-							<a class="nav-link" href="#">
-								<span class="nav-item avatar">
-									${select.title}
-									<c:if test="${select.premiumYn eq 'Y'}">
-										<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>
-									</c:if>
+	        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" href="/cate/subCate.do"
+	        	aria-haspopup="true" aria-expanded="false">
+	          	카테고리
+	        </a>
+	        <ul id="left-main-dropdown" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	          <li class="dropdown-submenu">
+	            <a class="dropdown-item dropdown-toggle" href="#">게임/오락</a>
+	            <ul class="dropdown-menu">
+	              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700011">리그오브레전드</a></li>
+	              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700012">배틀그라운드</a></li>
+	              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700013">피파온라인4</a></li>
+	             </ul>
+	          </li>
+	          <li class="dropdown-submenu">
+	            <a class="dropdown-item dropdown-toggle" href="#">사교/인맥</a>
+	            <ul class="dropdown-menu">
+	              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700014">싱글/연애</a></li>
+	              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700015">술/커피/차</a></li>
+	              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700016">맛집/미식회</a></li>
+	             </ul>
+	          </li>
+	          <li class="dropdown-submenu">
+	            <a class="dropdown-item dropdown-toggle" href="#">운동/스포츠</a>
+	            <ul class="dropdown-menu">
+	              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700017">축구/풋살</a></li>
+	              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700018">농구</a></li>
+	              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700019">스케이트/인라인</a></li>
+	             </ul>
+	          </li>
+	          <li class="dropdown-submenu">
+	            <a class="dropdown-item dropdown-toggle" href="#">반려동물</a>
+	            <ul class="dropdown-menu">
+	              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700020">강아지</a></li>
+	              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700021">고양이</a></li>
+	              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700022">파충류</a></li>
+	             </ul>
+	          </li>
+	          <li class="dropdown-submenu">
+	            <a class="dropdown-item dropdown-toggle" href="#">문화/공연/축제</a>
+	            <ul class="dropdown-menu">
+	      		  <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700023">공연/연극</a></li>
+	              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700024">영화</a></li>
+	              <li><a class="dropdown-item" href="/cate/subCate.do?subCateNo=700025">파티/페스티벌</a></li>
+	             </ul>
+	          </li>
+	        </ul>
+      	</li>
+      	<li class="nav-item">
+			<a class="btn" data-toggle="collapse" href="#collapseExample"
+				role="button" aria-expanded="false" aria-controls="collapseExample">
+				가입모임 
+			</a>
+			<div class="collapse" id="collapseExample"
+				style="border-top: 1px solid lightgray">
+				<div class="card card-body" style="background-color: #EDEDED">
+					<c:choose>
+						<c:when test="${not empty joinedMoim }">
+							<c:forEach items="${joinedMoim}" var="joinedMoim">
+								<a class="nav-link" href="/moim/moim.do?moimNo=${joinedMoim.moimNo }"> <span class="nav-item avatar">
+										${joinedMoim.title }
+										<c:if test="${joinedMoim.premiumYn eq 'Y'}">
+											<i class="fas fa-crown ml-2" style="color: #6699FF;"></i>
+										</c:if>
 								</span>
-							</a>
-						</c:forEach>
+								</a>
+							</c:forEach>
 						</c:when>
-					<c:otherwise>
-						<p class="text-center">좋아요한 모임이 없습니다.</p>
-					</c:otherwise>
-				</c:choose>
-				<a class="nav-link text-center" href="#" style="color: black;">더보기</a>
+						<c:otherwise>
+							<p class="text-center">가입한 모임이 없습니다.</p>
+						</c:otherwise>
+					</c:choose>
+					<a class="nav-link text-center" href="#" style="color: black;">더보기</a>
+				</div>
 			</div>
-		</div>
-      </li>
-      <li class="nav-item">
-      	<a class="btn" data-toggle="collapse" href="#collapseExample3"
-		role="button" aria-expanded="false" aria-controls="collapseExample">
-		내 친구 
-		</a>
-		<div class="collapse" id="collapseExample3"
-			style="border-top: 1px solid lightgray">
-			<div class="card card-body" style="background-color: #EDEDED">
-				<c:choose>
-					<c:when test="${not empty followUsers}">
-						<c:forEach items="${followUsers}" var="follow">
-							<a class="nav-link" href="#"> 
-								<span class="nav-item avatar">
-								<img src="/resources/profileImage/${follow.image }"
-									class="rounded-circle z-depth-0" alt="avatar image" height="35">
-									${follow.nickname }
-								</span>
-							</a>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
-						<p class="text-center">팔로잉한 사람이 없습니다.</p>
-					</c:otherwise>
-				</c:choose>
-				<a class="nav-link text-center" href="#" style="color: black;">더보기</a>
+      	  </li>
+	      <li class="nav-item">
+	      	<a class="btn" data-toggle="collapse" href="#collapseExample2"
+			role="button" aria-expanded="false" aria-controls="collapseExample">
+			모임<i class="far fa-heart"></i>
+			</a>
+			<div class="collapse" id="collapseExample2"
+				style="border-top: 1px solid lightgray">
+				<div class="card card-body" style="background-color: #EDEDED">
+					<c:choose>
+						<c:when test="${not empty select}">
+							<c:forEach items="${selectMoim}" var="select">
+								<a class="nav-link" href="#">
+									<span class="nav-item avatar">
+										${select.title}
+										<c:if test="${select.premiumYn eq 'Y'}">
+											<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>
+										</c:if>
+									</span>
+								</a>
+							</c:forEach>
+							</c:when>
+						<c:otherwise>
+							<p class="text-center">좋아요한 모임이 없습니다.</p>
+						</c:otherwise>
+					</c:choose>
+					<a class="nav-link text-center" href="#" style="color: black;">더보기</a>
+				</div>
 			</div>
-		</div>
-      </li>      
-	</ul>
+	      </li>
+	      <li class="nav-item">
+	      	<a class="btn" data-toggle="collapse" href="#collapseExample3"
+			role="button" aria-expanded="false" aria-controls="collapseExample">
+			내 친구 
+			</a>
+			<div class="collapse" id="collapseExample3"
+				style="border-top: 1px solid lightgray">
+				<div class="card card-body" style="background-color: #EDEDED">
+					<c:choose>
+						<c:when test="${not empty followUsers}">
+							<c:forEach items="${followUsers}" var="follow">
+								<a class="nav-link" href="#"> 
+									<span class="nav-item avatar">
+									<img src="/resources/profileImage/${follow.image }"
+										class="rounded-circle z-depth-0" alt="avatar image" height="35">
+										${follow.nickname }
+									</span>
+								</a>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<p class="text-center">팔로잉한 사람이 없습니다.</p>
+						</c:otherwise>
+					</c:choose>
+					<a class="nav-link text-center" href="#" style="color: black;">더보기</a>
+				</div>
+			</div>
+	      </li>      
+		</ul>
 	
 	
 	<a class="btn btn-primary" href="/moim/moim.do?moimNo=500000">
 		정원 500000번 모임
 	</a>
 	<hr />
-	<div class="" id="footer" style="font-size: 10px; margin-left:50px;">
+	<div id="footer" style="font-size: 10px; margin-left:50px;">
 		<p>자주하는 질문</p>
 		<p>help@friendscube.com</p>
 		<p>홈서비스</p>
@@ -246,6 +251,16 @@
 </div>
 <script type="text/javascript">
 $(function() {
+	$("#mySidenav .nav-item").removeClass('active');
+	var path = window.location.pathname;
+	$("#mySidenav .nav-item>a").each(function () {
+		var $nowPage = $(this).attr('href');
+		if ($nowPage == path) {
+			$(this).closest('.nav-item').addClass('active');
+			return;
+		}
+	});
+	
 	$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
 		  if (!$(this).next().hasClass('show')) {
 		    $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
