@@ -292,7 +292,7 @@
 				<a id="like-button" class="btn btn-danger" href="#"><i class="fas fa-heart"></i></a>
 				<a id="left-moim-link-btn" class="btn btn-primary" href="/moim/moim.do?moimNo=">모임가기</a>
 				<button type="button" class="btn btn-warning" data-dismiss="modal">회원탈퇴</button>
-				<button type="button" class="btn btn-success" data-dismiss="modal">모임가입</button>
+				<a id="left-moim-join-btn" class="btn btn-success" href="/moim/join.do?moimNo=${moimNo}&userId=${loginedUser}">모임가입</a>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
 			<!-- Modal footer end -->
@@ -364,8 +364,11 @@ $(function() {
 				$("#left-detail-createDate").text("만든날 : " + moim.moimMainDto.createdDate)
 				
 				var link = '/moim/moim.do?moimNo='+moim.moimMainDto.moimNo+'';
+				var join = '/moim/join.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${loginedUser}';
 				
+				$("#left-moim-join-btn").attr('href', join);
 				$("#left-moim-link-btn").attr("href", link);
+				
 				$("#left-detail-premium").empty();
 				if(moim.moimMainDto.premiumYn == 'Y') {
 					let premium = '<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>';
