@@ -36,9 +36,9 @@
 			</a>
 		</div>
 		<div style="width: 40%;">
-			<form class="form-inline my-1" action="/test.do" method="get">
+			<form class="form-inline my-1" action="/test.do" method="POST">
 				<div class="md-form form-sm my-0">
-					<input class="form-control form-control-sm" style="width: 500px;" type="text" placeholder="Search"
+					<input class="form-control form-control-sm" style="width: 500px;" type="text" placeholder="Search" id="field-search-keyword"
 						aria-label="Search">
 				</div>
 				<button class="btn btn-outline-primary btn-sm ml-1 my-0" type="submit" >Search</button>
