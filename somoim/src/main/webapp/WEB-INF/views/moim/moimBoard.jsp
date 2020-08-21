@@ -24,7 +24,7 @@
 						<a class="nav-link active" href="board.do?moimNo=${param.moimNo}&pageNo=1">게시판</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">사진첩</a>
+						<a class="nav-link" href="photo.do?moimNo=${param.moimNo}">사진첩</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">채팅</a>

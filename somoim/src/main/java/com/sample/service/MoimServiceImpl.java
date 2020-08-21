@@ -108,6 +108,7 @@ public class MoimServiceImpl implements MoimService {
 			System.out.println("이미 가입된 모임입니다");
 		}
 		
+		System.out.println(savedUser.toString());
 		moimDao.insertJoinUser(savedUser);
 	}
 	

@@ -146,7 +146,7 @@ public class MoimController {
 		
 		moimService.joinMoim(moimNo, userId);
 		
-		return "";
+		return "redirect:moim.do?moimNo=" + moimNo;
 	}
 	
 	// 모임 탈퇴
@@ -271,6 +271,12 @@ public class MoimController {
 		return "redirect:board.do?moimNo=" + board.getMoimNo() + "&pageNo=1";
 	}
 	
+	// 사진첩
+	@GetMapping("photo.do")
+	public String photo(@RequestParam("moimNo") long moimNo) {
+		
+		return "moim/photo.tiles";
+	}
 	
 	
 	
