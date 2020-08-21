@@ -62,10 +62,8 @@ $(function() {
 	           $(".left").attr("class", "left");
 	           action = 1;
 	       }
-	       $("#sideMenu").toggle("fast");
+	       //$("#sideMenu").toggle("fast");
 	}
-	
-
 	$("#sideMenu").on("click", viewSomething);
 
 	function viewSomething() {

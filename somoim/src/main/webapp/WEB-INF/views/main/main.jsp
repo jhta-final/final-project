@@ -72,7 +72,7 @@ h5 {
 						<div class="card-body">
 							<h5 class="card-title">
 								<c:out value="${favolite.title }" />
-								<p class="ml-5" style="float: right"><span class="mr-3">${favolite.joinCount}/${favolite.headCount}</span> <i class="far fa-heart" id="Like"></i></p>
+								<p class="ml-5" style="float: right"><span class="mr-3">${favolite.joinCount}/${favolite.headCount}</span> <i class="far fa-heart"></i></p>
 							</h5>
 							<div class="text-right">
 								<small class="text-muted"><fmt:formatDate value="${favolite.createdDate}" /></small>
@@ -183,24 +183,24 @@ h5 {
 					</div>
 					<div class="row">
 						<div class="col-12" style="padding: 30px;">
-						<h3 id="detail-title"></h3>
-							<p id="detail-count"></p>
-							<p id="detail-content"></p>
-							<p><i class="fas fa-won-sign 2x"></i><span id="detail-fee"></span></p>
-							<p id="detail-likes"></p>
-							<p id="detail-premium"></p>
-							<p id="detail-joinDate">모이는날 : 2020.10.19</p>
-							<p id="detail-createDate">만든날 : 2020.08.15</p>
+						<h3 id="home-detail-title"></h3>
+							<p id="home-detail-count"></p>
+							<p id="home-detail-content"></p>
+							<p><i class="fas fa-won-sign 2x"></i><span id="home-detail-fee"></span></p>
+							<p id="home-detail-likes"></p>
+							<p id="home-detail-premium"></p>
+							<p id="home-detail-joinDate">모이는날 : 2020.10.19</p>
+							<p id="home-detail-createDate">만든날 : 2020.08.15</p>
 						</div>
 					</div>
 			</div>
 			<!-- Modal body end -->
 			<!-- Modal footer -->
 			<div class="modal-footer">
-				<a id="like-button" class="btn btn-danger" href="#"><i class="fas fa-heart"></i></a>
-				<a id="moim-rink-btn" class="btn btn-primary" href="/moim/moim.do?moimNo=${moimNo}">모임가기</a>
+				<button type="button" class="btn btn-danger" id="like-button"><i class="fas fa-heart" id="like"></i></button>
+				<a id="home-moim-link-btn" class="btn btn-primary" href="/moim/moim.do?moimNo=${moimNo}">모임가기</a>
 				<button type="button" class="btn btn-warning" data-dismiss="modal">회원탈퇴</button>
-				<button type="button" class="btn btn-success" data-dismiss="modal">모임가입</button>
+				<a id="home-moim-join-btn" class="btn btn-success" data-dismiss="modal" href="/moim/join.do?moimNo=${moimNo}&userId=${loginedUser}">모임가입</a>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
 			<!-- Modal footer end -->
@@ -212,14 +212,15 @@ h5 {
 <div style="position: fixed;bottom: 10px; right: 10px;">
 	<a href="/moim/add.do"><i class="fas fa-plus"></i></a>
 	<a href="#"><i class="fas fa-arrow-up"></i></a>
+	<i class="far fa-heart" id="Like"></i>
 </div>
 
 <!-- Initialize Swiper -->
 <script>
 
 $(function() {
-	var action = 1;
-	function viewSomething() {
+	$("#Like").click(function() {
+		var action = 1;
 		if (action == 1) {
 			$('#Like').attr('class', 'fas fa-heart');
 			action = 2;
@@ -227,8 +228,9 @@ $(function() {
 			$('#Like').attr('class', 'far fa-heart');
 			action = 1;
 		}
-		$("#Like").toggle("fast");
-	}
+	})
+	
+	
 
 	 var swiper = new Swiper('.swiper-container', {
 	      slidesPerView: 3,
@@ -256,21 +258,24 @@ $(function() {
 			dataType: "json",
 			success: function (moim) {
 				console.log(moim);
-				$("#detail-title").text(moim.moimMainDto.title)
-				$("#detail-count").text(moim.moimMainDto.joinCount + "/" + moim.moimMainDto.headCount)
-				$("#detail-content").text(moim.moimMainDto.content)
-				$("#detail-fee").text(moim.moimMainDto.fee + "원")
-				$("#detail-likes").text("좋아요수 : " + moim.moimMainDto.likes + "개")
-				$("#detail-joinDate").text("모이는날 : " + moim.moimMainDto.joinDate)
-				$("#detail-createDate").text("만든날 : " + moim.moimMainDto.createdDate)
+				$("#home-detail-title").text(moim.moimMainDto.title)
+				$("#home-detail-count").text(moim.moimMainDto.joinCount + "/" + moim.moimMainDto.headCount)
+				$("#home-detail-content").text(moim.moimMainDto.content)
+				$("#home-detail-fee").text(moim.moimMainDto.fee + "원")
+				$("#home-detail-likes").text("좋아요수 : " + moim.moimMainDto.likes + "개")
+				$("#home-detail-joinDate").text("모이는날 : " + moim.moimMainDto.joinDate)
+				$("#home-detail-createDate").text("만든날 : " + moim.moimMainDto.createdDate)
 				
 				var link = '/moim/moim.do?moimNo='+moim.moimMainDto.moimNo+'';
+				var join = '/moim/join.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${loginedUser}';
 				
-				$("#moim-rink-btn").attr("href", link);
-				$("#detail-premium").empty();
+				$("#home-moim-link-btn").attr("href", link);
+				$("#home-moim-join-btn").attr('href', join);
+				
+				$("#home-detail-premium").empty();
 				if(moim.moimMainDto.premiumYn == 'Y') {
 					let premium = '<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>';
-					$("#detail-premium").append(premium);
+					$("#home-detail-premium").append(premium);
 				}
 			}
 		})
