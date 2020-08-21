@@ -2,12 +2,14 @@ package com.sample.web.controller;
 
 
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.objenesis.instantiator.annotations.Typology;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -93,17 +95,18 @@ public class SignUpController {
 	
 	@PostMapping("/sendSMS.do")
 	@ResponseBody
-	public String sendSMS(@RequestBody String phoneNo) {
+	public Map<String, String> sendSMS(@RequestBody HashMap<String, String> tel) {
 		String api_key = "NCSDOW14BPDDNDI5";
 		String api_secret = "PYPRCYLXGCOK62GYZWZDEZJARATEFYUV";
 		Message coolsms = new Message(api_key, api_secret);
 		String key = new TempKey().getNumKey(6);
 		HashMap<String, String> params = new HashMap<String,String>();
-		params.put("to", phoneNo);
+		Map<String, String> data  = new HashMap<String,String>();
+		
+		params.put("to", tel.get("phone"));
 	    params.put("from", "01050193184");
 	    params.put("type", "SMS");
 	    params.put("text", "안녕하세요 소모임입니다. 인증번호는 [" + key + "] 입니다.");
-	
 	    try {
 	        JSONObject obj = (JSONObject) coolsms.send(params);
 	        System.out.println(obj.toString());
@@ -111,7 +114,8 @@ public class SignUpController {
 	        System.out.println(e.getMessage());
 	        System.out.println(e.getCode());
 	      }
-	    return key;
+	    data.put("key", key);
+	    return data;
 	}
 	
 	

@@ -492,7 +492,10 @@
 
 			// 인증
 			$("#signup-tel-check").click(function () {
-				var tel = $("#signup-tel").val();
+				var tel = {
+					phone : $("#signup-tel").val()
+				}
+				
 				$.ajax({
 					type: "POST",
 					url: "/login/sendSMS.do",
