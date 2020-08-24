@@ -273,8 +273,8 @@
 						<div class="input-group">
 							<div class="input-group-text">아이디</div>
 							<div class="index-join-check">
-								<input type="text" class="form-control" id="signup-id" placeholder="아이디를 입력해주세요">
-								<a class="btn">중복확인</a>
+								<input type="text" class="form-control" id="signup-id" placeholder="이메일를 입력해주세요">
+								<a class="btn">인증</a>
 							</div>
 						</div>
 						<div class="input-group">
@@ -304,13 +304,6 @@
 						<div class="input-group">
 							<div class="input-group-text">생년월일</div>
 							<input type="text" class="form-control" id="signup-birth" placeholder="( ex: xxxxxx )">
-						</div>
-						<div class="input-group">
-							<div class="input-group-text">이메일</div>
-							<div class="index-join-check">
-								<input type="email" class="form-control" id="signup-email" placeholder="이메일을 입력해주세요">
-								<a class="btn">인증</a>
-							</div>
 						</div>
 						<div class="input-group">
 							<div class="input-group-text">성별</div>

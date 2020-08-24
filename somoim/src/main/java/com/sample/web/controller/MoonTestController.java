@@ -6,12 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MoonTestController {
 
-	@RequestMapping("/test.do")
+	@RequestMapping("manager/test.do")
 	public String test() {
-		return "form/test.tiles";
+		return "manager/manager.tiles";
 	}
-/*	@RequestMapping("/test1.do")
-	public String test1() {
-		return "form/test.tiles";
-	}*/
+
 }

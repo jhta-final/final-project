@@ -101,7 +101,7 @@
 			<a class="nav-link" href="/home.do"><i class="fas fa-home"></i>Home</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="#"><i class="fab fa-hotjar"></i>인기</a>
+			<a class="nav-link" href="/manager/test.do"><i class="fab fa-hotjar"></i>인기</a>
 		</li>
         <li class="nav-item dropdown dropright">
 	        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" href="/cate/subCate.do"
