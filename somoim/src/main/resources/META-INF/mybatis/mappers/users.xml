@@ -39,7 +39,7 @@
 			moim_user
 		set
 			nickname = #{nickname},
-			tel = #{tel},
+			user_password = #{password},
 			email = #{email},
 			user_content = #{content},
 			location_no = #{locationNo},

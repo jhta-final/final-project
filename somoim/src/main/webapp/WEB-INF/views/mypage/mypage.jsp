@@ -21,6 +21,35 @@
 	#mypage-body .card-body {
 		padding: 0;
 	}
+	
+	#mypage-modify-modal .input-group-text {
+		display: flex;
+	    -ms-flex-align: center;
+	    align-items: center;
+	    padding: 0px 10px;
+	    margin-bottom: 0px;
+	    font-size: 18px;
+	    font-weight: 400;
+	    line-height: 1.5;
+	    color: #495057;
+	    text-align: center;
+	    white-space: nowrap;
+	    background-color: #FFF;
+	    border: none;
+	    border-radius: 0.25rem;
+	}
+	
+	#mypage-modify-modal .form-control {
+		width: 100%;
+	    padding: 3px;
+	    font-size: 16px;
+	    border: 1px solid rgba(0,0,0,.5);
+	    border-radius: 5px;
+	    outline: none;
+	    box-sizing: border-box;
+	    box-shadow: inset 0 1px 2px rgba(0,0,0,.075);  /* .75 아니고 .075 주의 */
+	    margin-bottom: 4px;
+	}
 
 </style>
 <div>
@@ -75,11 +104,68 @@
       </div>
 
       <div class="modal-body">
-        Modal body..
+        <form action="/mypage/modify.do" method="post" id="mypage-modify-form" enctype="multipart/form-data">
+			<div class="input-group">
+				<div class="input-group-text">닉네임 수정</div>
+				<input type="text" class="form-control" id="mypage-modify-nickname" name="nickname" placeholder="닉네임를 입력해주세요" value="${LOGIN_USER.nickname }">
+			</div>
+			<div class="input-group">
+				<div class="input-group-text">비밀번호 수정</div>
+				<input type="password" class="form-control" id="mypage-modify-password" name="password" placeholder="비밀번호를 입력해주세요" value="${LOGIN_USER.password }">
+			</div>
+			<div class="input-group">
+				<div class="input-group-text">비밀번호 확인</div>
+				<input type="password" class="form-control" id="mypage-modify-password-check" placeholder="비밀번호를 입력해주세요">
+			</div>
+			<div class="input-group">
+				<div class="input-group-text">이메일</div>
+				<input type="email" class="form-control" id="mypage-modify-email" name="email" placeholder="이메일을 입력해주세요" value="${LOGIN_USER.email }">
+			</div>
+			<div class="input-group">
+				<div class="input-group-text">프로필 사진</div>
+				<input type="file" class="form-control" id="mypage-modify-profile" name="upfile" placeholder="파일을 선택해주세요">
+			</div>
+			<div class="input-group">
+				<div class="input-group-text" id="inputGroup-sizing-sm">인사말 </div>
+				<textarea class="form-control" id="mypage-modify-content" name="content" placeholder="내용을 입력해주세요">${LOGIN_USER.content }</textarea>
+			</div>
+			
+			<div class="input-group">
+				<div class="input-group-text">관심지역</div>
+				<select class="form-control" id="mypage-modify-location" name="locationNo">
+					<option value="0" selected="selected">없음</option>
+					<option value="1">강서구</option>
+					<option value="2">양천구</option>
+					<option value="3">구로구</option>
+					<option value="4">금천구</option>
+					<option value="5">영등포구</option>
+					<option value="6">동작구</option>
+					<option value="7">관악구</option>
+					<option value="8">서초구</option>
+					<option value="9">강남구</option>
+					<option value="10">송파구</option>
+					<option value="11">강동구</option>
+					<option value="12">마포구</option>
+					<option value="13">용산구</option>
+					<option value="14">서대문구</option>
+					<option value="15">은평구</option>
+					<option value="16">중구</option>
+					<option value="17">종로구</option>
+					<option value="18">성동구</option>
+					<option value="19">광진구</option>
+					<option value="20">동대문구</option>
+					<option value="21">성북구</option>
+					<option value="22">강북구</option>
+					<option value="23">도봉구</option>
+					<option value="24">노원구</option>
+					<option value="25">중랑구</option>
+				</select>
+			</div>
+		</form>
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">수정</button>
+        <button type="button" class="btn btn-primary" id="mypage-modify-submit">수정</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
 
@@ -110,7 +196,8 @@
 			"<tr><th class='text-center'>가   입   일 </th><td><fmt:formatDate value='${LOGIN_USER.createdDate}'/></td></tr>";
 		mypageInfo += "<tr><th class='text-center'>팔로워 수</th><td>${followersCnt}</td></tr>";
 		mypageInfo += "</table></div>";
-		mypageInfo += "<div class='text-right mt-5'><button type='button' class='btn btn-info' id='mypage-modify-button'><i class='fas fa-wrench mr-1'></i>수정</button></div></div></div>";
+		mypageInfo += "<div class='text-right mt-5'><button type='button' class='btn btn-info mr-2' id='mypage-modify-modal-button'><i class='fas fa-edit mr-1'></i>수정</button>";
+		mypageInfo += "<button type='button' class='btn btn-danger' id='mypage-exit-modal-button'><i class='fas fa-edit mr-1'></i>탈퇴</button></div></div></div>"
 	
 		$mypageBody.append(mypageInfo);
 
@@ -124,7 +211,7 @@
 			$mypageBody.append(mypageInfo);
 		});
 		
-		$("#mypage-modify-button").on('click', function() {
+		$("#mypage-modify-modal-button").on('click', function() {
 			$("#mypage-modify-modal").modal('show');
 		})
 		
@@ -227,6 +314,11 @@
 					console.log(message);
 				}
 			})
+		})
+		
+		// 회원 수정 관련
+		$("#mypage-modify-submit").click(function() {
+			$("#mypage-modify-form").submit();
 		})
 	})
 </script>
