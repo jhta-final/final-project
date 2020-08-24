@@ -81,7 +81,21 @@
 					 alt="Card image cap">
 				<div class="card-body">
 					<div class="row">
-						<p class="ml-2"><i id="photo-like" class="far fa-heart"></i>
+						<p class="ml-2">
+						<c:set var="heart" value="emp"/>
+							<c:forEach var="like" items="${photolikes }">
+								<c:if test="${like.photoNo eq photo.photoNo }">
+									<c:set var="heart" value="full"/>
+								</c:if>
+							</c:forEach>
+							<c:choose>
+								<c:when test="${heart eq 'emp' }">
+									<i id="photo-like" class="far fa-heart"></i>
+								</c:when>
+								<c:otherwise>
+									<i id="photo-like" class="fas fa-heart"></i>
+								</c:otherwise>
+							</c:choose>
 							<span class="ml-3">${photo.likes }개</span>						
 						</p>
 					</div>
@@ -156,6 +170,14 @@
 		$("#photo-add").modal("show");
 
 	})
+	
+	function addLike() {
+
+	}
+	
+	function delLike() {
+
+	}
 </script>
 
 

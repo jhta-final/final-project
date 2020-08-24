@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.dao.PhotoDao;
 import com.sample.vo.MoimPhoto;
+import com.sample.vo.MoimPhotoLikes;
 
 @Service
 @Transactional
@@ -25,5 +26,21 @@ public class PhotoServiceImpl implements PhotoService {
 	public List<MoimPhoto> getPhotosByNo(long moimNo) {
 		return photoDao.selectPhotos(moimNo);
 	}
+
+	@Override
+	public List<MoimPhotoLikes> getLikes(MoimPhotoLikes photoLikes) {
+		return photoDao.getPhotoLikesByUserId(photoLikes);
+	}
+
+	@Override
+	public void addLike(MoimPhotoLikes photoLikes) {
+		photoDao.insertLike(photoLikes);
+	}
+
+	@Override
+	public void delLike(MoimPhotoLikes photoLikes) {
+		photoDao.deleteLike(photoLikes);
+	}
+	
 
 }

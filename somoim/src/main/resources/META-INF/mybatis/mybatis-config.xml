@@ -37,6 +37,7 @@
 		<typeAlias type="com.sample.vo.MoimMessage" alias="Message"/>
 		<typeAlias type="com.sample.dto.PageDto" alias="Page"/>
 		<typeAlias type="com.sample.dto.ManagerDto" alias="Manager"/>
+		<typeAlias type="com.sample.vo.MoimPhotoLikes" alias="PhotoLikes"/>
 	</typeAliases>
 	
 	<mappers>

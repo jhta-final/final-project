@@ -31,6 +31,7 @@ import com.sample.service.SubMoimService;
 import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimComment;
 import com.sample.vo.MoimPhoto;
+import com.sample.vo.MoimPhotoLikes;
 import com.sample.vo.MoimSubCate;
 import com.sample.vo.MoimSubMoim;
 import com.sample.vo.MoimUser;
@@ -285,8 +286,13 @@ public class MoimController {
 	
 	// 사진첩
 	@GetMapping("photo.do")
-	public String photo(@RequestParam("moimNo") long moimNo, Model model) {
+	public String photo(@RequestParam("moimNo") long moimNo, Model model, HttpSession httpSession) {
+		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
+		
+		MoimPhotoLikes photoLikes = new MoimPhotoLikes(user.getId(), moimNo);
+		
 		model.addAttribute("photos", photoService.getPhotosByNo(moimNo));
+		model.addAttribute("photolikes", photoService.getLikes(photoLikes));
 		model.addAttribute("photoForm", new PhotoForm());
 		
 		return "moim/photo.tiles";
@@ -321,6 +327,11 @@ public class MoimController {
 		photoService.addNewPhoto(moimPhoto);
 		
 		return "redirect:photo.do?moimNo=" + photoForm.getMoimNo();
+	}
+	
+	@GetMapping("addLike.do")
+	public void addLike() {
+		
 	}
 	
 	

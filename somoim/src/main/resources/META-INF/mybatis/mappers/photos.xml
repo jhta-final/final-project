@@ -69,4 +69,36 @@
 		where
 			user_id = #{value}
 	</select>
+	
+	<select id="getPhotoLikesByUserId" parameterType="PhotoLikes" resultType="PhotoLikes">
+		select
+		    photo_no		as photoNo,
+		    user_id			as userId,
+		    moim_no			as moimNo
+		from
+		    moim_photo_user_like
+		where
+		    moim_no = #{moimNo}
+		and
+		    user_id = #{userId}
+	</select>
+	
+	<insert id="insertLike" parameterType="PhotoLikes">
+		insert into moim_photo_user_like
+		(photo_no, user_id, moim_no)
+		values
+		(#{photoNo}, #{userId}, #{moimNo})
+	</insert>
+	
+	<delete id="deleteLike" parameterType="PhotoLikes">
+		delete from 
+			moim_photo_user_like
+		where
+		    moim_no = #{moimNo}
+		and
+		    user_id = #{userId}
+	    and
+	    	photo_no = #{photo_no}
+	</delete>
+	
 </mapper>
