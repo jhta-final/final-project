@@ -62,14 +62,14 @@
 						aria-label="Search" name="keyword" >
 				</div>
 				<button class="btn btn-outline-primary btn-sm ml-1 my-0" type="submit" >Search</button>
-				<!-- 
+				 
 				<div class="dropdown" id="nav-search-loaction">
 					<button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle" data-toggle="dropdown"></button>
 					<div class="dropdown-menu dropdown-menu-right" style="width: 590px;">
-						<div class="form-group" style="width: 100%">
-							<i class="mr-2 fas fa-map-marker" style="color: #0F4C81;"></i><label>지역구</label>
-							<select id="select-location" name="location" class="form-control">
-								<option value="" selected="selected" disabled="disabled" class="text-center">지역</option>
+						<div class="form-group mb-3" style="width: 100%">
+							<i class="mr-2 fas fa-map-marker ml-3" style="color: #0F4C81;"></i><label>지역구</label>
+							<select id="select-location" style="width: 570px; margin-left: 9px;" name="location" class="form-control mt-2 pl-2 pr-2">
+								<option value="0" selected="selected" disabled="disabled" class="text-center">지역</option>
 								<option value="1">강서구</option>
 								<option value="2">양천구</option>
 								<option value="3">구로구</option>
@@ -97,10 +97,10 @@
 								<option value="25">중랑구</option>
 							</select>
 						</div>
-						<div class="form-group" style="width: 100%">
-							<i class="mr-2 fas fa-tags" style="color: #0F4C81;"></i><label>카테고리</label>
-							<select id="search-main-cate" name="category" class="form-control">
-								<option value="" selected="selected" disabled="disabled" class="text-center">메인 카테고리</option>
+						<div class="form-group mb-3" style="width: 100%">
+							<i class="mr-2 fas fa-tags ml-3" style="color: #0F4C81;"></i><label>카테고리</label>
+							<select id="search-main-cate" style="width: 570px; margin-left: 9px;" name="category" class="form-control mt-2 pl-2 pr-2">
+								<option value="0" selected="selected" disabled="disabled" class="text-center">메인 카테고리</option>
 								<option value="1">게임/오락</option>
 								<option value="2">사교/인맥</option>
 								<option value="3">운동/스포츠</option>
@@ -108,16 +108,16 @@
 								<option value="5">문화/공연/축제</option>
 							</select>
 						</div>
-						<div class="form-group" style="width: 100%">
-							<i class="mr-2 fas fa-tags" style="color: #0F4C81;"></i><label>세부 카테고리</label>
-							<select id="search-sub-cate" name="category" class="form-control">
-								<option value="" selected="selected" disabled="disabled" class="text-center">세부 카테고리</option>
+						<div class="form-group mb-3" style="width: 100%">
+							<i class="mr-2 fas fa-tags ml-3" style="color: #0F4C81;"></i><label>세부 카테고리</label>
+							<select id="search-sub-cate" style="width: 570px; margin-left: 9px;" name="category" class="form-control mt-2 pl-2 pr-2">
+								<option value="0" selected="selected" disabled="disabled" class="text-center">세부 카테고리</option>
 							</select>
 						</div>
 
 						<div class="text-right mr-3">
 							<button class="btn btn-primary btn-sm" type="submit">상세검색</button>
-							<button class="btn btn-outline-primary btn-sm" type="reset">리셋</button>
+							<button class="btn btn-outline-primary btn-sm" type="button" id="search-reset">리셋</button>
 						</div>
 					</div>
 				</div>
@@ -431,6 +431,14 @@
 		        }) 
 		})
 	    // 세부 카테고리 가져오기
+	    
+	    
+	     
+	    // 검색창 다 지우기
+	    $("#search-reset").click(function() {
+			console.log($("option:first").val());
+		});
+	    
 	    
 		
 		

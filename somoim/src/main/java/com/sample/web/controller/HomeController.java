@@ -81,10 +81,11 @@ public class HomeController {
 		}*/
 		System.out.println(keyword);
 		List<MoimMainDto> searchDto = homeService.getsearchFunction(keyword);
-		model.addAttribute("searchDto", searchDto);
+		model.addAttribute("cateMoims", searchDto);
+		model.addAttribute("title", "search");
 		System.out.println(searchDto.size());
 		for(MoimMainDto moimMainDto : searchDto) {
-			System.out.println(moimMainDto.getTitle());
+			System.out.println(moimMainDto.getContent());
 			
 		}
 		return "form/test.tiles";
