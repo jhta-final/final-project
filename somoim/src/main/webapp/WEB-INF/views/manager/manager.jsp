@@ -17,7 +17,7 @@
 
   <div>
     <div>
-      <table class="table table-striped" style="width:900px;">
+      <table id="warning-list-table" class="table table-striped" style="width:900px;">
         <thead>
           <tr>
             <th>사용자</th>
@@ -29,25 +29,27 @@
           </tr>
         </thead>
         <tbody>
+        <c:forEach items="${userList }" var="user">
           <tr>
-            <td>영준</td>
-            <td>4</td>
+            <td>${user.userId }</td>
+            <td>${user.warningCount }</td>
             <td>
-            	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#warning-detail-modal">
+            	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#warning-detail-modal" data-user-id="${user.userId }">
  				상세</button>
  			</td>
-            <td><button type="button" class="btn btn-warning">경고</button></td>
-            <td><strong class="text-danger">정지</strong></td>
-            <td><button type="button" class="btn btn-secondary">풀기</button></td>
+            <td><button type="button" class="btn btn-warning" data-user-id="${user.userId }">경고</button></td>
+            <c:choose>
+	            <c:when test="${user.accountStatus eq 'Y'}">
+	            	<td><strong class="text-danger">정지</strong></td>
+	            	<td><button type="button" class="btn btn-secondary" data-user-id="${user.userId }" data-status="${user.accountStatus}">풀기</button></td>
+	            </c:when>
+            	<c:otherwise>
+            		<td><strong class="text-secondary">일반</strong></td>
+            		<td><button type="button" class="btn btn-danger" data-user-id="${user.userId }" data-status="${user.accountStatus}">정지</button></td>
+            	</c:otherwise>
+            </c:choose>
           </tr>
-          <tr>
-            <td>영준2</td>
-            <td>3</td>
-            <td><button type="button" class="btn btn-info">상세</button></td>
-            <td><button type="button" class="btn btn-warning">경고</button></td>
-            <td><strong class="text-secondary">일반</strong></td>
-            <td><button type="button" class="btn btn-danger">정지</button></td>
-          </tr>
+       </c:forEach>
         </tbody>
       </table>
 
@@ -82,27 +84,7 @@
         		</tr>
         	</thead>
         	<tbody>
-        		<tr>
-        			<td>홍길동</td>
-        			<td>유저</td>
-        			<td>욕설을 난무 합니다.</td>
-        			<td>2020.11.22</td>
-        			<td><button type="button" class="btn btn-danger">x</button></td>
-        		</tr>
-        		<tr>
-        			<td>홍길동</td>
-        			<td>모임</td>
-        			<td>활동이 없는 모임입니다.</td>
-        			<td>2020.11.22</td>
-        			<td><button type="button" class="btn btn-danger">x</button></td>
-        		</tr>
-        		<tr>
-        			<td>문주영</td>
-        			<td>게시판</td>
-        			<td>악성 후기를 작성했습니다.</td>
-        			<td>2020.11.22</td>
-        			<td><button type="button" class="btn btn-danger">x</button></td>
-        		</tr>
+        		
         	</tbody>
         </table>
       </div>
@@ -118,3 +100,96 @@
   </div>
 </div>
 </div>
+
+<script type="text/javascript">
+$(function() {
+	
+	$("#warning-detail-modal").on("hide.bs.modal", function() {
+		location.reload();
+	});
+	
+	// 신고 상세보기 버튼 클릭
+	$("#warning-list-table tbody tr td:nth-child(3) button").click(function() {
+		showDetail($(this).data("user-id"));
+	});
+	
+	// 신고 상세보기에서 삭제
+	$("#warning-detail-modal tbody").on("click", "td button", function() {
+		var warningNo = $(this).data("warning-no");
+		var userId = $(this).data("user-id");
+		
+		$.ajax({
+			type: "GET",
+			url: "/manager/delete.do",
+			data: {
+				warningNo:warningNo
+			}
+		})
+		console.log(userId);
+		showDetail(userId);
+	});
+	
+	// 유저한테 경고 보내기
+	$("#warning-list-table tbody tr td:nth-child(4) button").click(function() {
+		var userId = $(this).data("user-id");
+		
+		$.ajax({
+			type: "GET",
+			url: "/manager/warning.do",
+			data: {
+				userId: userId
+			},
+			success: function() {
+				alert("경고보냄");
+			}
+		})
+	});
+	
+	// 유저 계정 정지/해제
+	$("#warning-list-table tbody tr td:nth-child(6) button").click(function() {
+		var userId = $(this).data("user-id");
+		var status = $(this).data("status");
+		console.log(userId);
+		console.log(status);
+		$.ajax({
+			type: "GET",
+			url: "/manager/account.do",
+			data: {
+				userId: userId,
+				status: status
+			},
+			success: function() {
+				location.reload();
+			}
+		})
+	});
+	
+	// 신고 상세보기
+	function showDetail(userId) {
+		$.ajax({
+			type: "GET",
+			url: "/manager/detail.do",
+			data: {
+				userId: userId
+			},
+			dataType: "json",
+			success: function(detailList) {
+				var $tbody = $("#warning-detail-modal tbody").empty();
+				
+				$.each(detailList, function(index, detail) {
+					var text = "<tr>";
+						text += "<td>"+detail.loginUserId+"</td>";
+						text += "<td>"+detail.type+"</td>";
+        				text += "<td>"+detail.content+"</td>";
+        				text += "<td>"+detail.createdDate+"</td>";
+        				text += "<td><button type='button' class='btn btn-danger' data-warning-no="+detail.warningNo+" data-user-id="+detail.userId+">x</button></td>";
+        				text += "</tr>";
+        				
+        			$tbody.append(text);
+				})
+			}
+		})
+		
+	}
+})
+</script>
