@@ -68,6 +68,11 @@
 		height: 150px;
 		background-color: #fff;
 	}
+	
+	#mypage-content-counter {
+		color: #aaa;
+		font-size: 14px;
+	}
 
 </style>
 <div>
@@ -141,7 +146,7 @@
 			</div>
 			<div class="input-group">
 				<div class="input-group-text">프로필 사진</div>
-				<input type="file" class="form-control" id="mypage-modify-profile" name="upfile" placeholder="파일을 선택해주세요">
+				<input type="file" class="form-control" id="mypage-modify-profile" name="upfile" accept=".jpg,.jpeg,.png,.gif,.bmp" placeholder="파일을 선택해주세요">
 				<div class="preview-image text-center">
 					<span class="text-white">미리보기</span>					
 					<img id="mypage-temp-img" alt="profile-image"/>
@@ -149,8 +154,8 @@
 			</div>
 			<div class="input-group">
 				<div class="input-group-text" id="inputGroup-sizing-sm">인사말 </div>
-				<textarea class="form-control" id="mypage-modify-content" name="content" placeholder="내용을 입력해주세요">${LOGIN_USER.content }</textarea>
-			</div>
+				<textarea class="form-control" id="mypage-modify-content" name="content" placeholder="내용을 입력해주세요"></textarea>
+				<span id="mypage-content-counter">(0 / 최대 200자)</span></div>
 			
 			<div class="input-group">
 				<div class="input-group-text">관심지역</div>
@@ -350,14 +355,25 @@
 		});
 		
 		function readURL(input) {
-		
-		if(input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function (e) {
-				$("#mypage-temp-img").attr('src', e.target.result);
+			if(input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					$("#mypage-temp-img").attr('src', e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]);
 			}
-			reader.readAsDataURL(input.files[0]);
 		}
-	}
+		
+		$('#mypage-modify-content').keyup(function (e){
+		    var content = $(this).val();
+		    $('#mypage-content-counter').html("("+content.length+" / 최대 200자)");    //글자수 실시간 카운팅
+
+		    if (content.length > 200){
+		        alert("최대 200자까지 입력 가능합니다.");
+		        $(this).val(content.substring(0, 200));
+		        $('#mypage-content-counter').html("(200 / 최대 200자)");
+		    }
+		});
+
 	})
 </script>
