@@ -3,7 +3,6 @@ package com.sample.web.controller;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sample.dto.DetailViewMoimsDto;
 import com.sample.service.AlramService;
 import com.sample.service.HomeService;
+import com.sample.service.MoimService;
 import com.sample.vo.MoimUser;
 
 @Controller
@@ -31,6 +31,8 @@ public class HomeController {
 
 	@Autowired
 	HomeService homeService;
+	@Autowired
+	MoimService moimService;
 	@Autowired
 	private AlramService alramService;
 	
@@ -61,6 +63,7 @@ public class HomeController {
 		// 좋아요한 모임 표시
 		httpSession.setAttribute("selectMoim", homeService.getselectMoim(user.getId()));
 		
+		
 		// 알람서비스
 		httpSession.setAttribute("alrams", alramService.getAlrams(user.getId()));
 		
@@ -68,29 +71,49 @@ public class HomeController {
 		model.addAttribute("loginedUser", user.getId());
 		
 		return "main/main.tiles";
-	} 
-
-	// 키워드 검색 기능
+	}
+	// 키워드 검색 기능(타이틀, 내용, 지역, 메인카테고리 이름, 서브카테고리 이름)
 	@PostMapping("/test.do")
 	public String searchFunction(@RequestParam("keyword") String keyword,
 			Model model){
 		
-		/*Map<String, Object> params = new HashMap<String, Object>();
-		if(keyword != null && !keyword.isEmpty()) {
-			params.put("title", keyword);
-		}*/
-		System.out.println(keyword);
+//		Map<String, Object> params = new HashMap<String, Object>();
+//		if(keyword != null && !keyword.isEmpty()) {
+//			params.put("title", keyword);
+//		}
+//		System.out.println(keyword);
 		List<MoimMainDto> searchDto = homeService.getsearchFunction(keyword);
 		model.addAttribute("cateMoims", searchDto);
 		model.addAttribute("title", "search");
-		System.out.println(searchDto.size());
-		for(MoimMainDto moimMainDto : searchDto) {
-			System.out.println(moimMainDto.getContent());
-			
-		}
+//		System.out.println(searchDto.size());
+//		for(MoimMainDto moimMainDto : searchDto) {
+//			System.out.println(moimMainDto.getContent());
+//		}
 		return "form/test.tiles";
 	}
 	
+	// 셀렉트 박스를 이용해서 검색
+//	@PostMapping("/test.do")
+//	public String selectSearchFunction(@RequestMapping(value="locationName", required="false") String locationName,
+//			@RequestMapping(value="MainCateName", required="false") String mainCateName,	
+//			@RequestMapping(value="SubCateName", required="false") String subCateName,	
+//			Model model) {
+//		
+//		Map<String, Object> params = new HashMap<String, Object>();
+//		if(locationName != null && !locationName.isEmpty()) {
+//			params.put("locationName", locationName);
+//		}
+//		if(mainCateName != null && !mainCateName.isEmpty()) {
+//			params.put("mainCateName", mainCateName);
+//		}
+//		if(subCateName != null && !subCateName.isEmpty()) {
+//			params.put("subCateName", subCateName);
+//		}
+//		List<MoimMainDto> moimMainDtos = homeService.getsearchFunction(keyword);
+//		
+//		return "form/test.tiles";
+//	}
+//	
 //	@GetMapping("/test.do")
 //	public String searchFunction(@RequestParam(value="title", required= false) String title,
 //			@RequestParam(value="content", required= false) String content, 
@@ -124,10 +147,21 @@ public class HomeController {
 //		}
 //		return "redirect:/test.do";
 //	}
+	@GetMapping("/like.do")
+	public void increaseLikesMoim(HttpSession httpSession, @RequestParam("moimNo") long moimNo) {
+		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
+		homeService.increaseLikesMoim(moimNo, user.getId());
+	}
 	
 	@GetMapping("/detail.do")
 	@ResponseBody
 	public DetailViewMoimsDto getDetailViewMoims(@RequestParam("moimNo") long moimNo) {
 		return homeService.detailViewMoims(moimNo);
 	}
+	
+//	@GetMapping("/detail.do")
+//	@ResponseBody
+//	public String getJoinUser(long moimNo, String userId) {
+//		return moimService.getJoinUser(moimNo, userId);
+//	}
 }

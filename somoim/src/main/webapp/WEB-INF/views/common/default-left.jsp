@@ -98,15 +98,15 @@
 <div id="mySidenav" class="sidenav">
 	<ul class="navbar-nav" style="text-align: center">
 		<li class="nav-item active">
-			<a class="nav-link" href="/home.do"><i class="fas fa-home"></i>Home</a>
+			<a class="nav-link" href="/home.do"><i class="fas fa-home"></i> Home</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="/manager/test.do"><i class="fab fa-hotjar"></i>인기</a>
+			<a class="nav-link" href="/manager/test.do"><i class="fab fa-hotjar"></i> 인기 모임</a>
 		</li>
         <li class="nav-item dropdown dropright">
 	        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" href="/cate/subCate.do"
 	        	aria-haspopup="true" aria-expanded="false">
-	          	<i class="fas fa-tags"></i>카테고리
+	          	<i class="fas fa-tags"></i> 카테고리
 	        </a>
 	        <ul id="left-main-dropdown" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 	          <li class="dropdown-submenu">
@@ -154,7 +154,7 @@
       	<li class="nav-item">
 			<a data-toggle="collapse" href="#left-joined-moim"
 				role="button" aria-expanded="false" aria-controls="left-joined-moim">
-				가입모임 
+				<i class="fas fa-sign-in-alt"></i> 가입 모임 
 			</a>
 			<div class="collapse" id="left-joined-moim" style="border-top: 1px solid lightgray">
 				<div>
@@ -179,9 +179,9 @@
 			</div>
       	  </li>
 	      <li class="nav-item">
-	      	<a class="btn" data-toggle="collapse" href="#left-select-moim"
-			role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-thumbs-up"></i>
-			모임<i class="fas fa-heart"></i>
+	      	<a data-toggle="collapse" href="#left-select-moim"
+			role="button" aria-expanded="false" aria-controls="collapseExample">
+			<i class="fas fa-heart"></i> 즐겨찾는 모임
 			</a>
 			<div class="collapse" id="left-select-moim" style="border-top: 1px solid lightgray">
 				<div>
@@ -207,9 +207,9 @@
 			</div>
 	      </li>
 	      <li class="nav-item">
-	      	<a class="btn" data-toggle="collapse" href="#left-myfriends"
+	      	<a data-toggle="collapse" href="#left-myfriends"
 			role="button" aria-expanded="false" aria-controls="collapseExample">
-			내 친구 
+			<i class="fas fa-users"></i> 내 친구 
 			</a>
 			<div class="collapse" id="left-myfriends" style="border-top: 1px solid lightgray">
 				<div>
@@ -290,9 +290,9 @@
 			<!-- Modal footer -->
 			<div class="modal-footer">
 				<a id="like-button" class="btn btn-danger" href="#"><i class="fas fa-heart"></i></a>
-				<a id="left-moim-link-btn" class="btn btn-primary" href="/moim/moim.do?moimNo=">모임가기</a>
-				<button type="button" class="btn btn-warning" data-dismiss="modal">회원탈퇴</button>
-				<a id="left-moim-join-btn" class="btn btn-success" href="/moim/join.do?moimNo=${moimNo}&userId=${loginedUser}">모임가입</a>
+				<a id="left-moim-link-btn" class="btn btn-primary" href="">모임가기</a>
+				<a id="left-moim-join-btn" class="btn btn-success" href="">모임가입</a>
+				<a id="left-moim-withdrawal-btn" class="btn btn-warning" href="">모임탈퇴</a>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
 			<!-- Modal footer end -->
@@ -365,14 +365,19 @@ $(function() {
 				
 				var link = '/moim/moim.do?moimNo='+moim.moimMainDto.moimNo+'';
 				var join = '/moim/join.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${loginedUser}';
-				
+				var withdrawal = '/moim/outMoim.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${loginedUser}';
+
 				$("#left-moim-join-btn").attr('href', join);
-				$("#left-moim-link-btn").attr("href", link);
+				$("#left-moim-withdrawal-btn").attr('href', withdrawal);
 				
 				$("#left-detail-premium").empty();
 				if(moim.moimMainDto.premiumYn == 'Y') {
+					$("#left-moim-link-btn").attr("href", link);
 					let premium = '<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>';
 					$("#left-detail-premium").append(premium);
+					$("#left-moim-link-btn").css('display', 'block');
+				} else {
+					$("#left-moim-link-btn").css('display', 'none');
 				}
 			}
 		});

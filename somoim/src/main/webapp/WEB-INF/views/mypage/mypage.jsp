@@ -50,6 +50,24 @@
 	    box-shadow: inset 0 1px 2px rgba(0,0,0,.075);  /* .75 아니고 .075 주의 */
 	    margin-bottom: 4px;
 	}
+	
+	.preview-image {
+		position: absolute;
+	    top: -84px;
+	    left: 471px;
+	    background: rgba(255,255,255,.8);
+	    border: 1px solid #f5f5f5;
+	    box-sizing: border-box;
+	    border-radius: 20px;
+	    display: none;
+	    box-shadow: 0 0 5px rgba(0,0,0,.75);
+	
+	}
+	
+	#mypage-temp-img {
+		width:150px;
+		border-radius: 20px
+	}
 
 </style>
 <div>
@@ -124,6 +142,10 @@
 			<div class="input-group">
 				<div class="input-group-text">프로필 사진</div>
 				<input type="file" class="form-control" id="mypage-modify-profile" name="upfile" placeholder="파일을 선택해주세요">
+				<div class="preview-image text-center">
+					<span>미리보기</span>					
+					<img id="mypage-temp-img" alt="profile-image"/>
+				</div>
 			</div>
 			<div class="input-group">
 				<div class="input-group-text" id="inputGroup-sizing-sm">인사말 </div>
@@ -197,7 +219,7 @@
 		mypageInfo += "<tr><th class='text-center'>팔로워 수</th><td>${followersCnt}</td></tr>";
 		mypageInfo += "</table></div>";
 		mypageInfo += "<div class='text-right mt-5'><button type='button' class='btn btn-info mr-2' id='mypage-modify-modal-button'><i class='fas fa-edit mr-1'></i>수정</button>";
-		mypageInfo += "<button type='button' class='btn btn-danger' id='mypage-exit-modal-button'><i class='fas fa-edit mr-1'></i>탈퇴</button></div></div></div>"
+		mypageInfo += "<button type='button' class='btn btn-danger' id='mypage-exit-modal-button'><i class='fas fa-sign-out-alt mr-1'></i>탈퇴</button></div></div></div>"
 	
 		$mypageBody.append(mypageInfo);
 
@@ -320,5 +342,22 @@
 		$("#mypage-modify-submit").click(function() {
 			$("#mypage-modify-form").submit();
 		})
+		
+		// 파일 업로드 미리보기
+		$("#mypage-modify-profile").change(function (e) {
+			$(".preview-image").css('display', 'block');
+			readURL(this);
+		});
+		
+		function readURL(input) {
+		
+		if(input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$("#mypage-temp-img").attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
 	})
 </script>

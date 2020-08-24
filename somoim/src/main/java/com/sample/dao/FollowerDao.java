@@ -13,4 +13,6 @@ public interface FollowerDao {
 	List<MoimJoinUserMoimDto> getUserMoims(String userId);
 	// 팔로우돼있는지 찾기 1 == 팔로우 0 == 안돼있음
 	long findFollower(MoimFollow moimFollow);
+	
+	void deleteFollower(MoimFollow moimFollow);
 }
