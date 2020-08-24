@@ -54,11 +54,10 @@
 	.preview-image {
 		position: absolute;
 	    top: -84px;
-	    left: 471px;
-	    background: rgba(255,255,255,.8);
+	    left: 482px;
+	   /*  background: rgba(255,255,255,.8); */
 	    border: 1px solid #f5f5f5;
 	    box-sizing: border-box;
-	    border-radius: 20px;
 	    display: none;
 	    box-shadow: 0 0 5px rgba(0,0,0,.75);
 	
@@ -66,7 +65,8 @@
 	
 	#mypage-temp-img {
 		width:150px;
-		border-radius: 20px
+		height: 150px;
+		background-color: #fff;
 	}
 
 </style>
@@ -143,7 +143,7 @@
 				<div class="input-group-text">프로필 사진</div>
 				<input type="file" class="form-control" id="mypage-modify-profile" name="upfile" placeholder="파일을 선택해주세요">
 				<div class="preview-image text-center">
-					<span>미리보기</span>					
+					<span class="text-white">미리보기</span>					
 					<img id="mypage-temp-img" alt="profile-image"/>
 				</div>
 			</div>

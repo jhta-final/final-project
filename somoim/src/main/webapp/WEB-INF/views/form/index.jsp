@@ -31,6 +31,10 @@
 			margin: 0;
 			padding: 0;
 		}
+		
+		p {
+			margin: 0;
+		}
 
 
 		.jb-box {
@@ -162,11 +166,11 @@
 		
 		}
 		
-		#index-join-form .input-group{
+		#index-join-form .input-group, #signup-email-certified .input-group {
 			display: block;
 		}
 		
-		#index-join-form .input-group-text {
+		#index-join-form .input-group-text, #signup-email-certified .input-group-text {
 			display: flex;
 		    -ms-flex-align: center;
 		    align-items: center;
@@ -183,7 +187,7 @@
 		    border-radius: 0.25rem;
 		}
 		
-		#index-join-form .form-control {
+		#index-join-form .form-control, #signup-email-certified .form-control {
 			width: 100%;
 		    padding: 10px;
 		    font-size: 16px;
@@ -271,7 +275,12 @@
 				<div class="modal-body">
 					<form action="#" id="index-join-form">
 						<div class="input-group">
-							<div class="input-group-text">아이디</div>
+							<div class="input-group-text">아이디 
+								<span>
+									<input type="hidden" value=0 id="signup-checked-email-value" />
+									<i class="far fa-check-circle ml-1" ></i>
+								</span>
+							</div>
 							<div class="index-join-check">
 								<input type="text" class="form-control" id="signup-id" placeholder="이메일를 입력해주세요">
 								<a class="btn" id="signup-mail-check">인증</a>
@@ -280,7 +289,7 @@
 						<div class="input-group">
 							<div class="input-group-text">비밀번호</div>
 							<input type="password" class="form-control" id="signup-password" placeholder="비밀번호를 입력해주세요">
-							<a class="btn" id="signup-pay-check">결제</a>
+							<!-- <a class="btn" id="signup-pay-check">결제</a> -->
 						</div>
 						<div class="input-group">
 							<div class="input-group-text">비밀번호 확인</div>
@@ -370,26 +379,29 @@
 	  <div class="modal-dialog modal-sm modal-dialog-centered">
 	    <div class="modal-content">
 	
-	      <!-- Modal Header -->
 	      <div class="modal-header">
-	        <h4 class="modal-title">Modal Heading</h4>
+	        <h5 class="modal-title">이메일 인증 확인</h5>
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
 	      </div>
 	
-	      <!-- Modal body -->
 	      <div class="modal-body">
-	        Modal body..
+	        <div class="input-group">
+				<div class="input-group-text">인증 번호</div>
+				<input type="text" class="form-control" id="signup-email-certified-input" placeholder="번호를 입력해주세요">
+				<p class="text-danger" style="display: none;">인증번호가 틀립니다.</p>
+			</div>
 	      </div>
 	
-	      <!-- Modal footer -->
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary" id="email-certified-button">확인</button>
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
 	      </div>
 	
 	    </div>
 	  </div>
 	</div>
 	
+	<!-- 카테고리 섵택 모달창 -->
 	<div class="modal" id="select-category-modal">
 		<div class="modal-dialog modal-lg modal-dialog-centered" style="max-width: 900px;">
 			<div class=" modal-content">
@@ -532,11 +544,8 @@
 				})
 			})
 
-			
-			// 이메일 인증 체크
-
 			// 카페
-			$("#signup-pay-check").click(function () {
+			<%-- $("#signup-pay-check").click(function () {
 				var IMP = window.IMP; // 생략가능
 		        IMP.init('imp21551057'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 		        var msg;
@@ -589,12 +598,13 @@
 		                alert(msg);
 		            }
 		        });
-			})
+			}) --%>
 
+			// 이메일 인증 체크
 			$("#signup-mail-check").click(function () {
 				var $email = $("#signup-id");
 				
-				if ($email.val() == null) {
+				if ($email.val() == '') {
 					$email.focus();
 					alert('이메일을 입력해 주세요!!')
 					return false;
@@ -604,7 +614,29 @@
 					mail : $email.val()
 				}
 				
-				/* $.ajax({
+				// 이메일 인증확인 모달창
+				function checkEmailValue(status) {
+					var $emailCertifiedModal = $("#signup-email-certified");
+					var $cretifiedValue = $("#signup-email-certified-input").empty();
+					var $checkedEmailValue = $("#signup-checked-email-value");
+					
+					$emailCertifiedModal.modal({backdrop:'static'});
+					$emailCertifiedModal.modal('show');
+					
+					$("#email-certified-button").click(function() {
+						if ($cretifiedValue.val() == status.key) {
+							$cretifiedValue.next('p').css('display','none');
+							$checkedEmailValue.val(1);
+							$checkedEmailValue.next('i').css('color','green');
+							alert("인증을 성공했습니다.");
+							$emailCertifiedModal.modal('hide');
+						} else {
+							$cretifiedValue.next('p').css('display','block');
+						}
+					});
+				}
+				
+				$.ajax({
 					type: "POST",
 					url: "/login/sendMail.do",
 					data: JSON.stringify(email),
@@ -612,11 +644,10 @@
 					dataType: "json",
 					success: function (status) {
 						console.log(status);
-						//사인업컨트롤러에서 data에 문자메세지가 보내졌으면
-						//status를 success로, 보내기가실패했으면 fail로 할테니
-						//fail일때 올바른 전화번호를 입력해달라고 알려주시기 바랍니다.
+						
+						checkEmailValue(status);
 					}
-				}) */
+				})
 			})
 			
 			// 카테고리 체크
