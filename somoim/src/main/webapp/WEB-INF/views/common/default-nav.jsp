@@ -65,7 +65,7 @@
 				 
 				<div class="dropdown" id="nav-search-loaction">
 					<button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle" data-toggle="dropdown"></button>
-					<div class="dropdown-menu dropdown-menu-right" style="width: 590px;">
+					<div id="search-bar-manu" class="dropdown-menu dropdown-menu-right" style="width: 590px;">
 						<div class="form-group mb-3" style="width: 100%">
 							<i class="mr-2 fas fa-map-marker ml-3" style="color: #0F4C81;"></i><label>지역구</label>
 							<select id="select-location" style="width: 570px; margin-left: 9px;" name="location" class="form-control mt-2 pl-2 pr-2">
@@ -432,11 +432,18 @@
 		})
 	    // 세부 카테고리 가져오기
 	    
-	    
-	     
+		// 서치바 안꺼지게 하기	    
+	    $("#search-bar-manu").click(function() {
+	    	event.stopPropagation();
+		});
 	    // 검색창 다 지우기
 	    $("#search-reset").click(function() {
-			console.log($("option:first").val());
+	    	var tr ="<option value='0' selected='selected' disabled='disabled' class='text-center'>세부 카테고리</option>";
+	    	event.stopPropagation();
+			$("#select-location").val(0);
+			$("#search-main-cate").val(0);
+		    $("#search-sub-cate").empty();
+			$("#search-sub-cate").append(tr);
 		});
 	    
 	    
