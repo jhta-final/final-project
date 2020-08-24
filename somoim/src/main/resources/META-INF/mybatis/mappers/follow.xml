@@ -53,4 +53,13 @@
 		and
 			fol_user_id = #{folUserId}
 	</select>
+	
+	<delete id="deleteFollower" parameterType="Follow">
+		delete from 
+			moim_follow
+		where 
+			user_id = #{userId}
+		and
+			fol_user_id = #{folUserId}
+	</delete>
 </mapper>

@@ -148,6 +148,13 @@ public class OtherpageController {
 		}
 		
 		// 팔로우취소하기
-		
+		@PostMapping("/deletefollow.do")
+		public String deleteFollow(@ModelAttribute("follow") MoimFollow follow) {
+			
+			// 팔로우테이블 삭제
+			mypageService.deleteFollower(follow);
+			
+			return "other/info.tiles";
+		}
 		
 }

@@ -29,4 +29,6 @@ public interface MypageService {
 	
 	long followYn(MoimFollow moimFollow);
 	
+	
+	void deleteFollower(MoimFollow follow);
 }
