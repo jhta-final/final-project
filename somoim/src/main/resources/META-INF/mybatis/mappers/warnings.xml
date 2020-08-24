@@ -32,4 +32,20 @@
 		where
 			warning_no = #{value}
 	</update>
+	
+	<select id="getWarningsByUserId" parameterType="string" resultType="Warning">
+		select
+			warning_no		as warningNo,
+			user_id			as userId,
+			login_user_id	as loginUserId,
+			content			as content,
+			type			as type,
+			type_no			as typeNo,
+			created_date	as createdDate,
+			delete_yn		as deleteYN
+		from
+			moim_warning
+		where
+			user_id = #{value}
+	</select>
 </mapper>
