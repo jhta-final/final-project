@@ -262,6 +262,8 @@
 	where
 		A.user_id = #{value}
 	and
+        delete_yn = 'N'
+	and
 		A.fol_user_id = B.user_id
 	) where rownum <= 3
 	]]>
