@@ -101,7 +101,7 @@
 			<a class="nav-link" href="/home.do"><i class="fas fa-home"></i>Home</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="/manager/test.do"><i class="fab fa-hotjar"></i>인기</a>
+			<a class="nav-link" href="/manager/test.do"><i class="fab fa-hotjar"></i>인기모임</a>
 		</li>
         <li class="nav-item dropdown dropright">
 	        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" href="/cate/subCate.do"
@@ -179,7 +179,7 @@
 			</div>
       	  </li>
 	      <li class="nav-item">
-	      	<a class="btn" data-toggle="collapse" href="#left-select-moim"
+	      	<a data-toggle="collapse" href="#left-select-moim"
 			role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-thumbs-up"></i>
 			모임<i class="fas fa-heart"></i>
 			</a>
@@ -207,7 +207,7 @@
 			</div>
 	      </li>
 	      <li class="nav-item">
-	      	<a class="btn" data-toggle="collapse" href="#left-myfriends"
+	      	<a data-toggle="collapse" href="#left-myfriends"
 			role="button" aria-expanded="false" aria-controls="collapseExample">
 			<i class="fas fa-users"></i>내 친구 
 			</a>
