@@ -72,21 +72,22 @@ public class HomeController {
 
 	// 키워드 검색 기능
 	@PostMapping("/test.do")
-	public String searchFunction(@RequestBody String keyword,
+	public String searchFunction(@RequestParam("keyword") String keyword,
 			Model model){
-		System.out.println(keyword);
-		Map<String, Object> params = new HashMap<String, Object>();
-		/*if(title != null && !title.isEmpty()) {
-			params.put("title", title);
-		}
-		List<MoimMainDto> searchDto = homeService.getsearchFunction(title);
-		model.addAttribute("searchDto", searchDto);
 		
+		/*Map<String, Object> params = new HashMap<String, Object>();
+		if(keyword != null && !keyword.isEmpty()) {
+			params.put("title", keyword);
+		}*/
+		System.out.println(keyword);
+		List<MoimMainDto> searchDto = homeService.getsearchFunction(keyword);
+		model.addAttribute("searchDto", searchDto);
+		System.out.println(searchDto.size());
 		for(MoimMainDto moimMainDto : searchDto) {
 			System.out.println(moimMainDto.getTitle());
 			
-		}*/
-		return "redirect:/test.tiles";
+		}
+		return "form/test.tiles";
 	}
 	
 //	@GetMapping("/test.do")

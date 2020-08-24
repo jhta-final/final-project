@@ -9,11 +9,11 @@
 		join moim_location b on a.location_no = b.location_no
 		join moim_sub_cate c on a.sub_cate_no = c.sub_cate_no
 		join moim_main_category d on c.main_cate_no = d.main_cate_no
-		where a.title like '%' || '#{value}' || '%'
-		or a.content like '%' || '#{value}' || '%'
-		or b.name like '%' || '#{value}' || '%'
-		or c.name like '%' || '#{value}' || '%'
-		or d.name like '%' || '#{value}' || '%'
+		where a.title like '%' || #{value} || '%'
+		or a.content like '%' || #{value} || '%'
+		or b.name like '%' || #{value} || '%'
+		or c.name like '%' || #{value} || '%'
+		or d.name like '%' || #{value} || '%'
 		order by a.created_date desc
 	</select>
 	
