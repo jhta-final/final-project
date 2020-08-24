@@ -154,7 +154,7 @@
 			</div>
 			<div class="input-group">
 				<div class="input-group-text" id="inputGroup-sizing-sm">인사말 </div>
-				<textarea class="form-control" id="mypage-modify-content" name="content" placeholder="내용을 입력해주세요"></textarea>
+				<textarea class="form-control" id="mypage-modify-content" name="content" placeholder="내용을 입력해주세요">${LOGIN_USER.content }</textarea>
 				<span id="mypage-content-counter">(0 / 최대 200자)</span></div>
 			
 			<div class="input-group">
@@ -264,7 +264,7 @@
 							"<span class='float-left'>"+moim.title+"</span><span class='float-right'>"+moim.joinCount+"/"+moim.headCount+"<i class='far fa-heart ml-4'></i></span>";
 						moimPage +=
 							"	</div></div><div class='text-right'><small class='text-muted'>2020.11.22</small>";
-						moimPage += "</div></div>	</div>";
+						moimPage += "</div></div></div>";
 
 					})
 					moimPage += "</div>";
