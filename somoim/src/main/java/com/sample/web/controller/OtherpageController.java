@@ -147,5 +147,7 @@ public class OtherpageController {
 			return "other/info.tiles";
 		}
 		
+		// 팔로우취소하기
+		
 		
 }
