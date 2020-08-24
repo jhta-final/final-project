@@ -169,12 +169,12 @@
 								</span>
 								</a>
 							</c:forEach>
+							<a class="text-center" href="#" style="color: black;">더보기</a>
 						</c:when>
 						<c:otherwise>
 							<p class="text-center">가입한 모임이 없습니다.</p>
 						</c:otherwise>
 					</c:choose>
-					<a class="text-center" href="#" style="color: black;">더보기</a>
 				</div>
 			</div>
       	  </li>
@@ -197,12 +197,12 @@
 									</span>
 								</a>
 							</c:forEach>
+							<a class="text-center" href="#" style="color: black;">더보기</a>
 							</c:when>
 						<c:otherwise>
 							<p class="text-center">좋아요한 모임이 없습니다.</p>
 						</c:otherwise>
 					</c:choose>
-					<a class="text-center" href="#" style="color: black;">더보기</a>
 				</div>
 			</div>
 	      </li>
@@ -216,30 +216,44 @@
 					<c:choose>
 						<c:when test="${not empty followUsers}">
 							<c:forEach items="${followUsers}" var="follow">
-								<a class="nav-link" href="#"> 
+								<a class="nav-link" href="/other/info.do?userId=${follow.folUserId }"> 
 									<span class="nav-item avatar">
 									<img src="/resources/profileImage/${follow.image }"
-										class="rounded-circle z-depth-0" alt="avatar image" height="35">
+										class="rounded-circle z-depth-0" alt="avatar image" height="35px" width="35px">
 										${follow.nickname }
 									</span>
 								</a>
 							</c:forEach>
+							<div class="dropup">
+							<a class="text-center dropdown-toggle" data-toggle="collapse" 
+								href="#left-myfriends" role="button" aria-expanded="false" 
+								aria-controls="collapseExample" style="color: black;">더보기</a>
+		    					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+									<c:forEach items="${followUsers}" var="follow">
+										<a class="nav-link" href="/other/info.do?userId=${follow.folUserId }"> 
+											<span class="nav-item avatar">
+											<img src="/resources/profileImage/${follow.image }"
+												class="rounded-circle z-depth-0" alt="avatar image" height="35px" width="35px">
+												${follow.nickname }
+											</span>
+										</a>
+									</c:forEach>
+		    						
+		    					</ul>
+							</div>
 						</c:when>
 						<c:otherwise>
 							<p class="text-center">팔로잉한 사람이 없습니다.</p>
 						</c:otherwise>
 					</c:choose>
-					<a class="text-center" href="#" style="color: black;">더보기</a>
 				</div>
 			</div>
 	      </li>      
 		</ul>
-	
-	
-	<a class="btn btn-primary" href="/moim/moim.do?moimNo=500000">
-		정원 500000번 모임
-	</a>
-	<hr />
+		<a class="btn btn-primary" href="/moim/moim.do?moimNo=500000">
+			정원 500000번 모임
+		</a>
+		<hr />
 	<div id="footer" style="font-size: 10px; margin-left:50px;">
 		<p>자주하는 질문</p>
 		<p>help@friendscube.com</p>
@@ -385,6 +399,7 @@ $(function() {
 	
 	$("#left-joined-moim .nav-link").click(function() {
 		var moimNo = $(this).data("no");
+		console.log(moimNo);
 		leftDetailModal(moimNo);
 	});
 	

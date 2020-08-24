@@ -33,6 +33,8 @@ public class MoimMainDto {
 	private String mainCateName;
 	private List<MoimUser> friends;
 	
+	private String likesYn;
+	
 	
 	
 	
@@ -165,4 +167,12 @@ public class MoimMainDto {
 	public void setFriends(List<MoimUser> friends) {
 		this.friends = friends;
 	}
+	public String getLikesYn() {
+		return likesYn;
+	}
+	public void setLikesYn(String likesYn) {
+		this.likesYn = likesYn;
+	}
+	
+	
 }

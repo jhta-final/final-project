@@ -24,6 +24,7 @@ import com.sample.dto.DetailViewMoimsDto;
 import com.sample.service.AlramService;
 import com.sample.service.HomeService;
 import com.sample.service.MoimService;
+import com.sample.vo.MoimFavoriteMoim;
 import com.sample.vo.MoimUser;
 
 @Controller
@@ -63,7 +64,6 @@ public class HomeController {
 		// 좋아요한 모임 표시
 		httpSession.setAttribute("selectMoim", homeService.getselectMoim(user.getId()));
 		
-		
 		// 알람서비스
 		httpSession.setAttribute("alrams", alramService.getAlrams(user.getId()));
 		
@@ -72,23 +72,16 @@ public class HomeController {
 		
 		return "main/main.tiles";
 	}
+	
 	// 키워드 검색 기능(타이틀, 내용, 지역, 메인카테고리 이름, 서브카테고리 이름)
 	@PostMapping("/test.do")
 	public String searchFunction(@RequestParam("keyword") String keyword,
 			Model model){
-		
-//		Map<String, Object> params = new HashMap<String, Object>();
-//		if(keyword != null && !keyword.isEmpty()) {
-//			params.put("title", keyword);
-//		}
-//		System.out.println(keyword);
+
 		List<MoimMainDto> searchDto = homeService.getsearchFunction(keyword);
 		model.addAttribute("cateMoims", searchDto);
 		model.addAttribute("title", "search");
-//		System.out.println(searchDto.size());
-//		for(MoimMainDto moimMainDto : searchDto) {
-//			System.out.println(moimMainDto.getContent());
-//		}
+
 		return "form/test.tiles";
 	}
 	
@@ -155,13 +148,16 @@ public class HomeController {
 	
 	@GetMapping("/detail.do")
 	@ResponseBody
-	public DetailViewMoimsDto getDetailViewMoims(@RequestParam("moimNo") long moimNo) {
-		return homeService.detailViewMoims(moimNo);
+	public DetailViewMoimsDto getDetailViewMoims(HttpSession httpSession, @RequestParam("moimNo") long moimNo) {
+		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
+		DetailViewMoimsDto detailViewMoimsDto = homeService.detailViewMoims(moimNo);
+		MoimFavoriteMoim moimFavoriteMoim = homeService.getFavorite(moimNo, user.getId());
+		
+		if(moimFavoriteMoim == null) {
+			detailViewMoimsDto.getMoimMainDto().setLikesYn("N");
+		}else {
+			detailViewMoimsDto.getMoimMainDto().setLikesYn("Y");
+		}
+		return detailViewMoimsDto;
 	}
-	
-//	@GetMapping("/detail.do")
-//	@ResponseBody
-//	public String getJoinUser(long moimNo, String userId) {
-//		return moimService.getJoinUser(moimNo, userId);
-//	}
 }
