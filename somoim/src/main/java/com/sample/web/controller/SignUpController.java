@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sample.service.MailService;
 import com.sample.service.UserService;
 import com.sample.utils.TempKey;
 import com.sample.vo.MoimUser;
@@ -35,6 +36,9 @@ public class SignUpController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	MailService mailService;
 	
 	private SignUpForm signUpForm = new SignUpForm();
 	
@@ -117,6 +121,17 @@ public class SignUpController {
 	    data.put("key", key);
 	    return data;
 	}
+	
+	// 메일 인증하기
+		@PostMapping("/sendMail.do")
+		@ResponseBody
+		public Map<String, String> sendMail(@RequestBody HashMap<String, String> email) throws Exception{
+			
+			Map<String, String> data = mailService.sendMail(email.get("mail"));
+			
+			return data;
+			
+		}
 	
 	
 }
