@@ -17,6 +17,48 @@
 		order by a.created_date desc
 	</select>
 	
+	<!-- 셀렉트박스 검색 -->
+	<select id ="selectSearchFunction" parameterType="map" resultType="MainDto">
+		select
+			a.moim_no		as moimNo,
+			title			as title,
+            b.user_id       as userId,
+			join_count		as joinCount,
+			head_count		as headCount,
+			content			as content,
+			image			as image,
+			fee				as fee,
+			likes			as likes,
+			premium_yn		as premiumYn,
+			f.delete_yn		as deleteYn,
+			join_date		as joinDate,
+			a.created_date	as createdDate,
+			d.sub_cate_no	as subCateNo,
+			d.name			as subCateName,
+			e.location_no	as locationNo,
+			e.name      	as locationName,
+			c.main_cate_no	as mainCateNo,
+			c.name			as mainCateName,
+			user_role		as userRole,
+            nickname        as nickName
+			
+		from 
+			moim_main A, moim_join_user B, moim_main_category C, 
+            moim_sub_cate D, moim_location E, moim_user F
+        <where>
+        	<if test="title != null">
+        		E.name '%' || #{locationName} || '%'
+        	</if>
+        	<if test="title != null">
+        	and C.name '%' || #{mainCateName} || '%'
+        	</if>
+        	<if test="title != null">
+        	and	D.name '%' || #{subCateName} || '%'
+        	</if>
+        </where>
+	</select>
+	
+	
 	<!-- 상세정보 -->
 	<select id="detailViewMoims" parameterType="long" resultType="DetailViewMoimsDto">
 		select

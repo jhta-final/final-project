@@ -274,7 +274,7 @@
 							<div class="input-group-text">아이디</div>
 							<div class="index-join-check">
 								<input type="text" class="form-control" id="signup-id" placeholder="이메일를 입력해주세요">
-								<a class="btn">인증</a>
+								<a class="btn" id="signup-mail-check">인증</a>
 							</div>
 						</div>
 						<div class="input-group">
@@ -503,6 +503,26 @@
 					}
 				})
 			})
+			$("#signup-mail-check").click(function () {
+				var email = {
+					mail : $("#signup-id").val()
+				}
+				
+				$.ajax({
+					type: "POST",
+					url: "/login/sendMail.do",
+					data: JSON.stringify(email),
+					contentType: "application/json",
+					dataType: "json",
+					success: function (status) {
+						console.log(status);
+						//사인업컨트롤러에서 data에 문자메세지가 보내졌으면
+						//status를 success로, 보내기가실패했으면 fail로 할테니
+						//fail일때 올바른 전화번호를 입력해달라고 알려주시기 바랍니다.
+					}
+				})
+			})
+			
 			// 카테고리 체크
 			$("#select-category-image .card").click(function () {
 				$("#select-category-image .card").find('.card-text')
