@@ -1,5 +1,9 @@
 package com.sample.web.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,21 +19,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sample.dto.MoimMainDto;
 import com.sample.service.BoardService;
 import com.sample.service.CategoryService;
 import com.sample.service.CommentService;
 import com.sample.service.MoimService;
+import com.sample.service.PhotoService;
 import com.sample.service.SubMoimService;
 import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimComment;
+import com.sample.vo.MoimPhoto;
 import com.sample.vo.MoimSubCate;
 import com.sample.vo.MoimSubMoim;
 import com.sample.vo.MoimUser;
 import com.sample.vo.Pagination;
 import com.sample.web.form.BoardForm;
 import com.sample.web.form.MoimForm;
+import com.sample.web.form.PhotoForm;
 import com.sample.web.form.SubMoimForm;
 
 @Controller
@@ -50,6 +58,9 @@ public class MoimController {
 	
 	@Autowired
 	private CommentService commentService;
+	
+	@Autowired
+	private PhotoService photoService;
 	
 	// 새 모임 등록
 	@PostMapping("/add.do")
@@ -274,13 +285,43 @@ public class MoimController {
 	
 	// 사진첩
 	@GetMapping("photo.do")
-	public String photo(@RequestParam("moimNo") long moimNo) {
+	public String photo(@RequestParam("moimNo") long moimNo, Model model) {
+		model.addAttribute("photos", photoService.getPhotosByNo(moimNo));
+		model.addAttribute("photoForm", new PhotoForm());
 		
 		return "moim/photo.tiles";
 	}
 	
-	
-	
+	// 사진 추가
+	@PostMapping("photoAdd.do")
+	public String photoAdd(@ModelAttribute("photoForm")  @Valid PhotoForm photoForm) {
+		MoimPhoto moimPhoto = new MoimPhoto();
+		
+		BeanUtils.copyProperties(photoForm, moimPhoto);
+		
+		MultipartFile upfile = photoForm.getUpfile();
+		String filename = upfile.getOriginalFilename();
+		System.out.println(filename);
+			
+		File file = new File("C:\\final_project\\workspace\\somoim\\src\\main\\webapp\\resources\\moim_photo\\"+filename);
+		FileOutputStream fos;
+		try {
+			file.createNewFile();
+			fos = new FileOutputStream(file);
+			fos.write(upfile.getBytes());
+			fos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		moimPhoto.setPhoto(filename);
+		
+		photoService.addNewPhoto(moimPhoto);
+		
+		return "redirect:photo.do?moimNo=" + photoForm.getMoimNo();
+	}
 	
 	
 	public static int stringToInt(String str, int defaultNumber) {

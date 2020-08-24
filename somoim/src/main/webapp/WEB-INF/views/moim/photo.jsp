@@ -73,103 +73,27 @@
 		</div>
 	</div>
 
+
 	<div class="row">
-		<div class="card mb-4 photo-card"">
-			<img class="card-img-top" src="/resources/home_images/9.jpg"
-				 alt="Card image cap">
-			<div class="card-body">
-				<div class="row">
-					<p class="ml-2"><i id="photo-like" class="far fa-heart"></i>
-						<span class="ml-3">55개</span>						
-					</p>
-				</div>
-				<div class="row text-right">
-					<div class="col-12">
-						<span>고정원</span><span class="ml-4">2020.08.20</span>
+		<c:forEach var="photo" items="${photos }">
+			<div class="card mb-4 photo-card">
+				<img class="card-img-top" src="/resources/moim_photo/${photo.photo }"
+					 alt="Card image cap">
+				<div class="card-body">
+					<div class="row">
+						<p class="ml-2"><i id="photo-like" class="far fa-heart"></i>
+							<span class="ml-3">${photo.likes }개</span>						
+						</p>
+					</div>
+					<div class="row text-right">
+						<div class="col-12">
+							<span>${photo.userId }</span><span class="ml-4"><fmt:formatDate value="${photo.createdDate }"/> </span>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="card mb-4 photo-card"">
-			<img class="card-img-top" src="/resources/home_images/9.jpg"
-				 alt="Card image cap">
-			<div class="card-body">
-				<div class="row">
-					<p class="ml-2"><i id="photo-like" class="far fa-heart"></i>
-						<span class="ml-3">55개</span>						
-					</p>
-				</div>
-				<div class="row text-right">
-					<div class="col-12">
-						<span>고정원</span><span class="ml-4">2020.08.20</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="card mb-4 photo-card"">
-			<img class="card-img-top" src="/resources/home_images/9.jpg"
-				 alt="Card image cap">
-			<div class="card-body">
-				<div class="row">
-					<p class="ml-2"><i id="photo-like" class="far fa-heart"></i>
-						<span class="ml-3">55개</span>						
-					</p>
-				</div>
-				<div class="row text-right">
-					<div class="col-12">
-						<span>고정원</span><span class="ml-4">2020.08.20</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="card mb-4 photo-card"">
-			<img class="card-img-top" src="/resources/home_images/9.jpg"
-				 alt="Card image cap">
-			<div class="card-body">
-				<div class="row">
-					<p class="ml-2"><i id="photo-like" class="far fa-heart"></i>
-						<span class="ml-3">55개</span>						
-					</p>
-				</div>
-				<div class="row text-right">
-					<div class="col-12">
-						<span>고정원</span><span class="ml-4">2020.08.20</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="card mb-4 photo-card"">
-			<img class="card-img-top" src="/resources/home_images/9.jpg"
-				 alt="Card image cap">
-			<div class="card-body">
-				<div class="row">
-					<p class="ml-2"><i id="photo-like" class="far fa-heart"></i>
-						<span class="ml-3">55개</span>						
-					</p>
-				</div>
-				<div class="row text-right">
-					<div class="col-12">
-						<span>고정원</span><span class="ml-4">2020.08.20</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="card mb-4 photo-card"">
-			<img class="card-img-top" src="/resources/home_images/9.jpg"
-				 alt="Card image cap">
-			<div class="card-body">
-				<div class="row">
-					<p class="ml-2"><i id="photo-like" class="far fa-heart"></i>
-						<span class="ml-3">55개</span>						
-					</p>
-				</div>
-				<div class="row text-right">
-					<div class="col-12">
-						<span>고정원</span><span class="ml-4">2020.08.20</span>
-					</div>
-				</div>
-			</div>
-		</div>
+		</c:forEach>
+		
 	</div>
 
 	<div class="modal" id="photo-add">
@@ -181,22 +105,23 @@
 					<h4 class="modal-title">사진 업로드</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-				<form action="" method="post" enctype="multipart/form-data">
+				<form:form action="photoAdd.do" method="post" enctype="multipart/form-data" modelAttribute="photoForm">
 					<!-- Modal body -->
 					<div class="modal-body">
 						<img id="temp-img" width="300px" />
-						<input id="img-file" type="file" name="imgFile" />
+						<form:input id="img-file" type="file" path="upfile" />
 					</div>
-
+					<form:input type="text" hidden="hidden" value="${param.moimNo}" path="moimNo" />
+					<form:input type="text" hidden="hidden" value="${LOGIN_USER.id}" path="userId" />
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<div class="text-right">
 							<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
-							<button type="button" class="btn btn-primary" data-dismiss="modal">업로드</button>
+							<button type="submit" class="btn btn-primary">업로드</button>
 						</div>
 
 					</div>
-				</form>
+				</form:form>
 			</div>
 		</div>
 	</div>
@@ -228,7 +153,6 @@
 	}
 
 	$(".fa-plus").click(function () {
-		console.log("show")
 		$("#photo-add").modal("show");
 
 	})
