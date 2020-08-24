@@ -59,15 +59,16 @@
 			<form class="form-inline my-1" action="/test.do" method="POST">
 				<div class="md-form form-sm my-0">
 					<input class="form-control form-control-sm" style="width: 500px;" type="text" placeholder="Search" id="field-search-keyword"
-						aria-label="Search">
+						aria-label="Search" name="keyword" >
 				</div>
 				<button class="btn btn-outline-primary btn-sm ml-1 my-0" type="submit" >Search</button>
-				<div class="dropdown">
+				<!-- 
+				<div class="dropdown" id="nav-search-loaction">
 					<button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle" data-toggle="dropdown"></button>
-					<div class="dropdown-menu dropdown-menu-right" style="width: 595px;">
+					<div class="dropdown-menu dropdown-menu-right" style="width: 590px;">
 						<div class="form-group" style="width: 100%">
 							<i class="mr-2 fas fa-map-marker" style="color: #0F4C81;"></i><label>지역구</label>
-							<select name="location" class="form-control">
+							<select id="select-location" name="location" class="form-control">
 								<option value="" selected="selected" disabled="disabled" class="text-center">지역</option>
 								<option value="1">강서구</option>
 								<option value="2">양천구</option>
@@ -98,8 +99,8 @@
 						</div>
 						<div class="form-group" style="width: 100%">
 							<i class="mr-2 fas fa-tags" style="color: #0F4C81;"></i><label>카테고리</label>
-							<select id="main-cate" name="category" class="form-control" onchange="getSubCate()">
-								<option value="" selected="selected" disabled="disabled" class="text-center"></option>
+							<select id="search-main-cate" name="category" class="form-control">
+								<option value="" selected="selected" disabled="disabled" class="text-center">메인 카테고리</option>
 								<option value="1">게임/오락</option>
 								<option value="2">사교/인맥</option>
 								<option value="3">운동/스포츠</option>
@@ -108,8 +109,9 @@
 							</select>
 						</div>
 						<div class="form-group" style="width: 100%">
-							<i class="mr-2 fas fa-tags" style="color: #0F4C81;"></i><label>세부
-								카테고리</label> <select id="sub-cate" name="category" class="form-control">
+							<i class="mr-2 fas fa-tags" style="color: #0F4C81;"></i><label>세부 카테고리</label>
+							<select id="search-sub-cate" name="category" class="form-control">
+								<option value="" selected="selected" disabled="disabled" class="text-center">세부 카테고리</option>
 							</select>
 						</div>
 
@@ -119,6 +121,7 @@
 						</div>
 					</div>
 				</div>
+				 -->
 			</form>
 		</div>
 		
@@ -394,5 +397,42 @@
 				}
 			});
 		}
+		
+		$("#select-location").click(function(e) {
+			e.stopPropagation();
+		})
+		$("#search-main-cate").click(function(e) {
+			e.stopPropagation();
+		})
+		$("#search-sub-cate").click(function(e) {
+			e.stopPropagation();
+		})
+		
+		$("#search-main-cate").change(function() {
+			let mainCateNo = $(this).val();
+			 $.ajax({
+		            type:"GET",
+		            url:"/moim/subCate.do",
+		            data: {
+		                mainCateNo:mainCateNo
+		            },
+		            dataType:"json",
+		            success:function (subCates) {
+		            	console.log(subCates);
+		                let $select = $("#search-sub-cate").empty();
+		                let options = "";
+		                for(let subCate of subCates) {
+		                    options += '<option value='+subCate.subCateNo+'>';
+		                    options += subCate.name;
+		                    options += '</option>';
+		                }
+		                $select.append(options); 
+		            }
+		        }) 
+		})
+	    // 세부 카테고리 가져오기
+	    
+		
+		
 	});
 </script>

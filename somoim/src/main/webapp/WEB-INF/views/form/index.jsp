@@ -504,6 +504,9 @@
 					dataType: "json",
 					success: function (status) {
 						console.log(status);
+						//사인업컨트롤러에서 data에 문자메세지가 보내졌으면
+						//status를 success로, 보내기가실패했으면 fail로 할테니
+						//fail일때 올바른 전화번호를 입력해달라고 알려주시기 바랍니다.
 					}
 				})
 			})

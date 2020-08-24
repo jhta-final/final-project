@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -70,11 +71,11 @@ public class HomeController {
 	} 
 
 	@PostMapping("/test.do")
-	public String searchFunction(@RequestParam(value="title", required= false) String title,
+	public String searchFunction(@RequestBody String keyword,
 			Model model){
-		
+		System.out.println(keyword);
 		Map<String, Object> params = new HashMap<String, Object>();
-		if(title != null && !title.isEmpty()) {
+		/*if(title != null && !title.isEmpty()) {
 			params.put("title", title);
 		}
 		List<MoimMainDto> searchDto = homeService.getsearchFunction(title);
@@ -83,7 +84,7 @@ public class HomeController {
 		for(MoimMainDto moimMainDto : searchDto) {
 			System.out.println(moimMainDto.getTitle());
 			
-		}
+		}*/
 		return "redirect:/test.tiles";
 	}
 	
