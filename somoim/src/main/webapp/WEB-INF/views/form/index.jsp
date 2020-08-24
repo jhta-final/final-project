@@ -363,6 +363,32 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 인증 확인 창 -->
+	<div class="modal" id="signup-email-certified">
+	  <div class="modal-dialog modal-sm modal-dialog-centered">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">Modal Heading</h4>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	        Modal body..
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+	      </div>
+	
+	    </div>
+	  </div>
+	</div>
+	
 	<div class="modal" id="select-category-modal">
 		<div class="modal-dialog modal-lg modal-dialog-centered" style="max-width: 900px;">
 			<div class=" modal-content">
@@ -503,12 +529,22 @@
 					}
 				})
 			})
+			
+			// 이메일 인증 체크
 			$("#signup-mail-check").click(function () {
+				var $email = $("#signup-id");
+				
+				if ($email.val() == null) {
+					$email.focus();
+					alert('이메일을 입력해 주세요!!')
+					return false;
+				}
+
 				var email = {
-					mail : $("#signup-id").val()
+					mail : $email.val()
 				}
 				
-				$.ajax({
+				/* $.ajax({
 					type: "POST",
 					url: "/login/sendMail.do",
 					data: JSON.stringify(email),
@@ -520,7 +556,7 @@
 						//status를 success로, 보내기가실패했으면 fail로 할테니
 						//fail일때 올바른 전화번호를 입력해달라고 알려주시기 바랍니다.
 					}
-				})
+				}) */
 			})
 			
 			// 카테고리 체크
