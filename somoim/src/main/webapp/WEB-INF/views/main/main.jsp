@@ -197,10 +197,10 @@ h5 {
 			<!-- Modal body end -->
 			<!-- Modal footer -->
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" id="like-button"><i class="fas fa-heart" id="like"></i></button>
+				<a id="like-button" class="btn btn-danger" href="#"><i class="fas fa-heart"></i></a>
+				<a id="home-moim-link-btn" class="btn btn-primary" href="">모임가기</a>
 				<a id="home-moim-join-btn" class="btn btn-success" href="">모임가입</a>
 				<a id="home-moim-withdrawal-btn" class="btn btn-warning" href="">모임탈퇴</a>
-				<a id="home-moim-link-btn" class="btn btn-primary" href="">모임가기</a>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
 			<!-- Modal footer end -->
@@ -272,15 +272,16 @@ $(function() {
 				
 				$("#home-moim-join-btn").attr('href', join);
 				$("#home-moim-withdrawal-btn").attr('href', withdrawal);
-				$("#home-moim-link-btn").attr("href", link);
 				
 				
 				$("#home-detail-premium").empty();
 				if(moim.moimMainDto.premiumYn == 'Y') {
+					$("#home-moim-link-btn").attr("href", link);
 					let premium = '<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>';
 					$("#home-detail-premium").append(premium);
+					$("#home-moim-link-btn").css('display', 'block');
 				} else {
-					$("#home-moim-link-btn").remove();
+					$("#home-moim-link-btn").css('display', 'none');
 				}
 			}
 		})
