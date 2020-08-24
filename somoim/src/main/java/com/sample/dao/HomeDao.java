@@ -45,6 +45,9 @@ public interface HomeDao {
 	
 	// 검색조건
 	List<MoimMainDto> searchFunction(String keyword);
+	
+	// 셀렉트박스 검색
+	List<MoimMainDto> selectSearchFunction();
 
 	
  
