@@ -39,7 +39,5 @@ public interface HomeService {
 	// 검색조건
 	List<MoimMainDto> getsearchFunction(String keyword);
 	
-//	// 검색조건 2
-//	List<MoimMainDto> getsearchFunction(String keyword);
 	
 }

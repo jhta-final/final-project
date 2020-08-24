@@ -69,6 +69,7 @@ public class HomeController {
 		return "main/main.tiles";
 	} 
 
+	// 키워드 검색 기능
 	@PostMapping("/test.do")
 	public String searchFunction(@RequestParam(value="title", required= false) String title,
 			Model model){
