@@ -110,8 +110,8 @@ public class HomeServiceImpl implements HomeService{
 
 	@Override
 	public List<MoimMainDto> getsearchFunction(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return homeDao.searchFunction(keyword);
 	}
 
 	// 키워드 검색 기능
