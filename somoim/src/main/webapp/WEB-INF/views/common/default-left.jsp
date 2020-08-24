@@ -154,7 +154,7 @@
       	<li class="nav-item">
 			<a data-toggle="collapse" href="#left-joined-moim"
 				role="button" aria-expanded="false" aria-controls="left-joined-moim">
-				가입모임 
+				<i class="fas fa-sign-in-alt"></i>가입모임 
 			</a>
 			<div class="collapse" id="left-joined-moim" style="border-top: 1px solid lightgray">
 				<div>
@@ -209,7 +209,7 @@
 	      <li class="nav-item">
 	      	<a class="btn" data-toggle="collapse" href="#left-myfriends"
 			role="button" aria-expanded="false" aria-controls="collapseExample">
-			내 친구 
+			<i class="fas fa-users"></i>내 친구 
 			</a>
 			<div class="collapse" id="left-myfriends" style="border-top: 1px solid lightgray">
 				<div>
