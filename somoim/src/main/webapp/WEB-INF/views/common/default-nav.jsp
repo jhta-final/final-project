@@ -247,6 +247,11 @@
 <!--/.Navbar -->
 <script type="text/javascript">
 	$(function () {
+		// 드롭다운 꺼지지 않게 하기
+		$("#alram-dropdown").click(function(event) {
+			event.stopPropagation();
+		});
+		
 		// 알림 읽은거 지우고 새로운거 띄우기
 		$("#alram-dropdown").on("click", "a", function () {
 			var alramNo = $(this).data("alram-no");
