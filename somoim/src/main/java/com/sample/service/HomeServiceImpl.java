@@ -121,6 +121,16 @@ public class HomeServiceImpl implements HomeService{
 		return null;
 	}
 
+	@Override
+	public MoimFavoriteMoim getFavorite(long moimNo, String userId) {
+		MoimFavoriteMoim moimFavoriteMoim = new MoimFavoriteMoim();
+		moimFavoriteMoim.setMoimNo(moimNo);
+		moimFavoriteMoim.setUserId(userId);
+		return homeDao.likesMoim(moimFavoriteMoim);
+	}
+	
+	
+
 	
 	
 	

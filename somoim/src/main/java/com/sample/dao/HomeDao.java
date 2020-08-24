@@ -28,7 +28,7 @@ public interface HomeDao {
 	// 내 친구 보기
 	List<MoimFollowDto> followUsers(String userId);
 	
-	// 좋아요 기능 구현
+	// 좋아요 기능 및 유무 구현
 	MoimFavoriteMoim likesMoim(MoimFavoriteMoim moimFavoriteMoim);
 	
 	// 좋아요한 모임 추가

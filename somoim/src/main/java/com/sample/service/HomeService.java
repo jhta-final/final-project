@@ -6,6 +6,7 @@ import java.util.Map;
 import com.sample.dto.DetailViewMoimsDto;
 import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimMainDto;
+import com.sample.vo.MoimFavoriteMoim;
 
 public interface HomeService {
 
@@ -30,6 +31,9 @@ public interface HomeService {
 	// 좋아요 기능 구현
 	void increaseLikesMoim(long moimNo, String userId);
 	
+	// 좋아요 유무 확인
+	MoimFavoriteMoim getFavorite(long moimNo, String userId);
+
 	// 좋아요 표시한 모임들 보기
 	List<MoimMainDto> getselectMoim(String userId);
 	
@@ -41,6 +45,5 @@ public interface HomeService {
 	
 	// 셀렉트박스 검색
 	List<MoimMainDto> selectSearchFunction();
-	
 	
 }
