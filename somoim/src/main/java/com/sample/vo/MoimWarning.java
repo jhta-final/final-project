@@ -2,6 +2,8 @@ package com.sample.vo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class MoimWarning {
 	private long warningNo;
 	private String userId;
@@ -9,6 +11,7 @@ public class MoimWarning {
 	private String content;
 	private String type;
 	private long typeNo;
+	@JsonFormat(pattern="yyyy.MM.dd")
 	private Date createdDate;
 	private String deleteYN;
 	

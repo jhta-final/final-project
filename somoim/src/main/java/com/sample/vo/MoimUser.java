@@ -125,6 +125,14 @@ public class MoimUser {
 	public void setProfileImage(String profileImage) {
 		this.profileImage = profileImage;
 	}
+
+	@Override
+	public String toString() {
+		return "MoimUser [id=" + id + ", name=" + name + ", tel=" + tel + ", password=" + password + ", nickname="
+				+ nickname + ", email=" + email + ", birthDate=" + birthDate + ", gender=" + gender + ", content="
+				+ content + ", deleteYN=" + deleteYN + ", createdDate=" + createdDate + ", locationNo=" + locationNo
+				+ ", profileImage=" + profileImage + "]";
+	}
 	
 	
 }

@@ -85,15 +85,15 @@ public class MypageController {
 	
 	// 내정보수정
 	@PostMapping("/modify.do")
-	public String modifyUser (@ModelAttribute("modifyform") ModifyForm modifyForm) {
-		MoimUser modifyUser = new MoimUser();
-		modifyUser.setId(user.getId());
-		BeanUtils.copyProperties(modifyForm, modifyUser);
+	public String modifyUser (@ModelAttribute("modifyform") ModifyForm modifyForm, HttpSession session) {
+		
+		BeanUtils.copyProperties(modifyForm, user);
 		
 		MultipartFile upfile = modifyForm.getUpfile();
 		String filename = upfile.getOriginalFilename();
+		System.out.println(filename);
 			
-		File file = new File("C:\\final_project\\workspace\\somoim\\src\\main\\webapp\\resources\\profileImage"+filename);
+		File file = new File("C:\\final_project\\workspace\\somoim\\src\\main\\webapp\\resources\\profileImage\\"+filename);
 		FileOutputStream fos;
 		try {
 			file.createNewFile();
@@ -105,9 +105,15 @@ public class MypageController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		modifyUser.setProfileImage(filename);
-		userService.modifyUser(modifyUser);
-		return "mypage/mypage.tiles?modify=success";
+		
+		user.setProfileImage(filename);
+		
+		session.setAttribute("LOGIN_USER", user);
+		
+		System.out.println(user);
+		
+		userService.modifyUser(user);
+		return "redirect:/mypage/mypage.do?updatestatus=success";
 	}
 	
 	// 회원탈퇴
@@ -115,9 +121,9 @@ public class MypageController {
 	public String deleteUser (@RequestParam("password")String password) {
 		 if(password.equals(user.getPassword())) {
 	         userService.deleteUser(user.getId());
-	         return "mypage/mypage.tiles?delete=success";
+	         return "mypage/mypage.tiles";
 	      } else {
-	         return "mypage/mypage.tiles?delete=fail";         
+	         return "mypage/mypage.tiles";         
 	      }
 	}
 	

@@ -142,9 +142,10 @@ public class MoimController {
 	
 	// 모임 가입
 	@GetMapping("join.do")
-	public String joinMoim(@RequestParam("moimNo") long moimNo, @RequestParam("userId") String userId) {
+	public String joinMoim(@RequestParam("moimNo") long moimNo, @RequestParam("userId") String userId, HttpSession httpSession) {
 		
 		moimService.joinMoim(moimNo, userId);
+		
 		
 		return "redirect:moim.do?moimNo=" + moimNo;
 	}

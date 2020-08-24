@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ModifyForm {
 
 	private String nickname;
-	private String tel;
+	private String password;
 	private String content;
 	private String email;
 	private long locationNo;
@@ -21,14 +21,14 @@ public class ModifyForm {
 		this.nickname = nickname;
 	}
 
-	public String getTel() {
-		return tel;
+	public String getPassword() {
+		return password;
 	}
-
-	public void setTel(String tel) {
-		this.tel = tel;
+	
+	public void setPassword(String password) {
+		this.password = password;
 	}
-
+	
 	public String getContent() {
 		return content;
 	}
@@ -59,6 +59,12 @@ public class ModifyForm {
 
 	public void setLocationNo(long locationNo) {
 		this.locationNo = locationNo;
+	}
+
+	@Override
+	public String toString() {
+		return "ModifyForm [nickname=" + nickname + ", password=" + password + ", content=" + content + ", email="
+				+ email + ", locationNo=" + locationNo + ", upfile=" + upfile + "]";
 	}
 	
 	
