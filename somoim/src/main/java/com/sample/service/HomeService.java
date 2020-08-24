@@ -39,5 +39,8 @@ public interface HomeService {
 	// 검색조건
 	List<MoimMainDto> getsearchFunction(String keyword);
 	
+	// 셀렉트박스 검색
+	List<MoimMainDto> selectSearchFunction();
+	
 	
 }
