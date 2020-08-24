@@ -228,7 +228,7 @@
 		<div class="bg-text">
 			<div style="background-color: rgba(255, 248, 248, 0.00); border-radius: 6%;">
 				<div class="" style="color: rgb(255, 255, 255); font-weight: 700;">
-					<div class="title">모임을 만들고 참여해 보세요.</div>
+					<div class="title">모임을 만들고 참여해보세요.</div>
 				</div>
 				<div class="card-body">
 					<form:form action="/login/signin.do" method="post" modelAttribute="loginForm">

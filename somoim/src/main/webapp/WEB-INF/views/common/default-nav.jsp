@@ -59,12 +59,13 @@
 			<form class="form-inline my-1" action="/test.do" method="POST">
 				<div class="md-form form-sm my-0">
 					<input class="form-control form-control-sm" style="width: 500px;" type="text" placeholder="Search" id="field-search-keyword"
-						aria-label="Search">
+						aria-label="Search" name="keyword" >
 				</div>
 				<button class="btn btn-outline-primary btn-sm ml-1 my-0" type="submit" >Search</button>
+				<!-- 
 				<div class="dropdown" id="nav-search-loaction">
 					<button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle" data-toggle="dropdown"></button>
-					<div class="dropdown-menu dropdown-menu-right" style="width: 595px;">
+					<div class="dropdown-menu dropdown-menu-right" style="width: 590px;">
 						<div class="form-group" style="width: 100%">
 							<i class="mr-2 fas fa-map-marker" style="color: #0F4C81;"></i><label>지역구</label>
 							<select id="select-location" name="location" class="form-control">
@@ -120,6 +121,7 @@
 						</div>
 					</div>
 				</div>
+				 -->
 			</form>
 		</div>
 		
