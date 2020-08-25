@@ -7,7 +7,7 @@ public class MoimPhoto {
 	private long photoNo;
 	private String photo;
 	private long likes;
-	private String deleteYN;
+	private String deleteYn;
 	private Date createdDate;
 	private long moimNo;
 	private String userId;
@@ -38,12 +38,14 @@ public class MoimPhoto {
 		this.likes = likes;
 	}
 
-	public String getDeleteYN() {
-		return deleteYN;
+	
+
+	public String getDeleteYn() {
+		return deleteYn;
 	}
 
-	public void setDeleteYN(String deleteYN) {
-		this.deleteYN = deleteYN;
+	public void setDeleteYn(String deleteYn) {
+		this.deleteYn = deleteYn;
 	}
 
 	public Date getCreatedDate() {

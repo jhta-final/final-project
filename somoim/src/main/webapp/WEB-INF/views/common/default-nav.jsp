@@ -63,6 +63,8 @@
 				</div>
 				<button class="btn btn-outline-primary btn-sm ml-1 my-0" type="submit" >Search</button>
 				 
+			</form>
+			<form action="/test2.do" method="POST">
 				<div class="dropdown" id="nav-search-loaction">
 					<button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle" data-toggle="dropdown"></button>
 					<div id="search-bar-manu" class="dropdown-menu dropdown-menu-right" style="width: 590px;">
