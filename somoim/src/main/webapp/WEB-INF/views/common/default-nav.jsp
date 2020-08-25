@@ -161,6 +161,9 @@
 					<a class="dropdown-item" href="/login/signout.do">로그아웃</a>
 				</div>
 			</div>
+			<div>
+				<a class="btn btn-primary" href="/manager/show.do">관리자 모드</a>
+			</div>
 		</div>
 	</nav>
 </div>
