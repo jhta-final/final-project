@@ -77,9 +77,9 @@
 				</tr>
 			</tbody>
 		</table>
-		<a href="#" type="button" class="btn-sm btn btn-secondary mr-auto"><strong>목록</strong></a>
+		<a href="boards.do" type="button" class="btn-sm btn btn-secondary mr-auto"><strong>목록</strong></a>
 		<div>
-			<a href="#" type="button" class="btn-sm btn btn-outline-secondary"><strong>삭제</strong></a>
+			<a href="deleteboard2.do?boardNo=${managerBoard.boardNo }" type="button" class="btn-sm btn btn-outline-secondary"><strong>삭제</strong></a>
 			<button type="button" class="btn-sm btn btn-secondary"
 				id="manager-notice-modify-button">
 				<strong>수정</strong>
@@ -98,16 +98,17 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
-	  <form action="#" method="post">
+	  <form:form action="modify.do" method="post" modelAttribute="managerBoardForm">
 	      <div class="modal-body">
 				<div class="input-group">
+					<input type="hidden" name="boardNo" value="${managerBoard.boardNo }">
 					<div class="input-group-text">타이틀 수정</div>
-					<input type="text" class="form-control" name="title">
+					<input type="text" class="form-control" name="boardTitle" value="${managerBoard.boardTitle }">
 				</div>
 				<div class="input-group mt-2">
 					<div class="input-group-text">내용 수정 </div>
 				</div>
-					<textarea class="form-control" id="manager-notice-modify-content" name="content"></textarea>
+					<textarea class="form-control" id="manager-notice-modify-content" name="boardContent">${managerBoard.boardContent }</textarea>
 	      </div>
 	
 	      <div class="modal-footer">
@@ -115,19 +116,21 @@
 	        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 	      </div>
 
-		</form>
+		</form:form>
     </div>
   </div>
 </div>
 
 <script>
-	CKEDITOR.replace( 'manager-notice-modify-content' );
-	$(function() {
+CKEDITOR.replace( 'manager-notice-modify-content' );
+$(function() {
 
-		CKEDITOR.replace('magager-notice-content');
+	CKEDITOR.replace('magager-notice-content');
 
-		$("#manager-notice-modify-button").click(function() {
-			$("#manager-notice-modify-modal").modal('show');
-		})
+	// 수정 버튼
+	$("#manager-notice-modify-button").click(function() {
+		$("#manager-notice-modify-modal").modal('show');
+		
 	})
+})
 </script>

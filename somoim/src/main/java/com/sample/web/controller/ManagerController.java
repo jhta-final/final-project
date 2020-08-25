@@ -118,4 +118,23 @@ public class ManagerController {
 	public void deleteBoard(@RequestParam("boardNo") long boardNo) {
 		managerBoardService.deleteBoard(boardNo);
 	}
+	
+	// 공지사항 세부 -> 삭제
+	@GetMapping("/deleteboard2.do")
+	public String deleteBoard2(@RequestParam("boardNo") long boardNo) {
+		managerBoardService.deleteBoard(boardNo);
+		
+		return "redirect:boards.do";
+	}
+	
+	// 공지사항 수정
+	@PostMapping("/modify.do")
+	public String modify(@ModelAttribute("managerBoardForm") @Valid ManagerForm managerForm, @RequestParam("boardNo") long boardNo) {
+		MoimManagerBoard moimManagerBoard = managerBoardService.getBoardByNo(boardNo);
+		BeanUtils.copyProperties(managerForm, moimManagerBoard);
+		
+		managerBoardService.modifyBoard(moimManagerBoard);
+		
+		return "redirect:board.do?boardNo=" + boardNo;
+	}
 }
