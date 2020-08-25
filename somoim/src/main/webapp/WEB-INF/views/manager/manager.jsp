@@ -1,23 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<h1>관리자 페이지</h1>
-<div>
+<h1 class="mt-5 ml-4">관리자 페이지</h1>
+<div class="ml-4">
   <div class="row mt-3" style="width: 95%">
     <div class="col-12">
       <nav class="navbar">
         <ul class="nav nav-tabs" id="mypage-nav">
-          <li class="nav-item"><a class="nav-link active" href="#" id="mypage-info">사용자 신고 관리</a>
+          <li class="nav-item"><a class="nav-link active" href="/manager/show.do">사용자 신고 관리</a>
           </li>
-          <li class="nav-item"><a class="nav-link" href="#" id="mypage-mymoim">공지사항 등록</a>
+          <li class="nav-item"><a class="nav-link" href="/manager/boards.do">공지사항 등록</a>
           </li>
         </ul>
       </nav>
     </div>
   </div>
-
-  <div>
-    <div>
-      <table id="warning-list-table" class="table table-striped" style="width:900px;">
+    
+    <div class="row justify-content-center">
+      <table id="warning-list-table" class="table table-striped" style="width:95%;">
         <thead>
           <tr>
             <th>사용자</th>
@@ -99,13 +98,13 @@
 </div>
   </div>
 </div>
-</div>
+
 
 <script type="text/javascript">
 $(function() {
 	
 	$("#warning-detail-modal").on("hide.bs.modal", function() {
-		location.reload();
+		document.location.reload(true);
 	});
 	
 	// 신고 상세보기 버튼 클릭
@@ -159,7 +158,7 @@ $(function() {
 				status: status
 			},
 			success: function() {
-				location.reload();
+				document.location.reload(true);
 			}
 		})
 	});

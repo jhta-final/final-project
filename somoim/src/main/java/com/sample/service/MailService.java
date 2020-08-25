@@ -29,7 +29,7 @@ public class MailService {
 			sendMail.setText("<h1>이메일인증안내</h1>"
 					+ "<p>인증번호는 "+ key + "입니다. </p>");
 			sendMail.setFrom("kwsoj123@gmail.com", "소모임");
-			sendMail.setTo("blesshj1992@naver.com");
+			sendMail.setTo(email);
 			sendMail.send();
 			data.put("status", "success");
 		} catch (MessagingException e) {

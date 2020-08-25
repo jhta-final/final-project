@@ -303,7 +303,7 @@
 			<!-- Modal body end -->
 			<!-- Modal footer -->
 			<div class="modal-footer">
-				<a id="like-button" class="btn btn-danger" href="#"><i class="fas fa-heart"></i></a>
+				<i id="left-modal-like" class="fas fa-heart" style="cursor: pointer;"></i>
 				<a id="left-moim-link-btn" class="btn btn-primary" href="">모임가기</a>
 				<a id="left-moim-join-btn" class="btn btn-success" href="">모임가입</a>
 				<a id="left-moim-withdrawal-btn" class="btn btn-warning" href="">모임탈퇴</a>
@@ -383,6 +383,7 @@ $(function() {
 
 				$("#left-moim-join-btn").attr('href', join);
 				$("#left-moim-withdrawal-btn").attr('href', withdrawal);
+				modalMoimNo = moim.moimMainDto.moimNo;
 				
 				$("#left-detail-premium").empty();
 				if(moim.moimMainDto.premiumYn == 'Y') {
@@ -393,6 +394,13 @@ $(function() {
 				} else {
 					$("#left-moim-link-btn").css('display', 'none');
 				}
+				
+				if(moim.moimMainDto.likesYn == 'Y') {
+					$("#left-modal-like").attr('class', 'fas fa-heart')
+				} else {
+					$("#left-modal-like").attr('class', 'far fa-heart')
+				}
+				
 			}
 		});
 	};
@@ -407,5 +415,16 @@ $(function() {
 		var moimNo = $(this).data("no");
 		leftDetailModal(moimNo);
 	});
+	
+	$("#left-modal-like").click(function() {
+		$.ajax({
+			type: "GET",
+			url: "/like.do",
+			data: {moimNo: modalMoimNo},
+			success: function () {
+				leftDetailModal(modalMoimNo);
+			}
+		})
+	})
 });
 </script>

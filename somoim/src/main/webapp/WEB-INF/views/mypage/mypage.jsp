@@ -54,11 +54,10 @@
 	.preview-image {
 		position: absolute;
 	    top: -84px;
-	    left: 471px;
-	    background: rgba(255,255,255,.8);
+	    left: 482px;
+	   /*  background: rgba(255,255,255,.8); */
 	    border: 1px solid #f5f5f5;
 	    box-sizing: border-box;
-	    border-radius: 20px;
 	    display: none;
 	    box-shadow: 0 0 5px rgba(0,0,0,.75);
 	
@@ -66,7 +65,13 @@
 	
 	#mypage-temp-img {
 		width:150px;
-		border-radius: 20px
+		height: 150px;
+		background-color: #fff;
+	}
+	
+	#mypage-content-counter {
+		color: #aaa;
+		font-size: 14px;
 	}
 
 </style>
@@ -141,16 +146,16 @@
 			</div>
 			<div class="input-group">
 				<div class="input-group-text">프로필 사진</div>
-				<input type="file" class="form-control" id="mypage-modify-profile" name="upfile" placeholder="파일을 선택해주세요">
+				<input type="file" class="form-control" id="mypage-modify-profile" name="upfile" accept=".jpg,.jpeg,.png,.gif,.bmp" placeholder="파일을 선택해주세요">
 				<div class="preview-image text-center">
-					<span>미리보기</span>					
+					<span class="text-white">미리보기</span>					
 					<img id="mypage-temp-img" alt="profile-image"/>
 				</div>
 			</div>
 			<div class="input-group">
 				<div class="input-group-text" id="inputGroup-sizing-sm">인사말 </div>
 				<textarea class="form-control" id="mypage-modify-content" name="content" placeholder="내용을 입력해주세요">${LOGIN_USER.content }</textarea>
-			</div>
+				<span id="mypage-content-counter">(0 / 최대 200자)</span></div>
 			
 			<div class="input-group">
 				<div class="input-group-text">관심지역</div>
@@ -210,7 +215,7 @@
 			"<tr><th class='text-center'>이름</th><td>${LOGIN_USER.name}</td><th class='text-center'>이메일</th><td>${LOGIN_USER.email}</td></>";
 		mypageInfo += "<tr><th class='text-center'>생일</th><td>${LOGIN_USER.birthDate}</td></tr></table></div></div>";
 		mypageInfo += "<div class='mt-3 pb-4' style='border-bottom: 1px solid darkgray'><p>Comment</p>";
-		mypageInfo += "<p>${LOGIN_USER.content}</p></div></div>";
+		mypageInfo += "<p>${fn:replace(LOGIN_USER.content,replaceCharRN,replaceCharBr)}</p></div></div>";
 		mypageInfo +=
 			"<div class='col-3'><p>통계</p>	<div class='mx-auto'><table class='table-borderless' style='width:255px'>";
 		mypageInfo += "<colgroup><col width='50%'><col width='50%'></colgroup>";
@@ -259,7 +264,7 @@
 							"<span class='float-left'>"+moim.title+"</span><span class='float-right'>"+moim.joinCount+"/"+moim.headCount+"<i class='far fa-heart ml-4'></i></span>";
 						moimPage +=
 							"	</div></div><div class='text-right'><small class='text-muted'>2020.11.22</small>";
-						moimPage += "</div></div>	</div>";
+						moimPage += "</div></div></div>";
 
 					})
 					moimPage += "</div>";
@@ -350,14 +355,25 @@
 		});
 		
 		function readURL(input) {
-		
-		if(input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function (e) {
-				$("#mypage-temp-img").attr('src', e.target.result);
+			if(input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					$("#mypage-temp-img").attr('src', e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]);
 			}
-			reader.readAsDataURL(input.files[0]);
 		}
-	}
+		
+		$('#mypage-modify-content').keyup(function (e){
+		    var content = $(this).val();
+		    $('#mypage-content-counter').html("("+content.length+" / 최대 200자)");    //글자수 실시간 카운팅
+
+		    if (content.length > 200){
+		        alert("최대 200자까지 입력 가능합니다.");
+		        $(this).val(content.substring(0, 200));
+		        $('#mypage-content-counter').html("(200 / 최대 200자)");
+		    }
+		});
+
 	})
 </script>

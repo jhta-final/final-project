@@ -85,34 +85,37 @@ public class MypageController {
 	
 	// 내정보수정
 	@PostMapping("/modify.do")
-	public String modifyUser (@ModelAttribute("modifyform") ModifyForm modifyForm, HttpSession session) {
-		
+	public String modifyUser (@ModelAttribute("modifyform") ModifyForm modifyForm, HttpSession session) {		
 		BeanUtils.copyProperties(modifyForm, user);
 		
 		MultipartFile upfile = modifyForm.getUpfile();
-		String filename = upfile.getOriginalFilename();
-		System.out.println(filename);
+		String filename = "";
+		if (upfile.isEmpty()) {
+			filename = "profile.png";
+		} else {
+			filename = upfile.getOriginalFilename();
+			System.out.println(filename);
 			
-		File file = new File("C:\\final_project\\workspace\\somoim\\src\\main\\webapp\\resources\\profileImage\\"+filename);
-		FileOutputStream fos;
-		try {
-			file.createNewFile();
-			fos = new FileOutputStream(file);
-			fos.write(upfile.getBytes());
-			fos.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+			File file = new File("C:\\final_project\\workspace\\somoim\\src\\main\\webapp\\resources\\profileImage\\"+filename);
+			FileOutputStream fos;
+			try {
+				file.createNewFile();
+				fos = new FileOutputStream(file);
+				fos.write(upfile.getBytes());
+				fos.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
+		//user.setContent(user.getContent().replace("\r\n", "<br>"));
 		user.setProfileImage(filename);
 		
-		session.setAttribute("LOGIN_USER", user);
-		
-		System.out.println(user);
-		
+		session.setAttribute("LOGIN_USER", user);		
 		userService.modifyUser(user);
+		
 		return "redirect:/mypage/mypage.do?updatestatus=success";
 	}
 	

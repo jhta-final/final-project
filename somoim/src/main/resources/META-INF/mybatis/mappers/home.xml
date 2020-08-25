@@ -41,7 +41,6 @@
 			c.name			as mainCateName,
 			user_role		as userRole,
             nickname        as nickName
-			
 		from 
 			moim_main A, moim_join_user B, moim_main_category C, 
             moim_sub_cate D, moim_location E, moim_user F
@@ -261,6 +260,8 @@
 		moim_follow A, moim_user B
 	where
 		A.user_id = #{value}
+	and
+        delete_yn = 'N'
 	and
 		A.fol_user_id = B.user_id
 	) where rownum <= 3
