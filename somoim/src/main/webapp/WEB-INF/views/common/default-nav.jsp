@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+\<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!--Navbar -->
 <style>
 	.my-nav {
@@ -68,7 +68,7 @@
 					<div id="search-bar-manu" class="dropdown-menu dropdown-menu-right" style="width: 590px;">
 						<div class="form-group mb-3" style="width: 100%">
 							<i class="mr-2 fas fa-map-marker ml-3" style="color: #0F4C81;"></i><label>지역구</label>
-							<select id="select-location" style="width: 570px; margin-left: 9px;" name="location" class="form-control mt-2 pl-2 pr-2">
+							<select id="select-location" style="width: 570px; margin-left: 9px;" name="locationName" class="form-control mt-2 pl-2 pr-2">
 								<option value="0" selected="selected" disabled="disabled" class="text-center">지역</option>
 								<option value="1">강서구</option>
 								<option value="2">양천구</option>
@@ -99,7 +99,7 @@
 						</div>
 						<div class="form-group mb-3" style="width: 100%">
 							<i class="mr-2 fas fa-tags ml-3" style="color: #0F4C81;"></i><label>카테고리</label>
-							<select id="search-main-cate" style="width: 570px; margin-left: 9px;" name="category" class="form-control mt-2 pl-2 pr-2">
+							<select id="search-main-cate" style="width: 570px; margin-left: 9px;" name="MainCateName" class="form-control mt-2 pl-2 pr-2">
 								<option value="0" selected="selected" disabled="disabled" class="text-center">메인 카테고리</option>
 								<option value="1">게임/오락</option>
 								<option value="2">사교/인맥</option>
@@ -110,7 +110,7 @@
 						</div>
 						<div class="form-group mb-3" style="width: 100%">
 							<i class="mr-2 fas fa-tags ml-3" style="color: #0F4C81;"></i><label>세부 카테고리</label>
-							<select id="search-sub-cate" style="width: 570px; margin-left: 9px;" name="category" class="form-control mt-2 pl-2 pr-2">
+							<select id="search-sub-cate" style="width: 570px; margin-left: 9px;" name="SubCateName" class="form-control mt-2 pl-2 pr-2">
 								<option value="0" selected="selected" disabled="disabled" class="text-center">세부 카테고리</option>
 							</select>
 						</div>
