@@ -58,9 +58,15 @@ $(function() {
 	       if ( action == 1 ) {
 	           action = 2;
 	           $(".left").attr("class", "left col-2");
+	           if (window.sessionStorage) {
+	                sessionStorage.setItem('position', 'open');
+	            }
 	       } else {
 	           $(".left").attr("class", "left");
 	           action = 1;
+	           if (window.sessionStorage) {
+	                sessionStorage.setItem('position', 'close');
+	            }
 	       }
 	       //$("#sideMenu").toggle("fast");
 	}
