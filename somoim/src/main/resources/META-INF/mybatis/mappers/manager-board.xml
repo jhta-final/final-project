@@ -55,6 +55,6 @@
 			manager_board_title = #{boardTitle},
 			manager_board_content = #{boardContent}
 		where
-			manager_board_no = #{value}
+			manager_board_no = #{boardNo}
 	</update>
 </mapper>
