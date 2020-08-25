@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<style>
+#warning-list-table a, #warning-list-table a:hover {
+	color: black;
+	text-decoration: none;
+}
+</style>    
+
 <h1 class="mt-5 ml-4">관리자 페이지</h1>
 <div class="ml-4">
   <div class="row mt-3" style="width: 95%">
@@ -34,35 +41,55 @@
           </tr>
         </thead>
         <tbody>
-       		<tr>
-       			<td class="text-danger">공지</td>
-       			<td>조심하세요~~</td>
-       			<td>2020.20.11</td>
-       			<td>4</td>
-       			<td><button type="button" class="btn btn-danger">x</button></td>
-       		</tr>
-       		<tr>
-       			<td class="text-danger">공지</td>
-       			<td>조심하세요~~</td>
-       			<td>2020.20.11</td>
-       			<td>4</td>
-       			<td><button type="button" class="btn btn-danger">x</button></td>
-       		</tr>
-       		<tr>
-       			<td class="text-danger">공지</td>
-       			<td>조심하세요~~</td>
-       			<td>2020.20.11</td>
-       			<td>4</td>
-       			<td><button type="button" class="btn btn-danger">x</button></td>
-       		</tr>
-       		
+        <c:choose>
+        	<c:when test="${empty managerBoards}">
+        		<tr class="text-center">
+        			<td colspan="5">등록된 공지가 없습니다.</td>
+        		</tr>
+        	</c:when>
+        	<c:otherwise>
+		        <c:forEach items="${managerBoards }" var="board">
+		       		<tr id="tr-${board.boardNo }">
+		       			<td class="text-danger">공지</td>
+		       			<td><a href="board.do?boardNo=${board.boardNo }">${board.boardTitle }</a></td>
+		       			<td><fmt:formatDate value="${board.createdDate }"/></td>
+		       			<td>${board.views }</td>
+		       			<td><button type="button" class="btn btn-danger" data-board-no="${board.boardNo }">x</button></td>
+		       		</tr>
+		       	</c:forEach>	
+        	</c:otherwise>
+        </c:choose>
         </tbody>
       </table>
   </div>
-  
+	<ul class="pagination justify-content-center">
+		<li class="page-item"><a class="page-link" href="#">1</a></li>
+		<li class="page-item"><a class="page-link" href="#">2</a></li>
+		<li class="page-item"><a class="page-link" href="#">3</a></li>
+	</ul>
   <div class="row mt-4">		
 		<div class="text-right" style="width: 90%">
 			<a href="/manager/create.do" class="btn btn-primary">글 쓰기</a>
 		</div>
 	</div>
  </div>
+ 
+<script type="text/javascript">
+$(function() {
+	$("#warning-list-table button").click(function() {
+		var boardNo = $(this).data("board-no");
+		
+		$.ajax({
+			type: "GET",
+			url: "/manager/deleteboard.do",
+			data: {
+				boardNo: boardNo
+			},
+			success: function() {
+				var $tr = $("#tr-" + boardNo);
+				$tr.hide();
+			}
+		})
+	});
+})
+</script>

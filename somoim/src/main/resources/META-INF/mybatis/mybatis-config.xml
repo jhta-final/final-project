@@ -38,6 +38,7 @@
 		<typeAlias type="com.sample.dto.PageDto" alias="Page"/>
 		<typeAlias type="com.sample.dto.ManagerDto" alias="Manager"/>
 		<typeAlias type="com.sample.vo.MoimPhotoLikes" alias="PhotoLikes"/>
+		<typeAlias type="com.sample.vo.MoimManagerBoard" alias="ManagerBoard"/>
 	</typeAliases>
 	
 	<mappers>
@@ -53,6 +54,7 @@
 		<mapper resource="META-INF/mybatis/mappers/comment.xml"/>
 		<mapper resource="META-INF/mybatis/mappers/searchbycategory.xml"/>
 		<mapper resource="META-INF/mybatis/mappers/warnings.xml"/>
+		<mapper resource="META-INF/mybatis/mappers/manager-board.xml"/>
 	</mappers>
 </configuration>
 

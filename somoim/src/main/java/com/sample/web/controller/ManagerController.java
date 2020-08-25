@@ -3,20 +3,27 @@ package com.sample.web.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sample.service.AlramService;
+import com.sample.service.ManagerBoardService;
 import com.sample.service.WarningService;
 import com.sample.vo.MoimAlram;
+import com.sample.vo.MoimManagerBoard;
 import com.sample.vo.MoimUser;
 import com.sample.vo.MoimWarning;
+import com.sample.web.form.ManagerForm;
 
 @Controller
 @RequestMapping("/manager")
@@ -27,6 +34,9 @@ public class ManagerController {
 	
 	@Autowired
 	private AlramService alramService;
+	
+	@Autowired
+	private ManagerBoardService managerBoardService;
 	
 	// 사용자 신고 리스트 뿌리기
 	@GetMapping("show.do")
@@ -70,17 +80,42 @@ public class ManagerController {
 	}
 	
 	// 관리자 보드 시작
-	// 관리자 보드 접속
+	// 공지사항 전체조회
 	@GetMapping("/boards.do")
-	public String managerBoard() {
+	public String managerBoard(Model model) {
+		model.addAttribute("managerBoards", managerBoardService.getAllBoards());
+		
 		return "manager/managerBoard.tiles";
 	}
+	
+	// 공지사항 등록 폼 가기
 	@GetMapping("/create.do")
 	public String managerBoardCreate() {
 		return "manager/managerBoardCreate.tiles";
 	}
+	
+	// 공지사항 등록하기
+	@PostMapping("/create.do")
+	public String managerBoardCreate(@ModelAttribute("managerBoardForm") @Valid ManagerForm managerForm) {
+		MoimManagerBoard moimManagerBoard = new MoimManagerBoard();
+		BeanUtils.copyProperties(managerForm, moimManagerBoard);
+		managerBoardService.addBoard(moimManagerBoard);
+		
+		return "redirect:boards.do";
+	}
+	
+	// 공지사항 상세보기
 	@GetMapping("/board.do")
-	public String managerBoardDetail() {
+	public String managerBoardDetail(@RequestParam("boardNo") long boardNo, Model model) {
+		model.addAttribute("managerBoard", managerBoardService.getBoardByNo(boardNo));
+		
 		return "manager/managerBoardDetail.tiles";
+	}
+	
+	// 공지사항 삭제
+	@GetMapping("/deleteboard.do")
+	@ResponseBody
+	public void deleteBoard(@RequestParam("boardNo") long boardNo) {
+		managerBoardService.deleteBoard(boardNo);
 	}
 }
