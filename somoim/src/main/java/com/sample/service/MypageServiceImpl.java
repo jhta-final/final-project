@@ -45,6 +45,10 @@ public class MypageServiceImpl implements MypageService {
 		return followerDao.getFollowersByUserId(userId);
 	}
 	@Override
+	public List<MoimFollowDto> allFollowing(String userId) {
+		return followerDao.getFollowingsByUserId(userId);
+	}
+	@Override
 	public List<MoimJoinUserMoimDto> allJoinMoims(String userId) {
 		return followerDao.getUserMoims(userId);
 	}

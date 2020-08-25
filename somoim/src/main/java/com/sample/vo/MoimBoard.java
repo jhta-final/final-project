@@ -12,7 +12,7 @@ public class MoimBoard {
 	private long views;
 	private String deleteYn;
 	
-	@JsonFormat(pattern="yyyy. MM. dd HH:mm")
+	@JsonFormat(pattern="yyyy. MM. dd")
 	private Date createdDate;
 	
 	private long moimNo;

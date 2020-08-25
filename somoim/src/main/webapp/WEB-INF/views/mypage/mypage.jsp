@@ -98,7 +98,7 @@
 	<div class="row" style="padding: 30px 35px;">
 		<div class="col-9">
 			<div id="mypage-body">
-
+				
 			</div>
 		</div>
 		<div class="col-3">
@@ -222,6 +222,7 @@
 		mypageInfo +=
 			"<tr><th class='text-center'>가   입   일 </th><td><fmt:formatDate value='${LOGIN_USER.createdDate}'/></td></tr>";
 		mypageInfo += "<tr><th class='text-center'>팔로워 수</th><td>${followersCnt}</td></tr>";
+		mypageInfo += "<tr><th class='text-center'>팔로잉 수</th><td>${followingsCnt}</td></tr>";
 		mypageInfo += "</table></div>";
 		mypageInfo += "<div class='text-right mt-5'><button type='button' class='btn btn-info mr-2' id='mypage-modify-modal-button'><i class='fas fa-edit mr-1'></i>수정</button>";
 		mypageInfo += "<button type='button' class='btn btn-danger' id='mypage-exit-modal-button'><i class='fas fa-sign-out-alt mr-1'></i>탈퇴</button></div></div></div>"
@@ -313,21 +314,23 @@
 						var empty = "<div>내가쓴 글이 존재하지않습니다.</div>";
 						$mypageBody.append(empty);
 					} else {
+						var tr = "<div class='row justify-content-center'><table class='table table-hover'>";
+							tr += "<thead><tr><th></th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th></tr></thead><tbody>";
 						$.each(boards, function (index, board) {
-							var tr = "<div class='card'>";
-							tr += "<a href='/moim/moim.do?moimNo=${moim.moimNo}'>";
-							tr +=
-								"<img class='card-img-top' src='/resources/home_images/9.jpg' alt='Card image cap'>";
-							tr += "<div class='card-body'>";
-							tr += "<h5 class='card-title'><c:out value='${moim.title }'/></h5>"
-							tr += "<p class='card-text'>${moim.content }</p>";
-							tr += "</div><div class='card-footer'>";
-							tr += "<small class='text-muted'>${moim.createdDate}</small>";
-							tr += "</div></a></div>";
-
-							$mypageBody.append(tr);
-
+							if(board.boardCateNo == 1) {
+								tr += "<tr class='table-danger'><td class='text-center'><span class='badge badge-danger'>공지</span></td>";							
+							} else if (board.boardCateNo == 2) {								
+								tr += "<tr><td class='text-center'>후기</td>";
+							} else if (board.boardCateNo == 3) {								
+								tr += "<tr><td class='text-center'>일반</td>";
+							}
+							tr += "<td><a href='boardDetail.do?boardNo="+board.boardNo+"'>"+board.title+"</a></td>";
+							tr += "<td>"+board.userId+"</td>";
+							tr += "<td>"+board.createdDate+"</td>";
+							tr += "<td>"+board.views+"</td></tr>";
 						})
+						tr += "</tbody></table></div>";
+						$mypageBody.append(tr);
 					}
 				}
 			})
