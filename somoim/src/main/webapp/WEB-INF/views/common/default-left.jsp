@@ -2,6 +2,7 @@
 <style>
 
 #mySidenav {
+left: -317px;
 	 box-shadow: 0 0 1px rgba(0,0,0,.35);
 	 background: #fff;
 	 margin-bottom: -1px;
@@ -9,11 +10,10 @@
 	width: 317px; /* 0 width - change this with JavaScript */
 	position: fixed; /* Stay in place */
 	z-index: 10; /* Stay on top */
-	left: 0px;
 	background-color: #FFF; /* Black*/
 	/* overflow-x: hidden; /* Disable horizontal scroll */ */
 	padding-top: 20px; /* Place content 60px from the top */
-	transition: 0.2s;
+	 transition: 0.1s;
 	/* 0.5 second transition effect to slide in the sidenav */
 }
 

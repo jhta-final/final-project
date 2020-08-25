@@ -37,52 +37,58 @@
 <body>
 
 <div class="container-fluid ">
+
 	<div class="row">
 		<div class="col-12 my-back">
 			<tiles:insertAttribute name="nav" />
 		</div>
 	</div>
 	<div class="row" style="margin-top: 71.53px;">
-		<div class="left col-2">
+		<div class="left">
 			<tiles:insertAttribute name="left" />
 		</div>
-		<div class="my-content col-10">
+		<div class="my-content">
 			<tiles:insertAttribute name="content" />
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
-$(function() {
-	var action = 1;
-	function viewSomething() {
-	       if ( action == 1 ) {
-	           action = 2;
-	           $(".left").attr("class", "left col-2");
-	           if (window.sessionStorage) {
-	                sessionStorage.setItem('position', 'open');
-	            }
-	       } else {
-	           $(".left").attr("class", "left");
-	           action = 1;
-	           if (window.sessionStorage) {
-	                sessionStorage.setItem('position', 'close');
-	            }
-	       }
-	       //$("#sideMenu").toggle("fast");
-	}
-	$("#sideMenu").on("click", viewSomething);
 
+$(function() {
+	if (sessionStorage.getItem('position') == 'close') {
+		$(".my-content").attr('class','my-content col-12');
+        $("#mySidenav").css("left", "-317px");
+        $(".left").attr("class", "left");
+	} else if (sessionStorage.getItem('position') == 'open') {
+		 $(".my-content").attr('class','my-content col-10');
+  	   $("#mySidenav").css("left", "0px");
+         $(".left").attr("class", "left col-2");
+	}
+		
+		
+	
+	var action = 1;
 	function viewSomething() {
 	       if ( action == 1 ) {
 	    	   $(".my-content").attr('class','my-content col-12');
 	           $("#mySidenav").css("left", "-317px");
+	           $(".left").attr("class", "left");
 	           action = 2;
-	       } else {
+	          
+	                sessionStorage.setItem('position', 'close');
+	           
+	       } else if (action == 2) {
 	    	   $(".my-content").attr('class','my-content col-10');
 	    	   $("#mySidenav").css("left", "0px");
+	           $(".left").attr("class", "left col-2");
 	           action = 1;
+	            sessionStorage.setItem('position', 'open');	            
 	       }
+	       //$("#sideMenu").toggle("fast");
 	}
+	$("#sideMenu").on("click", viewSomething);
+	
+
 })
 </script>
 </body>
