@@ -62,6 +62,8 @@
             a.sub_cate_no = c.sub_cate_no
         and
             a.sub_cate_no = #{value}
+        and
+        	a.delete_yn = 'N'
 		order by
 			a.moim_no desc
 	</select>
