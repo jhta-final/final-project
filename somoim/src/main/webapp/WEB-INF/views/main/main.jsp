@@ -187,7 +187,7 @@ h5 {
 							<p id="home-detail-count"></p>
 							<p id="home-detail-content"></p>
 							<p><i class="fas fa-won-sign 2x"></i><span id="home-detail-fee"></span></p>
-							<p id="home-detail-likes"></p>
+							좋아요수 : <span id="home-detail-likes"></span>개
 							<p id="home-detail-premium"></p>
 							<p id="home-detail-joinDate">모이는날 : 2020.10.19</p>
 							<p id="home-detail-createDate">만든날 : 2020.08.15</p>
@@ -197,7 +197,7 @@ h5 {
 			<!-- Modal body end -->
 			<!-- Modal footer -->
 			<div class="modal-footer">
-				<a id="like-button" class="btn btn-danger" href="#"><i class="fas fa-heart"></i></a>
+				<i id="home-modal-like" class="" style="cursor: pointer;"></i>
 				<a id="home-moim-link-btn" class="btn btn-primary" href="">모임가기</a>
 				<a id="home-moim-join-btn" class="btn btn-success" href="">모임가입</a>
 				<a id="home-moim-withdrawal-btn" class="btn btn-warning" href="">모임탈퇴</a>
@@ -219,19 +219,8 @@ h5 {
 <script>
 
 $(function() {
-	$("#Like").click(function() {
-		var action = 1;
-		if (action == 1) {
-			$('#Like').attr('class', 'fas fa-heart');
-			action = 2;
-		} else {
-			$('#Like').attr('class', 'far fa-heart');
-			action = 1;
-		}
-	})
+	var modalMoimNo = "";
 	
-	
-
 	 var swiper = new Swiper('.swiper-container', {
 	      slidesPerView: 3,
 	      spaceBetween: 30,
@@ -250,11 +239,26 @@ $(function() {
 	$(".home-card").click(function() {
 		var moimNo = $(this).data("no");
 		$("#myModal").modal('show');
-
+		modal(moimNo);
+	})
+	
+	
+	$("#home-modal-like").click(function() {
+		$.ajax({
+			type: "GET",
+			url: "/like.do",
+			data: {moimNo: modalMoimNo},
+			success: function () {
+				modal(modalMoimNo);
+			}
+		})
+	})
+  
+	function modal(no) {
 		$.ajax({
 			type: "GET",
 			url: "/detail.do",
-			data: {moimNo: moimNo},
+			data: {moimNo: no},
 			dataType: "json",
 			success: function (moim) {
 				console.log(moim);
@@ -262,16 +266,18 @@ $(function() {
 				$("#home-detail-count").text(moim.moimMainDto.joinCount + "/" + moim.moimMainDto.headCount)
 				$("#home-detail-content").text(moim.moimMainDto.content)
 				$("#home-detail-fee").text(moim.moimMainDto.fee + "원")
-				$("#home-detail-likes").text("좋아요수 : " + moim.moimMainDto.likes + "개")
+				$("#home-detail-likes").text(moim.moimMainDto.likes)
 				$("#home-detail-joinDate").text("모이는날 : " + moim.moimMainDto.joinDate)
 				$("#home-detail-createDate").text("만든날 : " + moim.moimMainDto.createdDate)
 				
 				var link = '/moim/moim.do?moimNo='+moim.moimMainDto.moimNo+'';
 				var join = '/moim/join.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${loginedUser}';
 				var withdrawal = '/moim/outMoim.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${loginedUser}';
+				modalMoimNo = moim.moimMainDto.moimNo;
 				
 				$("#home-moim-join-btn").attr('href', join);
 				$("#home-moim-withdrawal-btn").attr('href', withdrawal);
+				
 				
 				
 				$("#home-detail-premium").empty();
@@ -283,11 +289,17 @@ $(function() {
 				} else {
 					$("#home-moim-link-btn").css('display', 'none');
 				}
+				
+				
+				
+				if(moim.moimMainDto.likesYn == 'Y') {
+					$("#home-modal-like").attr('class', 'fas fa-heart')
+				} else {
+					$("#home-modal-like").attr('class', 'far fa-heart')
+				}			
 			}
 		})
-
-	})
-   
+	}
 });
 
 </script>

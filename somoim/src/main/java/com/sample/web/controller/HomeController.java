@@ -141,6 +141,7 @@ public class HomeController {
 //		return "redirect:/test.do";
 //	}
 	@GetMapping("/like.do")
+	@ResponseBody
 	public void increaseLikesMoim(HttpSession httpSession, @RequestParam("moimNo") long moimNo) {
 		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
 		homeService.increaseLikesMoim(moimNo, user.getId());
