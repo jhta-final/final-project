@@ -87,8 +87,8 @@ h5 {
 								<p><c:out value="${favolite.title }" /></p>
 							</div>
 							<div class="text-left">
-								<i class="fas fa-heart" style="color: #00498C"></i>&ensp;<span class="text-left" >${favolite.likes }</span>&ensp;&ensp;
-								<span>${favolite.joinCount}/${favolite.headCount}</span>
+								<i class="fas fa-heart" style="color: #d09afc"></i>&ensp;<span class="text-left" >${favolite.likes }</span>&ensp;&ensp;
+								<i class="fas fa-users" style="color: #fcba03"></i>&ensp;<span>${favolite.joinCount}/${favolite.headCount}</span>
 								<p style="float: right">
 								<fmt:formatDate value="${favolite.joinDate}" /></p>
 							</div>
@@ -118,8 +118,8 @@ h5 {
 							<span><c:out value="${location.title }" /></span>
 						</div>
 						<div class="text-left">
-							<i class="fas fa-heart" style="color: #800020"></i>&ensp;<span class="text-left" >${location.likes }</span>&ensp;&ensp;
-							<span class="mr-3">${location.joinCount }/${location.headCount }명</span>
+							<i class="fas fa-heart" style="color: #d09afc"></i>&ensp;<span class="text-left" >${location.likes }</span>&ensp;&ensp;
+							<i class="fas fa-users" style="color: #fcba03"></i>&ensp;<span class="mr-3">${location.joinCount }/${location.headCount }</span>
 							<p style="float: right">
 							<fmt:formatDate value="${location.joinDate}" /></p>
 						</div>
@@ -143,7 +143,7 @@ h5 {
 						</div>
 						<div class="text-left">
 							<i class="fas fa-heart" style="color: #d09afc"></i>&ensp;<span class="text-left" >${category.likes }</span>&ensp;&ensp;
-							<span class="mr-3">${category.joinCount }/${category.headCount }</span>
+							<i class="fas fa-users" style="color: #fcba03"></i>&ensp;<span class="mr-3">${category.joinCount }/${category.headCount }</span>
 							<p style="float: right">
 							<fmt:formatDate value="${category.joinDate}" /></p>
 						</div>
@@ -166,8 +166,8 @@ h5 {
 							<span><c:out value="${moim.title }" /></span>
 						</div>
 						<div class="text-left">
-							<i class="fas fa-heart" style="color: #fcba03"></i>&ensp;<span class="text-left" >${moim.likes }</span>&ensp;&ensp;
-							<span class="mr-3">${moim.joinCount }/${moim.headCount }</span>
+							<i class="fas fa-heart" style="color: #d09afc"></i>&ensp;<span class="text-left" >${moim.likes }</span>&ensp;&ensp;
+							<i class="fas fa-users" style="color: #fcba03"></i>&ensp;<span class="mr-3">${moim.joinCount }/${moim.headCount }</span>
 							<p style="float: right">
 							<fmt:formatDate value="${moim.joinDate}" /></p>
 						</div>
