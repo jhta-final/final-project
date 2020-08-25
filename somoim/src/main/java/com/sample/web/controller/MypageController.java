@@ -110,7 +110,7 @@ public class MypageController {
 			}
 		}
 		
-		user.setContent(user.getContent().replace("\r\n", "<br>"));
+		//user.setContent(user.getContent().replace("\r\n", "<br>"));
 		user.setProfileImage(filename);
 		
 		session.setAttribute("LOGIN_USER", user);		

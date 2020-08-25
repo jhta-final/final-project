@@ -215,7 +215,7 @@
 			"<tr><th class='text-center'>이름</th><td>${LOGIN_USER.name}</td><th class='text-center'>이메일</th><td>${LOGIN_USER.email}</td></>";
 		mypageInfo += "<tr><th class='text-center'>생일</th><td>${LOGIN_USER.birthDate}</td></tr></table></div></div>";
 		mypageInfo += "<div class='mt-3 pb-4' style='border-bottom: 1px solid darkgray'><p>Comment</p>";
-		mypageInfo += "<p>${LOGIN_USER.content}</p></div></div>";
+		mypageInfo += "<p>${fn:replace(LOGIN_USER.content,replaceCharRN,replaceCharBr)}</p></div></div>";
 		mypageInfo +=
 			"<div class='col-3'><p>통계</p>	<div class='mx-auto'><table class='table-borderless' style='width:255px'>";
 		mypageInfo += "<colgroup><col width='50%'><col width='50%'></colgroup>";
