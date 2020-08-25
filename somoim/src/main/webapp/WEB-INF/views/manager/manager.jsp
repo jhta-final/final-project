@@ -104,7 +104,7 @@
 $(function() {
 	
 	$("#warning-detail-modal").on("hide.bs.modal", function() {
-		location.reload();
+		document.location.reload(true);
 	});
 	
 	// 신고 상세보기 버튼 클릭
@@ -158,7 +158,7 @@ $(function() {
 				status: status
 			},
 			success: function() {
-				location.reload();
+				document.location.reload(true);
 			}
 		})
 	});

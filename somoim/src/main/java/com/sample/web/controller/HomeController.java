@@ -3,6 +3,7 @@ package com.sample.web.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -86,26 +87,28 @@ public class HomeController {
 	}
 	
 	// 셀렉트 박스를 이용해서 검색
-//	@PostMapping("/test.do")
-//	public String selectSearchFunction(@RequestMapping(value="locationName", required="false") String locationName,
-//			@RequestMapping(value="MainCateName", required="false") String mainCateName,	
-//			@RequestMapping(value="SubCateName", required="false") String subCateName,	
-//			Model model) {
-//		
-//		Map<String, Object> params = new HashMap<String, Object>();
-//		if(locationName != null && !locationName.isEmpty()) {
-//			params.put("locationName", locationName);
-//		}
-//		if(mainCateName != null && !mainCateName.isEmpty()) {
-//			params.put("mainCateName", mainCateName);
-//		}
-//		if(subCateName != null && !subCateName.isEmpty()) {
-//			params.put("subCateName", subCateName);
-//		}
-//		List<MoimMainDto> moimMainDtos = homeService.getsearchFunction(keyword);
-//		
-//		return "form/test.tiles";
-//	}
+	@PostMapping("/test2.do")
+	public String selectSearchFunction
+			(@RequestParam(value="locationName", required=false) String locationName,
+			@RequestParam(value="MainCateName", required=false) String mainCateName,	
+			@RequestParam(value="SubCateName", required=false) String subCateName,	
+			Model model) {
+		
+		Map<String, Object> keyword = new HashMap<String, Object>();
+		if(locationName != null && !locationName.isEmpty()) {
+			keyword.put("locationName", locationName);
+		}
+		if(mainCateName != null && !mainCateName.isEmpty()) {
+			keyword.put("mainCateName", mainCateName);
+		}
+		if(subCateName != null && !subCateName.isEmpty()) {
+			keyword.put("subCateName", subCateName);
+		}
+		List<MoimMainDto> searchSelectBoxs = homeService.getselectSearchFunction(keyword);
+		model.addAttribute("searchSelectBoxs", searchSelectBoxs);
+		
+		return "form/test.tiles";
+	}
 //	
 //	@GetMapping("/test.do")
 //	public String searchFunction(@RequestParam(value="title", required= false) String title,
@@ -141,6 +144,7 @@ public class HomeController {
 //		return "redirect:/test.do";
 //	}
 	@GetMapping("/like.do")
+	@ResponseBody
 	public void increaseLikesMoim(HttpSession httpSession, @RequestParam("moimNo") long moimNo) {
 		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
 		homeService.increaseLikesMoim(moimNo, user.getId());

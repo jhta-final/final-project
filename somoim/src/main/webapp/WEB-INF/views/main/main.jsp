@@ -7,8 +7,20 @@
       height: 100%;
     }
 
+
+	.card-title {
+		font-size: 20px;
+    	display : inline-block;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 100%;
+		height: 28px;
+		margin-bottom: 0px;
+    }
+    
     .swiper-slide {
-      text-align: center;
+    
       font-size: 18px;
       background: #f5f5f5;
 
@@ -31,6 +43,7 @@
 	border: none;
 }
 .home-body {
+	font-size: 18px;
 	margin-left: 3px;
 	padding: 35px;
 }
@@ -70,13 +83,15 @@ h5 {
 						<img class="card-img-top" src="/resources/home_images/11.png"
 							alt="Card image cap">
 						<div class="card-body">
-							<h5 class="card-title">
-								<c:out value="${favolite.title }" />
-								<p class="ml-5" style="float: right"><span class="mr-3">${favolite.joinCount}/${favolite.headCount}</span> <i class="far fa-heart"></i></p>
-							</h5>
-							<div class="text-right">
-								<small class="text-muted"><fmt:formatDate value="${favolite.createdDate}" /></small>
-					        </div>
+							<div class="card-title">
+								<p><c:out value="${favolite.title }" /></p>
+							</div>
+							<div class="text-left">
+								<i class="fas fa-heart" style="color: #00498C"></i>&ensp;<span class="text-left" >${favolite.likes }</span>&ensp;&ensp;
+								<span>${favolite.joinCount}/${favolite.headCount}</span>
+								<p style="float: right">
+								<fmt:formatDate value="${favolite.createdDate}" /></p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -84,9 +99,6 @@ h5 {
 			</div>
 			<!-- Add Pagination -->
 			<div class="swiper-pagination"></div>
-			<!-- Add Arrows -->
-			<div class="swiper-button-next"></div>
-			<div class="swiper-button-prev"></div>
 		</div>
 	</div>
 </div>
@@ -103,13 +115,13 @@ h5 {
 						alt="Card image cap">
 					<div class="card-body">
 						<div class="card-title">
-							<c:out value="${location.title }" />
-							<p class="ml-5" style="float: right">
-								<span class="mr-3">${location.joinCount }/${location.headCount }</span> <i class="far fa-heart"></i>
-							</p>
+							<span><c:out value="${location.title }" /></span>
 						</div>
-						<div class="text-right">
-							<small class="text-muted"><fmt:formatDate value="${location.createdDate}" /></small>
+						<div class="text-left">
+							<i class="fas fa-heart" style="color: #800020"></i>&ensp;<span class="text-left" >${location.likes }</span>&ensp;&ensp;
+							<span class="mr-3">${location.joinCount }/${location.headCount }명</span>
+							<p style="float: right">
+							<fmt:formatDate value="${location.createdDate}" /></p>
 						</div>
 					</div>
 				</div>
@@ -127,12 +139,14 @@ h5 {
 						alt="Card image cap">
 					<div class="card-body">
 						<div class="card-title">
-							<c:out value="${category.title }" />
-							<p class="ml-5" style="float: right"><span class="mr-3">${category.joinCount }/${category.headCount }</span> <i class="far fa-heart"></i></p>
+							<span><c:out value="${category.title }" /></span>
 						</div>
-						<div class="text-right">
-							<small class="text-muted"><fmt:formatDate value="${category.createdDate}" /></small>
-				        </div>
+						<div class="text-left">
+							<i class="fas fa-heart" style="color: #d09afc"></i>&ensp;<span class="text-left" >${category.likes }</span>&ensp;&ensp;
+							<span class="mr-3">${category.joinCount }/${category.headCount }</span>
+							<p style="float: right">
+							<fmt:formatDate value="${category.createdDate}" /></p>
+						</div>
 					</div>
 				</div>
 			</c:forEach>
@@ -148,13 +162,15 @@ h5 {
 					<img class="card-img-top" src="/resources/home_images/9.jpg"
 						alt="Card image cap">
 					<div class="card-body">
-						<h5 class="card-title">
-							<c:out value="${moim.title }" />
-							<p class="ml-5" style="float: right"><span class="mr-3">${moim.joinCount }/${moim.headCount }</span> <i class="far fa-heart"></i></p>
-						</h5>
-						<div class="text-right">
-							<small class="text-muted"><fmt:formatDate value="${moim.createdDate}"/></small>
-				        </div>
+						<div class="card-title">
+							<span><c:out value="${moim.title }" /></span>
+						</div>
+						<div class="text-left">
+							<i class="fas fa-heart" style="color: #fcba03"></i>&ensp;<span class="text-left" >${moim.likes }</span>&ensp;&ensp;
+							<span class="mr-3">${moim.joinCount }/${moim.headCount }</span>
+							<p style="float: right">
+							<fmt:formatDate value="${moim.createdDate}" /></p>
+						</div>
 					</div>
 				</div>
 			</c:forEach>
@@ -187,7 +203,7 @@ h5 {
 							<p id="home-detail-count"></p>
 							<p id="home-detail-content"></p>
 							<p><i class="fas fa-won-sign 2x"></i><span id="home-detail-fee"></span></p>
-							<p id="home-detail-likes"></p>
+							좋아요수 : <span id="home-detail-likes"></span>개
 							<p id="home-detail-premium"></p>
 							<p id="home-detail-joinDate">모이는날 : 2020.10.19</p>
 							<p id="home-detail-createDate">만든날 : 2020.08.15</p>
@@ -197,7 +213,7 @@ h5 {
 			<!-- Modal body end -->
 			<!-- Modal footer -->
 			<div class="modal-footer">
-				<a id="like-button" class="btn btn-danger" href="#"><i class="fas fa-heart"></i></a>
+				<i id="home-modal-like" class="" style="cursor: pointer;"></i>
 				<a id="home-moim-link-btn" class="btn btn-primary" href="">모임가기</a>
 				<a id="home-moim-join-btn" class="btn btn-success" href="">모임가입</a>
 				<a id="home-moim-withdrawal-btn" class="btn btn-warning" href="">모임탈퇴</a>
@@ -212,26 +228,14 @@ h5 {
 <div style="position: fixed;bottom: 10px; right: 10px;">
 	<a href="/moim/add.do"><i class="fas fa-plus"></i></a>
 	<a href="#"><i class="fas fa-arrow-up"></i></a>
-	<i class="far fa-heart" id="Like"></i>
 </div>
 
 <!-- Initialize Swiper -->
 <script>
 
 $(function() {
-	$("#Like").click(function() {
-		var action = 1;
-		if (action == 1) {
-			$('#Like').attr('class', 'fas fa-heart');
-			action = 2;
-		} else {
-			$('#Like').attr('class', 'far fa-heart');
-			action = 1;
-		}
-	})
+	var modalMoimNo = "";
 	
-	
-
 	 var swiper = new Swiper('.swiper-container', {
 	      slidesPerView: 3,
 	      spaceBetween: 30,
@@ -250,11 +254,26 @@ $(function() {
 	$(".home-card").click(function() {
 		var moimNo = $(this).data("no");
 		$("#myModal").modal('show');
-
+		modal(moimNo);
+	})
+	
+	
+	$("#home-modal-like").click(function() {
+		$.ajax({
+			type: "GET",
+			url: "/like.do",
+			data: {moimNo: modalMoimNo},
+			success: function () {
+				modal(modalMoimNo);
+			}
+		})
+	})
+  
+	function modal(no) {
 		$.ajax({
 			type: "GET",
 			url: "/detail.do",
-			data: {moimNo: moimNo},
+			data: {moimNo: no},
 			dataType: "json",
 			success: function (moim) {
 				console.log(moim);
@@ -262,16 +281,18 @@ $(function() {
 				$("#home-detail-count").text(moim.moimMainDto.joinCount + "/" + moim.moimMainDto.headCount)
 				$("#home-detail-content").text(moim.moimMainDto.content)
 				$("#home-detail-fee").text(moim.moimMainDto.fee + "원")
-				$("#home-detail-likes").text("좋아요수 : " + moim.moimMainDto.likes + "개")
+				$("#home-detail-likes").text(moim.moimMainDto.likes)
 				$("#home-detail-joinDate").text("모이는날 : " + moim.moimMainDto.joinDate)
 				$("#home-detail-createDate").text("만든날 : " + moim.moimMainDto.createdDate)
 				
 				var link = '/moim/moim.do?moimNo='+moim.moimMainDto.moimNo+'';
 				var join = '/moim/join.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${loginedUser}';
 				var withdrawal = '/moim/outMoim.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${loginedUser}';
+				modalMoimNo = moim.moimMainDto.moimNo;
 				
 				$("#home-moim-join-btn").attr('href', join);
 				$("#home-moim-withdrawal-btn").attr('href', withdrawal);
+				
 				
 				
 				$("#home-detail-premium").empty();
@@ -283,11 +304,17 @@ $(function() {
 				} else {
 					$("#home-moim-link-btn").css('display', 'none');
 				}
+				
+				
+				
+				if(moim.moimMainDto.likesYn == 'Y') {
+					$("#home-modal-like").attr('class', 'fas fa-heart')
+				} else {
+					$("#home-modal-like").attr('class', 'far fa-heart')
+				}			
 			}
 		})
-
-	})
-   
+	}
 });
 
 </script>
