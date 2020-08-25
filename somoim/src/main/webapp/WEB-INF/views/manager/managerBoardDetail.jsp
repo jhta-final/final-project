@@ -44,7 +44,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="/manager/show.do">사용자 신고 관리</a></li>
 					<li class="nav-item"><a class="nav-link active"
-						href="/manager/board.do">공지사항 등록</a></li>
+						href="/manager/boards.do">공지사항 등록</a></li>
 				</ul>
 			</nav>
 		</div>
