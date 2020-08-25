@@ -56,15 +56,13 @@
 		
 		<!-- 중앙구역 -->
 		<div style="width: 40%;">
-			<form class="form-inline my-1" action="/test.do" method="POST">
+			<form class="form-inline my-1" action="" method="POST">
 				<div class="md-form form-sm my-0">
 					<input class="form-control form-control-sm" style="width: 500px;" type="text" placeholder="Search" id="field-search-keyword"
 						aria-label="Search" name="keyword" >
 				</div>
-				<button class="btn btn-outline-primary btn-sm ml-1 my-0" type="submit" >Search</button>
+				<button id="keywordSearch" class="btn btn-outline-primary btn-sm ml-1 my-0" type="submit" >Search</button>
 				 
-			</form>
-			<form action="/test2.do" method="POST">
 				<div class="dropdown" id="nav-search-loaction">
 					<button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle" data-toggle="dropdown"></button>
 					<div id="search-bar-manu" class="dropdown-menu dropdown-menu-right" style="width: 590px;">
@@ -118,7 +116,7 @@
 						</div>
 
 						<div class="text-right mr-3">
-							<button class="btn btn-primary btn-sm" type="submit">상세검색</button>
+							<button id="detailSearch" class="btn btn-primary btn-sm" type="submit">상세검색</button>
 							<button class="btn btn-outline-primary btn-sm" type="button" id="search-reset">리셋</button>
 						</div>
 					</div>
@@ -455,6 +453,16 @@
 			$("#search-sub-cate").append(tr);
 		});
 	    
+	    
+	    // form 액션 바꿔주기
+	    $("#keywordSearch").click(function () {
+	        $("form").attr("action", "/test.do");
+		 });
+	  
+		 $("#detailSearch").click(function () {
+	        $("form").attr("action", "/test2.do");
+	 	});
+
 	    
 		
 		

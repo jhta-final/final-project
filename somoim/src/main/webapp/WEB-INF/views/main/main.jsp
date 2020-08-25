@@ -90,7 +90,7 @@ h5 {
 								<i class="fas fa-heart" style="color: #00498C"></i>&ensp;<span class="text-left" >${favolite.likes }</span>&ensp;&ensp;
 								<span>${favolite.joinCount}/${favolite.headCount}</span>
 								<p style="float: right">
-								<fmt:formatDate value="${favolite.createdDate}" /></p>
+								<fmt:formatDate value="${favolite.joinDate}" /></p>
 							</div>
 						</div>
 					</div>
@@ -121,7 +121,7 @@ h5 {
 							<i class="fas fa-heart" style="color: #800020"></i>&ensp;<span class="text-left" >${location.likes }</span>&ensp;&ensp;
 							<span class="mr-3">${location.joinCount }/${location.headCount }명</span>
 							<p style="float: right">
-							<fmt:formatDate value="${location.createdDate}" /></p>
+							<fmt:formatDate value="${location.joinDate}" /></p>
 						</div>
 					</div>
 				</div>
@@ -145,7 +145,7 @@ h5 {
 							<i class="fas fa-heart" style="color: #d09afc"></i>&ensp;<span class="text-left" >${category.likes }</span>&ensp;&ensp;
 							<span class="mr-3">${category.joinCount }/${category.headCount }</span>
 							<p style="float: right">
-							<fmt:formatDate value="${category.createdDate}" /></p>
+							<fmt:formatDate value="${category.joinDate}" /></p>
 						</div>
 					</div>
 				</div>
@@ -169,7 +169,7 @@ h5 {
 							<i class="fas fa-heart" style="color: #fcba03"></i>&ensp;<span class="text-left" >${moim.likes }</span>&ensp;&ensp;
 							<span class="mr-3">${moim.joinCount }/${moim.headCount }</span>
 							<p style="float: right">
-							<fmt:formatDate value="${moim.createdDate}" /></p>
+							<fmt:formatDate value="${moim.joinDate}" /></p>
 						</div>
 					</div>
 				</div>
