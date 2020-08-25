@@ -16,6 +16,21 @@
 		and
 			A.fol_user_id = B.user_id
 	</select>
+	
+	<select id="getFollowingsByUserId" parameterType="string" resultType="com.sample.dto.MoimFollowDto">
+		select
+			A.user_id		as userId,
+			A.fol_user_id	as folUserId,
+			B.profile_image as image,
+			B.nickname		as nickname
+			
+		from
+			moim_follow A, moim_user B
+		where
+			A.fol_user_id = #{value}
+		and
+			A.fol_user_id = B.user_id
+	</select>
 
 	<select id="getUserMoims" parameterType="string" resultType="MoimJoinUser">
 		select

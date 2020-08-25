@@ -14,6 +14,7 @@ public interface MypageService {
 	void addFollower(MoimFollow moimFollow);
 	
 	List<MoimFollowDto> allFollower(String userId);
+	List<MoimFollowDto> allFollowing(String userId);
 	
 	List<MoimJoinUserMoimDto> allJoinMoims(String userId);
 	

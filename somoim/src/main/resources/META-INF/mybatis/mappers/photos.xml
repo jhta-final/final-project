@@ -91,14 +91,15 @@
 	</insert>
 	
 	<delete id="deleteLike" parameterType="PhotoLikes">
-		delete from 
+		delete from
 			moim_photo_user_like
 		where
-		    moim_no = #{moimNo}
+			user_id = #{userId}
 		and
-		    user_id = #{userId}
-	    and
-	    	photo_no = #{photo_no}
-	</delete>
+			moim_no = #{moimNo}
+		and
+			photo_no = #{photoNo}
+	</delete>	
+
 	
 </mapper>

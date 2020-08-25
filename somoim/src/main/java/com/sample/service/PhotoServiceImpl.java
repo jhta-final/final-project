@@ -34,11 +34,19 @@ public class PhotoServiceImpl implements PhotoService {
 
 	@Override
 	public void addLike(MoimPhotoLikes photoLikes) {
+		MoimPhoto photo = photoDao.selectPhoto(photoLikes.getPhotoNo());
+		photo.setLikes(photo.getLikes() + 1);
+		photoDao.updatePhoto(photo);
+		
 		photoDao.insertLike(photoLikes);
 	}
 
 	@Override
 	public void delLike(MoimPhotoLikes photoLikes) {
+		MoimPhoto photo = photoDao.selectPhoto(photoLikes.getPhotoNo());
+		photo.setLikes(photo.getLikes() - 1);
+		photoDao.updatePhoto(photo);
+		
 		photoDao.deleteLike(photoLikes);
 	}
 	

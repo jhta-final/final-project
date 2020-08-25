@@ -53,8 +53,11 @@ public class MypageController {
 	public String myPage1(HttpSession session, Model model) {
 		this.user = (MoimUser)session.getAttribute("LOGIN_USER");
 		List<MoimFollowDto> followers = mypageService.allFollower(user.getId());
+		List<MoimFollowDto> followings = mypageService.allFollowing(user.getId());
+		
 		model.addAttribute("followers", followers);
 		model.addAttribute("followersCnt", followers.size());
+		model.addAttribute("followingsCnt", followings.size());
 		
 		return "mypage/mypage.tiles";
 	}
