@@ -68,4 +68,19 @@ public class ManagerController {
 	public void account(@RequestParam("userId") String userId, @RequestParam("status") String status) {
 		warningService.changeStatus(userId, status);
 	}
+	
+	// 관리자 보드 시작
+	// 관리자 보드 접속
+	@GetMapping("/boards.do")
+	public String managerBoard() {
+		return "manager/managerBoard.tiles";
+	}
+	@GetMapping("/create.do")
+	public String managerBoardCreate() {
+		return "manager/managerBoardCreate.tiles";
+	}
+	@GetMapping("/board.do")
+	public String managerBoardDetail() {
+		return "manager/managerBoardDetail.tiles";
+	}
 }
