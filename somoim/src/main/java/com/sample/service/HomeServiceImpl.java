@@ -108,19 +108,21 @@ public class HomeServiceImpl implements HomeService{
 		return new DetailViewMoimsDto(moimDao.selectMoim(moimNo), moimDao.selectJoinUsers(moimNo));
 	}
 
+	// 키워드 검색 기능
 	@Override
 	public List<MoimMainDto> getsearchFunction(String keyword) {
 		
 		return homeDao.searchFunction(keyword);
 	}
 
-	// 키워드 검색 기능
+	//셀렉트박스 검색기능
 	@Override
-	public List<MoimMainDto> selectSearchFunction() {
+	public List<MoimMainDto> getselectSearchFunction(Map<String, Object> keyword) {
 		
-		return null;
+		return homeDao.selectSearchFunction(keyword);
 	}
 
+	// 좋아요 기능
 	@Override
 	public MoimFavoriteMoim getFavorite(long moimNo, String userId) {
 		MoimFavoriteMoim moimFavoriteMoim = new MoimFavoriteMoim();

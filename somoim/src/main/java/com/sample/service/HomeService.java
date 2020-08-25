@@ -44,6 +44,6 @@ public interface HomeService {
 	List<MoimMainDto> getsearchFunction(String keyword);
 	
 	// 셀렉트박스 검색
-	List<MoimMainDto> selectSearchFunction();
+	List<MoimMainDto> getselectSearchFunction(Map<String, Object> keyword);
 	
 }
