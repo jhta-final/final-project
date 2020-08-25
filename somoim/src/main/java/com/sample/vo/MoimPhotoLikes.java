@@ -15,7 +15,11 @@ public class MoimPhotoLikes {
 		this.moimNo = moimNo;
 	}
 
-
+	public MoimPhotoLikes(String userId, long photoNo, long moimNo) {
+		this.userId = userId;
+		this.photoNo = photoNo;
+		this.moimNo = moimNo;
+	}
 
 	public String getUserId() {
 		return userId;

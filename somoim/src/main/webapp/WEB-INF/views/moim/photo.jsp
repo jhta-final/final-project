@@ -90,10 +90,10 @@
 							</c:forEach>
 							<c:choose>
 								<c:when test="${heart eq 'emp' }">
-									<i id="photo-like" class="far fa-heart"></i>
+									<i id="photo-like" class="far fa-heart" onclick="addLike(${param.moimNo}, ${photo.photoNo }, '${LOGIN_USER.id }')"></i>
 								</c:when>
 								<c:otherwise>
-									<i id="photo-like" class="fas fa-heart"></i>
+									<i id="photo-like" class="fas fa-heart" style="color:coral;" onclick="delLike(${param.moimNo}, ${photo.photoNo }, '${LOGIN_USER.id }')"></i>
 								</c:otherwise>
 							</c:choose>
 							<span class="ml-3">${photo.likes }개</span>						
@@ -171,12 +171,44 @@
 
 	})
 	
-	function addLike() {
-
+	function addLike(moimNo, photoNo, userId) {
+		$.ajax({
+			type:"GET",
+			url:"/moim/addLike.do",
+			data: {
+				moimNo: moimNo,
+				photoNo: photoNo,
+				userId: userId
+			},
+			dataType: "json",
+			success:function () {
+				location.reload(true);
+			},
+			error:function () {
+				location.reload(true);
+			}
+			
+		})
 	}
 	
-	function delLike() {
-
+	function delLike(moimNo, photoNo, userId) {
+		$.ajax({
+			type:"GET",
+			url:"/moim/delLike.do",
+			data: {
+				moimNo: moimNo,
+				photoNo: photoNo,
+				userId: userId
+			},
+			dataType: "json",
+			success:function () {
+				location.reload(true);
+			},
+			error:function () {
+				location.reload(true);
+			}
+			
+		})
 	}
 </script>
 
