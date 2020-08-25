@@ -62,18 +62,18 @@
 			<tbody>
 				<tr>
 					<th class="">title</th>
-					<td class="">타이틀 입니다.</td>
+					<td class="">${managerBoard.boardTitle }</td>
 					<th class="">name</th>
-					<td class="">작성자</td>
+					<td class="">소모임</td>
 				</tr>
 				<tr>
 					<th class="">DATE</th>
-					<td class="">날짜</td>
+					<td class=""><fmt:formatDate value="${managerBoard.createdDate }"/></td>
 					<th class="">VIEW</th>
-					<td class="">조회수</td>
+					<td class="">${managerBoard.views }</td>
 				</tr>
 				<tr>
-					<td colspan="4">내용</td>
+					<td colspan="4"><c:out value="${managerBoard.boardContent }"/></td>
 				</tr>
 			</tbody>
 		</table>
