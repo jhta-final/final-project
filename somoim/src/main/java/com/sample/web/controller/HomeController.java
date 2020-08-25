@@ -89,60 +89,23 @@ public class HomeController {
 	// 셀렉트 박스를 이용해서 검색
 	@PostMapping("/test2.do")
 	public String selectSearchFunction
-			(@RequestParam(value="locationName", required=false) String locationName,
-			@RequestParam(value="MainCateName", required=false) String mainCateName,	
-			@RequestParam(value="SubCateName", required=false) String subCateName,	
+			(@RequestParam(value="locationNo", required=false) long locationNo,
+			@RequestParam(value="mainCateNo", required=false) long mainCateNo,	
+			@RequestParam(value="subCateNo", required=false) long subCateNo,	
 			Model model) {
 		
 		Map<String, Object> keyword = new HashMap<String, Object>();
-		if(locationName != null && !locationName.isEmpty()) {
-			keyword.put("locationName", locationName);
-		}
-		if(mainCateName != null && !mainCateName.isEmpty()) {
-			keyword.put("mainCateName", mainCateName);
-		}
-		if(subCateName != null && !subCateName.isEmpty()) {
-			keyword.put("subCateName", subCateName);
-		}
+		keyword.put("locationNo", locationNo);
+		keyword.put("mainCateNo", mainCateNo);
+		keyword.put("subCateNo", subCateNo);
+		System.out.println(keyword.toString());
 		List<MoimMainDto> searchSelectBoxs = homeService.getselectSearchFunction(keyword);
-		model.addAttribute("searchSelectBoxs", searchSelectBoxs);
+		model.addAttribute("cateMoims", searchSelectBoxs);
+		model.addAttribute("title", "search");
 		
 		return "form/test.tiles";
 	}
-//	
-//	@GetMapping("/test.do")
-//	public String searchFunction(@RequestParam(value="title", required= false) String title,
-//			@RequestParam(value="content", required= false) String content, 
-//			@RequestParam(value="locationName", required= false) String locationName,
-//			@RequestParam(value="mainCateName", required= false) String mainCateName,
-//			@RequestParam(value="subCateName", required= false) String subCateName,
-//			Model model){
-//		
-//		Map<String, Object> params = new HashMap<String, Object>();
-//		if(title != null && !title.isEmpty()) {
-//			params.put("title", title);
-//		}
-//		if(content != null && !content.isEmpty()) {
-//			params.put("content", content);
-//		}
-//		if(locationName != null && !locationName.isEmpty()) {
-//			params.put("locationName", locationName);
-//		}
-//		if(mainCateName != null && !mainCateName.isEmpty()) {
-//			params.put("mainCateName", mainCateName);
-//		}
-//		if(subCateName != null && !subCateName.isEmpty()) {
-//			params.put("subCateName", subCateName);
-//		}
-//		List<MoimMainDto> searchDto = homeService.getsearchFunction(title);
-//		model.addAttribute("searchDto", searchDto);
-//		
-//		for(MoimMainDto moimMainDto : searchDto) {
-//			System.out.println(moimMainDto.getTitle());
-//			
-//		}
-//		return "redirect:/test.do";
-//	}
+
 	@GetMapping("/like.do")
 	@ResponseBody
 	public void increaseLikesMoim(HttpSession httpSession, @RequestParam("moimNo") long moimNo) {

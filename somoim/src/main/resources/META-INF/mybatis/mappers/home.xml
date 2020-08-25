@@ -19,10 +19,9 @@
 	
 	<!-- 셀렉트박스 검색 -->
 	<select id ="selectSearchFunction" parameterType="map" resultType="MainDto">
-		select
+	select
 			a.moim_no		as moimNo,
 			title			as title,
-            b.user_id       as userId,
 			join_count		as joinCount,
 			head_count		as headCount,
 			content			as content,
@@ -30,7 +29,6 @@
 			fee				as fee,
 			likes			as likes,
 			premium_yn		as premiumYn,
-			f.delete_yn		as deleteYn,
 			join_date		as joinDate,
 			a.created_date	as createdDate,
 			d.sub_cate_no	as subCateNo,
@@ -38,23 +36,31 @@
 			e.location_no	as locationNo,
 			e.name      	as locationName,
 			c.main_cate_no	as mainCateNo,
-			c.name			as mainCateName,
-			user_role		as userRole,
-            nickname        as nickName
-		from 
-			moim_main A, moim_join_user B, moim_main_category C, 
-            moim_sub_cate D, moim_location E, moim_user F
-        <where>
-        	<if test="title != null">
-        		E.name '%' || #{locationName} || '%'
-        	</if>
-        	<if test="title != null">
-        	and C.name '%' || #{mainCateName} || '%'
-        	</if>
-        	<if test="title != null">
-        	and	D.name '%' || #{subCateName} || '%'
-        	</if>
-        </where>
+			c.name			as mainCateName
+	from 
+			moim_main A, moim_main_category C, 
+            moim_sub_cate D, moim_location E
+	<where>	
+            c.main_cate_no = d.main_cate_no 
+	and
+			a.sub_cate_no = d.sub_cate_no 
+	and 
+            e.location_no = a.location_no
+	and 
+            delete_yn = 'N'
+		<if test="locationNo != 0">
+	and
+        e.location_no = #{locationNo}
+        </if>
+		<if test="subCateNo != 0">
+	and
+        d.sub_cate_no = #{subCateNo}
+        </if>
+		<if test="mainCateNo != 0">
+	and
+        c.main_cate_no = #{mainCateNo}
+        </if>
+	</where>
 	</select>
 	
 	
