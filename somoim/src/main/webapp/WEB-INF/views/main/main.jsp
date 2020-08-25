@@ -111,7 +111,7 @@ h5 {
 		<div class="row home-body">
 			<c:forEach items="${locationMoims }" var="location">
 				<div class="card mb-4 home-card" data-no="${location.moimNo }">
-					<img class="card-img-top" src="/resources/home_images/1.jpeg"
+					<img class="card-img-top" src="/resources/home_images/11.jpeg"
 						alt="Card image cap">
 					<div class="card-body">
 						<div class="card-title">

@@ -1,6 +1,42 @@
 \<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!--Navbar -->
 <style>
+	
+.none{display:none}
+
+#ticker{float:left;width:100px;}
+
+.nav-Notice-navi{
+	font-size: 16px;
+	float:right;
+	
+}
+.nav-Notice-navi .btn{
+    font-size: 13px;
+    line-height: 6px;
+    border-radius: 0.25rem;
+    width: 55px;
+	
+}
+
+.nav-Notice ul,
+.nav-Notice li {margin:0; padding:0; list-style:none;}
+.nav-Notice li a {display:block; height:26px; line-height:26px; color:#555; text-decoration:none;}
+
+.nav-Notice {
+	text-overflow: ellipsis;
+    border-radius: 0.25rem;
+    border: 2px solid #212529;
+    padding: 0 5px;
+    height: 31px;
+    overflow: hidden;
+    background: #fff;
+    width: 350px;
+    font-size: 16px;
+    float: left;
+}
+
+
 	.my-nav {
 	    box-shadow: 0 0 2px rgba(0,0,0,.35);
 	    background: #fff;
@@ -56,7 +92,7 @@
 		
 		<!-- 중앙구역 -->
 		<div style="width: 40%;">
-			<form class="form-inline my-1" action="" method="POST">
+			<form class="form-inline my-1 ml-5" action="" method="POST" style="margin-left: 9rem!important">
 				<div class="md-form form-sm my-0">
 					<input class="form-control form-control-sm" style="width: 500px;" type="text" placeholder="Search" id="field-search-keyword"
 						aria-label="Search" name="keyword" >
@@ -123,6 +159,27 @@
 				</div>
 			</form>
 		</div>
+		
+		<!-- 공지 -->
+		<div class="nav-Notice">
+		    <ul id="ticker">
+		        <li><a href="#"><span>1</span> 공지공지공지</a></li>
+		        <li><a href="#"><span>2</span> 공지</a></li>
+		        <li><a href="#"><span>3</span> 공지</a></li>
+		        <li><a href="#"><span>4</span> 공지</a></li>
+		        <li><a href="#"><span>5</span> 공지</a></li>
+		        <li><a href="#"><span>6</span> 공지</a></li>
+		        <li><a href="#"><span>7</span> 공지</a></li>
+		        <li><a href="#"><span>8</span> 공지</a></li>
+		        <li><a href="#"><span>9</span> 공지</a></li>
+		    </ul>
+		  <div class="nav-Notice-navi">
+		    <button class="btn btn-primary prev">이전</button>
+		    <button class="btn btn-primary next">다음</button>
+		    <button class="btn btn-warning pause none">정지</button>
+		  </div>
+		</div>
+		
 		
 		<!-- 오른쪽 구역 -->
 		<div class="nav-right">
@@ -463,7 +520,68 @@
 	        $("form").attr("action", "/test2.do");
 	 	});
 
-	    
+		 
+		 // 공지
+		 jQuery(function($)
+				 {
+				     var ticker = function()
+				     {
+				         timer = setTimeout(function(){
+				             $('#ticker li:first').animate( {marginTop: '-20px'}, 400, function()
+				             {
+				                 $(this).detach().appendTo('ul#ticker').removeAttr('style');
+				             });
+				             ticker();
+				         }, 2000);         
+				       };
+				       $(document).on('click','.prev',function(){
+				         $('#ticker li:last').hide().prependTo($('#ticker')).slideDown();
+				         clearTimeout(timer);
+				         ticker();
+				         if($('#pause').text() == 'Unpause'){
+				           $('#pause').text('Pause');
+				         };
+				       });
+				       $(document).on('click','.next',function(){
+				             $('#ticker li:first').animate( {marginTop: '-20px'}, 400, function()
+				                     {
+				                         $(this).detach().appendTo('ul#ticker').removeAttr('style');
+				                     });
+				             clearTimeout(timer);
+				             ticker();
+				           }); 
+
+				   var autoplay = true;
+				       $(document).on('click','.pause',function(){
+				             if(autoplay==true){
+				               clearTimeout(timer);
+				               $(this).text('재생');
+				               autoplay=false;
+				             }else{
+				               autoplay=true;
+				               $(this).text('정지');
+				               ticker();
+				             }
+				           });  
+				     var tickerpause = function()
+				   {
+				    
+				   };
+				   tickerpause();
+				   var tickerover = function()
+				   {
+				     $('#ticker').mouseover(function(){
+				       clearTimeout(timer);
+				     });
+				     $('#ticker').mouseout(function(){
+				       ticker();
+				     });  
+				   };
+				   tickerover();
+				     ticker();
+				     
+				 });
+		 
 		
 		
 	});
