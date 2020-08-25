@@ -64,7 +64,7 @@
 					<th class="">title</th>
 					<td class="">${managerBoard.boardTitle }</td>
 					<th class="">name</th>
-					<td class="">소모임</td>
+					<td class="">somoim</td>
 				</tr>
 				<tr>
 					<th class="">DATE</th>
