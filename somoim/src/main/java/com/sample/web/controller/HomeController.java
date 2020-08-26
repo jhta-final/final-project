@@ -148,7 +148,10 @@ public class HomeController {
 			locationNo = user.getLocationNo();
 		}
 		
-		System.out.println(locationNo);
-		return homeService.getlocationMoims(beginIndex, endIndex, locationNo);
+		List<MoimMainDto> moims = homeService.getlocationMoims(beginIndex, endIndex, locationNo);
+		for(MoimMainDto dto : moims) {
+			System.out.println(dto.getTitle());
+		}
+		return moims;
 	}
 }

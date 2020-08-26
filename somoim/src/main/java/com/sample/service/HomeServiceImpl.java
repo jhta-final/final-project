@@ -41,6 +41,7 @@ public class HomeServiceImpl implements HomeService{
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		hashMap.put("beginIndex", beginIndex);
 		hashMap.put("endIndex", endIndex);
+		hashMap.put("locationNo", locationNo);
 		
 		return homeDao.locationMoims(hashMap);
 		
