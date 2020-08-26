@@ -95,9 +95,11 @@ public class HomeController {
 		keyword.put("locationNo", locationNo);
 		keyword.put("mainCateNo", mainCateNo);
 		keyword.put("subCateNo", subCateNo);
+		keyword.put("locationName", homeService.getLocationName(locationNo));
 		List<MoimMainDto> searchSelectBoxs = homeService.getselectSearchFunction(keyword);
 		model.addAttribute("cateMoims", searchSelectBoxs);
 		model.addAttribute("title", "search");
+		model.addAttribute("keyword", keyword);
 		
 		return "form/test.tiles";
 	}
