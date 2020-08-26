@@ -14,7 +14,7 @@ public interface HomeService {
 	List<MoimMainDto> getAllMoims();
 	
 	// 지역별 선호 모임 랜덤 표시
-	List<MoimMainDto> getlocationMoims(long locationNo);
+	List<MoimMainDto> getlocationMoims(long beginIndex, long endIndex, long locationNo);
 	
 	// 좋아요순으로 모임 랜덤 표시
 	List<MoimMainDto> getFavoliteMoims();

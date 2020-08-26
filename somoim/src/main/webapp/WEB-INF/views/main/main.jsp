@@ -234,6 +234,15 @@ h5 {
 <script>
 
 $(function() {
+	
+
+	
+	
+	
+	
+	
+	
+	
 	var modalMoimNo = "";
 	
 	 var swiper = new Swiper('.swiper-container', {
@@ -286,8 +295,8 @@ $(function() {
 				$("#home-detail-createDate").text("만든날 : " + moim.moimMainDto.createdDate)
 				
 				var link = '/moim/moim.do?moimNo='+moim.moimMainDto.moimNo+'';
-				var join = '/moim/join.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${loginedUser}';
-				var withdrawal = '/moim/outMoim.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${loginedUser}';
+				var join = '/moim/join.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${LOGIN_USER.id}';
+				var withdrawal = '/moim/outMoim.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${LOGIN_USER.id}';
 				modalMoimNo = moim.moimMainDto.moimNo;
 				
 				$("#home-moim-join-btn").attr('href', join);
