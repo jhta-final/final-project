@@ -111,7 +111,8 @@ h5 {
 		<div id="locationMoim" class="row home-body">
 			
 		</div>
-		<button id="btn-get-data">더보기</button>
+		<button id="btn-get-data" class="btn text-center mb-3" style="width: 100%;background-color: lightgray; border-bottom: 1px solid gray; display: none;">더보기</button>
+		<hr/>
 	</div>
 </div>
 <div class="row">
@@ -220,9 +221,10 @@ h5 {
 
 $(function() {
 	
+	
 	// 더보기 시작--------------------------------------
 	var currentPageNo = 1;
-	var locationNo;
+	var locationNo = 0;
 	var $list = $("#locationMoim");
 	$("#btn-get-data").click(function() {
 		moreData();
@@ -238,17 +240,25 @@ $(function() {
 				currentPageNo :currentPageNo
 			},
 			success:function(result){
+				if (locationNo == null){
+					return;
+				}
+				locationNo = result.moims[0].locationNo
 				console.log("result ---->", result);
+				
+				
+				if (result.total == 0) {
+	               $("#btn-get-data").hide();
+				} else {
+	               $("#btn-get-data").show();
+				}
 				
 	            $locationTitle.text(result.moims[0].locationName);
 	            if(Math.ceil(currentPageNo/4) == Math.ceil(result.total/4)) {
-	               $("#btn-get-data").prop("disabled",true);
+	               $("#btn-get-data").hide();
+	            } else {
+	               $("#btn-get-data").show();
 	            }
-				
-				if (result.currentPageNo == 0) {
-					var row1 = '<div><p>검색된 모임이 없습니다.</p></div>';
-					$list.append(row1);
-				}
 				
 				$.each(result.moims, function(index, locationMoim){
 					
@@ -269,12 +279,10 @@ $(function() {
 			
 		})
 	}
-	
+
 	moreData();
 	
 	// 더보기 끝------------------------------------
-	
-	
 	
 	
 	var modalMoimNo = "";
@@ -294,7 +302,8 @@ $(function() {
 	    });
 	
 	// 모임 디테일 모달 창 
-	$(".home-card").click(function() {
+	$("body").on('click', ".home-card",function() {
+		console.log(1);
 		var moimNo = $(this).data("no");
 		$("#myModal").modal('show');
 		modal(moimNo);
