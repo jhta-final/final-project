@@ -11,7 +11,7 @@
 		(#{boardNo}, #{boardTitle}, #{boardContent})
 	</insert>
 	
-	<select id="selectAllBoards" resultType="ManagerBoard">
+	<select id="selectAllBoards" parameterType="Pagination" resultType="ManagerBoard">
 		select
 			manager_board_no		as boardNo,
 			manager_board_title		as boardTitle,
@@ -20,11 +20,22 @@
 			delete_yn				as deleteYn,
 			created_date			as createdDate
 		from
-			moim_manager_board
-		where
-			delete_yn = 'N'
-		order by
-			manager_board_no desc
+			(select
+                manager_board_no,
+                manager_board_title,
+                manager_board_content,
+                views,
+                delete_yn,
+                created_date,
+                row_number() over(order by manager_board_no desc) rn
+            from
+                moim_manager_board
+            where
+                delete_yn = 'N'
+            order by
+                manager_board_no desc)
+        where
+            <![CDATA[rn >= #{beginIndex} and rn <= #{endIndex}]]>
 	</select>
 	
 	<select id="selectBoardByNo" parameterType="long" resultType="ManagerBoard">
@@ -57,4 +68,11 @@
 		where
 			manager_board_no = #{boardNo}
 	</update>
+	
+	<select id="getTotalRowCount" resultType="int">
+	select
+		count(*)
+	from
+		moim_manager_board
+	</select>
 </mapper>

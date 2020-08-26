@@ -3,6 +3,7 @@ package com.sample.service;
 import java.util.List;
 
 import com.sample.vo.MoimManagerBoard;
+import com.sample.vo.Pagination;
 
 public interface ManagerBoardService {
 
@@ -10,7 +11,7 @@ public interface ManagerBoardService {
 	void addBoard(MoimManagerBoard moimManagerBoard);
 	
 	// 공지사항 전체조회
-	List<MoimManagerBoard> getAllBoards();
+	List<MoimManagerBoard> getAllBoards(Pagination pagination);
 	
 	// 공지사항 세부내용 조회
 	MoimManagerBoard getBoardByNo(long boardNo);
@@ -20,4 +21,7 @@ public interface ManagerBoardService {
 	
 	// 공지사항 수정
 	void modifyBoard(MoimManagerBoard moimManagerBoard);
+	
+	// 공지사항 총 개수
+	int getTotalRowCount();
 }
