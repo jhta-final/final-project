@@ -127,6 +127,7 @@ public class HomeController {
 		return detailViewMoimsDto;
 	}
 	
+	// 홈 지역모임 더보기용
 	@GetMapping("/location.do")
 	@ResponseBody
 	public List<MoimMainDto> location(@RequestParam("beginIndex") long beginIndex, @RequestParam("endIndex") long endIndex,
