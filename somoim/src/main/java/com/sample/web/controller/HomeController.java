@@ -135,12 +135,12 @@ public class HomeController {
 		// 더보기를 누른다면
 		if(locationNo != 0) {
 			locationNo = savedLocationNo;
-		} // 선호지역이 없고 더보기를 누르지 않았다면
+		} // 선호지역이 없고 더보기를 처음 누르는거라면
 		else if(user.getLocationNo() == 0) {
 			locationNo = (long)(Math.random()*25 +1);
 		}
 		
-		// 더보기를 누르지 않았다면
+		// 선호지역이 있고 더보기를 처음 누르는거라면
 		if(locationNo == 0) {
 			locationNo = user.getLocationNo();
 		}
