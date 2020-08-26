@@ -137,7 +137,8 @@ public class HomeServiceImpl implements HomeService{
 		moimFavoriteMoim.setUserId(userId);
 		return homeDao.likesMoim(moimFavoriteMoim);
 	}
-
+	
+	// 지역 이름, 메인카테고리, 서브카테고리 받아오기
 	@Override
 	public String getLocationName(long locationNo) {
 		
@@ -153,6 +154,13 @@ public class HomeServiceImpl implements HomeService{
 	public String getSubCategoryName(long subCateNo) {
 		return homeDao.subCategory(subCateNo);
 	}
+
+	@Override
+	public List<MoimMainDto> getscrollMoim() {
+		
+		return homeDao.scrollMoim();
+	}
+	
 	
 
 	
