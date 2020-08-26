@@ -48,4 +48,6 @@ public interface HomeService {
 	
 	//
 	String getLocationName(long locationNo);
+	String getMainCategoryName(long mainCateNo);
+	String getSubCategoryName(long subCateNo);
 }

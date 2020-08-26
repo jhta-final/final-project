@@ -344,4 +344,14 @@
 		from moim_location
 		where location_no = #{value}
 	</select>
+	<select id="mainCategory" parameterType="long" resultType="string">
+		select name
+		from moim_main_category
+		where main_cate_no = #{value}
+	</select>
+	<select id="subCategory" parameterType="long" resultType="string">
+		select name
+		from moim_sub_cate
+		where sub_cate_no = #{value}
+	</select>
 </mapper>

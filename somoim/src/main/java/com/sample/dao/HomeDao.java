@@ -50,8 +50,10 @@ public interface HomeDao {
 	// 셀렉트박스 검색
 	List<MoimMainDto> selectSearchFunction(Map<String, Object> keyword);
 	
-	//
+	// 지역 이름 받아오기
 	String LocationName(long locationNo);
+	String mainCategory(long mainCateNo);
+	String subCategory(long subCateNo);
 
 	
  

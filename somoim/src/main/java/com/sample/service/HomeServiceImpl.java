@@ -144,6 +144,15 @@ public class HomeServiceImpl implements HomeService{
 		return homeDao.LocationName(locationNo);
 	}
 	
+	@Override
+	public String getMainCategoryName(long mainCateNo) {
+		return homeDao.mainCategory(mainCateNo);
+	}
+	
+	@Override
+	public String getSubCategoryName(long subCateNo) {
+		return homeDao.subCategory(subCateNo);
+	}
 	
 
 	
