@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
+	p{
+		margin: 0;
+	}
 	.myimage {
 		width: 100px;
 		height: 100px;
@@ -22,7 +25,7 @@
 		padding: 0;
 	}
 	
-	#mypage-modify-modal .input-group-text {
+	#mypage-modify-modal .input-group-text, #mypage-exit-modal .input-group-text{
 		display: flex;
 	    -ms-flex-align: center;
 	    align-items: center;
@@ -39,7 +42,7 @@
 	    border-radius: 0.25rem;
 	}
 	
-	#mypage-modify-modal .form-control {
+	#mypage-modify-modal .form-control, #mypage-exit-modal .form-control{
 		width: 100%;
 	    padding: 3px;
 	    font-size: 16px;
@@ -193,6 +196,33 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="mypage-modify-submit">수정</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 회원탈퇴 확인 모달창 -->
+<div class="modal fade" id="mypage-exit-modal">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">회원탈퇴</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+	      <div class="input-group">
+				<div class="input-group-text">비밀번호</div>
+				<input type="password" class="form-control" id="mypage-exit-password" placeholder="비밀번호를 입력해주세요">
+				<p class="text-danger small" style="display: none;">비밀번호가 틀립니다.</p>
+		  </div>
+	  </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="mypage-exit-check-button">확인</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
 
@@ -377,6 +407,41 @@
 		        $('#mypage-content-counter').html("(200 / 최대 200자)");
 		    }
 		});
+		
+		// 회원탈퇴 버튼
+		var $exitPwd =  $("#mypage-exit-password");
+		$("#mypage-exit-modal-button").on('click',function() {
+			$exitPwd.next('p').css('display','none');
+			$exitPwd.val('');
+			$("#mypage-exit-modal").modal('show');
+		})
+
+		$("#mypage-exit-check-button").click(function() {
+			$.ajax({
+				type: "post",
+				url: "/mypage/checkpwd.do",
+				data:{ password: $exitPwd.val()},
+				dataType: "json",
+				success: function (status) {
+					console.log(status);
+					if (status) {
+						$("#mypage-exit-modal").modal('hide');
+						exitAlert('진짜 회원탈퇴 할거야???');
+					} else {
+						$exitPwd.next('p').css('display','block');
+					}
+				}
+			})
+		})
+		// 회원탈퇴 최종확인 함수
+		var finalExit;
+		function exitAlert(message) {
+			finalExit = confirm(message);
+			
+			if (finalExit) {
+				location.href="/mypage/userdelete.do";
+			} 
+		}
 
 	})
 </script>

@@ -123,14 +123,22 @@ public class MypageController {
 	}
 	
 	// 회원탈퇴
-	@PostMapping("/delete.do")
-	public String deleteUser (@RequestParam("password")String password) {
+	@PostMapping("/checkpwd.do")
+	@ResponseBody
+	public boolean deletePwdCheck (@RequestParam("password")String password) {
+		System.out.println(password);
 		 if(password.equals(user.getPassword())) {
-	         userService.deleteUser(user.getId());
-	         return "mypage/mypage.tiles";
+	         return true;
 	      } else {
-	         return "mypage/mypage.tiles";         
+	         return false;         
 	      }
+	}
+	
+	@GetMapping("/userdelete.do")
+	public String deleteUser (HttpSession session) {
+		userService.deleteUser(user.getId());
+		session.invalidate();
+		return "redirect:/"; 
 	}
 	
 	// 쪽지합
