@@ -82,8 +82,12 @@ public class SubMoimServiceImpl implements SubMoimService {
 		MoimSubJoinUser savedUser = subMoimDao.selectSubJoinUser(new MoimSubJoinUser(subMoimNo, userId));
 		if(savedUser != null) {
 			System.out.println("이미 가입된 모임입니다.");
+			return;
 		}
 		
+		MoimSubMoim subMoim = subMoimDao.selectSubMoim(subMoimNo);
+		subMoim.setJoinCount(subMoim.getJoinCount() + 1);
+		subMoimDao.updateSubMoim(subMoim);
 		subMoimDao.insertSubJoinUser(savedUser);
 	}
 
@@ -93,8 +97,12 @@ public class SubMoimServiceImpl implements SubMoimService {
 		MoimSubJoinUser savedUser = subMoimDao.selectSubJoinUser(new MoimSubJoinUser(subMoimNo, userId));
 		if(savedUser == null) {
 			System.out.println("가입되지 않은 모임입니다.");
+			return;
 		}
 		
+		MoimSubMoim subMoim = subMoimDao.selectSubMoim(subMoimNo);
+		subMoim.setJoinCount(subMoim.getJoinCount() - 1);
+		subMoimDao.updateSubMoim(subMoim);
 		subMoimDao.deleteSubJoinUser(new MoimSubJoinUser(subMoimNo, userId));
 	}
 	

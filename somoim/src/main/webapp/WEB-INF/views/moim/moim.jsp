@@ -91,8 +91,8 @@
     <c:forEach var="user" items="${users}">
         <div class="row ml-4 mb-1">
             <span>
-                <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-                     class="rounded-circle" alt="avatar image" height="55px">
+                <img src="/resources/profileImage/${user.profileImage }"
+                     class="rounded-circle" height="55px">
                 <strong style="font-size: large">${user.userId}</strong>
             </span>
             <c:if test="${user.userRole eq 'ADMIN'}">
@@ -123,7 +123,7 @@
                     <form:form method="post" action="/moim/subadd.do" modelAttribute="subMoimForm">
                     <div class="modal-body">
                             <input hidden="hidden" type="number" name="moimNo" value="${param.moimNo}" />
-                            <input hidden="hidden" type="text" value="${loginedUser}" name="userId"/>
+                            <input hidden="hidden" type="text" value="${LOGIN_USER.id}" name="userId"/>
                             <div class="form-group">
                                 <label>벙개 이름</label>
                                 <form:input type="text" class="form-control" path="title"/>
@@ -165,9 +165,9 @@
                 </div>
                 <form:form method="post" action="/moim/submodify.do" modelAttribute="subMoimForm">
                     <div class="modal-body">
-                        <input id="sub-modify-no" type="number" name="subMoimNo" value="0">
+                        <input id="sub-modify-no" hidden="hidden" type="number" name="subMoimNo" value="0">
                         <input hidden="hidden" type="number" name="moimNo" value="${param.moimNo}" />
-                        <input hidden="hidden" type="text" value="${loginedUser}" name="userId"/>
+                        <input hidden="hidden" type="text" value="${LOGIN_USER.id}" name="userId"/>
                         <div class="form-group">
                             <label>벙개 이름</label>
                             <form:input type="text" class="form-control" path="title"/>
@@ -235,39 +235,31 @@
     </div>
 </div>
 <script>
-    function getSubMoimDetail(subMoimNo, loginedUser) {
-        $.ajax({
-            type:"GET",
-            url:"/moim/submoim.do",
-            data: {subMoimNo:subMoimNo},
-            dataType:"json",
-            success:function (subMoim) {
-                $("#btn-participant").removeClass('btn-danger');
-                $("#btn-participant").addClass('btn-primary');
-                $("#sub-moim-title").text(subMoim.moimSubMoim.title);
-                $("#sub-moim-time").text(subMoim.moimSubMoim.joinDate);
-                $("#sub-moim-location").text(subMoim.moimSubMoim.location);
-                $("#sub-moim-fee").text(subMoim.moimSubMoim.fee);
-                $("#btn-participant").text(subMoim.moimSubMoim.joinCount + "/" + subMoim.moimSubMoim.headCount);
-                let $joinusers = $("#sub-moim-join-users").empty();
-                let div = "";
-                for (let user of subMoim.subJoinUsers){
-                    div += '<div class="row ml-4 mb-1">';
-                    div += '<span>';
-                    div += '<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"class="rounded-circle"'
-                            +   'alt="avatar image" height="55px">';
-                    div += '<strong class="ml-3" style="font-size: large">' +user.userId+ '</strong>';
-                    div += '</span>';
-                    div += '</div>';
-                    if(loginedUser === user.userId) {
-                        $("#btn-participant").removeClass('btn-primary');
-                        $("#btn-participant").addClass('btn-danger');
-                    }
-                }
-                $joinusers.append(div);
-            }
-        })
-    }
+
+    let joinCount = 0;
+    let headCount = 0;
+    let subNo = 0;
+    let tempUser = null;
+    let loginUser = $("#userId").val();
+
+    $("#btn-participant").on("click", subMoimfx(subNo, loginUser));
+
+   	$(function () {
+
+
+   	 //    console.log(joinCount, headCount, subNo, tempUser, loginUser);
+        // if(tempUser == null) {
+        //     if(joinCount != headCount) {
+        //         $("#btn-participant").on("click", joinSub(subNo, loginUser));
+        //     }
+        // } else {
+        //     $("#btn-participant").on("click", exitSub(subNo, loginUser));
+        // }
+
+        
+
+
+    })
 
     function subMoimModify(subMoimNo) {
         $("#sub-modify-no").val(subMoimNo);
@@ -285,5 +277,72 @@
             dataType:"json"
         })
     }
+
+    function subMoimfx(subMoimNo, userId) {
+        console.log("fx");
+        console.log(subMoimNo, userId);
+    }
+
+    function exitSub(subMoimNo, userId) {
+        console.log(subMoimNo, userId);
+        console.log("exit");
+    }
+
+    function joinSub(subMoimNo, userId) {
+        console.log(subMoimNo, userId);
+        console.log("join");
+    }
+
+	function getSubMoimDetail(subMoimNo, loginedUser) {
+
+            $.ajax({
+                type:"GET",
+                url:"/moim/submoim.do",
+                data: {subMoimNo:subMoimNo},
+                dataType:"json",
+                success:function (subMoim) {
+                    joinCount = subMoim.moimSubMoim.joinCount;
+                    headCount = subMoim.moimSubMoim.headCount;
+                    $("#btn-participant").removeClass('btn-danger');
+                    $("#btn-participant").removeClass('btn-warning');
+                    $("#btn-participant").addClass('btn-primary');
+                    $("#sub-moim-title").text(subMoim.moimSubMoim.title);
+                    $("#sub-moim-time").text(subMoim.moimSubMoim.joinDate);
+                    $("#sub-moim-location").text(subMoim.moimSubMoim.location);
+                    $("#sub-moim-fee").text(subMoim.moimSubMoim.fee);
+                    $("#btn-participant").text(subMoim.moimSubMoim.joinCount + "/" + subMoim.moimSubMoim.headCount);
+
+
+                    if(subMoim.moimSubMoim.joinCount == subMoim.moimSubMoim.headCount) {
+                        $("#btn-participant").removeClass('btn-danger');
+                        $("#btn-participant").removeClass('btn-primary');
+                        $("#btn-participant").addClass('btn-warning');
+                    }
+
+                    let $joinusers = $("#sub-moim-join-users").empty();
+                    let div = "";
+                    for (let user of subMoim.subJoinUsers){
+                        div += '<div class="row ml-4 mb-1">';
+                        div += '<span>';
+                        div += '<img src="/resources/profileImage/'+ user.profileImage +'"class="rounded-circle"'
+                            +   'alt="avatar image" height="55px">';
+                        div += '<strong class="ml-3" style="font-size: large">' +user.userId+ '</strong>';
+                        div += '</span>';
+                        div += '</div>';
+                        if(loginedUser === user.userId) {
+                            $("#btn-participant").removeClass('btn-primary');
+                            $("#btn-participant").addClass('btn-danger');
+                            tempUser = user.userId
+
+                            if(subMoim.moimSubMoim.joinCount == subMoim.moimSubMoim.headCount) {
+                                $("#btn-participant").removeClass('btn-danger');
+                                $("#btn-participant").addClass('btn-warning');
+                            }
+                        }
+                    }
+                    $joinusers.append(div);
+                }
+            })
+       }
 
 </script>

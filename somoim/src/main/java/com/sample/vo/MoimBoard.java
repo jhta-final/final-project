@@ -11,6 +11,7 @@ public class MoimBoard {
 	private String content;
 	private long views;
 	private String deleteYn;
+	private String profileImage;
 	
 	@JsonFormat(pattern="yyyy. MM. dd")
 	private Date createdDate;
@@ -91,6 +92,14 @@ public class MoimBoard {
 
 	public void setBoardCateNo(long boardCateNo) {
 		this.boardCateNo = boardCateNo;
+	}
+	
+	public String getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
 	}
 
 	@Override

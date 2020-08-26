@@ -5,6 +5,14 @@
     #comment-form:hover {
         font-weight: bold;
     }
+    
+    .reply-collapse {
+    	transition: 0s;
+    }
+    
+    .reply-delete {
+    	cursor: pointer;
+    }
 </style>
 
 <div>
@@ -29,7 +37,7 @@
                         <a class="nav-link active" href="board.do?moimNo=${board.moimNo}&pageNo=1">게시판</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="photo.do?moimNo=${param.moimNo}">사진첩</a>
+                        <a class="nav-link" href="photo.do?moimNo=${board.moimNo}">사진첩</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">채팅</a>
@@ -47,7 +55,7 @@
             <h3 class="mt-4">${board.title}</h3>
             <div class="row">
                 <div class="ml-3" style="width: 10%">
-                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+                    <img src="/resources/profileImage/${board.profileImage }"
                          class="rounded-circle" alt="avatar image" height="55px">
                 </div>
                 <div class="ml-4" style="width: 80%">
@@ -77,25 +85,71 @@
             <hr>
             <h4>댓글</h4>
             
-            <c:forEach var="comment" items="${comments }">            
-	            <div class="row mt-3">
-	                <div class="ml-3">
-	                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-	                         class="rounded-circle" alt="avatar image" height="55px">
-	                </div>
-	                <div class="ml-4">
-	                    <div class="row">
-	                        <span>${comment.userId }</span>
-	                    </div>
-	                    <div class="row">
-	                        ${comment.title }
-	                    </div>
-	                    <div class="row">
-	                        <span><fmt:formatDate value="${comment.createdDate }" type="both" dateStyle="short" timeStyle="short" /></span>
-	                    </div>
-	                </div>
-	            </div>
-	            <hr>
+            <c:forEach var="comment" items="${comments }">           
+            	<c:if test="${comment.mainCommentNo eq 0 }">
+		            <div class="row mt-3">
+		                <div class="ml-3">
+		                    <img src="/resources/profileImage/${comment.profileImage }"
+		                         class="rounded-circle" alt="avatar image" height="55px">
+		                </div>
+		                <div class="ml-4">
+		                    <div class="row">
+		                        <span>${comment.userId }</span>
+		                    </div>
+		                    <div class="row">
+		                        ${comment.title }
+		                    </div>
+		                    <div class="row">
+		                        <span><fmt:formatDate value="${comment.createdDate }" type="both" dateStyle="short" timeStyle="short" /></span>
+		                        <span class="ml-5 reply-delete" onclick="replyDelete(${comment.commentNo})"><i class="fas fa-times-circle" style="color: red"></i></span>
+		                    </div>
+		                    
+		                    <!-- 댓글 -->
+		                    <c:forEach var="reply" items="${replys }">
+		                    	<c:if test="${reply.mainCommentNo eq comment.commentNo}">
+				                    <div class="row mt-1 ml-2">
+				                    	<div class="ml-3">
+						                    <img src="/resources/profileImage/${reply.profileImage }"
+						                         class="rounded-circle" alt="avatar image" height="55px">
+						                </div>
+						                <div class="ml-4">
+						                	<div class="row">
+						                        <span>${reply.userId }</span>
+						                    </div>
+						                    <div class="row">
+						                        ${reply.title }
+						                    </div>
+						                    <div class="row">
+						                        <span><fmt:formatDate value="${reply.createdDate }" type="both" dateStyle="short" timeStyle="short" /></span>
+						                        <span class="ml-5 reply-delete" onclick="replyDelete(${reply.commentNo})"><i class="fas fa-times-circle" style="color: red"></i></span>
+						                    </div>
+						                </div>
+				                    </div>
+		                    	</c:if>
+		                    </c:forEach>
+		                    
+		                    <div class="row">
+		                    	<span id="comment-reply" onclick="reComment(${comment.commentNo })"><i class="fas fa-reply fa-rotate-180"></i>답글</span>
+								<div class="collapse reply-collapse" id="reply-${comment.commentNo }">
+		                            <div class="row d-flex justify-content-center mb-5 mt-5">
+		                                <form action="comment.do" method="post" id="reply-form-${comment.commentNo }">
+		                                    <div>
+		                                        <textarea name="title" cols="90" rows="5" style="resize: none;"></textarea>
+		                                        <div class="text-right">
+		                                            <span onclick="replyComment(${comment.commentNo })">답글달기</span>
+		                                        </div>
+		                                    </div>
+		                                    <input type="text" hidden="hidden" name="userId" value="${loginedUser}" />
+		                                    <input type="text" hidden="hidden" name="boardNo" value="${param.boardNo}" />
+		                                	<input type="text" hidden="hidden" name="mainCommentNo" value="${comment.commentNo }" />
+		                                </form>
+		                            </div>
+								</div>
+		                    </div>
+		                </div>
+		            </div>
+		            <hr>
+            	</c:if> 
             </c:forEach>
             
             <div class="row d-flex justify-content-center mb-5 mt-5">
@@ -119,6 +173,7 @@
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
+                	게시글 삭제
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
@@ -135,6 +190,31 @@
             </div>
         </div>
     </div>
+    
+    <!-- 모달 -->
+    <div class="modal" id="reply-confirm">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                	리플삭제
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body text-center">
+                    정말 삭제 하시겠습니까?
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
+                    <button type="button" onclick="reDelete()" class="btn btn-danger" data-dismiss="modal">삭제</button>
+                </div>
+                <p id="reply-delete" hidden="hidden"></p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -145,4 +225,37 @@
     function deleteBoard(boardNo) {
         location.href = "boardDelete.do?boardNo=" + boardNo;
     }
+    
+
+    function reComment(commentNo) {
+    	$("#reply-" + commentNo).collapse("toggle");
+    }
+    
+    function replyComment(commentNo) {
+    	$("#reply-form-" + commentNo).submit();
+    }
+
+    function replyDelete(commentNo) {
+    	$("#reply-confirm").modal("show");
+    	$("#reply-delete").val(commentNo);
+    }
+
+    function reDelete() {
+        commentNo = $("#reply-delete").val();
+
+        $.ajax({
+            type:"GET",
+            url:"/moim/commentDelete.do",
+            data: {
+            	commentNo:commentNo
+            },
+            dataType: "json",
+            success:function (result) {
+            	console.log(result);
+                location.reload(true);
+            }
+
+        })
+    }
+    
 </script>

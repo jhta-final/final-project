@@ -10,6 +10,7 @@ public class JoinUsers {
 	private Date createdDate;
 	private String userName;
 	private String nickname;
+	private String profileImage;
 	
 	public long getMoimNo() {
 		return moimNo;
@@ -47,4 +48,12 @@ public class JoinUsers {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
+	public String getProfileImage() {
+		return profileImage;
+	}
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
+	}
+	
+	
 }

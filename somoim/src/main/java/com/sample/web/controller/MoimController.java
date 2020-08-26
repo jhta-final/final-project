@@ -238,6 +238,7 @@ public class MoimController {
 		
 		model.addAttribute("board", boardService.getBoardByNo(boardNo));
 		model.addAttribute("comments", commentService.getCommentsByNo(boardNo));
+		model.addAttribute("replys", commentService.getReplysByNo(boardNo));
 		
 		model.addAttribute("comment", new MoimComment());		
 		
@@ -283,6 +284,23 @@ public class MoimController {
 		System.out.println(board.toString());
 		boardService.deleteBoard(boardNo);
 		return "redirect:board.do?moimNo=" + board.getMoimNo() + "&pageNo=1";
+	}
+	
+	// 모임 게시판 댓글 삭제
+	@GetMapping("commentDelete.do")
+	@ResponseBody
+	public String commentDelete(@RequestParam("commentNo") long commentNo) {
+		MoimComment comment = commentService.getComment(commentNo);
+		if(comment == null) {
+			return "false";
+		}
+		if(comment.getMainCommentNo() == 0) {
+			commentService.deleteReply(commentNo);
+			commentService.deleteComment(commentNo);
+		} else {
+			commentService.deleteComment(commentNo);
+		}
+		return "true";
 	}
 	
 	// 사진첩

@@ -8,8 +8,8 @@
 </style>
 
 <div class="container mt-5 ml-4">
-    <form:form class="form" method="post" action="/moim/add.do" modelAttribute="moimForm">
-        <form:input hidden="hidden" value="${longinedUser}" path="userId" />
+    <form:form class="form" method="post" enctype="multipart/form-data" action="/moim/add.do" modelAttribute="moimForm">
+        <form:input hidden="hidden" value="${LOGIN_USER.id}" path="userId" />
         <div class="form-group mt-4">
             <i class="mr-2 fas fa-images" style="color: #0F4C81;"></i><label>기본 이미지</label>
             <br>

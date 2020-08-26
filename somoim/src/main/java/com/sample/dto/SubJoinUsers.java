@@ -7,6 +7,7 @@ public class SubJoinUsers {
 	private String userId;
 	private String userName;
 	private String nickname;
+	private String profileImage;
 	
 	public long getSubMoimNo() {
 		return subMoimNo;
@@ -38,6 +39,14 @@ public class SubJoinUsers {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
+	public String getProfileImage() {
+		return profileImage;
+	}
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
+	}
+	
+	
 	
 	
 }

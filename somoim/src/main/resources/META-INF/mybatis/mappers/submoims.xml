@@ -85,7 +85,8 @@
 			moim_no as moimNo,
 			a.user_id as userId,
             user_name as userName,
-            nickname as nickname
+            nickname as nickname,
+            profile_image as profileImage
 		from
 			moim_sub_join_user A, moim_user B
 		where

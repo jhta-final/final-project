@@ -11,6 +11,7 @@ public class MoimComment {
 	private String userId;
 	private long boardNo;
 	private long mainCommentNo;
+	private String profileImage;
 	
 	public MoimComment() {}
 
@@ -68,6 +69,14 @@ public class MoimComment {
 
 	public void setMainCommentNo(long mainCommentNo) {
 		this.mainCommentNo = mainCommentNo;
+	}
+	
+	public String getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
 	}
 
 	@Override

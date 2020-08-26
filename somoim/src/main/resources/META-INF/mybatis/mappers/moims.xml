@@ -101,7 +101,8 @@
             user_name as userName,
             nickname as nickname,
 			user_role as userRole,
-			a.created_date as createdDate
+			a.created_date as createdDate,
+			b.profile_image as profileImage
 		from
 			moim_join_user A, moim_user B
 		where

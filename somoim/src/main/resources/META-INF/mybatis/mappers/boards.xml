@@ -52,19 +52,22 @@
 	
 	<select id="selectMoimBoard" parameterType="long" resultType="Board">
 		select
-			board_no		as boardNo,
-			title			as title,
-			content			as content,
-			views			as views,
-			delete_yn		as deleteYn,
-			created_date	as createdDate,
-			moim_no			as moimNo,
-			user_id			as userId,
-			board_cate_no	as boardCateNo
+			a.board_no			as boardNo,
+			a.title				as title,
+			a.content			as content,
+			a.views				as views,
+			a.delete_yn			as deleteYn,
+			a.created_date		as createdDate,
+			a.moim_no			as moimNo,
+			a.user_id			as userId,
+			a.board_cate_no		as boardCateNo,
+			b.profile_image		as profileImage
 		from
-			moim_board
+			moim_board A, moim_user B
 		where
 			board_no = #{value}
+		and
+			a.user_id = b.user_id
 	</select>
 	
 	<update id="updateMoimBoard" parameterType="Board">
