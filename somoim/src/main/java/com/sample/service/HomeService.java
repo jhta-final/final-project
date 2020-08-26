@@ -46,6 +46,13 @@ public interface HomeService {
 	// 셀렉트박스 검색
 	List<MoimMainDto> getselectSearchFunction(Map<String, Object> keyword);
 	
-	//
+	//무한 스크롤
+	List<MoimMainDto> getscrollMoim();
+	
+	// 지역 이름, 메인카테고리, 서브카테고리 받아오기
 	String getLocationName(long locationNo);
+	String getMainCategoryName(long mainCateNo);
+	String getSubCategoryName(long subCateNo);
+	
+	long getAllLocationCount(long locationNo);
 }

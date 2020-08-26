@@ -20,9 +20,9 @@ public class MoimMainDto {
 	private String premiumYn;
 	private String deleteYn; 
 	
-	@JsonFormat(pattern="yyyy. MM. dd HH:mm")
+	@JsonFormat(pattern="yyyy. MM. dd")
 	private Date joinDate;
-	@JsonFormat(pattern="yyyy. MM. dd HH:mm")
+	@JsonFormat(pattern="yyyy. MM. dd")
 	private Date createdDate;
 	
 	private long subCateNo;

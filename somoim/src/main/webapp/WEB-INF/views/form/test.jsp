@@ -16,6 +16,9 @@
 </style>
 <div>
 	<h1><c:out value="${title }"></c:out> </h1>
+	<span class="badge badge-pill badge-secondary">${keyword.locationName }</span>
+	<span class="badge badge-pill badge-secondary">${keyword.mainCateName }</span>
+	<span class="badge badge-pill badge-secondary">${keyword.subCateName }</span>
 </div>
 <!-- 여기서 부터 반복문 돌리기 -->
 <c:forEach items="${cateMoims }" var="moim">

@@ -17,7 +17,7 @@ public interface HomeDao {
 	// 지역별 선호 모임 랜덤 표시
 	List<MoimMainDto> locationMoims(HashMap<String, Object> map);
 	
-	// 좋아요순으로 모임 랜덤 표시
+	// 좋아요순으로 모임 표시 8개
 	List<MoimMainDto> favoliteMoims();
 	
 	// 메안카테고리 랜덤표시
@@ -50,9 +50,15 @@ public interface HomeDao {
 	// 셀렉트박스 검색
 	List<MoimMainDto> selectSearchFunction(Map<String, Object> keyword);
 	
-	//
-	String LocationName(long locationNo);
-
+	//무한 스크롤
+	List<MoimMainDto> scrollMoim();
 	
+	// 지역 이름, 메인카테고리, 서브카테고리 받아오기
+	String LocationName(long locationNo);
+	String mainCategory(long mainCateNo);
+	String subCategory(long subCateNo);
+
+	// 지역 검색 총 개수
+	long getAllLocationCount(long locationNo);
  
 }
