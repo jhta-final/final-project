@@ -1,5 +1,6 @@
 package com.sample.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +15,7 @@ public interface HomeDao {
 	List<MoimMainDto> randomMoims();
 	
 	// 지역별 선호 모임 랜덤 표시
-	List<MoimMainDto> locationMoims(long locationNo);
+	List<MoimMainDto> locationMoims(HashMap<String, Object> map);
 	
 	// 좋아요순으로 모임 랜덤 표시
 	List<MoimMainDto> favoliteMoims();

@@ -1,5 +1,6 @@
 package com.sample.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +15,7 @@ public interface HomeService {
 	List<MoimMainDto> getAllMoims();
 	
 	// 지역별 선호 모임 랜덤 표시
-	List<MoimMainDto> getlocationMoims(long locationNo);
+	List<MoimMainDto> getlocationMoims(HashMap<String, Object> map);
 	
 	// 좋아요순으로 모임 랜덤 표시
 	List<MoimMainDto> getFavoliteMoims();

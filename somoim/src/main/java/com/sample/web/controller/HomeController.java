@@ -46,7 +46,7 @@ public class HomeController {
 		httpSession.setAttribute("allMoims", homeService.getAllMoims());
 		
 		// 지역별 선호 모임 랜덤 표시
-		model.addAttribute("locationMoims", homeService.getlocationMoims(user.getLocationNo()));
+		//model.addAttribute("locationMoims", homeService.getlocationMoims(user.getLocationNo()));
 		
 		// 좋아요순으로 모임 랜덤 표시
 		model.addAttribute("favoliteMoims", homeService.getFavoliteMoims());
@@ -125,5 +125,17 @@ public class HomeController {
 			detailViewMoimsDto.getMoimMainDto().setLikesYn("Y");
 		}
 		return detailViewMoimsDto;
+	}
+	
+	@GetMapping("/location.do")
+	@ResponseBody
+	public List<MoimMainDto> location(@RequestParam("beginIndex") long beginIndex, @RequestParam("endIndex") long endIndex,
+									  @RequestParam("locationNo") long locationNo, HttpSession httpSession) {
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		hashMap.put("beginIndex", beginIndex);
+		hashMap.put("endIndex", endIndex);
+		hashMap.put("locationNo", locationNo);
+		
+		return homeService.getlocationMoims(hashMap);
 	}
 }

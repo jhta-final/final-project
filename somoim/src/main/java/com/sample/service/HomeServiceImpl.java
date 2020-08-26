@@ -1,5 +1,6 @@
 package com.sample.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,11 +33,11 @@ public class HomeServiceImpl implements HomeService{
 
 	// 전체 회원 지역선호별 모임
 	@Override
-	public List<MoimMainDto> getlocationMoims(long locationNo) {
-		if(locationNo == 0) {
+	public List<MoimMainDto> getlocationMoims(HashMap<String, Object> map) {
+/*		if(map.get == 0) {
 			locationNo = (long)(Math.random()*25 +1);
-		}
-		return homeDao.locationMoims(locationNo);
+		}*/
+		return homeDao.locationMoims(map);
 		
 	}
 
