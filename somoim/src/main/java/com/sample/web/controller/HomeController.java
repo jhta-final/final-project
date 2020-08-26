@@ -46,7 +46,7 @@ public class HomeController {
 		httpSession.setAttribute("allMoims", homeService.getAllMoims());
 		
 		// 지역별 선호 모임 랜덤 표시
-		model.addAttribute("locationMoims", homeService.getlocationMoims(user.getLocationNo()));
+		//model.addAttribute("locationMoims", homeService.getlocationMoims(user.getLocationNo()));
 		
 		// 좋아요순으로 모임 랜덤 표시
 		model.addAttribute("favoliteMoims", homeService.getFavoliteMoims());
@@ -122,5 +122,29 @@ public class HomeController {
 			detailViewMoimsDto.getMoimMainDto().setLikesYn("Y");
 		}
 		return detailViewMoimsDto;
+	}
+	
+	// 홈 지역모임 더보기용
+	@GetMapping("/location.do")
+	@ResponseBody
+	public List<MoimMainDto> location(@RequestParam("beginIndex") long beginIndex, @RequestParam("endIndex") long endIndex,
+									  @RequestParam("locationNo") long locationNo, HttpSession httpSession) {
+		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
+		long savedLocationNo = locationNo;
+		
+		// 선호 지역이 없으면
+		if(locationNo != 0) {
+			locationNo = savedLocationNo;
+		}
+		else if(user.getLocationNo() == 0) {
+			locationNo = (long)(Math.random()*25 +1);
+		}
+		
+		// 더보기를 누르지 않았다면
+		if(locationNo == 0) {
+			locationNo = user.getLocationNo();
+		}
+		
+		return homeService.getlocationMoims(beginIndex, endIndex, locationNo);
 	}
 }

@@ -142,32 +142,34 @@
 	</select>
 	
 	<!-- 지역 선호도 별로 표시 -->
-	<select id="locationMoims" parameterType="long" resultType="MainDto">
-       select 
-			a.moim_no		as moimNo,
-			title			as title,
-			join_count		as joinCount,
-			head_count		as headCount,
-			content			as content,
-			image			as image,
-			fee				as fee,
-			likes			as likes,
-			premium_yn		as premiumYn,
-			join_date		as joinDate,
-			a.created_date	as createdDate,
-			sub_cate_no		as subCateNo,
-			a.location_no	as locationNo,
-			b.name			as locationName
-		from 
-			moim_main A, moim_location B
-		where
-			a.location_no = b.location_no
-        and
-            a.location_no = #{value}
-        and
-        	a.delete_yn = 'N'
-		order by
-			dbms_random.random
+	<select id="locationMoims" parameterType="hashmap" resultType="MainDto">
+       select * from (
+			select 
+						a.moim_no		as moimNo,
+						title			as title,
+						join_count		as joinCount,
+						head_count		as headCount,
+						content			as content,
+						image			as image,
+						fee				as fee,
+						likes			as likes,
+						premium_yn		as premiumYn,
+						join_date		as joinDate,
+						a.created_date	as createdDate,
+						sub_cate_no		as subCateNo,
+						a.location_no	as locationNo,
+						b.name			as locationName,
+			            row_number() over(order by join_date desc) rn
+					from 
+						moim_main A, moim_location B
+					where
+						a.location_no = b.location_no
+			        and
+			            a.location_no = #{locationNo}
+			        and
+			        	a.delete_yn = 'N'
+			        )
+			<![CDATA[where rn >= #{beginIndex} and rn <= #{endIndex}]]>
 	</select>
 	
 	<!-- 좋아요 순 인기모임 표시 -->
