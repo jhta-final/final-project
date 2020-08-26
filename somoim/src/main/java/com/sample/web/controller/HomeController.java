@@ -70,7 +70,7 @@ public class HomeController {
 		httpSession.setAttribute("alrams", alramService.getAlrams(user.getId()));
 
 		// 공지사항 10개 뽑기
-		httpSession.setAttribute("moimManagerBoardList", homeService.getmoimManagerBoardList());
+		httpSession.setAttribute("BoardLists", homeService.getmoimManagerBoardList());
 		return "main/main.tiles";
 	}
 	
