@@ -51,7 +51,7 @@
 		        <c:forEach items="${managerBoards }" var="board">
 		       		<tr id="tr-${board.boardNo }">
 		       			<td class="text-danger">공지</td>
-		       			<td><a href="board.do?boardNo=${board.boardNo }">${board.boardTitle }</a></td>
+		       			<td><a href="board.do?boardNo=${board.boardNo }&pageNo=${param.pageNo}">${board.boardTitle }</a></td>
 		       			<td><fmt:formatDate value="${board.createdDate }"/></td>
 		       			<td>${board.views }</td>
 		       			<td><button type="button" class="btn btn-danger" data-board-no="${board.boardNo }">x</button></td>
