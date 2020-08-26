@@ -84,7 +84,7 @@ public class ManagerController {
 	// 공지사항 전체조회
 	@GetMapping("/boards.do")
 	public String managerBoard(@RequestParam("pageNo") String pageNo, Model model) {
-		Pagination pagination = new Pagination(10, 5, stringToInt(pageNo, 1), managerBoardService.getTotalRowCount()); 
+		Pagination pagination = new Pagination(8, 5, stringToInt(pageNo, 1), managerBoardService.getTotalRowCount()); 
 		
 		model.addAttribute("page", pagination);
 		model.addAttribute("managerBoards", managerBoardService.getAllBoards(pagination));
@@ -111,6 +111,7 @@ public class ManagerController {
 	// 공지사항 상세보기
 	@GetMapping("/board.do")
 	public String managerBoardDetail(@RequestParam("boardNo") long boardNo, Model model) {
+		managerBoardService.increaseViews(boardNo);
 		model.addAttribute("managerBoard", managerBoardService.getBoardByNo(boardNo));
 		
 		return "manager/managerBoardDetail.tiles";

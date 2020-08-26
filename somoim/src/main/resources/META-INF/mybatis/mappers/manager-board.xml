@@ -74,5 +74,15 @@
 		count(*)
 	from
 		moim_manager_board
+	where
+		delete_yn = 'N'
 	</select>
+	
+	<update id="increaseViews" parameterType="long">
+		update moim_manager_board
+		set
+			views = views + 1
+		where
+			manager_board_no = #{value}
+	</update>
 </mapper>
