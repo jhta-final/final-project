@@ -15,7 +15,7 @@
         <ul class="nav nav-tabs" id="mypage-nav">
           <li class="nav-item"><a class="nav-link" href="/manager/show.do">사용자 신고 관리</a>
           </li>
-          <li class="nav-item"><a class="nav-link active" href="/manager/boards.do">공지사항 등록</a>
+          <li class="nav-item"><a class="nav-link active" href="/manager/boards.do?pageNo=1">공지사항 등록</a>
           </li>
         </ul>
       </nav>
@@ -63,9 +63,17 @@
       </table>
   </div>
 	<ul class="pagination justify-content-center">
-		<li class="page-item"><a class="page-link" href="#">1</a></li>
-		<li class="page-item"><a class="page-link" href="#">2</a></li>
-		<li class="page-item"><a class="page-link" href="#">3</a></li>
+		<c:if test="${page.pageNo gt 1 }">
+			<li class="page-item"><a class="page-link" href="boards.do?pageNo=${page.pageNo - 1}"><</a></li>
+		</c:if>
+		
+		<c:forEach var="num" begin="${page.beginPage }" end="${page.endPage }">
+			<li class='page-item ${param.pageNo eq num ? "active" : "" }'><a class="page-link" href="boards.do?pageNo=${num}">${num }</a></li>
+		</c:forEach>
+		
+		<c:if test="${page.pageNo lt page.totalPages}">
+			<li class="page-item"><a class="page-link" href="boards.do?pageNo=${page.pageNo + 1}">></a></li>
+		</c:if>
 	</ul>
   <div class="row mt-4">		
 		<div class="text-right" style="width: 90%">

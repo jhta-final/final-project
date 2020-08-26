@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.dao.ManagerBoardDao;
 import com.sample.vo.MoimManagerBoard;
+import com.sample.vo.Pagination;
 
 @Service
 @Transactional
@@ -22,8 +23,9 @@ public class ManagerBoardServiceImpl implements ManagerBoardService {
 	}
 
 	@Override
-	public List<MoimManagerBoard> getAllBoards() {
-		return managerBoardDao.selectAllBoards();
+	public List<MoimManagerBoard> getAllBoards(Pagination pagination) {
+		
+		return managerBoardDao.selectAllBoards(pagination);
 	}
 
 	@Override
@@ -39,6 +41,11 @@ public class ManagerBoardServiceImpl implements ManagerBoardService {
 	@Override
 	public void modifyBoard(MoimManagerBoard moimManagerBoard) {
 		managerBoardDao.updateBoard(moimManagerBoard);
+	}
+
+	@Override
+	public int getTotalRowCount() {
+		return managerBoardDao.getTotalRowCount();
 	}
 
 }

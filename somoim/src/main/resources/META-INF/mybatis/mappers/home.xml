@@ -5,16 +5,25 @@
 	<!-- 키워드 검색기능 -->
 	<select id="searchFunction" parameterType="string" resultType="MainDto"> 
 	select *
-		from moim_main a
+	from
+		moim_main a
 		join moim_location b on a.location_no = b.location_no
 		join moim_sub_cate c on a.sub_cate_no = c.sub_cate_no
 		join moim_main_category d on c.main_cate_no = d.main_cate_no
-		where a.title like '%' || #{value} || '%'
-		or a.content like '%' || #{value} || '%'
-		or b.name like '%' || #{value} || '%'
-		or c.name like '%' || #{value} || '%'
-		or d.name like '%' || #{value} || '%'
-		order by a.created_date desc
+	where 
+		a.title like '%' || #{value} || '%'
+	or
+		a.content like '%' || #{value} || '%'
+	or
+		b.name like '%' || #{value} || '%'
+	or
+		c.name like '%' || #{value} || '%'
+	or 
+		d.name like '%' || #{value} || '%'
+	and
+		a.delete_yn = 'N'
+	order by 
+		a.created_date desc
 	</select>
 	
 	<!-- 셀렉트박스 검색 -->
@@ -59,6 +68,8 @@
 		<if test="mainCateNo != 0">
 	and
         c.main_cate_no = #{mainCateNo}
+    order by 
+		a.created_date desc
         </if>
 	</where>
 	</select>

@@ -23,6 +23,7 @@ import com.sample.vo.MoimAlram;
 import com.sample.vo.MoimManagerBoard;
 import com.sample.vo.MoimUser;
 import com.sample.vo.MoimWarning;
+import com.sample.vo.Pagination;
 import com.sample.web.form.ManagerForm;
 
 @Controller
@@ -82,8 +83,11 @@ public class ManagerController {
 	// 관리자 보드 시작
 	// 공지사항 전체조회
 	@GetMapping("/boards.do")
-	public String managerBoard(Model model) {
-		model.addAttribute("managerBoards", managerBoardService.getAllBoards());
+	public String managerBoard(@RequestParam("pageNo") String pageNo, Model model) {
+		Pagination pagination = new Pagination(10, 5, stringToInt(pageNo, 1), managerBoardService.getTotalRowCount()); 
+		
+		model.addAttribute("page", pagination);
+		model.addAttribute("managerBoards", managerBoardService.getAllBoards(pagination));
 		
 		return "manager/managerBoard.tiles";
 	}
@@ -101,7 +105,7 @@ public class ManagerController {
 		BeanUtils.copyProperties(managerForm, moimManagerBoard);
 		managerBoardService.addBoard(moimManagerBoard);
 		
-		return "redirect:boards.do";
+		return "redirect:boards.do?pageNo=1";
 	}
 	
 	// 공지사항 상세보기
@@ -124,7 +128,7 @@ public class ManagerController {
 	public String deleteBoard2(@RequestParam("boardNo") long boardNo) {
 		managerBoardService.deleteBoard(boardNo);
 		
-		return "redirect:boards.do";
+		return "redirect:boards.do?pageNo=1";
 	}
 	
 	// 공지사항 수정
@@ -136,5 +140,15 @@ public class ManagerController {
 		managerBoardService.modifyBoard(moimManagerBoard);
 		
 		return "redirect:board.do?boardNo=" + boardNo;
+	}
+	
+	
+	
+	public static int stringToInt(String str, int defaultNumber) {
+		try {
+			return Integer.parseInt(str);
+		} catch (NumberFormatException e){
+			return defaultNumber;
+		}
 	}
 }

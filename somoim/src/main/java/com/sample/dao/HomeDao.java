@@ -43,7 +43,7 @@ public interface HomeDao {
 	// 상세보기
 	List<DetailViewMoimsDto> detailViewMoims(long moimNo);
 	
-	// 검색조건
+	// 키워드검색조건
 	List<MoimMainDto> searchFunction(String keyword);
 	
 	// 셀렉트박스 검색
