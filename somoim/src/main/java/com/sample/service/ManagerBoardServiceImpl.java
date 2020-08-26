@@ -48,4 +48,9 @@ public class ManagerBoardServiceImpl implements ManagerBoardService {
 		return managerBoardDao.getTotalRowCount();
 	}
 
+	@Override
+	public void increaseViews(long boardNo) {
+		managerBoardDao.increaseViews(boardNo);
+	}
+
 }

@@ -77,7 +77,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<a href="boards.do" type="button" class="btn-sm btn btn-secondary mr-auto"><strong>목록</strong></a>
+		<a href="boards.do?pageNo=${param.pageNo }" type="button" class="btn-sm btn btn-secondary mr-auto"><strong>목록</strong></a>
 		<div>
 			<a href="deleteboard2.do?boardNo=${managerBoard.boardNo }" type="button" class="btn-sm btn btn-outline-secondary"><strong>삭제</strong></a>
 			<button type="button" class="btn-sm btn btn-secondary"

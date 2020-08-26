@@ -24,4 +24,7 @@ public interface ManagerBoardService {
 	
 	// 공지사항 총 개수
 	int getTotalRowCount();
+	
+	// 조회수 증가
+	void increaseViews(long boardNo);
 }
