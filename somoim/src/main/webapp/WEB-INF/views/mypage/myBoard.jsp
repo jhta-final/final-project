@@ -103,7 +103,7 @@ p {
 	<div class="row" style="padding: 30px 35px;">
 		<div class="col-9">
 			<c:choose>
-				<c:when test="">
+				<c:when test="${empty boards }">
 					<div>내가쓴 글이 존재하지않습니다.</div>
 				</c:when>
 				<c:otherwise>

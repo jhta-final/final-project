@@ -55,7 +55,7 @@
 			photo_no = #{photoNo}
 	</update>
 	
-	<select id="getPhotosByUserId" parameterType="string" resultType="Photo">
+	<select id="getPhotosByUserId" parameterType="string" resultType="PhotoWIthLikeDto">
 		select
 			photo_no		as photoNo,
 			photo			as photo,
@@ -68,6 +68,13 @@
 			moim_photo
 		where
 			user_id = #{value}
+	</select>
+	
+	<select id="getCheckLikeYN" parameterType="HashMap" resultType="int">
+		select count(*)
+		from moim_photo_user_like
+		where user_id = #{userId}
+		and photo_no = #{photoNo}
 	</select>
 	
 	<select id="getPhotoLikesByUserId" parameterType="PhotoLikes" resultType="PhotoLikes">

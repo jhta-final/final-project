@@ -31,7 +31,7 @@ p {
 	border: none;
 }
 #mypage-join-moim {
-	padding-left: 72px;
+	padding: 30px 44px;
 }
 
 #mypage-join-moim .home-body {
@@ -42,7 +42,7 @@ p {
 #mypage-join-moim .home-card {
  	width: 337px;
  	height: 330px;
- 	margin: 6px 11px 6px 9px;
+ 	margin: 6px;
 }
 .home-card:hover {
 	cursor: pointer;

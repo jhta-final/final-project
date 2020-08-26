@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimJoinUserMoimDto;
+import com.sample.dto.PhotoWIthLikeDto;
 import com.sample.vo.MoimAlram;
 import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimFollow;
@@ -20,7 +21,7 @@ public interface MypageService {
 	
 	List<MoimBoard> boardsByUser(String userId);
 	
-	List<MoimPhoto> photosByUser(String userId);
+	List<PhotoWIthLikeDto> photosByUser(String userId);
 	
 	
 	void AddAlram(MoimAlram moimAlram);

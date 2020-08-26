@@ -40,6 +40,7 @@
 		<typeAlias type="com.sample.vo.MoimPhotoLikes" alias="PhotoLikes"/>
 		<typeAlias type="com.sample.vo.MoimManagerBoard" alias="ManagerBoard"/>
 		<typeAlias type="com.sample.vo.Pagination" alias="Pagination"/>
+		<typeAlias type="com.sample.dto.PhotoWIthLikeDto" alias="PhotoWIthLikeDto"/>
 	</typeAliases>
 	
 	<mappers>

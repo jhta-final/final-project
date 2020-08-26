@@ -81,9 +81,9 @@ public class MypageController {
 	
 	// 올린사진
 	@GetMapping("/photo.do")
-	public List<MoimPhoto> userPhotos () {
-		
-		return mypageService.photosByUser(user.getId());
+	public String userPhotos (Model model) {
+		model.addAttribute("photos", mypageService.photosByUser(user.getId()));
+		return "mypage/myPhoto.tiles";
 	}
 	
 	// 내정보수정

@@ -101,9 +101,9 @@ public class OtherpageController {
 		@GetMapping("/photo.do")
 		@ResponseBody
 		public Map<String, Object> userPhotos () {
-			Map<String, Object> infos = new HashMap<String, Object>();
+			/*Map<String, Object> infos = new HashMap<String, Object>();
 			long followYn = mypageService.followYn(moimFollow);
-			List<MoimPhoto> photos = mypageService.photosByUser(moimFollow.getFolUserId());
+			//List<MoimPhoto> photos = mypageService.photosByUser(moimFollow.getFolUserId());
 			// 팔로우 상태일떄
 			if(followYn == 1) {
 				infos.put("status", "true");
@@ -112,8 +112,8 @@ public class OtherpageController {
 			// 팔로우 상태가 아닐때
 			if(followYn == 0) {
 				infos.put("status", "false");
-			}
-			return infos;
+			}*/
+			return null;
 		}
 		
 		// 쪽지보내기

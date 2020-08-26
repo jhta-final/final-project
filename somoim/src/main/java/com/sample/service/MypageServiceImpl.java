@@ -1,5 +1,6 @@
 package com.sample.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import com.sample.dao.FollowerDao;
 import com.sample.dao.PhotoDao;
 import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimJoinUserMoimDto;
+import com.sample.dto.PhotoWIthLikeDto;
 import com.sample.vo.MoimAlram;
 import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimFollow;
@@ -58,8 +60,17 @@ public class MypageServiceImpl implements MypageService {
 	}
 	
 	@Override
-	public List<MoimPhoto> photosByUser(String userId) {
-		return photoDao.getPhotosByUserId(userId);
+	public List<PhotoWIthLikeDto> photosByUser(String userId) {
+		List<PhotoWIthLikeDto> photos = photoDao.getPhotosByUserId(userId);
+		HashMap<String, String> checkLikeMap = new HashMap<>();
+		checkLikeMap.put("userId", userId);
+		for (PhotoWIthLikeDto photo : photos) {
+			checkLikeMap.put("photoNo", String.valueOf(photo.getPhotoNo()));
+			int check = photoDao.getCheckLikeYN(checkLikeMap);
+			photo.setClickYN(check);
+		}
+		
+		return photos;
 	}
 	
 	
