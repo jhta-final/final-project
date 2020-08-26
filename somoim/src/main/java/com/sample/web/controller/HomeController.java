@@ -151,7 +151,7 @@ public class HomeController {
 			locationNo = user.getLocationNo();
 		}
 		
-		map.put("moims", homeService.getlocationMoims(beginIndex, beginIndex+4, locationNo));
+		map.put("moims", homeService.getlocationMoims(beginIndex, beginIndex+3, locationNo));
 		map.put("total", homeService.getAllLocationCount(locationNo));
 
 		return map;
