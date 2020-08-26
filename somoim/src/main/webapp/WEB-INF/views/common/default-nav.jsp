@@ -164,7 +164,7 @@
 		<div class="nav-Notice">
 		<c:forEach items="${BoardLists } " var="boardList">
 		    <ul id="ticker">
-		        <li><a href="#">${boardList.boardTitle }</a></li>
+		        <li><a href="#"></a></li>
 		    </ul>
 		</c:forEach>
 		  <div class="nav-Notice-navi">
