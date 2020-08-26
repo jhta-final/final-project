@@ -101,7 +101,9 @@
 		                    </div>
 		                    <div class="row">
 		                        <span><fmt:formatDate value="${comment.createdDate }" type="both" dateStyle="short" timeStyle="short" /></span>
-		                        <span class="ml-5 reply-delete" onclick="replyDelete(${comment.commentNo})"><i class="fas fa-times-circle" style="color: red"></i></span>
+		                        <c:if test="${LOGIN_USER.id eq comment.userId }">
+			                        <span class="ml-5 reply-delete" onclick="replyDelete(${comment.commentNo})"><i class="fas fa-times-circle" style="color: red"></i></span>
+		                        </c:if>
 		                    </div>
 		                    
 		                    <!-- 댓글 -->
@@ -121,7 +123,9 @@
 						                    </div>
 						                    <div class="row">
 						                        <span><fmt:formatDate value="${reply.createdDate }" type="both" dateStyle="short" timeStyle="short" /></span>
-						                        <span class="ml-5 reply-delete" onclick="replyDelete(${reply.commentNo})"><i class="fas fa-times-circle" style="color: red"></i></span>
+						                        <c:if test="${LOGIN_USER.id eq reply.userId }">
+							                        <span class="ml-5 reply-delete" onclick="replyDelete(${reply.commentNo})"><i class="fas fa-times-circle" style="color: red"></i></span>
+						                        </c:if>
 						                    </div>
 						                </div>
 				                    </div>

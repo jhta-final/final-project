@@ -50,8 +50,6 @@
 	    	a.user_id = b.user_id
     	and
     		main_comment_no != 0
-	    order by
-	    	comment_no desc
 	</select>
 	
 	<select id="getComment" parameterType="Long" resultType="Comment">
