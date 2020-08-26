@@ -9,6 +9,7 @@
 	<title>소모임</title>
 	<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+	<link rel="icon" type="image/png" href="/resources/home_images/favicon.ico">
 
 	<script src="/resources/jquery/jquery.min.js"></script>
 	<script src="/resources/bootstrap/js/bootstrap.min.js"></script>

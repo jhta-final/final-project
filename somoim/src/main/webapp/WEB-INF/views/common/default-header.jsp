@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 
 <meta charset="utf-8" />
-<link rel="icon" type="image/png" href="img/favicon.ico">
+<link rel="icon" type="image/png" href="/resources/home_images/favicon.ico">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 <title>소모임</title>
