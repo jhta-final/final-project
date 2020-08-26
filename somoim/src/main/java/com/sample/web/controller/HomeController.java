@@ -132,11 +132,23 @@ public class HomeController {
 	@ResponseBody
 	public List<MoimMainDto> location(@RequestParam("beginIndex") long beginIndex, @RequestParam("endIndex") long endIndex,
 									  @RequestParam("locationNo") long locationNo, HttpSession httpSession) {
-		HashMap<String, Object> hashMap = new HashMap<String, Object>();
-		hashMap.put("beginIndex", beginIndex);
-		hashMap.put("endIndex", endIndex);
-		hashMap.put("locationNo", locationNo);
+		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
+		long savedLocationNo = locationNo;
 		
-		return homeService.getlocationMoims(hashMap);
+		// 선호 지역이 없으면
+		if(locationNo != 0) {
+			locationNo = savedLocationNo;
+		}
+		else if(user.getLocationNo() == 0) {
+			locationNo = (long)(Math.random()*25 +1);
+		}
+		
+		// 더보기를 누르지 않았다면
+		if(locationNo == 0) {
+			locationNo = user.getLocationNo();
+		}
+		
+		System.out.println(locationNo);
+		return homeService.getlocationMoims(beginIndex, endIndex, locationNo);
 	}
 }

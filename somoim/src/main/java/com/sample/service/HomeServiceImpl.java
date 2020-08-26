@@ -33,11 +33,16 @@ public class HomeServiceImpl implements HomeService{
 
 	// 전체 회원 지역선호별 모임
 	@Override
-	public List<MoimMainDto> getlocationMoims(HashMap<String, Object> map) {
+	public List<MoimMainDto> getlocationMoims(long beginIndex, long endIndex, long locationNo) {
 /*		if(map.get == 0) {
 			locationNo = (long)(Math.random()*25 +1);
 		}*/
-		return homeDao.locationMoims(map);
+		
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		hashMap.put("beginIndex", beginIndex);
+		hashMap.put("endIndex", endIndex);
+		
+		return homeDao.locationMoims(hashMap);
 		
 	}
 
