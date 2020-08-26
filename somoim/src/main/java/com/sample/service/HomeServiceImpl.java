@@ -137,6 +137,12 @@ public class HomeServiceImpl implements HomeService{
 		moimFavoriteMoim.setUserId(userId);
 		return homeDao.likesMoim(moimFavoriteMoim);
 	}
+
+	@Override
+	public String getLocationName(long locationNo) {
+		
+		return homeDao.LocationName(locationNo);
+	}
 	
 	
 

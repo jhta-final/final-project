@@ -11,7 +11,7 @@
 		join moim_sub_cate c on a.sub_cate_no = c.sub_cate_no
 		join moim_main_category d on c.main_cate_no = d.main_cate_no
 	where 
-		a.title like '%' || #{value} || '%'
+		(a.title like '%' || #{value} || '%'
 	or
 		a.content like '%' || #{value} || '%'
 	or
@@ -19,7 +19,7 @@
 	or
 		c.name like '%' || #{value} || '%'
 	or 
-		d.name like '%' || #{value} || '%'
+		d.name like '%' || #{value} || '%')
 	and
 		a.delete_yn = 'N'
 	order by 
@@ -337,5 +337,11 @@
             order by liked_date asc
 	)where rownum <= 3
 	]]>
+	</select>
+	
+	<select id="LocationName" parameterType="long" resultType="string">
+		select name
+		from moim_location
+		where location_no = #{value}
 	</select>
 </mapper>

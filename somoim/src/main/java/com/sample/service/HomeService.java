@@ -46,4 +46,6 @@ public interface HomeService {
 	// 셀렉트박스 검색
 	List<MoimMainDto> getselectSearchFunction(Map<String, Object> keyword);
 	
+	//
+	String getLocationName(long locationNo);
 }

@@ -49,6 +49,9 @@ public interface HomeDao {
 	
 	// 셀렉트박스 검색
 	List<MoimMainDto> selectSearchFunction(Map<String, Object> keyword);
+	
+	//
+	String LocationName(long locationNo);
 
 	
  
