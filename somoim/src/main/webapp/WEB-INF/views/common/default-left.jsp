@@ -78,22 +78,11 @@
   position: relative;
 }
 
-.dropdown-item :hover {
-	background-color: rgba(0,073,140, .5) !important;
-	color: #FFF;
-	
-}
-
-.dropdown-submenu :hover {
-  position: relative;
-}
-
 .dropdown-submenu a::after {
   position: absolute;
   right: 6px;
   top: .8em;
 }
-
 
 .dropdown-submenu .dropdown-menu {
   top: 10px;
@@ -103,7 +92,7 @@
 }
 
 #collapseExample {
-	background-color: gray;
+	background-color: #cccccc;
 }
 </style>
 
