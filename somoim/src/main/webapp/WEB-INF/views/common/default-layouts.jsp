@@ -60,11 +60,15 @@ $(function() {
 	           $(".left").attr("class", "left");
 	    	   $(".my-content").attr('class','my-content col-12');
 	           $("#mySidenav").css("left", "-317px");
+	           $('#mypage-join-moim').css('padding-left', '0px');
+	           $('#mypage-join-moim .home-card').css('margin', '6px');
 
 	       } else {
 	           $(".left").attr("class", "left col-2");
 	    	   $(".my-content").attr('class','my-content col-10');
 	    	   $("#mySidenav").css("left", "0px");
+	           $('#mypage-join-moim').css('padding-left', '76px');
+	           $('#mypage-join-moim .home-card').css('margin', '6px 11px 6px 9px');
 	           action = 1;
 
 	       }

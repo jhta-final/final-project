@@ -48,15 +48,17 @@ public class MypageController {
 	
 	private MoimUser user = new MoimUser();
 	
-	
-	@GetMapping("/mypage.do")
-	public String myPage1(HttpSession session, Model model) {
+	@ModelAttribute("followers")
+	public List<MoimFollowDto> getFollower(HttpSession session) {
 		this.user = (MoimUser)session.getAttribute("LOGIN_USER");
-		List<MoimFollowDto> followers = mypageService.allFollower(user.getId());
-		List<MoimFollowDto> followings = mypageService.allFollowing(user.getId());
 		
-		model.addAttribute("followers", followers);
-		model.addAttribute("followersCnt", followers.size());
+		return mypageService.allFollower(user.getId());
+	}
+	
+	// 마이페이지 메인화면
+	@GetMapping("/mypage.do")
+	public String myPage(Model model) {
+		List<MoimFollowDto> followings = mypageService.allFollowing(user.getId());
 		model.addAttribute("followingsCnt", followings.size());
 		
 		return "mypage/mypage.tiles";
@@ -64,23 +66,21 @@ public class MypageController {
 	
 	// 가입한모임
 	@GetMapping("/usermoim.do")
-	@ResponseBody
-	public List<MoimJoinUserMoimDto> joinMoims (){
+	public String joinMoims(Model model){
+		model.addAttribute("joinmoim", mypageService.allJoinMoims(user.getId()));
 		
-		return mypageService.allJoinMoims(user.getId());
+		return "mypage/joinMoim.tiles";
 	}
 	
 	// 작성글
 	@GetMapping("/board.do")
-	@ResponseBody
-	public List<MoimBoard> userBoards (){
-		
-		return mypageService.boardsByUser(user.getId());
+	public String userBoards(Model model) {
+		model.addAttribute("boards", mypageService.boardsByUser(user.getId()));
+		return "mypage/myBoard.tiles";
 	}
 	
 	// 올린사진
 	@GetMapping("/photo.do")
-	@ResponseBody
 	public List<MoimPhoto> userPhotos () {
 		
 		return mypageService.photosByUser(user.getId());
@@ -113,7 +113,6 @@ public class MypageController {
 			}
 		}
 		
-		//user.setContent(user.getContent().replace("\r\n", "<br>"));
 		user.setProfileImage(filename);
 		
 		session.setAttribute("LOGIN_USER", user);		
@@ -122,7 +121,7 @@ public class MypageController {
 		return "redirect:/mypage/mypage.do?updatestatus=success";
 	}
 	
-	// 회원탈퇴
+	// 회원탈퇴 비번확인
 	@PostMapping("/checkpwd.do")
 	@ResponseBody
 	public boolean deletePwdCheck (@RequestParam("password")String password) {
@@ -134,29 +133,11 @@ public class MypageController {
 	      }
 	}
 	
+	// 회원탈퇴
 	@GetMapping("/userdelete.do")
 	public String deleteUser (HttpSession session) {
 		userService.deleteUser(user.getId());
 		session.invalidate();
 		return "redirect:/"; 
-	}
-	
-	// 쪽지합
-	@GetMapping("/message.do")
-	@ResponseBody
-	public Map<String, Object> messageUser() {
-		Map<String, Object> messages = new HashMap<String, Object>();
-		
-		//List<MoimAlram> sendMessages = alramService.sendMessages(user.getId());
-		// 보낸 쪽지함
-		/*model.addAttribute("sendMessages", sendMessages);*/
-		//messages.put("sendMessages", sendMessages);
-		//List<MoimAlram> receiveMessages = alramService.receiveMessages(user.getId());
-		// 받은 쪽지함
-		/*model.addAttribute("receiveMessages", receiveMessages);*/
-		//messages.put("receiveMessages", receiveMessages);
-		
-		
-		return messages;
 	}
 }

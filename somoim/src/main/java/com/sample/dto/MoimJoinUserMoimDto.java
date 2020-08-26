@@ -20,6 +20,9 @@ public class MoimJoinUserMoimDto {
 		private String content;
 		private long joinCount;
 		private long headCount;
+		private long likes;
+		@JsonFormat(pattern="yyyy. MM. dd HH:mm")
+		private Date joinDate;
 		
 		public long getMoimNo() {
 			return moimNo;
@@ -76,5 +79,20 @@ public class MoimJoinUserMoimDto {
 			this.headCount = headCount;
 		}
 		
+		public long getLikes() {
+			return likes;
+		}
+		
+		public void setLikes(long likes) {
+			this.likes = likes;
+		}
+		
+		public Date getJoinDate() {
+			return joinDate;
+		}
+		
+		public void setJoinDate(Date joinDate) {
+			this.joinDate = joinDate;
+		}
 		
 }

@@ -34,7 +34,6 @@ public class SignInOutController {
 	@PostMapping("/login/signin.do")
 	public String login(@ModelAttribute("loginForm") @Valid LoginForm loginForm,
 			BindingResult errors, Model model) {
-		System.out.println("loginForm: " + loginForm);
 		if(errors.hasErrors()) {
 			return "redirect:/?error=fail";
 		}
