@@ -68,6 +68,7 @@
 	}
 }
 
+
 #left-main-dropdown {
 	padding: 15px 20px;
 	transform: translate3d(212px, 12px, 0px) !important; 
@@ -77,11 +78,22 @@
   position: relative;
 }
 
+.dropdown-item :hover {
+	background-color: rgba(0,073,140, .5) !important;
+	color: #FFF;
+	
+}
+
+.dropdown-submenu :hover {
+  position: relative;
+}
+
 .dropdown-submenu a::after {
   position: absolute;
   right: 6px;
   top: .8em;
 }
+
 
 .dropdown-submenu .dropdown-menu {
   top: 10px;
@@ -91,7 +103,7 @@
 }
 
 #collapseExample {
-	background-color: #cccccc;
+	background-color: gray;
 }
 </style>
 
@@ -157,7 +169,7 @@
 				<i class="fas fa-sign-in-alt"></i> 가입 모임 
 			</a>
 			<div class="collapse" id="left-joined-moim" style="border-top: 1px solid lightgray">
-				<div>
+				<div class="nav-item">
 					<c:choose>
 						<c:when test="${not empty joinedMoim }">
 							<c:forEach items="${joinedMoim}" var="joinedMoim">
@@ -184,7 +196,7 @@
 			<i class="fas fa-heart"></i> 즐겨찾는 모임
 			</a>
 			<div class="collapse" id="left-select-moim" style="border-top: 1px solid lightgray">
-				<div>
+				<div class="nav-item">
 					<c:choose>
 						<c:when test="${not empty selectMoim}">
 							<c:forEach items="${selectMoim}" var="select">
@@ -212,7 +224,7 @@
 			<i class="fas fa-users"></i> 내 친구 
 			</a>
 			<div class="collapse" id="left-myfriends" style="border-top: 1px solid lightgray">
-				<div>
+				<div class="nav-item">
 					<c:choose>
 						<c:when test="${not empty followUsers}">
 							<c:forEach items="${followUsers}" var="follow">
@@ -230,7 +242,7 @@
 								aria-controls="collapseExample" style="color: black;">더보기</a>
 		    					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 									<c:forEach items="${followUsers}" var="follow">
-										<a class="nav-link" href="/other/info.do?userId=${follow.folUserId }"> 
+										<a class="nav-link nav-item" href="/other/info.do?userId=${follow.folUserId }"> 
 											<span class="nav-item avatar">
 											<img src="/resources/profileImage/${follow.image }"
 												class="rounded-circle z-depth-0" alt="avatar image" height="35px" width="35px">
@@ -378,8 +390,8 @@ $(function() {
 				$("#left-detail-createDate").text("만든날 : " + moim.moimMainDto.createdDate)
 				
 				var link = '/moim/moim.do?moimNo='+moim.moimMainDto.moimNo+'';
-				var join = '/moim/join.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${loginedUser}';
-				var withdrawal = '/moim/outMoim.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${loginedUser}';
+				var join = '/moim/join.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${LOGIN_USER.id}';
+				var withdrawal = '/moim/outMoim.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${LOGIN_USER.id}';
 
 				$("#left-moim-join-btn").attr('href', join);
 				$("#left-moim-withdrawal-btn").attr('href', withdrawal);
