@@ -55,6 +55,7 @@ public interface HomeDao {
 	String mainCategory(long mainCateNo);
 	String subCategory(long subCateNo);
 
-	
+	// 지역 검색 총 개수
+	long getAllLocationCount(long locationNo);
  
 }

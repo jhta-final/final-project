@@ -153,9 +153,11 @@ public class HomeServiceImpl implements HomeService{
 	public String getSubCategoryName(long subCateNo) {
 		return homeDao.subCategory(subCateNo);
 	}
-	
 
-	
+	@Override
+	public long getAllLocationCount(long locationNo) {
+		return homeDao.getAllLocationCount(locationNo);
+	}
 	
 	
 

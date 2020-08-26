@@ -131,8 +131,10 @@ public class HomeController {
 	// 홈 지역모임 더보기용
 	@GetMapping("/location.do")
 	@ResponseBody
-	public List<MoimMainDto> location(@RequestParam("beginIndex") long beginIndex, @RequestParam("endIndex") long endIndex,
+	public Map<String, Object> location(@RequestParam("currentPageNo") long beginIndex,
 									  @RequestParam(value="locationNo", required=false, defaultValue="0") long locationNo, HttpSession httpSession) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
 		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
 		long savedLocationNo = locationNo;
 		
@@ -149,6 +151,9 @@ public class HomeController {
 			locationNo = user.getLocationNo();
 		}
 		
-		return homeService.getlocationMoims(beginIndex, endIndex, locationNo);
+		map.put("moims", homeService.getlocationMoims(beginIndex, beginIndex+4, locationNo));
+		map.put("total", homeService.getAllLocationCount(locationNo));
+
+		return map;
 	}
 }

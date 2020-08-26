@@ -354,4 +354,10 @@
 		from moim_sub_cate
 		where sub_cate_no = #{value}
 	</select>
+	
+	<select id="getAllLocationCount" parameterType="long" resultType="long">
+		select count(*)
+		from moim_main
+		where location_no = #{value}
+	</select>
 </mapper>
