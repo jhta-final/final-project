@@ -359,5 +359,6 @@
 		select count(*)
 		from moim_main
 		where location_no = #{value}
+		and delete_yn = 'N'
 	</select>
 </mapper>
