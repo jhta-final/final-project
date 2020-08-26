@@ -131,14 +131,14 @@ public class HomeController {
 	@GetMapping("/location.do")
 	@ResponseBody
 	public List<MoimMainDto> location(@RequestParam("beginIndex") long beginIndex, @RequestParam("endIndex") long endIndex,
-									  @RequestParam("locationNo") long locationNo, HttpSession httpSession) {
+									  @RequestParam(value="locationNo", required=false, defaultValue="0") long locationNo, HttpSession httpSession) {
 		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
 		long savedLocationNo = locationNo;
 		
-		// 선호 지역이 없으면
+		// 더보기를 누른다면
 		if(locationNo != 0) {
 			locationNo = savedLocationNo;
-		}
+		} // 선호지역이 없고 더보기를 누르지 않았다면
 		else if(user.getLocationNo() == 0) {
 			locationNo = (long)(Math.random()*25 +1);
 		}
