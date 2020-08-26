@@ -57,32 +57,22 @@ $(function() {
 	function viewSomething() {
 	       if ( action == 1 ) {
 	           action = 2;
-	           $(".left").attr("class", "left col-2");
-	           if (window.sessionStorage) {
-	                sessionStorage.setItem('position', 'open');
-	            }
-	       } else {
 	           $(".left").attr("class", "left");
+	    	   $(".my-content").attr('class','my-content col-12');
+	           $("#mySidenav").css("left", "-317px");
+
+	       } else {
+	           $(".left").attr("class", "left col-2");
+	    	   $(".my-content").attr('class','my-content col-10');
+	    	   $("#mySidenav").css("left", "0px");
 	           action = 1;
-	           if (window.sessionStorage) {
-	                sessionStorage.setItem('position', 'close');
-	            }
+
 	       }
 	       //$("#sideMenu").toggle("fast");
 	}
 	$("#sideMenu").on("click", viewSomething);
 
-	function viewSomething() {
-	       if ( action == 1 ) {
-	    	   $(".my-content").attr('class','my-content col-12');
-	           $("#mySidenav").css("left", "-317px");
-	           action = 2;
-	       } else {
-	    	   $(".my-content").attr('class','my-content col-10');
-	    	   $("#mySidenav").css("left", "0px");
-	           action = 1;
-	       }
-	}
+	
 })
 </script>
 </body>
