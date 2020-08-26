@@ -26,6 +26,7 @@ import com.sample.service.AlramService;
 import com.sample.service.HomeService;
 import com.sample.service.MoimService;
 import com.sample.vo.MoimFavoriteMoim;
+import com.sample.vo.MoimManagerBoard;
 import com.sample.vo.MoimUser;
 
 @Controller
@@ -67,7 +68,9 @@ public class HomeController {
 		
 		// 알람서비스
 		httpSession.setAttribute("alrams", alramService.getAlrams(user.getId()));
-		
+
+		// 공지사항 10개 뽑기
+		httpSession.setAttribute("moimManagerBoardList", homeService.getmoimManagerBoardList());
 		return "main/main.tiles";
 	}
 	
@@ -156,4 +159,6 @@ public class HomeController {
 
 		return map;
 	}
+	
+	
 }

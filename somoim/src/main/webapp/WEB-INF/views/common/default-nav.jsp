@@ -162,17 +162,11 @@
 		
 		<!-- 공지 -->
 		<div class="nav-Notice">
+		<c:forEach items="${BoardLists } " var="boardList">
 		    <ul id="ticker">
-		        <li><a href="#"><span>1</span> 공지공지공지</a></li>
-		        <li><a href="#"><span>2</span> 공지</a></li>
-		        <li><a href="#"><span>3</span> 공지</a></li>
-		        <li><a href="#"><span>4</span> 공지</a></li>
-		        <li><a href="#"><span>5</span> 공지</a></li>
-		        <li><a href="#"><span>6</span> 공지</a></li>
-		        <li><a href="#"><span>7</span> 공지</a></li>
-		        <li><a href="#"><span>8</span> 공지</a></li>
-		        <li><a href="#"><span>9</span> 공지</a></li>
+		        <li><a href="#">${boardList.boardTitle }</a></li>
 		    </ul>
+		</c:forEach>
 		  <div class="nav-Notice-navi">
 		    <button class="btn btn-primary prev">이전</button>
 		    <button class="btn btn-primary next">다음</button>

@@ -7,6 +7,7 @@ import com.sample.dto.DetailViewMoimsDto;
 import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimMainDto;
 import com.sample.vo.MoimFavoriteMoim;
+import com.sample.vo.MoimManagerBoard;
 
 public interface HomeService {
 
@@ -54,5 +55,9 @@ public interface HomeService {
 	String getMainCategoryName(long mainCateNo);
 	String getSubCategoryName(long subCateNo);
 	
+	// 지역 검색 총 개수
 	long getAllLocationCount(long locationNo);
+	
+	// 공지사항 10개 뽑기
+	List<MoimManagerBoard> getmoimManagerBoardList();
 }

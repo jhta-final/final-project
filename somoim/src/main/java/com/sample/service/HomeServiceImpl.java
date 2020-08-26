@@ -14,6 +14,7 @@ import com.sample.dto.DetailViewMoimsDto;
 import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimMainDto;
 import com.sample.vo.MoimFavoriteMoim;
+import com.sample.vo.MoimManagerBoard;
 
 @Service
 @Transactional
@@ -160,10 +161,18 @@ public class HomeServiceImpl implements HomeService{
 		
 		return homeDao.scrollMoim();
 	}
-
+	
+	// 지역 검색 총 개수
 	@Override
 	public long getAllLocationCount(long locationNo) {
 		return homeDao.getAllLocationCount(locationNo);
+	}
+
+	// 공지사항 10개 뽑기
+	@Override
+	public List<MoimManagerBoard> getmoimManagerBoardList() {
+		
+		return homeDao.moimManagerBoardList();
 	}
 	
 	

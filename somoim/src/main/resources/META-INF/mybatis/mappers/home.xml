@@ -361,4 +361,20 @@
 		where location_no = #{value}
 		and delete_yn = 'N'
 	</select>
+	
+	<!-- 공지사항 9개 뽑기 -->
+	<select id="moimManagerBoardList" resultType="ManagerBoard">
+	<![CDATA[
+	select * from(
+		select
+			manager_board_title	as boardTitle
+		from
+			moim_manager_board
+        where
+        	delete_yn = 'N'
+        order by
+        	created_date desc
+	)where rownum <= 9
+	]]>
+	</select>
 </mapper>
