@@ -107,26 +107,11 @@ h5 {
 <div class="" style="margin-top: 35px;">
 <div class="row">
 	<div class="col-12">
-		<h1>${locationMoims[0].locationName }</h1>
-		<div class="row home-body">
-			<c:forEach items="${locationMoims }" var="location">
-				<div class="card mb-4 home-card" data-no="${location.moimNo }">
-					<img class="card-img-top" src="/resources/home_images/11.jpeg"
-						alt="Card image cap">
-					<div class="card-body">
-						<div class="card-title">
-							<span><c:out value="${location.title }" /></span>
-						</div>
-						<div class="text-left">
-							<i class="fas fa-heart" style="color: #d09afc"></i>&ensp;<span class="text-left" >${location.likes }</span>&ensp;&ensp;
-							<i class="fas fa-users" style="color: #fcba03"></i>&ensp;<span class="mr-3">${location.joinCount }/${location.headCount }</span>
-							<p style="float: right">
-							<fmt:formatDate value="${location.joinDate}" /></p>
-						</div>
-					</div>
-				</div>
-			</c:forEach>
+		<h1 id="locationTitle"></h1>
+		<div id="locationMoim" class="row home-body">
+			
 		</div>
+		<button id="btn-get-data">더보기</button>
 	</div>
 </div>
 <div class="row">
@@ -235,10 +220,59 @@ h5 {
 
 $(function() {
 	
-
+	// 더보기 시작--------------------------------------
+	var currentPageNo = 1;
+	var locationNo;
+	var $list = $("#locationMoim");
+	$("#btn-get-data").click(function() {
+		moreData();
+	});
+	var $locationTitle = $("#locationTitle");
+	function moreData() {
+		
+		$.ajax({
+			type:"GET",
+			url:"/location.do",
+			data:{
+				locationNo: locationNo,
+				currentPageNo :currentPageNo
+			},
+			success:function(result){
+				console.log("result ---->", result);
+				
+	            $locationTitle.text(result.moims[0].locationName);
+	            if(Math.ceil(currentPageNo/4) == Math.ceil(result.total/4)) {
+	               $("#btn-get-data").prop("disabled",true);
+	            }
+				
+				if (result.currentPageNo == 0) {
+					var row1 = '<div><p>검색된 모임이 없습니다.</p></div>';
+					$list.append(row1);
+				}
+				
+				$.each(result.moims, function(index, locationMoim){
+					
+					var row2 = '<div class="card mb-4 home-card" data-no="'+ locationMoim.moimNo +'">';
+					row2 += '<img class="card-img-top" src="/resources/home_images/11.jpeg" alt="Card image cap">';
+					row2 += '<div class="card-body"><div class="card-title">';
+					row2 += '<span>'+locationMoim.title+'</span>';
+					row2 += '</div><div class="text-left">';
+					row2 += '<i class="fas fa-heart" style="color: #d09afc"></i>&ensp;<span class="text-left" >'+locationMoim.likes+'</span>';
+				   	row2 += '&ensp;&ensp;<i class="fas fa-users" style="color: #fcba03"></i>&ensp;<span class="mr-3">'+locationMoim.joinCount+'/'+locationMoim.headCount+'</span>';
+				   	row2 += '<p style="float: right">'+locationMoim.joinDate+'</p>';
+				   	row2 += '</div></div></div>';
+					
+					$list.append(row2);
+				}); 
+				currentPageNo += 4;
+			}
+			
+		})
+	}
 	
+	moreData();
 	
-	
+	// 더보기 끝------------------------------------
 	
 	
 	
