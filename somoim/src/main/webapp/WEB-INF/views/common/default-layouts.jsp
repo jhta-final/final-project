@@ -37,58 +37,52 @@
 <body>
 
 <div class="container-fluid ">
-
 	<div class="row">
 		<div class="col-12 my-back">
 			<tiles:insertAttribute name="nav" />
 		</div>
 	</div>
 	<div class="row" style="margin-top: 71.53px;">
-		<div class="left">
+		<div class="left col-2">
 			<tiles:insertAttribute name="left" />
 		</div>
-		<div class="my-content">
+		<div class="my-content col-10">
 			<tiles:insertAttribute name="content" />
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
-
 $(function() {
-	if (sessionStorage.getItem('position') == 'close') {
-		$(".my-content").attr('class','my-content col-12');
-        $("#mySidenav").css("left", "-317px");
-        $(".left").attr("class", "left");
-	} else if (sessionStorage.getItem('position') == 'open') {
-		 $(".my-content").attr('class','my-content col-10');
-  	   $("#mySidenav").css("left", "0px");
-         $(".left").attr("class", "left col-2");
-	}
-		
-		
-	
 	var action = 1;
 	function viewSomething() {
 	       if ( action == 1 ) {
-	    	   $(".my-content").attr('class','my-content col-12');
-	           $("#mySidenav").css("left", "-317px");
-	           $(".left").attr("class", "left");
 	           action = 2;
-	          
-	                sessionStorage.setItem('position', 'close');
-	           
-	       } else if (action == 2) {
-	    	   $(".my-content").attr('class','my-content col-10');
-	    	   $("#mySidenav").css("left", "0px");
 	           $(".left").attr("class", "left col-2");
+	           if (window.sessionStorage) {
+	                sessionStorage.setItem('position', 'open');
+	            }
+	       } else {
+	           $(".left").attr("class", "left");
 	           action = 1;
-	            sessionStorage.setItem('position', 'open');	            
+	           if (window.sessionStorage) {
+	                sessionStorage.setItem('position', 'close');
+	            }
 	       }
 	       //$("#sideMenu").toggle("fast");
 	}
 	$("#sideMenu").on("click", viewSomething);
-	
 
+	function viewSomething() {
+	       if ( action == 1 ) {
+	    	   $(".my-content").attr('class','my-content col-12');
+	           $("#mySidenav").css("left", "-317px");
+	           action = 2;
+	       } else {
+	    	   $(".my-content").attr('class','my-content col-10');
+	    	   $("#mySidenav").css("left", "0px");
+	           action = 1;
+	       }
+	}
 })
 </script>
 </body>
