@@ -50,6 +50,11 @@ public class MoimManagerBoard {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+	@Override
+	public String toString() {
+		return "MoimManagerBoard [boardNo=" + boardNo + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
+				+ ", views=" + views + ", deleteYn=" + deleteYn + ", createdDate=" + createdDate + "]";
+	}
 	
 	
 }
