@@ -41,6 +41,7 @@
 		<typeAlias type="com.sample.vo.MoimManagerBoard" alias="ManagerBoard"/>
 		<typeAlias type="com.sample.vo.Pagination" alias="Pagination"/>
 		<typeAlias type="com.sample.dto.PhotoWIthLikeDto" alias="PhotoWIthLikeDto"/>
+		<typeAlias type="com.sample.vo.MoimBanner" alias="Banner"/>
 	</typeAliases>
 	
 	<mappers>

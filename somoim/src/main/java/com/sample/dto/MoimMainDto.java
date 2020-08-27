@@ -34,7 +34,7 @@ public class MoimMainDto {
 	private List<MoimUser> friends;
 	
 	private String likesYn;
-	
+	private String banner;
 	
 	
 	
@@ -172,6 +172,12 @@ public class MoimMainDto {
 	}
 	public void setLikesYn(String likesYn) {
 		this.likesYn = likesYn;
+	}
+	public String getBanner() {
+		return banner;
+	}
+	public void setBanner(String banner) {
+		this.banner = banner;
 	}
 	
 	

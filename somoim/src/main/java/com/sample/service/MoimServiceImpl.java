@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sample.dao.MoimDao;
 import com.sample.dto.JoinUsers;
 import com.sample.dto.MoimMainDto;
+import com.sample.vo.MoimBanner;
 import com.sample.vo.MoimJoinUser;
 
 @Service
@@ -28,9 +29,15 @@ public class MoimServiceImpl implements MoimService {
 		moimJoinUser.setMoimNo(moimMainDto.getMoimNo());
 		moimJoinUser.setUserId(moimMainDto.getUserId());
 		moimJoinUser.setUserRole("ADMIN");
-		System.out.println(moimMainDto.getMoimNo());
 		moimDao.insertJoinUser(moimJoinUser);
+		moimDao.insertMoimBanner(moimMainDto.getMoimNo());
 	}
+	
+	@Override
+	public void updateBanner(MoimBanner moimBanner) {
+		moimDao.updateBanner(moimBanner);
+	}
+	
 
 	// 모든 모임 조회
 	@Override
@@ -41,7 +48,9 @@ public class MoimServiceImpl implements MoimService {
 	// 모임 상세정보 조회
 	@Override
 	public MoimMainDto getMoimByNo(long moimNo) {
-		return moimDao.selectMoim(moimNo);
+		MoimMainDto moim = moimDao.selectMoim(moimNo);
+		moim.setBanner(moimDao.selectBanner(moimNo));
+		return moim;
 	}
 
 	// 모임 정보 수정
@@ -146,5 +155,8 @@ public class MoimServiceImpl implements MoimService {
 		return user.getUserRole();
 	}
 
+
+
+	
 	
 }

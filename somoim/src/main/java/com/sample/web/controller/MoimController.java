@@ -32,6 +32,7 @@ import com.sample.service.CommentService;
 import com.sample.service.MoimService;
 import com.sample.service.PhotoService;
 import com.sample.service.SubMoimService;
+import com.sample.vo.MoimBanner;
 import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimComment;
 import com.sample.vo.MoimPhoto;
@@ -74,22 +75,24 @@ public class MoimController {
 		MoimMainDto moimMainDto = new MoimMainDto();
 		BeanUtils.copyProperties(moimForm, moimMainDto);
 		
-		MultipartFile upfile = moimForm.getUpfile();
-		String filename = upfile.getOriginalFilename();
+		if("empty".equals(moimMainDto.getImage())) {
+			MultipartFile upfile = moimForm.getUpfile();
+			String filename = upfile.getOriginalFilename();
 			
-		File file = new File("C:\\final_project\\workspace\\somoim\\src\\main\\webapp\\resources\\home_images\\"+filename);
-		FileOutputStream fos;
-		try {
-			file.createNewFile();
-			fos = new FileOutputStream(file);
-			fos.write(upfile.getBytes());
-			fos.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+			File file = new File("C:\\final_project\\workspace\\somoim\\src\\main\\webapp\\resources\\home_images\\"+filename);
+			FileOutputStream fos;
+			try {
+				file.createNewFile();
+				fos = new FileOutputStream(file);
+				fos.write(upfile.getBytes());
+				fos.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			moimMainDto.setImage(filename);
 		}
-		moimMainDto.setImage(filename);
 		
 		moimService.addNewMoim(moimMainDto);
 		
@@ -159,8 +162,37 @@ public class MoimController {
 			return "redirect:/home.do";
 		}		
 		model.addAttribute("role", role);
+		model.addAttribute("banner", new MoimBanner());
 		
 		return "moim/moim.tiles";
+	}
+	
+	// 배너 수정
+	@PostMapping("/bannerAdd.do")
+	public String addBanner(@ModelAttribute("banner")  @Valid MoimBanner banner) {
+		MultipartFile upfile = banner.getUpfile();
+		String filename = upfile.getOriginalFilename();
+		
+		if("".equals(filename)) {
+			banner.setBanner("banner.jpg");
+		} else {
+			File file = new File("C:\\final_project\\workspace\\somoim\\src\\main\\webapp\\resources\\moim_images\\"+filename);
+			FileOutputStream fos;
+			try {
+				file.createNewFile();
+				fos = new FileOutputStream(file);
+				fos.write(upfile.getBytes());
+				fos.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			banner.setBanner(filename);
+		}
+		moimService.updateBanner(banner);
+		
+		return "redirect:moim.do?moimNo=" + banner.getMoimNo();
 	}
 	
 	// 모임 삭제

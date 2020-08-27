@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sample.dto.JoinUsers;
 import com.sample.dto.MoimMainDto;
+import com.sample.vo.MoimBanner;
 import com.sample.vo.MoimJoinUser;
 
 public interface MoimService {
@@ -34,4 +35,7 @@ public interface MoimService {
 	void outMoim(long moimNo, String userId);
 	// 모임에 가입된 유저들 모두 탈퇴
 	void AllOutMoim(long moimNo);
+	
+	// 모임 배너 수정
+	void updateBanner(MoimBanner moimBanner);
 }
