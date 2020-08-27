@@ -89,6 +89,9 @@ h5 {
 							<div class="text-left">
 								<i class="fas fa-heart" style="color: #d09afc"></i>&ensp;<span class="text-left" >${favolite.likes }</span>&ensp;&ensp;
 								<i class="fas fa-users" style="color: #fcba03"></i>&ensp;<span>${favolite.joinCount}/${favolite.headCount}</span>
+								<c:if test="${favolite.premiumYn == 'Y'}">
+									<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>
+								</c:if>
 								<p style="float: right">
 								<fmt:formatDate value="${favolite.joinDate}" /></p>
 							</div>
@@ -130,6 +133,9 @@ h5 {
 						<div class="text-left">
 							<i class="fas fa-heart" style="color: #d09afc"></i>&ensp;<span class="text-left" >${category.likes }</span>&ensp;&ensp;
 							<i class="fas fa-users" style="color: #fcba03"></i>&ensp;<span class="mr-3">${category.joinCount }/${category.headCount }</span>
+							<c:if test="${category.premiumYn == 'Y'}">
+								<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>
+							</c:if>
 							<p style="float: right">
 							<fmt:formatDate value="${category.joinDate}" /></p>
 						</div>
@@ -154,6 +160,9 @@ h5 {
 						<div class="text-left">
 							<i class="fas fa-heart" style="color: #d09afc"></i>&ensp;<span class="text-left" >${moim.likes }</span>&ensp;&ensp;
 							<i class="fas fa-users" style="color: #fcba03"></i>&ensp;<span class="mr-3">${moim.joinCount }/${moim.headCount }</span>
+							<c:if test="${moim.premiumYn == 'Y'}">
+								<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>
+							</c:if>
 							<p style="float: right">
 							<fmt:formatDate value="${moim.joinDate}" /></p>
 						</div>
@@ -166,17 +175,17 @@ h5 {
 </div>
 
 <!-- 모달창 -->
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="myModal" style="background-color: rgba(1, 1, 1, 0.7);">
 	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
+		<div class="modal-content" style="background-color: rgba(255, 255, 255, 0.0)">
 			<!-- Modal Header -->
-			<div class="modal-header">
+			<div id="home-modal-header" class="modal-header" style="background-color: rgba(255, 255, 255, 0.0) !important; color: #FFF">
 				<h4 class="modal-title">상세정보</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			<!-- Modal Header end -->
 			<!-- Modal body -->
-			<div class="modal-body" style="padding:0px;">
+			<div class="modal-body" style="padding:0px; background-color: #FFF">
 					<div id="home-modal-image" class="row"></div>
 					<div class="row">
 						<div class="col-12" style="padding: 30px;">
@@ -262,6 +271,9 @@ $(function() {
 					row2 += '</div><div class="text-left">';
 					row2 += '<i class="fas fa-heart" style="color: #d09afc"></i>&ensp;<span class="text-left" >'+locationMoim.likes+'</span>';
 				   	row2 += '&ensp;&ensp;<i class="fas fa-users" style="color: #fcba03"></i>&ensp;<span class="mr-3">'+locationMoim.joinCount+'/'+locationMoim.headCount+'</span>';
+				   	if (locationMoim.premiumYn == 'Y') {
+					   	row2 += '<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>';				   		
+				   	}
 				   	row2 += '<p style="float: right">'+locationMoim.joinDate+'</p>';
 				   	row2 += '</div></div></div>';
 					
@@ -322,6 +334,13 @@ $(function() {
 			dataType: "json",
 			success: function (moim) {
 				console.log(moim);
+				var header = '<img src="/resources/profileImage/'+moim.profileImage+'" class="rounded-circle z-depth-0" alt="image" height="50px" width="50px">'
+					header += '<span>'+moim.nickName+'</span>'
+					header += '<span">'+moim.userId+'</span>'
+					header += '<p>'+moim.userContent+'</p>'
+					
+				$("#home-modal-header").empty();
+				$("#home-modal-header").append(header);
 				$("#home-detail-title").text(moim.title)
 				$("#home-detail-count").text(moim.joinCount + "/" + moim.headCount)
 				$("#home-detail-content").text(moim.content)
@@ -340,7 +359,7 @@ $(function() {
 				$("#home-moim-join-btn").attr('href', join);
 				$("#home-moim-withdrawal-btn").attr('href', withdrawal);
 				
-				var image = '<div class="col-12"><img class="card-img-top" src="/resources/home_images/'+moim.image+'" alt="Card image cap" style="width: 100%; height: 581.63px;"></div>'
+				var image = '<div class="col-12"><img class="card-img-top" src="/resources/home_images/'+moim.image+'" alt="Card image cap" style="width: 100%; height: 581.63px; background-color: lightgray"></div>'
 				
 				$("#home-modal-image").empty();
 				$("#home-modal-image").append(image);
