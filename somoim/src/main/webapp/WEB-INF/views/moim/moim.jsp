@@ -249,7 +249,7 @@
 				<!-- Modal body -->
 				<div class="modal-body">
 					<img id="temp-img" width="300px" />
-					<form:input id="img-file" type="file" path="upfile" required="required" />
+					<form:input id="img-file" type="file" path="upfile" />
 				</div>
 				<form:input id="getMoimNo" type="text" hidden="hidden" value="${param.moimNo}" path="moimNo" />
 				<!-- Modal footer -->

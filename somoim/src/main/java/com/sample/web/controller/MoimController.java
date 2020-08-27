@@ -170,28 +170,29 @@ public class MoimController {
 	// 배너 수정
 	@PostMapping("/bannerAdd.do")
 	public String addBanner(@ModelAttribute("banner")  @Valid MoimBanner banner) {
-		
 		MultipartFile upfile = banner.getUpfile();
 		String filename = upfile.getOriginalFilename();
-		System.out.println(filename);
-			
-		File file = new File("C:\\final_project\\workspace\\somoim\\src\\main\\webapp\\resources\\moim_images\\"+filename);
-		FileOutputStream fos;
-		try {
-			file.createNewFile();
-			fos = new FileOutputStream(file);
-			fos.write(upfile.getBytes());
-			fos.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		banner.setBanner(filename);
 		
+		if("".equals(filename)) {
+			banner.setBanner("banner.jpg");
+		} else {
+			File file = new File("C:\\final_project\\workspace\\somoim\\src\\main\\webapp\\resources\\moim_images\\"+filename);
+			FileOutputStream fos;
+			try {
+				file.createNewFile();
+				fos = new FileOutputStream(file);
+				fos.write(upfile.getBytes());
+				fos.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			banner.setBanner(filename);
+		}
 		moimService.updateBanner(banner);
 		
-		return "moim.do?moimNo=" + banner.getMoimNo();
+		return "redirect:moim.do?moimNo=" + banner.getMoimNo();
 	}
 	
 	// 모임 삭제
