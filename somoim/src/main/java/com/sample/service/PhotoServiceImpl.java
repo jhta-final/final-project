@@ -1,12 +1,15 @@
 package com.sample.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.dao.PhotoDao;
+import com.sample.dto.PhotoWIthLikeDto;
 import com.sample.vo.MoimPhoto;
 import com.sample.vo.MoimPhotoLikes;
 
@@ -20,16 +23,6 @@ public class PhotoServiceImpl implements PhotoService {
 	@Override
 	public void addNewPhoto(MoimPhoto moimPhoto) {
 		photoDao.insertPhoto(moimPhoto);
-	}
-
-	@Override
-	public List<MoimPhoto> getPhotosByNo(long moimNo) {
-		return photoDao.selectPhotos(moimNo);
-	}
-
-	@Override
-	public List<MoimPhotoLikes> getLikes(MoimPhotoLikes photoLikes) {
-		return photoDao.getPhotoLikesByUserId(photoLikes);
 	}
 
 	@Override
@@ -48,6 +41,35 @@ public class PhotoServiceImpl implements PhotoService {
 		photoDao.updatePhoto(photo);
 		
 		photoDao.deleteLike(photoLikes);
+	}
+
+	@Override
+	public List<PhotoWIthLikeDto> getPhotosByMoimNo(long moimNo, String userId) {
+		List<PhotoWIthLikeDto> photos = photoDao.selectPhotos(moimNo);
+		HashMap<String, String> checkLikeMap = new HashMap<>();
+		checkLikeMap.put("userId", userId);
+		for (PhotoWIthLikeDto photo : photos) {
+			checkLikeMap.put("photoNo", String.valueOf(photo.getPhotoNo()));
+			int check = photoDao.getCheckLikeYN(checkLikeMap);
+			photo.setClickYN(check);
+		}
+		
+		return photos;
+	}
+
+	@Override
+	public List<PhotoWIthLikeDto> getPhotosWithRange(Map<String, Object> map, String userId) {
+		List<PhotoWIthLikeDto> photos = photoDao.selectPhotosWithRange(map);
+		HashMap<String, String> checkLikeMap = new HashMap<>();
+		checkLikeMap.put("userId", userId);
+		
+		for (PhotoWIthLikeDto photo : photos) {
+			checkLikeMap.put("photoNo", String.valueOf(photo.getPhotoNo()));
+			int check = photoDao.getCheckLikeYN(checkLikeMap);
+			photo.setClickYN(check);
+		}
+		
+		return photos;
 	}
 	
 

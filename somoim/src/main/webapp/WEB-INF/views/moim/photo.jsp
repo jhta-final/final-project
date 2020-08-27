@@ -73,41 +73,7 @@
 		</div>
 	</div>
 
-
-	<div class="row">
-		<c:forEach var="photo" items="${photos }">
-			<div class="card mb-4 photo-card">
-				<img class="card-img-top" src="/resources/moim_photo/${photo.photo }"
-					 alt="Card image cap">
-				<div class="card-body">
-					<div class="row">
-						<p class="ml-2">
-						<c:set var="heart" value="emp"/>
-							<c:forEach var="like" items="${photolikes }">
-								<c:if test="${like.photoNo eq photo.photoNo }">
-									<c:set var="heart" value="full"/>
-								</c:if>
-							</c:forEach>
-							<c:choose>
-								<c:when test="${heart eq 'emp' }">
-									<i id="photo-like" class="far fa-heart" onclick="addLike(${param.moimNo}, ${photo.photoNo }, '${LOGIN_USER.id }')"></i>
-								</c:when>
-								<c:otherwise>
-									<i id="photo-like" class="fas fa-heart" style="color:coral;" onclick="delLike(${param.moimNo}, ${photo.photoNo }, '${LOGIN_USER.id }')"></i>
-								</c:otherwise>
-							</c:choose>
-							<span class="ml-3">${photo.likes }개</span>						
-						</p>
-					</div>
-					<div class="row text-right">
-						<div class="col-12">
-							<span>${photo.userId }</span><span class="ml-4"><fmt:formatDate value="${photo.createdDate }"/> </span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</c:forEach>
-		
+	<div class="row" id="photo-body">
 	</div>
 
 	<div class="modal" id="photo-add">
@@ -123,9 +89,9 @@
 					<!-- Modal body -->
 					<div class="modal-body">
 						<img id="temp-img" width="300px" />
-						<form:input id="img-file" type="file" path="upfile" />
+						<form:input id="img-file" type="file" path="upfile" required="required" />
 					</div>
-					<form:input type="text" hidden="hidden" value="${param.moimNo}" path="moimNo" />
+					<form:input id="getMoimNo" type="text" hidden="hidden" value="${param.moimNo}" path="moimNo" />
 					<form:input type="text" hidden="hidden" value="${LOGIN_USER.id}" path="userId" />
 					<!-- Modal footer -->
 					<div class="modal-footer">
@@ -149,11 +115,117 @@
 </div>
 
 <script>
+    let isEnd = false;
+    let photoRow = 8;
+	let $photoBody = $("#photo-body");
+
 	$(function () {
 		$("#img-file").change(function (e) {
 			readURL(this);
 		});
+
+		$(window).scroll(function(){
+			let $window = $(this);
+			let scrollTop = $window.scrollTop();
+			let windowHeight = $window.height();
+			let documentHeight = $(document).height();
+			
+
+			// scrollbar의 thumb가 바닥 전 30px까지 도달 하면 리스트를 가져온다.
+			if( scrollTop + windowHeight == documentHeight ){
+				getPhotos();
+			}
+		})
+		getPhotos();
+		$("#photo-body").on("click", "i", function() {
+			var $that = $(this);
+			var $likeCnt = $that.next('span');
+			var likeCnt = Number($likeCnt.text().slice(0,-1));
+			var userId = $("#userId").val();
+			if ($that.hasClass('far')) {
+				$.ajax({
+					type:"GET",
+					url:"/moim/addLike.do",
+					data: {
+						moimNo : $that.data('moimno'),
+						photoNo : $that.data('photono'),
+						userId : userId
+					},
+					dataType: "json",
+					success:function (status) {
+						$that.removeClass('far');
+						$that.addClass('fas');
+						$likeCnt.text(likeCnt + 1 + '개');
+						$that.css("color", "coral");
+					}
+				})
+			} else {
+				$.ajax({
+					type:"GET",
+					url:"/moim/delLike.do",
+					data: {
+						moimNo : $that.data('moimno'),
+						photoNo : $that.data('photono'),
+						userId : userId
+					},
+					dataType: "json",
+					success:function (status) {
+						$that.removeClass('fas');
+						$that.addClass('far');
+						$likeCnt.text(likeCnt - 1 + '개');
+						$that.css("color", "black");
+					}
+				})
+			}
+		})
+
+
 	});
+	
+	function getPhotos() {
+		if(isEnd == true){
+            return;
+        }
+		
+		var moimNo = $("#getMoimNo").val()
+		$.ajax({
+			type:"GET",
+			url:"/moim/morePhoto.do",
+			data: {
+				moimNo : moimNo,
+				photoRow : photoRow
+			},
+			dataType: "json",
+			success:function (result) {
+				let length = result.length;
+				if( length < 4 ){
+					isEnd = true;
+				}
+				if(length == 0) {
+					return;
+				}
+
+				$.each(result, function (index, photo) {
+					let row = '';
+					row += '<div class="card mb-4 photo-card">';
+					row += '<img class="card-img-top" src="/resources/moim_photo/'+photo.photo+'"alt="Card image cap">';
+					row += '<div class="card-body"><div class="row"><p class="ml-2" id="photo-like">';
+					if(photo.clickYN == 0) {
+						row += '<i class="far fa-heart" data-moimno="'+photo.moimNo+'" data-photono="'+photo.photoNo+'"></i>';
+					} else {
+						row += '<i class="fas fa-heart" style="color:coral;" data-moimno="'+photo.moimNo+'" data-photono="'+photo.photoNo+'"></i>';
+					}				
+					row += '<span class="ml-3">'+photo.likes+'개</span></p></div>';
+					row += '<div class="row text-right"><div class="col-12">';
+					row += '<span>'+photo.userId+'</span><span class="ml-4">'+photo.createdDate+'</span>';
+					row += '</div></div></div></div>';
+
+					$photoBody.append(row);
+				})
+				photoRow += 4;
+			}
+		})
+	}
 
 	function readURL(input) {
 		
@@ -171,45 +243,7 @@
 
 	})
 	
-	function addLike(moimNo, photoNo, userId) {
-		$.ajax({
-			type:"GET",
-			url:"/moim/addLike.do",
-			data: {
-				moimNo: moimNo,
-				photoNo: photoNo,
-				userId: userId
-			},
-			dataType: "json",
-			success:function () {
-				location.reload(true);
-			},
-			error:function () {
-				location.reload(true);
-			}
-			
-		})
-	}
 	
-	function delLike(moimNo, photoNo, userId) {
-		$.ajax({
-			type:"GET",
-			url:"/moim/delLike.do",
-			data: {
-				moimNo: moimNo,
-				photoNo: photoNo,
-				userId: userId
-			},
-			dataType: "json",
-			success:function () {
-				location.reload(true);
-			},
-			error:function () {
-				location.reload(true);
-			}
-			
-		})
-	}
 </script>
 
 

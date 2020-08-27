@@ -13,7 +13,7 @@
 		(#{photoNo}, #{photo}, #{moimNo}, #{userId})
 	</insert>
 	
-	<select id="selectPhotos" parameterType="long" resultType="Photo">
+	<select id="selectPhotos" parameterType="long" resultType="PhotoWIthLikeDto">
 		select
 			photo_no		as photoNo,
 			photo			as photo,
@@ -28,6 +28,34 @@
 			moim_no = #{value}
 		order by
 			photo_no desc
+	</select>
+	
+	<select id="selectPhotosWithRange" parameterType="hashMap" resultType="PhotoWIthLikeDto">
+		select 
+		    photo_no		as photoNo,
+		    photo			as photo,
+		    likes			as likes,
+		    delete_yn		as deleteYn,
+		    created_date	as createdDate,
+		    moim_no			as moimNo,
+		    user_id			as userId
+		from 
+		    (select
+		        photo_no,		
+		        photo,		
+		        likes,			
+		        delete_yn,	
+		        created_date,
+		        moim_no,	
+		        user_id,	
+		        row_number() over(order by photo_no desc) rn
+		    from
+		        moim_photo
+		    where
+		        moim_no = #{moimNo}
+		    order by
+		        photo_no desc)
+		<![CDATA[where rn > #{beginIndex} and rn <= #{endIndex}]]>
 	</select>
 	
 	<select id="selectPhoto" parameterType="long" resultType="Photo">

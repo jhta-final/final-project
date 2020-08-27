@@ -2,12 +2,15 @@ package com.sample.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class PhotoWIthLikeDto {
 
 	private long photoNo;
 	private String photo;
 	private long likes;
 	private String deleteYn;
+	@JsonFormat(pattern="yyyy. MM. dd")
 	private Date createdDate;
 	private long moimNo;
 	private String userId;

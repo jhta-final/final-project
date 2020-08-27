@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sample.dto.MoimMainDto;
+import com.sample.dto.PhotoWIthLikeDto;
 import com.sample.service.BoardService;
 import com.sample.service.CategoryService;
 import com.sample.service.CommentService;
@@ -308,13 +311,28 @@ public class MoimController {
 	public String photo(@RequestParam("moimNo") long moimNo, Model model, HttpSession httpSession) {
 		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
 		
-		MoimPhotoLikes photoLikes = new MoimPhotoLikes(user.getId(), moimNo);
-		
-		model.addAttribute("photos", photoService.getPhotosByNo(moimNo));
-		model.addAttribute("photolikes", photoService.getLikes(photoLikes));
+		model.addAttribute("photos", photoService.getPhotosByMoimNo(moimNo, user.getId()));
 		model.addAttribute("photoForm", new PhotoForm());
 		
 		return "moim/photo.tiles";
+	}
+	
+	// 사진첩 무한스크롤
+	@GetMapping("morePhoto.do")
+	@ResponseBody
+	public List<PhotoWIthLikeDto> morePhoto(@RequestParam("moimNo") long moimNo, 
+			@RequestParam("photoRow") int photoRow, Model model, HttpSession httpSession) {
+		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
+		Map<String, Object> map = new HashMap<String, Object>();
+		if(photoRow == 8) 
+			map.put("beginIndex", 0);
+		else 
+			map.put("beginIndex", photoRow-4);
+		
+		map.put("endIndex", photoRow);
+		map.put("moimNo", moimNo);
+		
+		return photoService.getPhotosWithRange(map, user.getId());
 	}
 	
 	// 사진 추가
@@ -350,16 +368,20 @@ public class MoimController {
 	
 	// 좋아요 추가
 	@GetMapping("addLike.do")
-	public void addLike(@RequestParam("moimNo") long moimNo, @RequestParam("photoNo") long photoNo, @RequestParam("userId") String userId) {
+	@ResponseBody
+	public boolean addLike(@RequestParam("moimNo") long moimNo, @RequestParam("photoNo") long photoNo, @RequestParam("userId") String userId) {
 		MoimPhotoLikes photoLikes = new MoimPhotoLikes(userId, photoNo, moimNo);	
 		photoService.addLike(photoLikes);
+		return true;
 	}
 	
 	// 좋아요 삭제
 	@GetMapping("delLike.do")
-	public void delLike(@RequestParam("moimNo") long moimNo, @RequestParam("photoNo") long photoNo, @RequestParam("userId") String userId) {
+	@ResponseBody
+	public boolean delLike(@RequestParam("moimNo") long moimNo, @RequestParam("photoNo") long photoNo, @RequestParam("userId") String userId) {
 		MoimPhotoLikes photoLikes = new MoimPhotoLikes(userId, photoNo, moimNo);		
 		photoService.delLike(photoLikes);
+		return true;
 	}
 	
 	public static int stringToInt(String str, int defaultNumber) {
