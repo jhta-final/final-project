@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<style>
+	#moim-banner:hover {
+		cursor: pointer;
+	}
+</style>
+
 <div class="justify-content-center">
     <div class="row mt-3" style="width: 95%">
         <div class="col-12">
