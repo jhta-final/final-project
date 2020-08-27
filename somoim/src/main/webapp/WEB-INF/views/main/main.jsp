@@ -80,7 +80,7 @@ h5 {
 				<c:forEach items="${favoliteMoims }" var="favolite">
 				<div class="swiper-slide">
 					<div class="card mb-4 home-card" id="card-list" data-no="${favolite.moimNo }">
-						<img class="card-img-top" src="/resources/home_images/11.png"
+						<img class="card-img-top" src="/resources/home_images/${favolite.image }"
 							alt="Card image cap">
 						<div class="card-body">
 							<div class="card-title">
@@ -169,8 +169,6 @@ h5 {
 <div class="modal fade" id="myModal">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<input type="text" name="bookId" id="bookId" value="moimNo" hidden="hidden"/>
-
 			<!-- Modal Header -->
 			<div class="modal-header">
 				<h4 class="modal-title">상세정보</h4>
@@ -242,9 +240,6 @@ $(function() {
 			success:function(result){
 				if(result.moims.length == 0) {return;}
 				locationNo = result.moims[0].locationNo
-				console.log("locationNo" , locationNo);
-				console.log("result ---->", result);
-				
 				
 				if (result.total == 0) {
 	               $("#btn-get-data").hide();

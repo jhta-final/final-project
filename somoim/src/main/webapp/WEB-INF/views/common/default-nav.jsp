@@ -159,21 +159,20 @@
 				</div>
 			</form>
 		</div>
-		
 		<!-- 공지 -->
 		<div class="nav-Notice">
-		<c:forEach items="${BoardLists } " var="boardList">
 		    <ul id="ticker">
-		        <li><a href="#"></a></li>
+				<c:forEach items="${boardLists }" var="boardList" varStatus="listNo">
+				        <li><a href="#"><span>${listNo.count }</span>.<c:out value="${boardList.boardTitle}"/></a></li>
+				</c:forEach>
 		    </ul>
-		</c:forEach>
 		  <div class="nav-Notice-navi">
 		    <button class="btn btn-primary prev">이전</button>
 		    <button class="btn btn-primary next">다음</button>
 		    <button class="btn btn-warning pause none">정지</button>
 		  </div>
-		</div>
-		
+		</div> 
+		 
 		
 		<!-- 오른쪽 구역 -->
 		<div class="nav-right">
