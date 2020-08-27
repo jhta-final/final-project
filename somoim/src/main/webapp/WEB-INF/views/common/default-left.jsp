@@ -210,7 +210,7 @@
 	      <li class="nav-item">
 	      	<a data-toggle="collapse" href="#left-myfriends"
 			role="button" aria-expanded="false" aria-controls="collapseExample">
-			<i class="fas fa-users"></i> 내 친구 
+			<i class="fas fa-users"></i> 팔로잉 
 			</a>
 			<div class="collapse" id="left-myfriends" style="border-top: 1px solid lightgray">
 				<div class="nav-item">
@@ -274,8 +274,6 @@
 <div class="modal fade" id="leftModal">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<input type="text" name="bookId" id="bookId" value="moimNo" hidden="hidden"/>
-
 			<!-- Modal Header -->
 			<div class="modal-header">
 				<h4 class="modal-title">상세정보</h4>
