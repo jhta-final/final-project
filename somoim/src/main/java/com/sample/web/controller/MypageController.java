@@ -26,10 +26,12 @@ import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimJoinUserMoimDto;
 import com.sample.service.AlramService;
 import com.sample.service.MypageService;
+import com.sample.service.PhotoService;
 import com.sample.service.UserService;
 import com.sample.vo.MoimAlram;
 import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimPhoto;
+import com.sample.vo.MoimPhotoLikes;
 import com.sample.vo.MoimUser;
 import com.sample.web.form.ModifyForm;
 
@@ -45,6 +47,9 @@ public class MypageController {
 	
 	@Autowired
 	AlramService alramService;
+	
+	@Autowired
+	PhotoService photoService;
 	
 	private MoimUser user = new MoimUser();
 	
@@ -139,5 +144,23 @@ public class MypageController {
 		userService.deleteUser(user.getId());
 		session.invalidate();
 		return "redirect:/"; 
+	}
+	
+	// 좋아요 추가
+	@GetMapping("/addLike.do")
+	@ResponseBody
+	public boolean addLike(@RequestParam("moimNo") long moimNo, @RequestParam("photoNo") long photoNo) {
+		MoimPhotoLikes photoLikes = new MoimPhotoLikes(user.getId(), photoNo, moimNo);	
+		photoService.addLike(photoLikes);
+		return true;
+	}
+	
+	// 좋아요 삭제
+	@GetMapping("/delLike.do")
+	@ResponseBody
+	public boolean delLike(@RequestParam("moimNo") long moimNo, @RequestParam("photoNo") long photoNo) {
+		MoimPhotoLikes photoLikes = new MoimPhotoLikes(user.getId(), photoNo, moimNo);		
+		photoService.delLike(photoLikes);
+		return true;
 	}
 }

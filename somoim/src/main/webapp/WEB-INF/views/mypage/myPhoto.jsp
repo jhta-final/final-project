@@ -91,10 +91,10 @@
 								<div class="row">
 									<p class="ml-2" id="mypage-photo-like">
 										<c:if test="${photo.clickYN eq 0 }">
-											<i class="far fa-heart" data-nos="{'moimNo': ${photo.moimNo }, 'photoNo':${photo.photoNo }}"></i>
+											<i class="far fa-heart" data-moimno="${photo.moimNo }" data-photono="${photo.photoNo }"></i>
 										</c:if>
 										<c:if test="${photo.clickYN eq 1 }">
-											<i class="fas fa-heart" data-nos="{'moimNo': ${photo.moimNo }, 'photoNo':${photo.photoNo }}"></i>
+											<i class="fas fa-heart" data-moimNo="${photo.moimNo }" data-photoNo="${photo.photoNo }"></i>
 										</c:if>
 										<span class="ml-3">${photo.likes }개</span>						
 									</p> 
@@ -132,43 +132,40 @@
 	$(function () {
 		
 		$("#mypage-photo-like i").click(function() {
-			console.log($(this).data('nos'))
-			if ($(this).hasClass('far')) {
+			var $that = $(this);
+			var $likeCnt = $that.next('span');
+			var likeCnt = Number($likeCnt.text().slice(0,-1));
+			
+			if ($that.hasClass('far')) {
 				$.ajax({
 					type:"GET",
-					url:"/moim/addLike.do",
+					url:"/mypage/addLike.do",
 					data: {
-						moimNo: moimNo,
-						photoNo: photoNo,
-						userId: userId
+						moimNo : $that.data('moimno'),
+						photoNo : $that.data('photono')
 					},
 					dataType: "json",
-					success:function () {
-						location.reload(true);
-					},
-					error:function () {
-						location.reload(true);
+					success:function (status) {
+						$that.removeClass('far');
+						$that.addClass('fas');
+						$likeCnt.text(likeCnt + 1 + '개');
 					}
-					
 				})
 			} else {
 		
 				$.ajax({
 					type:"GET",
-					url:"/moim/delLike.do",
+					url:"/mypage/delLike.do",
 					data: {
-						moimNo: moimNo,
-						photoNo: photoNo,
-						userId: userId
+						moimNo : $that.data('moimno'),
+						photoNo : $that.data('photono')
 					},
 					dataType: "json",
-					success:function () {
-						location.reload(true);
-					},
-					error:function () {
-						location.reload(true);
+					success:function (status) {
+						$that.removeClass('fas');
+						$that.addClass('far');
+						$likeCnt.text(likeCnt - 1 + '개');
 					}
-					
 				})
 			}
 		})
