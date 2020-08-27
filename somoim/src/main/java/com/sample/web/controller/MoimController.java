@@ -73,7 +73,24 @@ public class MoimController {
 		
 		MoimMainDto moimMainDto = new MoimMainDto();
 		BeanUtils.copyProperties(moimForm, moimMainDto);
-		System.out.println(moimMainDto.getPremiumYn());
+		
+		MultipartFile upfile = moimForm.getUpfile();
+		String filename = upfile.getOriginalFilename();
+			
+		File file = new File("C:\\final_project\\workspace\\somoim\\src\\main\\webapp\\resources\\home_images\\"+filename);
+		FileOutputStream fos;
+		try {
+			file.createNewFile();
+			fos = new FileOutputStream(file);
+			fos.write(upfile.getBytes());
+			fos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		moimMainDto.setImage(filename);
+		
 		moimService.addNewMoim(moimMainDto);
 		
 		return "redirect:moim.do?moimNo=" + moimMainDto.getMoimNo();
