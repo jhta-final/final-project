@@ -13,6 +13,11 @@
 		(#{moimNo}, #{title}, #{headCount}, #{content}, #{image}, #{fee}, #{joinDate}, #{subCateNo}, #{locationNo})
 	</insert>
 	
+	<insert id="insertMoimBanner" parameterType="long">
+		insert into moim_banner
+		values(#{moimNo}, 'banner.jpg')
+	</insert>
+	
 	<select id="selectMoims" resultType="MainDto">
 		select
 			a.moim_no		as moimNo,
@@ -67,6 +72,15 @@
             a.moim_no = b.moim_no
 	</select>
 	
+	<select id="selectBanner" parameterType="long" resultType="String">
+		select			
+			banner
+		from
+			moim_banner
+		where
+			moim_no = #{value}
+	</select>
+	
 	
 	<update id="updateMoim" parameterType="MainDto">
 		update moim_main
@@ -83,6 +97,14 @@
 			join_date = #{joinDate},
 			sub_cate_no = #{subCateNo},
 			location_no = #{locationNo}
+		where
+			moim_no = #{moimNo}
+	</update>
+	
+	<update id="updateBanner" parameterType="Banner">
+		update moim_banner
+		set
+			banner = #{banner}
 		where
 			moim_no = #{moimNo}
 	</update>

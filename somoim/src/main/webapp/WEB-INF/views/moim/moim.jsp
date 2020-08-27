@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div class="justify-content-center">
     <div class="row mt-3" style="width: 95%">
         <div class="col-12">
-            <img src="/resources/moim_images/longboard.jpg" width="100%" />
+            <img id="moim-banner" src="/resources/moim_images/${moim.banner}" width="100%" height="283px" />
         </div>
     </div>
     <div class="row mt-4">
@@ -234,6 +235,36 @@
         </div>
     </div>
 </div>
+
+<div class="modal" id="banner-add">
+	<div class="modal-dialog">
+    	<div class="modal-content">
+
+	        <!-- Modal Header -->
+			<div class="modal-header">
+				<h4 class="modal-title">배너 변경</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<form:form action="bannerAdd.do" method="post" enctype="multipart/form-data" modelAttribute="banner" >
+				<!-- Modal body -->
+				<div class="modal-body">
+					<img id="temp-img" width="300px" />
+					<form:input id="img-file" type="file" path="upfile" required="required" />
+				</div>
+				<form:input id="getMoimNo" type="text" hidden="hidden" value="${param.moimNo}" path="moimNo" />
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<div class="text-right">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+						<button type="submit" class="btn btn-primary">수정</button>
+					</div>
+
+				</div>
+			</form:form>
+		</div>
+	</div>
+</div>
+
 <script>
 
     let joinCount = 0;
@@ -244,22 +275,12 @@
 
     $("#btn-participant").on("click", subMoimfx(subNo, loginUser));
 
-   	$(function () {
-
-
-   	 //    console.log(joinCount, headCount, subNo, tempUser, loginUser);
-        // if(tempUser == null) {
-        //     if(joinCount != headCount) {
-        //         $("#btn-participant").on("click", joinSub(subNo, loginUser));
-        //     }
-        // } else {
-        //     $("#btn-participant").on("click", exitSub(subNo, loginUser));
-        // }
-
-        
-
-
+    $(function() {
+    	$("#img-file").change(function (e) {
+			readURL(this);
+		});
     })
+   	
 
     function subMoimModify(subMoimNo) {
         $("#sub-modify-no").val(subMoimNo);
@@ -343,6 +364,22 @@
                     $joinusers.append(div);
                 }
             })
-       }
+      }
+	
+	function readURL(input) {
+		
+		if(input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$("#temp-img").attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	
+	$("#moim-banner").click(function () {
+		$("#banner-add").modal("show");
+
+	})
 
 </script>
