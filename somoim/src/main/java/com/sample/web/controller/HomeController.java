@@ -120,13 +120,16 @@ public class HomeController {
 	@ResponseBody
 	public DetailViewMoimsDto getDetailViewMoims(HttpSession httpSession, @RequestParam("moimNo") long moimNo) {
 		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
-		DetailViewMoimsDto detailViewMoimsDto = homeService.detailViewMoims(moimNo);
-		MoimFavoriteMoim moimFavoriteMoim = homeService.getFavorite(moimNo, user.getId());
 		
+		// 모임 디테일 가져오기
+		DetailViewMoimsDto detailViewMoimsDto = homeService.detailViewMoims(moimNo, user.getId());
+		
+		// 좋아요 기능
+		MoimFavoriteMoim moimFavoriteMoim = homeService.getFavorite(moimNo, user.getId());
 		if(moimFavoriteMoim == null) {
-			detailViewMoimsDto.getMoimMainDto().setLikesYn("N");
+			detailViewMoimsDto.setLikesYn("N");
 		}else {
-			detailViewMoimsDto.getMoimMainDto().setLikesYn("Y");
+			detailViewMoimsDto.setLikesYn("Y");
 		}
 		return detailViewMoimsDto;
 	}

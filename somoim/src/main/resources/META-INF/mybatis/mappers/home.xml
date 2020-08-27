@@ -77,38 +77,43 @@
 	
 	<!-- 상세정보 -->
 	<select id="detailViewMoims" parameterType="long" resultType="DetailViewMoimsDto">
-		select
-			a.moim_no		as moimNo,
-			title			as title,
-            b.user_id       as userId,
-			join_count		as joinCount,
-			head_count		as headCount,
-			content			as content,
-			image			as image,
-			fee				as fee,
-			likes			as likes,
-			premium_yn		as premiumYn,
-			f.delete_yn		as deleteYn,
-			join_date		as joinDate,
-			a.created_date	as createdDate,
-			d.sub_cate_no	as subCateNo,
-			d.name			as subCateName,
-			e.location_no	as locationNo,
-			e.name      	as locationName,
-			c.main_cate_no	as mainCateNo,
-			c.name			as mainCateName,
-			user_role		as userRole,
-            nickname        as nickName
-			
-		from 
-			moim_main A, moim_join_user B, moim_main_category C, 
-            moim_sub_cate D, moim_location E, moim_user F
-		where
-			a.moim_no = b.moim_no and c.main_cate_no = d.main_cate_no and
-			a.sub_cate_no = d.sub_Cate_no and e.location_no = a.location_no
-            and f.user_id = b.user_id
-		and
-			a.moim_no = #{value}
+		select a.moim_no		as moimNo
+		    , a.title			as title
+		    , a.join_count		as joinCount
+		    , a.head_count		as headCount
+		    , a.content			as content
+		    , a.image			as image
+		    , a.fee				as fee
+		    , a.likes			as likes
+		    , a.premium_yn		as premiumYn
+		    , a.delete_yn		as deleteYn
+		    , a.join_date		as joinDate
+		    , a.created_date	as createdDate
+		    , b.main_cate_no	as mainCateNo
+		    , b.name			as mainCateName
+		    , c.sub_cate_no		as subCateNo
+		    , c.name			as subCateName
+		    , d.location_no		as locationNo 
+		    , d.name			as locationName
+		    , e.user_id			as userId
+		    , f.nickname		as nickName
+		    , f.profile_image	as profileImage
+		    , f.user_content	as userContent
+		from moim_main A, moim_main_category B, moim_sub_cate C, moim_location D
+		    , moim_join_user E, moim_user F
+		where a.sub_cate_no = c.sub_cate_no
+		and c.main_cate_no = b.main_cate_no
+		and a.location_no = d.location_no
+		and a.moim_no = e.moim_no
+		and e.user_role = 'ADMIN'
+		and e.user_id = f.user_id
+		and a.moim_no = #{value}
+	</select>
+	<select id="checkJoinMoim" parameterType="hashmap" resultType="int">
+		select count(*)
+		from moim_join_user
+		where user_id = #{userId}
+		and moim_no = #{moimNo}
 	</select>
 
 	<!-- 랜덤 모임 표시 -->

@@ -161,7 +161,8 @@
 				<div class="nav-item">
 					<c:choose>
 						<c:when test="${not empty joinedMoim }">
-							<c:forEach items="${joinedMoim}" var="joinedMoim">
+							<c:forEach items="${joinedMoim}" var="joinedMoim" end="2">
+							
 								<a id="left-modal" class="nav-link" data-no="${joinedMoim.moimNo }"> <span class="nav-item avatar">
 										${joinedMoim.title }
 										<c:if test="${joinedMoim.premiumYn eq 'Y'}">
@@ -282,15 +283,14 @@
 			<!-- Modal Header end -->
 			<!-- Modal body -->
 			<div class="modal-body" style="padding:0px;">
-					<div class="row">
-						<div class="col-12"><img class="card-img-top" src="/resources/home_images/9.jpg"
-							alt="Card image cap" style="width: 100%; height: 450px;"></div>
-					</div>
+					<div id="left-modal-image" class="row"></div>
 					<div class="row">
 						<div class="col-12" style="padding: 30px;">
 						<h3 id="left-detail-title"></h3>
 							<p id="left-detail-count"></p>
 							<p id="left-detail-content"></p>
+							<p id="left-detail-location"></p>
+							<p id="left-detail-cate"></p>
 							<p><i class="fas fa-won-sign 2x"></i><span id="left-detail-fee"></span></p>
 							<p id="left-detail-likes"></p>
 							<p id="left-detail-premium"></p>
@@ -368,24 +368,32 @@ $(function() {
 			dataType: "json",
 			success: function (moim) {
 				console.log(moim);
-				$("#left-detail-title").text(moim.moimMainDto.title)
-				$("#left-detail-count").text(moim.moimMainDto.joinCount + "/" + moim.moimMainDto.headCount)
-				$("#left-detail-content").text(moim.moimMainDto.content)
-				$("#left-detail-fee").text(moim.moimMainDto.fee + "원")
-				$("#left-detail-likes").text("좋아요수 : " + moim.moimMainDto.likes + "개")
-				$("#left-detail-joinDate").text("모이는날 : " + moim.moimMainDto.joinDate)
-				$("#left-detail-createDate").text("만든날 : " + moim.moimMainDto.createdDate)
+				$("#left-detail-title").text(moim.title)
+				$("#left-detail-count").text(moim.joinCount + "/" + moim.headCount)
+				$("#left-detail-content").text(moim.content)
+				$("#left-detail-fee").text(moim.fee + "원")
+				$("#left-detail-location").text("지역 : " + moim.locationName)
+				$("#left-detail-cate").text("카테고리 : " + moim.subCateName)
+				$("#left-detail-likes").text("좋아요수 : " + moim.likes + "개")
+				$("#left-detail-joinDate").text("모이는날 : " + moim.joinDate)
+				$("#left-detail-createDate").text("만든날 : " + moim.createdDate)
 				
-				var link = '/moim/moim.do?moimNo='+moim.moimMainDto.moimNo+'';
-				var join = '/moim/join.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${LOGIN_USER.id}';
-				var withdrawal = '/moim/outMoim.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${LOGIN_USER.id}';
+				var link = '/moim/moim.do?moimNo='+moim.moimNo+'';
+				var join = '/moim/join.do?moimNo='+moim.moimNo+'&userId=${LOGIN_USER.id}';
+				var withdrawal = '/moim/outMoim.do?moimNo='+moim.moimNo+'&userId=${LOGIN_USER.id}';
 
 				$("#left-moim-join-btn").attr('href', join);
 				$("#left-moim-withdrawal-btn").attr('href', withdrawal);
-				modalMoimNo = moim.moimMainDto.moimNo;
+				modalMoimNo = moim.moimNo;
+				
+				var image = '<div class="col-12"><img class="card-img-top" src="/resources/home_images/'+moim.image+'" alt="Card image cap" style="width: 100%; height: 581.63px;"></div>'
+				
+				$("#left-modal-image").empty();
+				$("#left-modal-image").append(image);
+				
 				
 				$("#left-detail-premium").empty();
-				if(moim.moimMainDto.premiumYn == 'Y') {
+				if(moim.premiumYn == 'Y') {
 					$("#left-moim-link-btn").attr("href", link);
 					let premium = '<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>';
 					$("#left-detail-premium").append(premium);
@@ -394,7 +402,7 @@ $(function() {
 					$("#left-moim-link-btn").css('display', 'none');
 				}
 				
-				if(moim.moimMainDto.likesYn == 'Y') {
+				if(moim.likesYn == 'Y') {
 					$("#left-modal-like").attr('class', 'fas fa-heart')
 				} else {
 					$("#left-modal-like").attr('class', 'far fa-heart')

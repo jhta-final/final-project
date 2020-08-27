@@ -43,7 +43,10 @@ public interface HomeDao {
 	List<MoimMainDto> selectMoim(String userId);
 	
 	// 상세보기
-	List<DetailViewMoimsDto> detailViewMoims(long moimNo);
+	DetailViewMoimsDto detailViewMoims(long moimNo);
+	
+	// 모임가입여부체크
+	int checkJoinMoim(HashMap<String, String> userInfo);
 	
 	// 키워드검색조건
 	List<MoimMainDto> searchFunction(String keyword);

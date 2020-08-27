@@ -39,7 +39,7 @@ public interface HomeService {
 	List<MoimMainDto> getselectMoim(String userId);
 	
 	// 상세정보 보기
-	DetailViewMoimsDto detailViewMoims(long moimNo);
+	DetailViewMoimsDto detailViewMoims(long moimNo, String userId);
 	
 	// 검색조건
 	List<MoimMainDto> getsearchFunction(String keyword);
@@ -60,4 +60,5 @@ public interface HomeService {
 	
 	// 공지사항 10개 뽑기
 	List<MoimManagerBoard> getmoimManagerBoardList();
+
 }

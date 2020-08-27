@@ -121,7 +121,7 @@ h5 {
 		<div class="row home-body">
 			<c:forEach items="${mainCategoryMoims }" var="category">
 				<div class="card mb-4 home-card" data-no="${category.moimNo }">
-					<img class="card-img-top" src="/resources/home_images/7.jpg"
+					<img class="card-img-top" src="/resources/home_images/${category.image }"
 						alt="Card image cap">
 					<div class="card-body">
 						<div class="card-title">
@@ -145,7 +145,7 @@ h5 {
 		<div class="row home-body">
 			<c:forEach items="${allMoims }" var="moim">
 				<div class="card mb-4 home-card" data-no="${moim.moimNo }">
-					<img class="card-img-top" src="/resources/home_images/9.jpg"
+					<img class="card-img-top" src="/resources/home_images/${moim.image }"
 						alt="Card image cap">
 					<div class="card-body">
 						<div class="card-title">
@@ -177,15 +177,14 @@ h5 {
 			<!-- Modal Header end -->
 			<!-- Modal body -->
 			<div class="modal-body" style="padding:0px;">
-					<div class="row">
-						<div class="col-12"><img class="card-img-top" src="/resources/home_images/9.jpg"
-							alt="Card image cap" style="width: 100%; height: 450px;"></div>
-					</div>
+					<div id="home-modal-image" class="row"></div>
 					<div class="row">
 						<div class="col-12" style="padding: 30px;">
 						<h3 id="home-detail-title"></h3>
 							<p id="home-detail-count"></p>
 							<p id="home-detail-content"></p>
+							<p id="home-detail-location"></p>
+							<p id="home-detail-cate"></p>
 							<p><i class="fas fa-won-sign 2x"></i><span id="home-detail-fee"></span></p>
 							좋아요수 : <span id="home-detail-likes"></span>개
 							<p id="home-detail-premium"></p>
@@ -257,7 +256,7 @@ $(function() {
 				$.each(result.moims, function(index, locationMoim){
 					
 					var row2 = '<div class="card mb-4 home-card" data-no="'+ locationMoim.moimNo +'">';
-					row2 += '<img class="card-img-top" src="/resources/home_images/11.jpeg" alt="Card image cap">';
+					row2 += '<img class="card-img-top" src="/resources/home_images/'+locationMoim.image+'" alt="Card image cap">';
 					row2 += '<div class="card-body"><div class="card-title">';
 					row2 += '<span>'+locationMoim.title+'</span>';
 					row2 += '</div><div class="text-left">';
@@ -323,26 +322,31 @@ $(function() {
 			dataType: "json",
 			success: function (moim) {
 				console.log(moim);
-				$("#home-detail-title").text(moim.moimMainDto.title)
-				$("#home-detail-count").text(moim.moimMainDto.joinCount + "/" + moim.moimMainDto.headCount)
-				$("#home-detail-content").text(moim.moimMainDto.content)
-				$("#home-detail-fee").text(moim.moimMainDto.fee + "원")
-				$("#home-detail-likes").text(moim.moimMainDto.likes)
-				$("#home-detail-joinDate").text("모이는날 : " + moim.moimMainDto.joinDate)
-				$("#home-detail-createDate").text("만든날 : " + moim.moimMainDto.createdDate)
+				$("#home-detail-title").text(moim.title)
+				$("#home-detail-count").text(moim.joinCount + "/" + moim.headCount)
+				$("#home-detail-content").text(moim.content)
+				$("#home-detail-fee").text(moim.fee + "원")
+				$("#home-detail-location").text("지역 : " + moim.locationName)
+				$("#home-detail-cate").text("카테고리 : " + moim.subCateName)
+				$("#home-detail-likes").text(moim.likes)
+				$("#home-detail-joinDate").text("모이는날 : " + moim.joinDate)
+				$("#home-detail-createDate").text("만든날 : " + moim.createdDate)
 				
-				var link = '/moim/moim.do?moimNo='+moim.moimMainDto.moimNo+'';
-				var join = '/moim/join.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${LOGIN_USER.id}';
-				var withdrawal = '/moim/outMoim.do?moimNo='+moim.moimMainDto.moimNo+'&userId=${LOGIN_USER.id}';
-				modalMoimNo = moim.moimMainDto.moimNo;
+				var link = '/moim/moim.do?moimNo='+moim.moimNo+'';
+				var join = '/moim/join.do?moimNo='+moim.moimNo+'&userId=${LOGIN_USER.id}';
+				var withdrawal = '/moim/outMoim.do?moimNo='+moim.moimNo+'&userId=${LOGIN_USER.id}';
+				modalMoimNo = moim.moimNo;
 				
 				$("#home-moim-join-btn").attr('href', join);
 				$("#home-moim-withdrawal-btn").attr('href', withdrawal);
 				
+				var image = '<div class="col-12"><img class="card-img-top" src="/resources/home_images/'+moim.image+'" alt="Card image cap" style="width: 100%; height: 581.63px;"></div>'
 				
+				$("#home-modal-image").empty();
+				$("#home-modal-image").append(image);
 				
 				$("#home-detail-premium").empty();
-				if(moim.moimMainDto.premiumYn == 'Y') {
+				if(moim.premiumYn == 'Y') {
 					$("#home-moim-link-btn").attr("href", link);
 					let premium = '<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>';
 					$("#home-detail-premium").append(premium);
@@ -353,7 +357,7 @@ $(function() {
 				
 				
 				
-				if(moim.moimMainDto.likesYn == 'Y') {
+				if(moim.likesYn == 'Y') {
 					$("#home-modal-like").attr('class', 'fas fa-heart')
 				} else {
 					$("#home-modal-like").attr('class', 'far fa-heart')

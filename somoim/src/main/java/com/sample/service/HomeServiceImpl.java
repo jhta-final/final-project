@@ -111,9 +111,16 @@ public class HomeServiceImpl implements HomeService{
 	}
 
 	@Override
-	public DetailViewMoimsDto detailViewMoims(long moimNo) {
+	public DetailViewMoimsDto detailViewMoims(long moimNo, String userId) {
+		DetailViewMoimsDto moimDetail = homeDao.detailViewMoims(moimNo);
 		
-		return new DetailViewMoimsDto(moimDao.selectMoim(moimNo), moimDao.selectJoinUsers(moimNo));
+		HashMap<String, String> checkJoin = new HashMap<String,String>();
+		checkJoin.put("moimNo", String.valueOf(moimNo));
+		checkJoin.put("userId", userId);
+		
+		moimDetail.setCheckJoin(homeDao.checkJoinMoim(checkJoin));
+		
+		return moimDetail;
 	}
 
 	// 키워드 검색 기능
