@@ -19,6 +19,7 @@
 	            <img class="mr-3" data-no="default3" src="/resources/home_images/6.jpeg" width="150" height="150" />
 	            <img class="mr-3" data-no="default4" src="/resources/home_images/7.jpg" width="150" height="150" />
             </span>
+            <form:input type="file" path="upfile" />
             <br>
         </div>
         <form:input id="image-name" hidden="hidden" path="image" value="default1"/>

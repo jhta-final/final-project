@@ -8,6 +8,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MoimForm {
 
 	private long moimNo;
@@ -38,6 +40,8 @@ public class MoimForm {
 	private long locationNo;
 	
 	private String userId;
+	
+	private MultipartFile upfile;
 
 	public long getMoimNo() {
 		return moimNo;
@@ -130,6 +134,15 @@ public class MoimForm {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	
+	public MultipartFile getUpfile() {
+		return upfile;
+	}
+
+	public void setUpfile(MultipartFile upfile) {
+		this.upfile = upfile;
 	}
 
 	@Override
