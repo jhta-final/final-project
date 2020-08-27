@@ -240,10 +240,9 @@ $(function() {
 				currentPageNo :currentPageNo
 			},
 			success:function(result){
-				if (locationNo == null){
-					return;
-				}
+				if(result.moims.length == 0) {return;}
 				locationNo = result.moims[0].locationNo
+				console.log("locationNo" , locationNo);
 				console.log("result ---->", result);
 				
 				
