@@ -64,6 +64,7 @@ public interface HomeDao {
 
 	// 지역 검색 총 개수
 	long getAllLocationCount(long locationNo);
+	long getAllMainCateCount(long mainCateNo);
  
 	// 공지사항 10개 뽑기
 	List<MoimManagerBoard> moimManagerBoardList();

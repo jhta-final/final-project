@@ -203,7 +203,7 @@ public class HomeController {
 		}
 		
 		map.put("moims", homeService.getMainCategoryMoims(beginIndex, beginIndex+3, mainCateNo));
-		map.put("total", homeService.getMainCategoryMoims(beginIndex, beginIndex+3, mainCateNo).size());
+		map.put("total", homeService.getAllMainCateCount(mainCateNo));
 		
 		return map;
 	}
