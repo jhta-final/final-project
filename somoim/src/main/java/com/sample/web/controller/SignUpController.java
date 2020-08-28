@@ -56,10 +56,9 @@ public class SignUpController {
 	@ResponseBody
 	public String step1Submit (@RequestBody @Valid SignUpForm signUpForm1,
 			BindingResult errors) {
-		System.out.println("결과: " + signUpForm1);
-		/*if(errors.hasErrors()) {
+		if(errors.hasErrors()) {
 			return "false";
-		}*/
+		}
 		signUpForm.setId(signUpForm1.getId());
 		signUpForm.setName(signUpForm1.getName());
 		signUpForm.setNickname(signUpForm1.getNickname());

@@ -176,30 +176,30 @@
 		
 		<!-- 오른쪽 구역 -->
 		<div class="nav-right">
-			<div class="nav-right-alram">
-				<div >
-				</div>
-					<i class="fas fa-bell" data-toggle="dropdown"></i>
-				<div id="alram-dropdown" class="dropdown-menu dropdown-menu-right">
-					<c:choose>
-						<c:when test="${empty alrams }">
-							<p>새 알림이 없습니다.</p>
-						</c:when>
-						<c:otherwise>
-							<c:forEach items="${alrams }" var="alram">
-								<a data-alram-no="${alram.alramNo }" class="dropdown-item " href="#"><strong>
-										<c:out value="[${alram.type }]"></c:out>
-									</strong>
-									<c:out value="${alram.message }"></c:out>
-								</a>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
-				</div>
-			</div>
-			
 			<c:choose>
 				<c:when test="${LOGIN_USER.id ne 'admin' }">
+					<div class="nav-right-alram">
+						<div >
+						</div>
+							<i class="fas fa-bell" data-toggle="dropdown"></i>
+						<div id="alram-dropdown" class="dropdown-menu dropdown-menu-right">
+							<c:choose>
+								<c:when test="${empty alrams }">
+									<p>새 알림이 없습니다.</p>
+								</c:when>
+								<c:otherwise>
+									<c:forEach items="${alrams }" var="alram">
+										<a data-alram-no="${alram.alramNo }" class="dropdown-item " href="#"><strong>
+												<c:out value="[${alram.type }]"></c:out>
+											</strong>
+											<c:out value="${alram.message }"></c:out>
+										</a>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+						</div>
+					</div>
+			
 					<div class="nav-right-profile">
 						<div data-toggle="dropdown">
 							<img src="/resources/profileImage/${LOGIN_USER.profileImage }" class="rounded-circle z-depth-0"
@@ -213,10 +213,14 @@
 							<a class="dropdown-item" href="/login/signout.do">로그아웃</a>
 						</div>
 					</div>
+					<c:if test="${LOGIN_USER.id eq 'moon' }">
+						<a class="btn btn-primary" href="/manager/show.do">관리자 모드</a>
+					</c:if>
 				</c:when>
 				<c:otherwise>
 					<div>
 						<a class="btn btn-primary" href="/manager/show.do">관리자 모드</a>
+						<a class="btn btn-info" href="/login/signout.do">나가기</a>
 					</div>				
 				</c:otherwise>
 			</c:choose>
