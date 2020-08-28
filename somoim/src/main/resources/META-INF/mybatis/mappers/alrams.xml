@@ -22,11 +22,8 @@
 		(#{messageNo}, #{title}, #{content}, #{sendUser}, #{receiveUser}, #{userId})
 	</insert>
 	
-	<update id="updateAlram" parameterType="long">
-		update 
-			moim_alram
-		set
-			read_yn = 'Y'
+	<update id="deleteAlram" parameterType="long">
+		delete from moim_alram
 		where
 			alram_no = #{value}
 	</update>

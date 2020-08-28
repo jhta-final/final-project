@@ -45,7 +45,8 @@ public interface HomeService {
 	List<MoimMainDto> getsearchFunction(String keyword);
 	
 	// 셀렉트박스 검색
-	List<MoimMainDto> getselectSearchFunction(Map<String, Object> keyword);
+	List<MoimMainDto> getselectSearchFunction(Map<String, Object> select);
+	
 	
 	//무한 스크롤
 	List<MoimMainDto> getscrollMoim();
@@ -60,5 +61,6 @@ public interface HomeService {
 	
 	// 공지사항 10개 뽑기
 	List<MoimManagerBoard> getmoimManagerBoardList();
+	
 
 }

@@ -11,7 +11,7 @@ public interface AlramDao {
 	
 	void insertAlram(MoimAlram alram);
 		
-	void updateAlram(long alramNo);
+	void deleteAlram(long alramNo);
 	
 	// 보낸쪽지함
 	List<MoimMessage> getAllSendMessages(String userId);

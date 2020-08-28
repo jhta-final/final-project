@@ -4,26 +4,37 @@
 <mapper namespace="com.sample.dao.HomeDao">
 	<!-- 키워드 검색기능 -->
 	<select id="searchFunction" parameterType="string" resultType="MainDto"> 
-	select *
+	select
+			a.moim_no		as moimNo,
+			title			as title,
+			content			as content,
+			a.premium_yn	as premiumYn,
+			a.created_date	as createdDate,
+			b.location_no	as locationNo,
+			b.name      	as locationName,
+            c.sub_cate_no	as subCateNo,
+			c.name			as subCateName,
+			d.main_cate_no	as mainCateNo,
+			d.name			as mainCateName
 	from
-		moim_main a
-		join moim_location b on a.location_no = b.location_no
-		join moim_sub_cate c on a.sub_cate_no = c.sub_cate_no
-		join moim_main_category d on c.main_cate_no = d.main_cate_no
+			moim_main a
+			join moim_location b on a.location_no = b.location_no
+			join moim_sub_cate c on a.sub_cate_no = c.sub_cate_no
+			join moim_main_category d on c.main_cate_no = d.main_cate_no
 	where 
-		(a.title like '%' || #{value} || '%'
+			(a.title like '%' || #{value} || '%'
 	or
-		a.content like '%' || #{value} || '%'
+			a.content like '%' || #{value} || '%'
+    or
+			d.name like '%' || #{value} || '%'
 	or
-		b.name like '%' || #{value} || '%'
-	or
-		c.name like '%' || #{value} || '%'
+			c.name like '%' || #{value} || '%'
 	or 
-		d.name like '%' || #{value} || '%')
+			d.name like '%' || #{value} || '%')
 	and
-		a.delete_yn = 'N'
+			a.delete_yn = 'N'
 	order by 
-		a.created_date desc
+			a.created_date desc
 	</select>
 	
 	<!-- 셀렉트박스 검색 -->
@@ -49,28 +60,38 @@
 	from 
 			moim_main A, moim_main_category C, 
             moim_sub_cate D, moim_location E
-	<where>	
+	<where>
             c.main_cate_no = d.main_cate_no 
 	and
 			a.sub_cate_no = d.sub_cate_no 
 	and 
-            e.location_no = a.location_no
-	and 
-            delete_yn = 'N'
+			e.location_no = a.location_no
+	and
+			delete_yn = 'N'
+    and	
+    	(a.title like '%' || #{keyword} || '%'
+	or
+		a.content like '%' || #{keyword} || '%'
+	or
+		e.name like '%' || #{keyword} || '%'
+	or
+		c.name like '%' || #{keyword} || '%'
+	or 
+		d.name like '%' || #{keyword} || '%')
 		<if test="locationNo != 0">
 	and
         e.location_no = #{locationNo}
         </if>
 		<if test="subCateNo != 0">
-	and
+    and 
         d.sub_cate_no = #{subCateNo}
         </if>
 		<if test="mainCateNo != 0">
 	and
         c.main_cate_no = #{mainCateNo}
-    order by 
-		a.created_date desc
         </if>
+    ) order by 
+		a.created_date desc
 	</where>
 	</select>
 	

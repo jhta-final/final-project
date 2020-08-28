@@ -179,13 +179,10 @@ h5 {
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content" style="background-color: rgba(255, 255, 255, 0.0)">
 			<!-- Modal Header -->
-			<div id="home-modal-header" class="modal-header" style="background-color: rgba(255, 255, 255, 0.0) !important; color: #FFF">
-				<h4 class="modal-title">상세정보</h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			</div>
+			<div id="home-modal-header" class="modal-header row" style="background-color: rgba(255, 255, 255, 0.0) !important; color: #FFF; border-bottom: 0px;"></div>
 			<!-- Modal Header end -->
 			<!-- Modal body -->
-			<div class="modal-body" style="padding:0px; background-color: #FFF">
+			<div class="modal-body" style="padding:0px; margin-top: -1px; background-color: #FFF;border-radius:0 !important">
 					<div id="home-modal-image" class="row"></div>
 					<div class="row">
 						<div class="col-12" style="padding: 30px;">
@@ -196,7 +193,6 @@ h5 {
 							<p id="home-detail-cate"></p>
 							<p><i class="fas fa-won-sign 2x"></i><span id="home-detail-fee"></span></p>
 							좋아요수 : <span id="home-detail-likes"></span>개
-							<p id="home-detail-premium"></p>
 							<p id="home-detail-joinDate">모이는날 : 2020.10.19</p>
 							<p id="home-detail-createDate">만든날 : 2020.08.15</p>
 						</div>
@@ -204,8 +200,8 @@ h5 {
 			</div>
 			<!-- Modal body end -->
 			<!-- Modal footer -->
-			<div class="modal-footer">
-				<i id="home-modal-like" class="" style="cursor: pointer;"></i>
+			<div class="modal-footer"  style="background-color: rgba(1, 1, 1, 0.3)">
+				<i id="home-modal-like" class="" style="cursor: pointer; color: #d09afc"></i>
 				<a id="home-moim-link-btn" class="btn btn-primary" href="">모임가기</a>
 				<a id="home-moim-join-btn" class="btn btn-success" href="">모임가입</a>
 				<a id="home-moim-withdrawal-btn" class="btn btn-warning" href="">모임탈퇴</a>
@@ -334,13 +330,33 @@ $(function() {
 			dataType: "json",
 			success: function (moim) {
 				console.log(moim);
-				var header = '<img src="/resources/profileImage/'+moim.profileImage+'" class="rounded-circle z-depth-0" alt="image" height="50px" width="50px">'
-					header += '<span>'+moim.nickName+'</span>'
-					header += '<span">'+moim.userId+'</span>'
-					header += '<p>'+moim.userContent+'</p>'
+				var header = '<div class="col-1"><img src="/resources/profileImage/'+moim.profileImage+'" class="rounded-circle z-depth-0" alt="image" height="50px" width="50px"></div>'
+					header += '<div class="col-9 text-left"><span class="mr-3">'+moim.nickName+'</span>'
+					header += '<span class="mr-3">'+moim.userId+'</span>'
+					header += '<span style="display: block">'+moim.userContent+'</span></div>'
+				if(moim.premiumYn == 'Y') {
+					$("#home-moim-link-btn").css('display', 'block');
+					header += '<div class="col-2"><i class="fas fa-crown fa-2x ml-5" style="color:#6699FF;"></i></div>'
+				} else {
+					$("#home-moim-link-btn").css('display', 'none');
+					header += '<div class="col-2"></div>'
+				}
+				if(moim.checkJoin == 1){
+					$("#home-moim-withdrawal-btn").css('display', 'block');
+					$("#home-moim-join-btn").css('display', 'none');
+				} else {
+					$("#home-moim-join-btn").css('display', 'block');
+					$("#home-moim-withdrawal-btn").css('display', 'none');
+				}
+					
+				$("#home-moim-join-btn").attr('href', join);
+				$("#home-moim-withdrawal-btn").attr('href', withdrawal);
 					
 				$("#home-modal-header").empty();
 				$("#home-modal-header").append(header);
+				$("#home-moim-link-btn").attr("href", link);
+					
+				$("#home-detail-premium").empty();
 				$("#home-detail-title").text(moim.title)
 				$("#home-detail-count").text(moim.joinCount + "/" + moim.headCount)
 				$("#home-detail-content").text(moim.content)
@@ -356,23 +372,12 @@ $(function() {
 				var withdrawal = '/moim/outMoim.do?moimNo='+moim.moimNo+'&userId=${LOGIN_USER.id}';
 				modalMoimNo = moim.moimNo;
 				
-				$("#home-moim-join-btn").attr('href', join);
-				$("#home-moim-withdrawal-btn").attr('href', withdrawal);
 				
 				var image = '<div class="col-12"><img class="card-img-top" src="/resources/home_images/'+moim.image+'" alt="Card image cap" style="width: 100%; height: 581.63px; background-color: lightgray"></div>'
 				
 				$("#home-modal-image").empty();
 				$("#home-modal-image").append(image);
 				
-				$("#home-detail-premium").empty();
-				if(moim.premiumYn == 'Y') {
-					$("#home-moim-link-btn").attr("href", link);
-					let premium = '<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>';
-					$("#home-detail-premium").append(premium);
-					$("#home-moim-link-btn").css('display', 'block');
-				} else {
-					$("#home-moim-link-btn").css('display', 'none');
-				}
 				
 				
 				

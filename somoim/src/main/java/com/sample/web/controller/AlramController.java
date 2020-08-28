@@ -42,23 +42,6 @@ public class AlramController {
 		return "redirect:/test.do";
 	}
 	
-	// 팔로우 알림 추가
-	@GetMapping("follow.do")
-	public String follow(Model model, HttpSession httpSession, @RequestParam("userId") String userId) {
-
-		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
-		
-		MoimAlram moimAlram = new MoimAlram();
-		moimAlram.setMessage(user.getNickname() + "님이 팔로우하셨습니다.");
-		moimAlram.setType("팔로우");
-		moimAlram.setUserId(userId);
-		moimAlram.setLoginUserId(user.getId());
-		
-		alramService.addAlram(moimAlram);
-		
-		return "";
-	}
-	
 	// 알림 클릭 -> 삭제 후 다음 알림 뿌리기
 	@GetMapping("read.do")
 	@ResponseBody

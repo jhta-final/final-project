@@ -32,7 +32,7 @@ public class AlramServiceImpl implements AlramService {
 	// 알림 읽음표시
 	@Override
 	public void readAlram(long alramNo) {
-		alramDao.updateAlram(alramNo);
+		alramDao.deleteAlram(alramNo);
 	}
 	
 	// 보낸 쪽지
@@ -52,7 +52,7 @@ public class AlramServiceImpl implements AlramService {
 	public void addMessage(MoimMessage moimMessage) {
 		moimMessage.setUserId(moimMessage.getReceiveUser());
 		alramDao.insertMessage(moimMessage);
-		moimMessage.setUserId(moimMessage.getUserId());
+		moimMessage.setUserId(moimMessage.getSendUser());
 		alramDao.insertMessage(moimMessage);
 	}
 
