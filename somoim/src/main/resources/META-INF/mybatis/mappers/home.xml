@@ -7,7 +7,13 @@
 	select
 			a.moim_no		as moimNo,
 			title			as title,
+			join_count		as joinCount,
+			head_count		as headCount,
 			content			as content,
+			image			as image,
+			fee				as fee,
+			likes			as likes,
+			join_date		as joinDate,
 			a.premium_yn	as premiumYn,
 			a.created_date	as createdDate,
 			b.location_no	as locationNo,
@@ -90,7 +96,7 @@
 	and
         c.main_cate_no = #{mainCateNo}
         </if>
-    ) order by 
+    order by 
 		a.created_date desc
 	</where>
 	</select>
