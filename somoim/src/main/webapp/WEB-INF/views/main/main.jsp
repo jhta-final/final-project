@@ -195,7 +195,7 @@ $(function() {
 			let documentHeight = $(document).height();
 			
 
-			// scrollbar의 thumb가 바닥 전 30px까지 도달 하면 리스트를 가져온다.
+			
 			if( scrollTop + windowHeight == documentHeight ){
 				getAllMoim();
 			}
@@ -243,6 +243,7 @@ $(function() {
 					
 					$allMoim.append(row4);
 				})
+				allPageNo += 4;
 			}
 		})
 	}
