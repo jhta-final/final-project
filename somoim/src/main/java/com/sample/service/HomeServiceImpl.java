@@ -57,11 +57,15 @@ public class HomeServiceImpl implements HomeService{
 
 	// 메안카테고리 랜덤표시
 	@Override
-	public List<MoimMainDto> getMainCategoryMoims() {
+	public List<MoimMainDto> getMainCategoryMoims(long beginIndex, long endIndex, long mainCateNo) {
 
-		long mainCateNo = (long)(Math.random()*5 +1);
+		//long mainCateNo = (long)(Math.random()*5 +1);
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		hashMap.put("beginIndex", beginIndex);
+		hashMap.put("endIndex", endIndex);
+		hashMap.put("mainCateNo", mainCateNo);
 
-		return homeDao.mainCategoryMoims(mainCateNo);
+		return homeDao.mainCategoryMoims(hashMap);
 	}
 
 	// 가입한 모임 표시

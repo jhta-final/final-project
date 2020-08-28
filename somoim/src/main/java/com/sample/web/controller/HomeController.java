@@ -53,7 +53,7 @@ public class HomeController {
 		model.addAttribute("favoliteMoims", homeService.getFavoliteMoims());
 		
 		// 메안카테고리 랜덤표시
-		model.addAttribute("mainCategoryMoims", homeService.getMainCategoryMoims());
+		//model.addAttribute("mainCategoryMoims", homeService.getMainCategoryMoims());
 		
 		// 가입한 모임 표시
 		//model.addAttribute("joinedMoim", homeService.getjoinedMoim(user.getId()));
@@ -168,5 +168,25 @@ public class HomeController {
 		return map;
 	}
 	
-	
+	// 홈 메인카테 더보기용
+	@GetMapping("/mainCate.do")
+	@ResponseBody
+	public Map<String, Object> subCate(@RequestParam("currentPageNo") long beginIndex,
+									@RequestParam(value="mainCateNo", required=false, defaultValue="0") long mainCateNo, HttpSession httpSession) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		long savedMainCateNo = mainCateNo;
+		
+		if(mainCateNo == 0) {
+			mainCateNo = (long)(Math.random()*25 +1);
+		} else {
+			mainCateNo = savedMainCateNo;
+		}
+		
+		map.put("moims", homeService.getMainCategoryMoims(beginIndex, beginIndex+3, mainCateNo));
+		map.put("total", homeService.getMainCategoryMoims(beginIndex, beginIndex+3, mainCateNo).size());
+		
+		return map;
+	}
 }
