@@ -162,7 +162,7 @@
 			a.created_date	as createdDate,
 			sub_cate_no		as subCateNo,
 			location_no		as locationNo,
-			row_number() over(order by join_date desc) rn
+			row_number() over(order by a.moim_no desc) rn
 		from
 			moim_main A, moim_join_user B
         where
@@ -172,7 +172,7 @@
         and
         	a.delete_yn = 'N'
         )
-		<![CDATA[where rn >= #{beginIndex} and rn <= #{endIndex}]]>
+		<![CDATA[where rn > #{beginIndex} and rn <= #{endIndex}]]>
 	</select>
 	
 	<!-- 지역 선호도 별로 표시 -->
