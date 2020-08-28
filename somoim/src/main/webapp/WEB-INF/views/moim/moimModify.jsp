@@ -15,11 +15,12 @@
             <i class="mr-2 fas fa-images" style="color: #0F4C81;"></i><label>기본 이미지</label>
             <br>
             <span id="image-check">
-	            <img class="mr-3 image-checked" data-no="default1" src="/resources/home_images/4.jpeg" width="150" height="150" />
-	            <img class="mr-3" data-no="default2" src="/resources/home_images/5.jpg"  width="150" height="150" />
-	            <img class="mr-3" data-no="default3" src="/resources/home_images/6.jpeg" width="150" height="150" />
-	            <img class="mr-3" data-no="default4" src="/resources/home_images/7.jpg" width="150" height="150" />
+	            <img class="mr-3 image-checked" data-no="문화공연.jpg" src="/resources/home_images/문화공연.jpg" width="150" height="150" />
+	            <img class="mr-3" data-no="게임.jpg" src="/resources/home_images/게임.jpg"  width="150" height="150" />
+	            <img class="mr-3" data-no="사교인맥.png" src="/resources/home_images/사교인맥.png" width="150" height="150" />
+	            <img class="mr-3" data-no="스포츠.png" src="/resources/home_images/스포츠.png" width="150" height="150" />
             </span>
+            <form:input id="image-file" type="file" path="upfile" />
             <br>
         </div>
         <form:input id="image-name" hidden="hidden" path="image" value="default1"/>

@@ -118,13 +118,6 @@ public class MoimController {
 		return categoryService.getSubCates(mainCateNo);
 	}
 	
-	// 모임 탈퇴
-	@GetMapping("/outMoim.do")
-	public String outMoim(@RequestParam("userId") String userId) {
-		
-		return "";
-	}
-	
 	// 모임 정보 수정
 	@GetMapping("/modify.do")
 	public String modify(Model model, HttpSession httpSession, @RequestParam("moimNo") long moimNo) {
@@ -215,11 +208,13 @@ public class MoimController {
 	// 모임 가입
 	@GetMapping("join.do")
 	public String joinMoim(@RequestParam("moimNo") long moimNo, @RequestParam("userId") String userId, HttpSession httpSession) {
+		String Yn = moimService.joinMoim(moimNo, userId);
 		
-		moimService.joinMoim(moimNo, userId);
-		
-		
-		return "redirect:moim.do?moimNo=" + moimNo;
+		if("Y".equals(Yn))
+			return "redirect:moim.do?moimNo=" + moimNo;
+		else 
+			return "redirect:/home.do";
+			
 	}
 	
 	// 모임 탈퇴
@@ -228,7 +223,7 @@ public class MoimController {
 		
 		moimService.outMoim(moimNo, userId);
 		
-		return "";
+		return "main/main.tiles";
 	}
 	
 	// 모임 게시판

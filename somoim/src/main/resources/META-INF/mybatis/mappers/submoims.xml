@@ -72,6 +72,21 @@
 			sub_moim_no = #{value}
 	</delete>
 	
+	<delete id="deleteSubMoims" parameterType="SubJoinUser">
+		delete from moim_sub_moim
+		where
+			moim_no = #{moimNo}
+		and
+			user_id = #{userId}
+	</delete>
+	
+	<delete id="deleteSubMoimsJoinUser" parameterType="SubJoinUser">
+		delete from moim_sub_join_user
+		where
+			moim_no = #{moimNo}
+		and
+			user_id = #{userId}
+	</delete>
 	
 	<insert id="insertSubJoinUser" parameterType="SubJoinUser">
 		insert into moim_sub_join_user

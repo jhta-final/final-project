@@ -11,8 +11,9 @@ public class MoimSubJoinUser {
 	public MoimSubJoinUser(long subMoimNo, String userId) {
 		this.subMoimNo = subMoimNo;
 		this.userId = userId;
-	}
+	}	
 	
+
 	public MoimSubJoinUser(long subMoimNo, long moimNo, String userId) {
 		this.subMoimNo = subMoimNo;
 		this.moimNo = moimNo;

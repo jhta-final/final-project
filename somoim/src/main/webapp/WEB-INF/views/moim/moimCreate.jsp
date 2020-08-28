@@ -16,8 +16,8 @@
             <span id="image-check">
 	            <img class="mr-3 image-checked" data-no="문화공연.jpg" src="/resources/home_images/문화공연.jpg" width="150" height="150" />
 	            <img class="mr-3" data-no="게임.jpg" src="/resources/home_images/게임.jpg"  width="150" height="150" />
-	            <img class="mr-3" data-no="사교인맥.jpg" src="/resources/home_images/사교인맥.png" width="150" height="150" />
-	            <img class="mr-3" data-no="스포츠.jpg" src="/resources/home_images/스포츠.png" width="150" height="150" />
+	            <img class="mr-3" data-no="사교인맥.png" src="/resources/home_images/사교인맥.png" width="150" height="150" />
+	            <img class="mr-3" data-no="스포츠.png" src="/resources/home_images/스포츠.png" width="150" height="150" />
             </span>
             <form:input id="image-file" type="file" path="upfile" />
             <br>
@@ -25,15 +25,15 @@
         <form:input id="image-name" hidden="hidden" path="image" value="default1"/>
         <div class="form-group mt-4">
             <i class="mr-2 fas fa-check" style="color: #0F4C81;"></i><label>모임 이름</label>
-            <form:input type="text" class="form-control" path="title"/>
+            <form:input type="text" class="form-control" path="title" required="required"/>
         </div>
         <div class="form-group">
             <i class="mr-2 far fa-clock" style="color: #0F4C81;"></i><label>정모 일시</label>
-            <form:input type="datetime-local" class="form-control" path="joinDate"/>
+            <form:input type="datetime-local" class="form-control" path="joinDate" required="required"/>
         </div>
         <div class="form-group">
             <i class="mr-2 fas fa-map-marker" style="color: #0F4C81;"></i><label>지역구</label>
-            <form:select path="locationNo" class="form-control">
+            <form:select path="locationNo" class="form-control" required="required">
                 <option value=""selected="selected" disabled="disabled" class="text-center">지역</option>
                 <option value="1">강서구</option>
                 <option value="2">양천구</option>
@@ -64,7 +64,7 @@
         </div>
         <div class="form-group">
             <i class="mr-2 fas fa-tags" style="color: #0F4C81;"></i><label>카테고리</label>
-            <select id="main-category" name="category" class="form-control" onchange="getSubCate()">
+            <select id="main-category" name="category" required="required" class="form-control" onchange="getSubCate()">
                 <option value="0"selected="selected" disabled="disabled" class="text-center"></option>
                 <option value="1">게임/오락</option>
                 <option value="2">사교/인맥</option>
@@ -75,20 +75,20 @@
         </div>
         <div class="form-group">
             <i class="mr-2 fas fa-tags" style="color: #0F4C81;"></i><label>세부 카테고리</label>
-            <form:select id="sub-category" path="subCateNo" class="form-control">
+            <form:select id="sub-category" required="required" path="subCateNo" class="form-control">
             </form:select>
         </div>
         <div class="form-group">
             <i class="mr-2 fas fa-won-sign" style="color: #0F4C81;"></i><label>참가비</label>
-            <form:input type="number" class="form-control" path="fee"/>
+            <form:input type="number" required="required" class="form-control" path="fee"/>
         </div>
         <div class="form-group">
             <i class="mr-2 fas fa-user-friends" style="color: #0F4C81;"></i><label>참가인원 (2 ~ 60명)</label>
-            <form:input type="number" min="2" max="60" class="form-control" path="headCount"/>
+            <form:input type="number" required="required" min="2" max="60" class="form-control" path="headCount"/>
         </div>
         <div class="form-group">
             <i class="mr-2 fas fa-edit" style="color: #0F4C81;"></i><label>상세 설명</label>
-            <form:textarea path="content" id="ckeditor" rows="10" cols="80"></form:textarea>
+            <form:textarea path="content" required="required" id="ckeditor" rows="10" cols="80"></form:textarea>
         </div>
         <div class="form-group d-inline-flex">
             <i class="mr-2 fas fa-dollar-sign" style="color: #0F4C81;"></i><label>프리미엄 </label>

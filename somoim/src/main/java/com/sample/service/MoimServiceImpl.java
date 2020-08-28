@@ -12,6 +12,7 @@ import com.sample.dto.JoinUsers;
 import com.sample.dto.MoimMainDto;
 import com.sample.vo.MoimBanner;
 import com.sample.vo.MoimJoinUser;
+import com.sample.vo.MoimSubJoinUser;
 
 @Service
 @Transactional
@@ -115,11 +116,34 @@ public class MoimServiceImpl implements MoimService {
 	
 	// 모임 가입하기
 	@Override
-	public void joinMoim(long moimNo, String userId) {
+	public String joinMoim(long moimNo, String userId) {
 		MoimJoinUser user = new MoimJoinUser(moimNo, userId);
 		MoimJoinUser savedUser = moimDao.selectJoinUser(user);
 		if(savedUser != null) {
 			System.out.println("이미 가입된 모임입니다");
+			return "";
+		}
+		
+		MoimMainDto moim = moimDao.selectMoim(moimNo);
+		if(moim.getJoinCount() == moim.getHeadCount())
+			return "";
+		
+		moim.setJoinCount(moim.getJoinCount() + 1);
+		moimDao.insertJoinUser(user);
+		moimDao.updateMoim(moim);
+		
+		if("Y".equals(moim.getPremiumYn()))
+			return "Y";
+		else
+			return "N";
+	}
+	
+	// 모임 탈퇴하기
+	@Override
+	public void outMoim(long moimNo, String userId) {
+		MoimJoinUser savedUser = moimDao.selectJoinUser(new MoimJoinUser(moimNo, userId));
+		if(savedUser == null) {
+			System.out.println("가입되지 않은 모임입니다");
 			return;
 		}
 		
@@ -127,16 +151,17 @@ public class MoimServiceImpl implements MoimService {
 		if(moim.getJoinCount() == moim.getHeadCount())
 			return;
 		
-		moim.setJoinCount(moim.getJoinCount() + 1);
-		moimDao.insertJoinUser(user);
-		moimDao.updateMoim(moim);
-	}
-	
-	// 모임 탈퇴하기
-	@Override
-	public void outMoim(long moimNo, String userId) {
+		if("ADMIN".equals(savedUser.getUserRole())) {
+			deleteMoim(moimNo);
+			return;
+		} else {
+			subMoimDao.deleteSubMoimsJoinUser(new MoimSubJoinUser(0, moimNo, userId));
+			subMoimDao.deleteSubMoims(new MoimSubJoinUser(0, moimNo, userId));
+		}
 		
-		moimDao.deleteJoinUser(new MoimJoinUser(moimNo, userId));
+		moim.setJoinCount(moim.getJoinCount() - 1);
+		moimDao.deleteJoinUser(savedUser);
+		moimDao.updateMoim(moim);
 	}
 	
 	// 모임에 가입된 유저들 모두 탈퇴
