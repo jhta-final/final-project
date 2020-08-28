@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>소모임</title>
 	<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="/resources/bootstrap/css/index.css">
 	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 	<link rel="icon" type="image/png" href="/resources/home_images/favicon.ico">
 
@@ -15,215 +16,10 @@
 	<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/resources/bootstrap/js/popper.min.js"></script>
 	<script src="https://kit.fontawesome.com/7a2820e1a2.js"></script>
-
-	<!-- Demo styles -->
-	<style>
-		html,
-		body {
-			position: relative;
-			height: 100%;
-		}
-
-		body {
-			background: #eee;
-			font-family:Jua, Helvetica Neue, Helvetica, Arial, sans-serif;
-			font-size: 15px;
-			color: #000;
-			margin: 0;
-			padding: 0;
-		}
-		
-		p {
-			margin: 0;
-		}
-
-
-		.jb-box {
-			width: 100%;
-			height: auto;
-			overflow: hidden;
-			margin: 0px auto;
-			position: fixed;
-			box-sizing: border-box;
-		}
-		
-		.jb-box::before {
-		    content: "";
-		    position: fixed;
-		    top: 0;
-		    right: 0;
-		    bottom: 0;
-		    left: 0;
-		    background: rgba(0,0,0,.3);
-		    display: block;
-		}
-
-		video {
-			position: fixed;
-		    top: 50%; 
-		    left: 50%;
-		    -webkit-transform: translateX(-50%) translateY(-50%);
-		    transform: translateX(-50%) translateY(-50%);
-		    min-width: 100%; 
-		    min-height: 100%; 
-		    width: auto; 
-		    height: auto;
-		    z-index: -1000; 
-		    overflow: hidden;	
-		}
-
-		.bg-text {
-			color: black;
-			font-weight: bold;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			z-index: 2;
-			width: 25%;
-			text-align: center;
-			box-sizing: border-box;
-		}
-		
-		.bg-text .title {
-		    font-size: 80px;
-		    color: #fff;
-		    text-shadow: 0 1px 1px rgba(0,0,0,.35),
-		                 0 1px 25px rgba(0,0,0,.75);
-		}
-		
-		.bg-text .btn {
-			border: 1px solid  #00284d;
-	    	border-radius: 3px;
-			width: 217px;
-		}
-		
-		.bg-text .btn-primary {
-			background-color: #00498c; 
-		}
-		.bg-text .btn-primary:hover {
-			background: #00498c linear-gradient(#00498c, #005cb3);
-		}
-		
-		.bg-text .btn-secondary:hover {
-			background: #6c757d linear-gradient(#6c757d , #848d94);
-		}
-		.myimg {
-			width: 250px;
-			height: 300px;
-			background: linear-gradient(45deg, rgb(218, 218, 231), #000080);
-		}
-
-		.mycard {
-			margin-right: 4px;
-			margin-left: 9px;
-		}
-
-		.mycardp {
-			color: #fff;
-			background-color: #000;
-			font-weight: bold;
-			font-size: 19px;
-			opacity: 0.6;
-			padding: 4px;
-		}
-
-		.card-img-overlay {
-			padding: 0px;
-		}
-
-		.card-text {
-			margin: 90px;
-			display: none;
-		}
-
-		.card-check-mark {
-			font-size: 70px;
-			color: rgb(209, 255, 4);
-		}
-
-		#select-category-image [type=radio] {
-			position: absolute;
-			opacity: 0;
-			width: 0;
-			height: 0;
-		}
-
-		/* IMAGE STYLES */
-		#select-category-image [type=radio]+.card {
-			cursor: pointer;
-		}
-
-		#select-category-image [type=radio]+.card:hover {
-			opacity: 0.8;
-		}
-
-		/* CHECKED STYLES */
-		#select-category-image [type=radio]:checked+.card {
-			opacity: 0.6;
-		}
-		
-		#signup-modal {
-		
-		}
-		
-		#index-join-form .input-group, #signup-email-certified .input-group {
-			display: block;
-		}
-		
-		#index-join-form .input-group-text, #signup-email-certified .input-group-text {
-			display: flex;
-		    -ms-flex-align: center;
-		    align-items: center;
-		    padding: 0px 10px;
-		    margin-bottom: 0px;
-		    font-size: 1rem;
-		    font-weight: 400;
-		    line-height: 1.5;
-		    color: #495057;
-		    text-align: center;
-		    white-space: nowrap;
-		    background-color: #FFF;
-		    border: none;
-		    border-radius: 0.25rem;
-		}
-		
-		#index-join-form .form-control, #signup-email-certified .form-control {
-			width: 100%;
-		    padding: 10px;
-		    font-size: 16px;
-		    border: 1px solid rgba(0,0,0,.5);
-		    border-radius: 5px;
-		    outline: none;
-		    box-sizing: border-box;
-		    box-shadow: inset 0 1px 2px rgba(0,0,0,.075);  /* .75 아니고 .075 주의 */
-		    margin-bottom: 4px;
-		}
-		
-		#index-join-form .index-join-check {
-			position: relative;
-		}
-		
-		#index-join-form .btn {
-			top: 0;
-		    right: 0;
-		    position: absolute;
-		    z-index: 2999;
-		    background-color: #f5f5f5;
-		    font-weight: 100;
-		    border: 1px solid #000;
-		    color: #666;
-		    min-width: 78.56px;
-		}
-		
-		#index-join-form .btn:hover {
-			background-color: #ccc;
-		}
-		
-	</style>
 </head>
 
 <body>
+	<input type="hidden" value="${param.error }" id="index-error"/>
 	<div class="bg-imag">
 		<div class="jb-box">
 			<video muted autoplay loop>
@@ -657,6 +453,17 @@
 					.css('display', 'none');
 				$(this).find('.card-text').css('display', 'block');
 			})
+			
+			// 에러 확인
+			var error = $('#index-error').val();
+			if ('ban' == error) {
+				alert('계정이 정지되었습니다. 본사로 문의해 주세요.')	
+			} else if ('delete' == error) {
+				alert('탈퇴한 계정입니다.')
+			} else if ('fail' == error) {
+				alert('로그인에 실패 했습니다.')
+			}
+			
 		})
 	</script>
 </body>
