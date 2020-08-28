@@ -66,9 +66,9 @@
 	or
 		c.name like '%' || #{keyword} || '%'
 	or 
-		d.name like '%' || #{keyword} || '%'
+		d.name like '%' || #{keyword} || '%')
 		<if test="locationNo != 0">
-	or
+	and
         e.location_no = #{locationNo}
         </if>
 		<if test="subCateNo != 0">
