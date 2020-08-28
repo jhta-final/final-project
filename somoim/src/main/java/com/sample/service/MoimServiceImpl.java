@@ -124,6 +124,9 @@ public class MoimServiceImpl implements MoimService {
 		}
 		
 		MoimMainDto moim = moimDao.selectMoim(moimNo);
+		if(moim.getJoinCount() == moim.getHeadCount())
+			return;
+		
 		moim.setJoinCount(moim.getJoinCount() + 1);
 		moimDao.insertJoinUser(user);
 		moimDao.updateMoim(moim);
