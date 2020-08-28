@@ -21,7 +21,7 @@
 
 .nav-Notice ul,
 .nav-Notice li {margin:0; padding:0; list-style:none;}
-.nav-Notice li a {display:block; height:26px; line-height:26px; color:#555; text-decoration:none;}
+.nav-Notice li a {display:block; height:26px; width: 200px; line-height:26px; color:#555; text-decoration:none;	overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 
 .nav-Notice {
 	text-overflow: ellipsis;
@@ -163,7 +163,7 @@
 		<div class="nav-Notice">
 		    <ul id="ticker">
 				<c:forEach items="${boardLists }" var="boardList" varStatus="listNo">
-					<li><a href="#"><span>${listNo.count } . </span>${boardList.boardTitle}</a></li>
+					<li class="ml-1"><a href="#"><span>${listNo.count } . </span>${boardList.boardTitle}</a></li>
 				</c:forEach>
 		    </ul>
 		  <div class="nav-Notice-navi">
