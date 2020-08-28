@@ -58,6 +58,7 @@
 		set
 			title = #{title},
 			location = #{location},
+			join_count = ${joinCount},
 			head_count = #{headCount},
 			fee = #{fee},
 			join_date = #{joinDate}
@@ -105,7 +106,7 @@
 		from
 			moim_sub_join_user
 		where
-			sub_moim_no = #{value}
+			sub_moim_no = #{subMoimNo}
 		and
 			user_id = #{userId}
 	</select>

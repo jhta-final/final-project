@@ -78,7 +78,7 @@ public class SubMoimServiceImpl implements SubMoimService {
 	
 	// 번개모임 가입
 	@Override
-	public void joinSubMoim(long subMoimNo, String userId) {
+	public void joinSubMoim(long moimNo, long subMoimNo, String userId) {
 		MoimSubJoinUser savedUser = subMoimDao.selectSubJoinUser(new MoimSubJoinUser(subMoimNo, userId));
 		if(savedUser != null) {
 			System.out.println("이미 가입된 모임입니다.");
@@ -88,7 +88,7 @@ public class SubMoimServiceImpl implements SubMoimService {
 		MoimSubMoim subMoim = subMoimDao.selectSubMoim(subMoimNo);
 		subMoim.setJoinCount(subMoim.getJoinCount() + 1);
 		subMoimDao.updateSubMoim(subMoim);
-		subMoimDao.insertSubJoinUser(savedUser);
+		subMoimDao.insertSubJoinUser(new MoimSubJoinUser(subMoimNo, moimNo, userId));
 	}
 
 	// 번개모임 탈퇴
@@ -103,7 +103,7 @@ public class SubMoimServiceImpl implements SubMoimService {
 		MoimSubMoim subMoim = subMoimDao.selectSubMoim(subMoimNo);
 		subMoim.setJoinCount(subMoim.getJoinCount() - 1);
 		subMoimDao.updateSubMoim(subMoim);
-		subMoimDao.deleteSubJoinUser(new MoimSubJoinUser(subMoimNo, userId));
+		subMoimDao.deleteSubJoinUser(savedUser);
 	}
 	
 	// 번개모임에 가입된 유저들 모두 탈퇴

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.dao.MoimDao;
+import com.sample.dao.SubMoimDao;
 import com.sample.dto.JoinUsers;
 import com.sample.dto.MoimMainDto;
 import com.sample.vo.MoimBanner;
@@ -18,6 +19,9 @@ public class MoimServiceImpl implements MoimService {
 
 	@Autowired
 	private MoimDao moimDao;
+	
+	@Autowired
+	private SubMoimDao subMoimDao;
 	
 	// 새로운 모임 생성
 	@Override

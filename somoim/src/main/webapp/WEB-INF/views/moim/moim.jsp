@@ -17,6 +17,7 @@
     <div class="row mt-4">
         <div class="col-12">
             <h3>${moim.title}</h3>
+            <p id="moimNo" hidden="hidden">${param.moimNo}</p>
         </div>
     </div>
     <div class="row mt-3" style="width: 95%">
@@ -233,9 +234,7 @@
                         <div id="sub-moim-join-users"></div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    <button class="btn btn-primary" id="btn-participant"></button>
+                <div class="modal-footer" id="sub-footer">
                 </div>
 
             </div>
@@ -274,13 +273,7 @@
 
 <script>
 
-    let joinCount = 0;
-    let headCount = 0;
-    let subNo = 0;
-    let tempUser = null;
-    let loginUser = $("#userId").val();
-
-    $("#btn-participant").on("click", subMoimfx(subNo, loginUser));
+    let condition = "join";
 
     $(function() {
     	$("#img-file").change(function (e) {
@@ -307,28 +300,67 @@
     }
 
     function subMoimfx(subMoimNo, userId) {
-        console.log("fx");
-        console.log(subMoimNo, userId);
+        let joinCount = $("#btn-participant").data("join");
+        let headCount = $("#btn-participant").data("head");
+
+        if(condition == "join") {
+            if(joinCount == headCount)
+                return false;
+            else {
+                joinSub(subMoimNo, userId)
+            }
+        } else if(condition == "out") {
+            exitSub(subMoimNo, userId);
+        }
+
     }
 
     function exitSub(subMoimNo, userId) {
-        console.log(subMoimNo, userId);
-        console.log("exit");
+    	let moimNo = $("#moimNo").text();
+        $.ajax({
+            type:"GET",
+            url:"/moim/subout.do",
+            data: {
+                moimNo : moimNo,
+                subMoimNo : subMoimNo,
+                userId : userId
+            },
+            dataType: "json",
+            success:function () {
+                $("#sub-moim-participant").modal("hide");
+                window.location.reload(true);
+            }
+        })
     }
 
     function joinSub(subMoimNo, userId) {
-        console.log(subMoimNo, userId);
-        console.log("join");
+        let moimNo = $("#moimNo").text();
+        $.ajax({
+            type:"GET",
+            url:"/moim/subjoin.do",
+            data: {
+                moimNo : moimNo,
+                subMoimNo : subMoimNo,
+                userId : userId
+            },
+            dataType: "json",
+            success:function () {
+                $("#sub-moim-participant").modal("hide");
+                window.location.reload(true);
+            }
+        })
     }
 
 	function getSubMoimDetail(subMoimNo, loginedUser) {
-
+			let userId = $("#userId").val();
             $.ajax({
                 type:"GET",
                 url:"/moim/submoim.do",
                 data: {subMoimNo:subMoimNo},
                 dataType:"json",
                 success:function (subMoim) {
+                	$("#sub-footer").empty();
+                	condition = "join";
                     joinCount = subMoim.moimSubMoim.joinCount;
                     headCount = subMoim.moimSubMoim.headCount;
                     $("#btn-participant").removeClass('btn-danger');
@@ -338,8 +370,14 @@
                     $("#sub-moim-time").text(subMoim.moimSubMoim.joinDate);
                     $("#sub-moim-location").text(subMoim.moimSubMoim.location);
                     $("#sub-moim-fee").text(subMoim.moimSubMoim.fee);
-                    $("#btn-participant").text(subMoim.moimSubMoim.joinCount + "/" + subMoim.moimSubMoim.headCount);
-
+                    userId = "'" + userId + "'";
+                    console.log(userId);
+                    let btn = '';
+                    btn += '<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>';
+                    btn += '<button class="btn btn-primary" data-join="'+subMoim.moimSubMoim.joinCount+'" data-head="'+subMoim.moimSubMoim.headCount+'" id="btn-participant" onclick="subMoimfx('+subMoimNo+','+userId+')">' + subMoim.moimSubMoim.joinCount;
+                    btn += '/'+subMoim.moimSubMoim.headCount+'</button>';
+                    
+                    $("#sub-footer").append(btn);
 
                     if(subMoim.moimSubMoim.joinCount == subMoim.moimSubMoim.headCount) {
                         $("#btn-participant").removeClass('btn-danger');
@@ -360,7 +398,7 @@
                         if(loginedUser === user.userId) {
                             $("#btn-participant").removeClass('btn-primary');
                             $("#btn-participant").addClass('btn-danger');
-                            tempUser = user.userId
+                            condition = "out";
 
                             if(subMoim.moimSubMoim.joinCount == subMoim.moimSubMoim.headCount) {
                                 $("#btn-participant").removeClass('btn-danger');
