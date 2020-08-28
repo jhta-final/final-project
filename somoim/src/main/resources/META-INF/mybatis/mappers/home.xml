@@ -390,6 +390,17 @@
 		and delete_yn = 'N'
 	</select>
 	
+	<select id="getAllMainCateCount" parameterType="long" resultType="long">
+		select count(*)
+		from moim_main A, moim_sub_cate B
+		where
+			a.sub_cate_no = b.sub_cate_no
+		and
+			b.main_cate_no = #{value}
+		and
+			a.delete_yn = 'N'
+	</select>
+	
 	<!-- 공지사항 9개 뽑기 -->
 	<select id="moimManagerBoardList" resultType="ManagerBoard">
 	<![CDATA[

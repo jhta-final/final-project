@@ -178,6 +178,11 @@ public class HomeServiceImpl implements HomeService{
 	public long getAllLocationCount(long locationNo) {
 		return homeDao.getAllLocationCount(locationNo);
 	}
+	
+	@Override
+	public long getAllMainCateCount(long mainCateNo) {
+		return homeDao.getAllMainCateCount(mainCateNo);
+	}
 
 	// 공지사항 10개 뽑기
 	@Override
