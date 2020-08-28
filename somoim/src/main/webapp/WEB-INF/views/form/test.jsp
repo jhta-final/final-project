@@ -36,7 +36,7 @@
 			</p>
 	        <div class="mb-1">
 	          <span class="mr-3"><c:out value="${moim.userId }"></c:out> </span>
-	          <span><i class="far fa-heart"></i><fmt:formatNumber value="${moim.likes }"/> </span>
+	          <span><i class="fas fa-heart" style="color: #d09afc"></i><fmt:formatNumber value="${moim.likes }"/> </span>
 	          <p>지역 : ${moim.locationName } &ensp;카테고리 : ${moim.subCateName }</p>
 	        </div>
 	        <div class="mb-2">
