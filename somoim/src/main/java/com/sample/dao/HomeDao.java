@@ -13,7 +13,7 @@ import com.sample.vo.MoimManagerBoard;
 public interface HomeDao {
 
 	// 모든 카테고리 랜덤 모임 표시
-	List<MoimMainDto> randomMoims();
+	List<MoimMainDto> randomMoims(HashMap<String, Object> map);
 	
 	// 지역별 선호 모임 랜덤 표시
 	List<MoimMainDto> locationMoims(HashMap<String, Object> map);
@@ -65,6 +65,7 @@ public interface HomeDao {
 	// 지역 검색 총 개수
 	long getAllLocationCount(long locationNo);
 	long getAllMainCateCount(long mainCateNo);
+	long getAllMoimsCount();
  
 	// 공지사항 10개 뽑기
 	List<MoimManagerBoard> moimManagerBoardList();
