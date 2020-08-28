@@ -248,8 +248,8 @@
 	      </li>      
 		</ul>
 		  
-		<a class="btn btn-primary" href="/moim/moim.do?moimNo=500000">
-			정원 500000번 모임
+		<!--  <a class="btn btn-primary" href="/moim/moim.do?moimNo=500000">
+			정원 500000번 모임-->
 		</a>
 		<hr />
 	<div id="footer" style="font-size: 10px; margin-left:50px;">
