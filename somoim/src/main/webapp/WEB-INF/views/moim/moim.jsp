@@ -37,7 +37,7 @@
                         <a class="nav-link" href="#">채팅</a>
                     </li>
                     <li class="nav-item justify-content-right">
-                        <a class="nav-link" href="#">탈퇴</a>
+                        <a class="nav-link" href="out.do?moimNo=${param.moimNo}&userId=${LOGIN_USER.id}">탈퇴</a>
                     </li>
                 </ul>
             </nav>

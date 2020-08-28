@@ -19,4 +19,7 @@ public interface SubMoimDao {
 	MoimSubJoinUser selectSubJoinUser(MoimSubJoinUser moimSubJoinUser);
 	void deleteSubJoinUsers(long subMoimNo);
 	void deleteSubJoinUser(MoimSubJoinUser moimSubJoinUser);
+	
+	void deleteSubMoims(MoimSubJoinUser moimSubJoinUser);
+	void deleteSubMoimsJoinUser(MoimSubJoinUser moimSubJoinUser);
 }
