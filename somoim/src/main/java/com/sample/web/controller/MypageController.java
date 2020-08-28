@@ -53,19 +53,19 @@ public class MypageController {
 	
 	private MoimUser user = new MoimUser();
 	
-	@ModelAttribute("followers")
-	public List<MoimFollowDto> getFollower(HttpSession session) {
+	@ModelAttribute("followerMap")
+	public HashMap<String, Object> getFollower(HttpSession session) {
 		this.user = (MoimUser)session.getAttribute("LOGIN_USER");
+		HashMap<String, Object> followerMap = new HashMap<String,Object>();
+		followerMap.put("followers", mypageService.allFollower(user.getId()));
+		followerMap.put("followings", mypageService.allFollowing(user.getId()));
 		
-		return mypageService.allFollower(user.getId());
+		return followerMap;
 	}
 	
 	// 마이페이지 메인화면
 	@GetMapping("/mypage.do")
-	public String myPage(Model model) {
-		List<MoimFollowDto> followings = mypageService.allFollowing(user.getId());
-		model.addAttribute("followingsCnt", followings.size());
-		
+	public String myPage() {		
 		return "mypage/mypage.tiles";
 	}
 	

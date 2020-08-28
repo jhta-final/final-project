@@ -86,7 +86,7 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public long followYn(MoimFollow moimFollow) {
+	public int followYn(MoimFollow moimFollow) {
 		return followerDao.findFollower(moimFollow);
 	}
 	@Override

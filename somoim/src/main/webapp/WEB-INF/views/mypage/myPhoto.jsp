@@ -51,7 +51,13 @@
 		margin-bottom: 0px;
 	}
 	
-	
+	.mypage-follower {
+
+	}
+
+	.mypage-following {
+		display: none;
+	}
 </style>
 <div>
 	<div class="ml-5 mt-3">
@@ -111,17 +117,35 @@
 				</c:choose>
 			</div>
 		</div>
-		<div class="col-3">
-			<div class="text-center mb-3"><strong>내 친구</strong></div>
-			<c:forEach items="${followers }" var="follower">
-				<div class="mb-3 pl-5">
-					<a href="/other/info.do?userId=${follower.folUserId }">
-						<img src="/resources/profileImage/${follower.image }" class="rounded-circle smallimage mr-3"
-							alt="Cinque Terre">
-						<span style="font-size: 15px; font-weight: bold;">${follower.nickname }</span>
-					</a>
-				</div>
-			</c:forEach>
+		<div class="col-3" style="padding: 30px 35px;">
+			<nav class="navbar mypage-follower-nav">
+				<ul class="nav nav-tabs">
+					<li class="nav-item"><a class="nav-link active" href="#" data-type="follower">팔로워</a></li>
+					<li class="nav-item"><a class="nav-link" href="#" data-type="following">팔로잉</a></li>
+				</ul>
+			</nav>
+			<div class="mypage-follower">
+				<c:forEach items="${followerMap.followers }" var="follower">
+					<div class="mb-3 pl-5">
+						<a href="/other/info.do?userId=${follower.folUserId }"> <img
+							src="/resources/profileImage/${follower.image }"
+							class="rounded-circle smallimage mr-3" alt="Cinque Terre"> <span
+							style="font-size: 15px; font-weight: bold;">${follower.nickname }</span>
+						</a>
+					</div>
+				</c:forEach>
+			</div>
+			<div class="mypage-following" style="display: none;">
+				<c:forEach items="${followerMap.followings }" var="following">
+					<div class="mb-3 pl-5">
+						<a href="/other/info.do?userId=${following.userId }"> <img
+							src="/resources/profileImage/${following.image }"
+							class="rounded-circle smallimage mr-3" alt="Cinque Terre"> <span
+							style="font-size: 15px; font-weight: bold;">${following.nickname }</span>
+						</a>
+					</div>
+				</c:forEach>
+			</div>
 		</div>
 	</div>
 </div>
@@ -167,6 +191,21 @@
 						$likeCnt.text(likeCnt - 1 + '개');
 					}
 				})
+			}
+		})
+		
+		// 팔로워 탭
+		$(".mypage-follower-nav li a").click(function() {
+			$(".mypage-follower-nav li a").removeClass('active');
+			var type = $(this).data('type');
+			$(this).addClass('active')
+			
+			if('follower' == type) {
+				$(".mypage-follower").css('display','block');
+				$(".mypage-following").css('display','none');
+			} else {
+				$(".mypage-follower").css('display','none');
+				$(".mypage-following").css('display','block');				
 			}
 		})
 	})

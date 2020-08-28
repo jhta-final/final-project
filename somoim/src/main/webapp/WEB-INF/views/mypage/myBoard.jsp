@@ -15,16 +15,6 @@ p {
 	height: 50px;
 }
 
-#mypage-body .card {
-	width: 300px;
-	border: 0;
-	position: relative;
-	margin-right: 35px;
-}
-
-#mypage-body .card-body {
-	padding: 0;
-}
 
 #mypage-modify-modal .input-group-text, #mypage-exit-modal .input-group-text
 	{
@@ -56,26 +46,12 @@ p {
 	margin-bottom: 4px;
 }
 
-.preview-image {
-	position: absolute;
-	top: -84px;
-	left: 482px;
-	/*  background: rgba(255,255,255,.8); */
-	border: 1px solid #f5f5f5;
-	box-sizing: border-box;
+.mypage-follower {
+
+}
+
+.mypage-following {
 	display: none;
-	box-shadow: 0 0 5px rgba(0, 0, 0, .75);
-}
-
-#mypage-temp-img {
-	width: 150px;
-	height: 150px;
-	background-color: #fff;
-}
-
-#mypage-content-counter {
-	color: #aaa;
-	font-size: 14px;
 }
 </style>
 <div>
@@ -148,24 +124,53 @@ p {
 			</c:choose>
 		</div>
 		<div class="col-3">
-			<div class="text-center mb-3">
-				<strong>내 친구</strong>
+			<nav class="navbar mypage-follower-nav">
+				<ul class="nav nav-tabs">
+					<li class="nav-item"><a class="nav-link active" href="#" data-type="follower">팔로워</a></li>
+					<li class="nav-item"><a class="nav-link" href="#" data-type="following">팔로잉</a></li>
+				</ul>
+			</nav>
+			<div class="mypage-follower">
+				<c:forEach items="${followerMap.followers }" var="follower">
+					<div class="mb-3 pl-5">
+						<a href="/other/info.do?userId=${follower.folUserId }"> <img
+							src="/resources/profileImage/${follower.image }"
+							class="rounded-circle smallimage mr-3" alt="Cinque Terre"> <span
+							style="font-size: 15px; font-weight: bold;">${follower.nickname }</span>
+						</a>
+					</div>
+				</c:forEach>
 			</div>
-			<c:forEach items="${followers }" var="follower">
-				<div class="mb-3 pl-5">
-					<a href="/other/info.do?userId=${follower.folUserId }"> <img
-						src="/resources/profileImage/${follower.image }"
-						class="rounded-circle smallimage mr-3" alt="Cinque Terre"> <span
-						style="font-size: 15px; font-weight: bold;">${follower.nickname }</span>
-					</a>
-				</div>
-			</c:forEach>
+			<div class="mypage-following" style="display: none;">
+				<c:forEach items="${followerMap.followings }" var="following">
+					<div class="mb-3 pl-5">
+						<a href="/other/info.do?userId=${following.userId }"> <img
+							src="/resources/profileImage/${following.image }"
+							class="rounded-circle smallimage mr-3" alt="Cinque Terre"> <span
+							style="font-size: 15px; font-weight: bold;">${following.nickname }</span>
+						</a>
+					</div>
+				</c:forEach>
+			</div>
 		</div>
 	</div>
 </div>
 <script>
 	//가입모임 데이터 가져오는 AJAX
 	$(function() {
-
+		// 팔로워 탭
+		$(".mypage-follower-nav li a").click(function() {
+			$(".mypage-follower-nav li a").removeClass('active');
+			var type = $(this).data('type');
+			$(this).addClass('active')
+			
+			if('follower' == type) {
+				$(".mypage-follower").css('display','block');
+				$(".mypage-following").css('display','none');
+			} else {
+				$(".mypage-follower").css('display','none');
+				$(".mypage-following").css('display','block');				
+			}
+		})
 	})
 </script>

@@ -11,23 +11,56 @@
 	height: 50px;
 }
 
-#otherpage-body .card {
-	width: 300px;
-	border: 0;
-	position: relative;
-	margin-right: 35px;
+.otherpate-btns {
+	padding-left: 181px;
+    position: absolute;
+    top: 84px;
 }
 
-#otherpage-body .card-body {
-	padding: 0;
+#ohter-warning-modal>div {
+	width: 450px;
+}
+
+#ohter-warning-modal .input-group-text, #ohter-message-modal .input-group-text {
+	display: flex;
+	-ms-flex-align: center;
+	align-items: center;
+	padding: 0px 10px;
+	margin-bottom: 0px;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	text-align: center;
+	white-space: nowrap;
+	background-color: #FFF;
+	border: none;
+	border-radius: 0.25rem;
+}
+
+#ohter-warning-modal .form-control, #ohter-message-modal .form-control {
+	width: 100%;
+	padding: 3px;
+	font-size: 16px;
+	border: 1px solid rgba(0, 0, 0, .5);
+	border-radius: 5px;
+	outline: none;
+	box-sizing: border-box;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, .075); /* .75 아니고 .075 주의 */
+	margin-bottom: 4px;
+}
+
+#other-content-counter {
+	color: #aaa;
+	font-size: 14px;
 }
 </style>
-<div class="ml-5 mt-3">
+<div class="ml-5 mt-3" style="position: relative;">
 	<img src="/resources/profileImage/${otherUser.profileImage }"
 		class="rounded-circle myimage mr-3" alt="Cinque Terre"> <span
 		style="font-size: large; font-weight: bold;">${otherUser.nickname }</span>
-	<div class="text-center">
-		<button class="btn btn-outline-danger btn-sm">
+	<div class="text-left otherpate-btns">
+		<button class="btn btn-outline-danger btn-sm" id="other-warning-btn">
 			신고하기
 			<svg width="2em" height="2em" viewBox="0 0 16 16"
 				class="bi bi-brightness-alt-high" fill="currentColor"
@@ -45,223 +78,170 @@
 					d="M12 3H4a4 4 0 0 0-4 4v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V7a4 4 0 0 0-4-4zM8 7a3.99 3.99 0 0 0-1.354-3H12a3 3 0 0 1 3 3v6H8V7zm1 1.5h2.793l.853.854A.5.5 0 0 0 13 9.5h1a.5.5 0 0 0 .5-.5V8a.5.5 0 0 0-.5-.5H9v1zM4.585 7.157C4.836 7.264 5 7.334 5 7a1 1 0 0 0-2 0c0 .334.164.264.415.157C3.58 7.087 3.782 7 4 7c.218 0 .42.086.585.157z" />
 			</svg>
 		</button>
-		<button class="btn btn-outline-light text-dark btn-sm">
-			팔로우하기
-			<svg width="2em" height="2em" viewBox="0 0 16 16"
-				class="bi bi-person-plus" fill="currentColor"
-				xmlns="http://www.w3.org/2000/svg">
-			  <path fill-rule="evenodd"
-					d="M11 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM1.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM6 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm4.5 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
-			  <path fill-rule="evenodd"
-					d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z" />
-			</svg>
-		</button>
-		<button class="btn btn-outline-light text-dark btn-sm">
-			취소
-			<svg width="2em" height="2em" viewBox="0 0 16 16"
-				class="bi bi-person-dash-fill" fill="currentColor"
-				xmlns="http://www.w3.org/2000/svg">
-  				<path fill-rule="evenodd"
-					d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5-.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z" />
-			</svg>
-		</button>
+		<c:if test="${followerYn eq 0 }">
+			<button class="btn btn-outline-info  text-dark btn-sm">
+				팔로우
+				<svg width="2em" height="2em" viewBox="0 0 16 16"
+					class="bi bi-person-plus" fill="currentColor"
+					xmlns="http://www.w3.org/2000/svg">
+				  <path fill-rule="evenodd"
+						d="M11 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM1.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM6 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm4.5 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+				  <path fill-rule="evenodd"
+						d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z" />
+				</svg>
+			</button>
+		</c:if>
+		<c:if test="${followerYn eq 1 }">
+			<button class="btn btn-outline-info text-dark btn-sm">
+				팔로우 취소
+				<svg width="2em" height="2em" viewBox="0 0 16 16"
+					class="bi bi-person-dash-fill" fill="currentColor"
+					xmlns="http://www.w3.org/2000/svg">
+	  				<path fill-rule="evenodd"
+						d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5-.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z" />
+				</svg>
+			</button>
+		</c:if>
 	</div>
 </div>
-<div class="row mt-3" style="width: 95%">
+<div class="row mt-4" style="width: 95%">
 	<div class="col-12">
 		<nav class="navbar">
-			<ul class="nav nav-tabs" id="otherpage-nav">
-				<li class="nav-item"><a class="nav-link active" href="#"
-					id="otherpage-info">정보</a></li>
-				<li class="nav-item"><a class="nav-link" href="#"
-					id="otherpage-mymoim">가입모임</a></li>
-				<li class="nav-item"><a class="nav-link" href="#"
-					id="otherpage-images">사진첩</a></li>
-				<li class="nav-item"><a class="nav-link" href="#"
-					id="otherpage-board">작성후기</a></li>
+			<ul class="nav nav-tabs">
+				<li class="nav-item"><a class="nav-link active" href="/other/info.do">정보</a></li>
+				<li class="nav-item"><a class="nav-link" href="/other/usermoim.do">가입모임</a></li>
+				<li class="nav-item"><a class="nav-link" href="/other/board.do">사진첩</a></li>
+				<li class="nav-item"><a class="nav-link" href="/other/photo.do">작성후기</a></li>
 			</ul>
 		</nav>
 	</div>
 </div>
 <div class="row" style="padding: 30px 35px;">
 	<div class="col-12">
-		<div id="otherpage-body"></div>
+		<div class='row'>
+			<div class='col-9'>
+				<div class='pb-4' style='border-bottom: 1px solid darkgray'>
+					<p>Profile</p>
+					<div class='mx-auto'>
+						<table class='table-borderless' style='width: 700px'>
+							<colgroup>
+								<col width='20%'>
+								<col width='40%'>
+								<col width='20%'>
+								<col width='40%'>
+							</colgroup>
+							<tr>
+								<th class='text-center'>아이디</th>
+								<td>${otherUser.id}</td>
+								<th class='text-center'>전화번호</th>
+								<td>${otherUser.tel}</td>
+							</tr>
+							<tr>
+								<th class='text-center'>이름</th>
+								<td>${otherUser.name}</td>
+								<th class='text-center'>이메일</th>
+								<td>${otherUser.email}</td>
+							<tr>
+								<th class='text-center'>생일</th>
+								<td>${otherUser.birthDate}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class='mt-3 pb-4' style='border-bottom: 1px solid darkgray'>
+					<p>Comment</p>
+					<p>${otherUser.content}</p>
+				</div>
+			</div>
+			<div class='col-3'>
+				<p>통계</p>
+				<div class='mx-auto'>
+					<table class='table-borderless' style='width: 255px'>
+						<colgroup>
+							<col width='50%'>
+							<col width='50%'>
+						</colgroup>
+						<tr>
+							<th class='text-center'>가 입 일</th>
+							<td><fmt:formatDate value='${otherUser.createdDate}' /></td>
+						</tr>
+						<tr>
+							<th class='text-center'>팔로워 수</th>
+							<td>${followerCnt}</td>
+						</tr>
+						<tr>
+							<th class='text-center'>팔로잉 수</th>
+							<td>${followingCnt}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
+
+<!-- 신고하기 모달창 -->
+<div class="modal fade" id="ohter-warning-modal">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">신고하기</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+	
+      <div class="modal-body">
+      	<div class="input-group">
+			<div class="input-group-text" id="inputGroup-sizing-sm">신고내용
+			</div>
+			<textarea class="form-control" id="other-warning-content" cols="5"
+				name="content" placeholder="신고내용을 입력해주세요"></textarea>
+			<span id="other-content-counter">(0 / 최대 100자)</span>
+		</div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="other-warning-submit">신고하기</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <script>
-	// 가입모임 데이터 가져오는 AJAX
-	$(function() {
-		var $otherpageBody = $("#otherpage-body");
-
-		$("#otherpage-nav .nav-link").click(function() {
-			$("#otherpage-nav .nav-link").removeClass('active');
-			$(this).addClass('active');
-			$otherpageBody.empty();
-		})
-
-		// 사용자 정보 저장
-		var otherpageInfo = "<div><div class='row'><div class='col-9'><div class='pb-4' style='border-bottom: 1px solid darkgray'>";
-		otherpageInfo += "<p>Profile</p><div class='mx-auto'><table class='table-borderless' style='width:700px'>";
-		otherpageInfo += "<colgroup><col width='20%'><col width='40%'><col width='20%'><col width='40%'></colgroup>";
-		otherpageInfo += "<tr><th class='text-center'>아이디</th><td>${otherUser.id}</td><th class='text-center'>전화번호</th><td>${otherUser.tel}</td></tr>";
-		otherpageInfo += "<tr><th class='text-center'>이름</th><td>${otherUser.name}</td><th class='text-center'>이메일</th><td>${otherUser.email}</td></>";
-		otherpageInfo += "<tr><th class='text-center'>생일</th><td>${otherUser.birthDate}</td></tr></table></div></div>";
-		otherpageInfo += "<div class='mt-3 pb-4' style='border-bottom: 1px solid darkgray'><p>Comment</p>";
-		otherpageInfo += "<p>${otherUser.content}</p></div></div>";
-		otherpageInfo += "<div class='col-3'><p>통계</p>	<div class='mx-auto'><table class='table-borderless' style='width:255px'>";
-		otherpageInfo += "<colgroup><col width='50%'><col width='50%'></colgroup>";
-		otherpageInfo += "<tr><th class='text-center'>가   입   일 </th><td><fmt:formatDate value='${otherUser.createdDate}'/></td></tr>";
-		otherpageInfo += "<tr><th class='text-center'>팔로워 수</th><td>${followerCnt}</td></tr>";
-		otherpageInfo += "</table></div></div></div>";
-		$otherpageBody.append(otherpageInfo);
-
-		$("#otherpage-info").click(function() {
-			$otherpageBody.append(otherpageInfo);
-		})
-
-		$("#otherpage-mymoim")
-				.click(
-						function() {
-							$
-									.ajax({
-										type : "GET",
-										url : "/other/usermoim.do",
-										dataType : "json",
-										success : function(joinmoims) {
-											if (joinmoims.status == 'false') {
-												var empty = "<div>비공개입니다. 내용을 보실려면 팔로우하세요</div>"
-												$otherpageBody.append(empty);
-												return;
-											}
-
-											if (joinmoims.joinmoim.length == 0) {
-												var empty = "<div><p>내가 가입한 모임이 존재하지않습니다.</p></div>";
-												$otherpageBody.append(empty);
-												return;
-											}
-
-											var moimPage = "<div class='clearfix'>";
-
-											$
-													.each(
-															joinmoims.joinmoim,
-															function(index,
-																	moim) {
-																moimPage += "<div class='card float-left'><img class='card-img-top' src='/resources/index_images/10.jpg' alt='Card image'>";
-																moimPage += "<div class='card-body mt-2'><div class='card-title'><div class='clearfix'>";
-																moimPage += "<span class='float-left'>"
-																		+ moim.title
-																		+ "</span><span class='float-right'>"
-																		+ moim.joinCount
-																		+ "/"
-																		+ moim.headCount
-																		+ "<i class='far fa-heart ml-4'></i></span>";
-																moimPage += "	</div></div><div class='text-right'><small class='text-muted'>2020.11.22</small>";
-																moimPage += "</div></div>	</div>";
-
-															})
-											moimPage += "</div>";
-											$otherpageBody.append(moimPage);
-										}
-									})
-						})
-
-		$("#otherpage-images")
-				.click(
-						function() {
-							$
-									.ajax({
-										type : "GET",
-										url : "/other/photo.do",
-										dataType : "json",
-										success : function(images) {
-											if (images.status == 'false') {
-												var empty = "<div>비공개입니다. 내용을 보실려면 팔로우하세요</div>"
-												$otherpageBody.append(empty);
-											} else {
-												if (images.photos.length == 0) {
-													var empty = "<div>올린사진이 없습니다.</div>"
-													$otherpageBody
-															.append(empty);
-												} else {
-													$
-															.each(
-																	images.photos,
-																	function(
-																			index,
-																			image) {
-																		var tr = "<div class='card'>";
-																		tr += "<a href='/moim/moim.do?moimNo=${moim.moimNo}'>";
-																		tr += "<img class='card-img-top' src='/resources/home_images/9.jpg' alt='Card image cap'>";
-																		tr += "<div class='card-body'>";
-																		tr += "<h5 class='card-title'><c:out value='${moim.title }'/></h5>"
-																		tr += "<p class='card-text'>${moim.content }</p>";
-																		tr += "</div><div class='card-footer'>";
-																		tr += "<small class='text-muted'>${moim.createdDate}</small>";
-																		tr += "</div></a></div>";
-
-																		$otherpageBody
-																				.append(tr);
-
-																	})
-
-												}
-											}
-										}
-									})
-						})
-		$("#otherpage-board")
-				.click(
-						function() {
-							$
-									.ajax({
-										type : "GET",
-										url : "/other/board.do",
-										dataType : "json",
-										success : function(boards) {
-											console.log(boards);
-											if (boards.status == 'false') {
-												var empty = "<div>비공개입니다. 내용을 보실려면 팔로우하세요</div>"
-												$otherpageBody.append(empty);
-											} else {
-												if (boards.boards.length == 0) {
-													var empty = "<div>작성한글이 없습니다.</div>"
-													$otherpageBody
-															.append(empty);
-												} else {
-													$
-															.each(
-																	boards.boards,
-																	function(
-																			index,
-																			board) {
-																		var tr = "<div class='card'>";
-																		tr += "<a href='/moim/boardDetail.do?boardNo="
-																				+ board.boardNo
-																				+ "'>";
-																		tr += "<img class='card-img-top' src='/resources/home_images/9.jpg' alt='Card image cap'>";
-																		tr += "<div class='card-body'>";
-																		tr += "<h5 class='card-title'>"
-																				+ board.title
-																				+ "</h5>"
-																		tr += "<p class='card-text'>"
-																				+ board.content
-																				+ "</p>";
-																		tr += "</div><div class='card-footer'>";
-																		tr += "<small class='text-muted'>"
-																				+ board.createdDate
-																				+ "</small>";
-																		tr += "</div></a></div>";
-
-																		$otherpageBody
-																				.append(tr);
-
-																	})
-
-												}
-											}
-										}
-									})
-						})
+// 가입모임 데이터 가져오는 AJAX
+$(function() {
+	// 신고 모달
+	$('#other-warning-btn').click(function() {
+		$("#ohter-warning-modal").modal("show");
 	})
+	
+	$("#other-warning-submit").click(function() {
+		$.ajax({
+			type: "post",
+			url: "/other/warning.do",
+			data:{ text: $('#other-warning-content').val()},
+			dataType: "json",
+			success: function (status) {
+				if (status) {
+					$("#ohter-warning-modal").modal("hide");					
+				} else {
+					alert("신고를 실패했습니다. 다시 시도해주세요")
+				}
+			}
+		})
+	})
+	
+	//글자수 실시간 카운팅
+	$('#other-warning-content').keyup(function (e){
+	    var content = $(this).val();
+	    $('#other-content-counter').html("("+content.length+" / 최대 100자)");    
+	    if (content.length > 100){
+	        alert("최대 100자까지 입력 가능합니다.");
+	        $(this).val(content.substring(0, 200));
+	        $('#other-content-counter').html("(100 / 최대 100자)");
+	    }
+	});
+})
 </script>

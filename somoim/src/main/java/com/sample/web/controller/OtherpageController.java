@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sample.dao.WarningDao;
 import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimJoinUserMoimDto;
 import com.sample.service.MoimService;
@@ -26,6 +27,7 @@ import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimFollow;
 import com.sample.vo.MoimPhoto;
 import com.sample.vo.MoimUser;
+import com.sample.vo.MoimWarning;
 
 @Controller
 @RequestMapping("/other")
@@ -40,31 +42,43 @@ public class OtherpageController {
 	@Autowired
 	MoimService moimService;
 	
+	@Autowired
+	WarningDao warningDao;
+	
 	private MoimUser loginedUser = new MoimUser();
 	private MoimFollow moimFollow = new MoimFollow();
+	private int followYn;
+	
+	@ModelAttribute("followerYn")
+	public int followerYn() {
+		return this.followYn;
+	}
 	
 	@GetMapping("/info.do")
-	public String friendPage1(@RequestParam("userId") String foluserId, Model model, HttpSession session) {
+	public String friendPage(@RequestParam("userId") String foluserId, Model model, HttpSession session) {
 		this.loginedUser = (MoimUser)session.getAttribute("LOGIN_USER");
 		MoimUser otherUser = userService.getUserDetail(foluserId);
 		List<MoimFollowDto> followers = mypageService.allFollower(foluserId);
+		List<MoimFollowDto> followings = mypageService.allFollowing(foluserId);
 		
 		MoimFollow moim = new MoimFollow();
 		moim.setFolUserId(foluserId);
 		moim.setUserId(loginedUser.getId());
 		this.moimFollow = moim;
+		this.followYn = mypageService.followYn(moimFollow);
 		
 		model.addAttribute("otherUser", otherUser);
 		model.addAttribute("followerCnt", followers.size());
+		model.addAttribute("followingCnt", followings.size());
+		
 		return "other/info.tiles";
 	}
 	
 		// 가입한모임
 		@GetMapping("/usermoim.do")
-		@ResponseBody
 		public Map<String, Object> joinMoims (){
 			Map<String, Object> infos = new HashMap<String, Object>();
-			long followYn = mypageService.followYn(moimFollow);
+			
 			List<MoimJoinUserMoimDto> moims = mypageService.allJoinMoims(moimFollow.getFolUserId());
 			// 팔로우 상태일떄
 			if(followYn == 1) {
@@ -155,6 +169,24 @@ public class OtherpageController {
 			mypageService.deleteFollower(follow);
 			
 			return "other/info.tiles";
+		}
+		
+		// 신고하기
+		@PostMapping("/warning.do")
+		@ResponseBody
+		public boolean warningUser(@RequestParam("text") String text) {
+			try {
+				MoimWarning warningUser = new MoimWarning();
+				warningUser.setContent(text);
+				warningUser.setType("유저");
+				warningUser.setLoginUserId(moimFollow.getUserId());
+				warningUser.setUserId(moimFollow.getFolUserId());
+				
+				warningDao.insertWarning(warningUser);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
 		}
 		
 }

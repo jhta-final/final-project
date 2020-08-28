@@ -29,7 +29,7 @@
 		where
 			A.fol_user_id = #{value}
 		and
-			A.fol_user_id = B.user_id
+			A.user_id = B.user_id
 	</select>
 
 	<select id="getUserMoims" parameterType="string" resultType="MoimJoinUser">
@@ -60,7 +60,7 @@
 		(#{userId}, #{folUserId})
 	</insert>
 	
-	<select id="findFollower" parameterType="Follow" resultType="long">
+	<select id="findFollower" parameterType="Follow" resultType="int">
 		select
 			count(*)
 		from

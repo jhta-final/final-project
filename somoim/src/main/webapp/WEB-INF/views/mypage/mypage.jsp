@@ -77,6 +77,14 @@ p {
 	color: #aaa;
 	font-size: 14px;
 }
+
+.mypage-follower {
+
+}
+
+.mypage-following {
+	display: none;
+}
 </style>
 <div>
 	<div class="ml-5 mt-3">
@@ -150,11 +158,11 @@ p {
 							</tr>
 							<tr>
 								<th class='text-center'>팔로워 수</th>
-								<td>${fn:length(followers)}</td>
+								<td>${fn:length(followerMap.followers)}</td>
 							</tr>
 							<tr>
 								<th class='text-center'>팔로잉 수</th>
-								<td>${followingsCnt}</td>
+								<td>${fn:length(followerMap.followings)}</td>
 							</tr>
 						</table>
 					</div>
@@ -172,18 +180,34 @@ p {
 			</div>
 		</div>
 		<div class="col-3">
-			<div class="text-center mb-3">
-				<strong>내 친구</strong>
+			<nav class="navbar mypage-follower-nav">
+				<ul class="nav nav-tabs">
+					<li class="nav-item"><a class="nav-link active" href="#" data-type="follower">팔로워</a></li>
+					<li class="nav-item"><a class="nav-link" href="#" data-type="following">팔로잉</a></li>
+				</ul>
+			</nav>
+			<div class="mypage-follower">
+				<c:forEach items="${followerMap.followers }" var="follower">
+					<div class="mb-3 pl-5">
+						<a href="/other/info.do?userId=${follower.folUserId }"> <img
+							src="/resources/profileImage/${follower.image }"
+							class="rounded-circle smallimage mr-3" alt="Cinque Terre"> <span
+							style="font-size: 15px; font-weight: bold;">${follower.nickname }</span>
+						</a>
+					</div>
+				</c:forEach>
 			</div>
-			<c:forEach items="${followers }" var="follower">
-				<div class="mb-3 pl-5">
-					<a href="/other/info.do?userId=${follower.folUserId }"> <img
-						src="/resources/profileImage/${follower.image }"
-						class="rounded-circle smallimage mr-3" alt="Cinque Terre"> <span
-						style="font-size: 15px; font-weight: bold;">${follower.nickname }</span>
-					</a>
-				</div>
-			</c:forEach>
+			<div class="mypage-following" style="display: none;">
+				<c:forEach items="${followerMap.followings }" var="following">
+					<div class="mb-3 pl-5">
+						<a href="/other/info.do?userId=${following.userId }"> <img
+							src="/resources/profileImage/${following.image }"
+							class="rounded-circle smallimage mr-3" alt="Cinque Terre"> <span
+							style="font-size: 15px; font-weight: bold;">${following.nickname }</span>
+						</a>
+					</div>
+				</c:forEach>
+			</div>
 		</div>
 	</div>
 </div>
@@ -342,11 +366,10 @@ p {
 				reader.readAsDataURL(input.files[0]);
 			}
 		}
-		
+		//글자수 실시간 카운팅
 		$('#mypage-modify-content').keyup(function (e){
 		    var content = $(this).val();
-		    $('#mypage-content-counter').html("("+content.length+" / 최대 200자)");    //글자수 실시간 카운팅
-
+		    $('#mypage-content-counter').html("("+content.length+" / 최대 200자)");    
 		    if (content.length > 200){
 		        alert("최대 200자까지 입력 가능합니다.");
 		        $(this).val(content.substring(0, 200));
@@ -369,7 +392,6 @@ p {
 				data:{ password: $exitPwd.val()},
 				dataType: "json",
 				success: function (status) {
-					console.log(status);
 					if (status) {
 						$("#mypage-exit-modal").modal('hide');
 						exitAlert('진짜 회원탈퇴 할거야???');
@@ -388,6 +410,21 @@ p {
 				location.href="/mypage/userdelete.do";
 			} 
 		}
+		
+		// 팔로워 탭
+		$(".mypage-follower-nav li a").click(function() {
+			$(".mypage-follower-nav li a").removeClass('active');
+			var type = $(this).data('type');
+			$(this).addClass('active')
+			
+			if('follower' == type) {
+				$(".mypage-follower").css('display','block');
+				$(".mypage-following").css('display','none');
+			} else {
+				$(".mypage-follower").css('display','none');
+				$(".mypage-following").css('display','block');				
+			}
+		})
 
 	})
 </script>
