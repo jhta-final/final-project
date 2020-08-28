@@ -6,19 +6,20 @@
 	<!-- 유저 아이디 조회 -->
 	<select id="getUserById" parameterType="String" resultType="User">
 		select
-			user_id			as  id,
-			user_name 		as	name,
-			tel				as	tel,
-			user_password	as  password,
-			nickname		as  nickname,
-			email			as  email,
-			birth			as  birthDate,
-			gender			as  gender,
-			user_content 	as  content,
-			delete_yn		as  deleteYN,
-			created_date	as	createdDate,
-			location_no		as	locationNo,
-			profile_image	as	profileImage
+			user_id					as  id,
+			user_name 				as	name,
+			tel						as	tel,
+			user_password			as  password,
+			nickname				as  nickname,
+			email					as  email,
+			birth					as  birthDate,
+			gender					as  gender,
+			user_content 			as  content,
+			delete_yn				as  deleteYN,
+			created_date			as	createdDate,
+			location_no				as	locationNo,
+			profile_image			as	profileImage,
+			suspended_account_yn 	as  suspendedAccountYn
 		from
 			moim_user
 		where

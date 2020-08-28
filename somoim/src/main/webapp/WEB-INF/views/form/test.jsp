@@ -29,10 +29,15 @@
 	        <img src="/resources/index_images/10.jpg" alt="" class="rounded mx-auto d-block" width="250px">
 	      </div>
 	      <div class="col-8 mt-3 float-left">
-	        <p class="myp" style="font-size: 50px; font-weight: bold;"><c:out value="${moim.title }"/> </p>
+	        <p class="myp" style="font-size: 50px; font-weight: bold;"><c:out value="${moim.title }"/>
+	            <c:if test="${moim.premiumYn == 'Y'}">
+					<i class="fas fa-crown ml-2 text-right" style="color:#6699FF;"></i>
+				</c:if>
+			</p>
 	        <div class="mb-1">
 	          <span class="mr-3"><c:out value="${moim.userId }"></c:out> </span>
 	          <span><i class="far fa-heart"></i><fmt:formatNumber value="${moim.likes }"/> </span>
+	          <p>지역 : ${moim.locationName } &ensp;카테고리 : ${moim.subCateName }</p>
 	        </div>
 	        <div class="mb-2">
 	          <span class="mr-3"><i class="fas fa-won-sign"></i> <fmt:formatNumber value="${moim.fee }"/> 원</span>

@@ -49,28 +49,38 @@
 	from 
 			moim_main A, moim_main_category C, 
             moim_sub_cate D, moim_location E
-	<where>	
+	<where>
             c.main_cate_no = d.main_cate_no 
 	and
 			a.sub_cate_no = d.sub_cate_no 
 	and 
-            e.location_no = a.location_no
-	and 
-            delete_yn = 'N'
+			e.location_no = a.location_no
+	and
+			delete_yn = 'N'
+    and	
+    	(a.title like '%' || #{keyword} || '%'
+	or
+		a.content like '%' || #{keyword} || '%'
+	or
+		e.name like '%' || #{keyword} || '%'
+	or
+		c.name like '%' || #{keyword} || '%'
+	or 
+		d.name like '%' || #{keyword} || '%')
 		<if test="locationNo != 0">
 	and
         e.location_no = #{locationNo}
         </if>
 		<if test="subCateNo != 0">
-	and
+    and 
         d.sub_cate_no = #{subCateNo}
         </if>
 		<if test="mainCateNo != 0">
 	and
         c.main_cate_no = #{mainCateNo}
-    order by 
-		a.created_date desc
         </if>
+    ) order by 
+		a.created_date desc
 	</where>
 	</select>
 	

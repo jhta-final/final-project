@@ -17,6 +17,7 @@ public class MoimUser {
 	private Date createdDate;
 	private long locationNo;
 	private String profileImage;
+	private String suspendedAccountYn;
 	
 	public MoimUser() {}
 
@@ -126,6 +127,14 @@ public class MoimUser {
 		this.profileImage = profileImage;
 	}
 
+	public String getSuspendedAccountYn() {
+		return suspendedAccountYn;
+	}
+	
+	public void setSuspendedAccountYn(String suspendedAccountYn) {
+		this.suspendedAccountYn = suspendedAccountYn;
+	}
+	
 	@Override
 	public String toString() {
 		return "MoimUser [id=" + id + ", name=" + name + ", tel=" + tel + ", password=" + password + ", nickname="

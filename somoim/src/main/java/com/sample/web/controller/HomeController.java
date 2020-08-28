@@ -91,20 +91,25 @@ public class HomeController {
 	public String selectSearchFunction
 			(@RequestParam(value="locationNo", required=false) long locationNo,
 			@RequestParam(value="mainCateNo", required=false) long mainCateNo,	
-			@RequestParam(value="subCateNo", required=false) long subCateNo,	
+			@RequestParam(value="subCateNo", required=false) long subCateNo,
+			@RequestParam("keyword") String keyword,
 			Model model) {
 		
-		Map<String, Object> keyword = new HashMap<String, Object>();
-		keyword.put("locationNo", locationNo);
-		keyword.put("mainCateNo", mainCateNo);
-		keyword.put("subCateNo", subCateNo);
-		keyword.put("locationName", homeService.getLocationName(locationNo));
-		keyword.put("mainCateName", homeService.getMainCategoryName(mainCateNo));
-		keyword.put("subCateName", homeService.getSubCategoryName(subCateNo));
-		List<MoimMainDto> searchSelectBoxs = homeService.getselectSearchFunction(keyword);
-		model.addAttribute("cateMoims", searchSelectBoxs);
+		Map<String, Object> select = new HashMap<String, Object>();
+		select.put("locationNo", locationNo);
+		System.out.println(locationNo);
+		select.put("mainCateNo", mainCateNo);
+		select.put("subCateNo", subCateNo);
+		select.put("locationName", homeService.getLocationName(locationNo));
+		select.put("mainCateName", homeService.getMainCategoryName(mainCateNo));
+		System.out.println(homeService.getMainCategoryName(mainCateNo));
+		select.put("subCateName", homeService.getSubCategoryName(subCateNo));
+		System.out.println(homeService.getSubCategoryName(subCateNo));
+		select.put("keyword", keyword);
+		List<MoimMainDto> searchAll = homeService.getselectSearchFunction(select);
+		model.addAttribute("cateMoims", searchAll);
 		model.addAttribute("title", "search");
-		model.addAttribute("keyword", keyword);
+		model.addAttribute("keyword", select);
 		
 		return "form/test.tiles";
 	}

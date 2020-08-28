@@ -52,7 +52,7 @@ public interface HomeDao {
 	List<MoimMainDto> searchFunction(String keyword);
 	
 	// 셀렉트박스 검색
-	List<MoimMainDto> selectSearchFunction(Map<String, Object> keyword);
+	List<MoimMainDto> selectSearchFunction(Map<String, Object> select);
 	
 	//무한 스크롤
 	List<MoimMainDto> scrollMoim();
