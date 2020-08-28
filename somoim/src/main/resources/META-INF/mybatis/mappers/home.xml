@@ -236,7 +236,7 @@
 	</select>
 	
 	<!-- 카테고리 랜덤표시 -->
-	<select id="mainCategoryMoims" parameterType="long" resultType="MainDto">
+	<select id="mainCategoryMoims" parameterType="hashmap" resultType="MainDto">
 	 select * from(
 	 	select 
 			a.moim_no		as moimNo,
@@ -252,17 +252,17 @@
 			a.created_date	as createdDate,
 			b.main_cate_no	as mainCateNo,
 			c.sub_cate_no	as subCateNo,
-			b.name			as mainCateName
+			b.name			as mainCateName,
+            row_number() over(order by join_date desc) rn
 		from 
 			moim_main A, moim_main_category B, moim_sub_cate C
 		where
 			a.sub_cate_no = c.sub_cate_no and b.main_cate_no = c.main_cate_no
         and
-            b.main_cate_no = #{value}
+            b.main_cate_no = #{mainCateNo}
         and
         	a.delete_yn = 'N'
-	 ) order by 
-	 		dbms_random.random
+	 ) <![CDATA[where rn >= #{beginIndex} and rn <= #{endIndex}]]>
 	
 	</select>
 	

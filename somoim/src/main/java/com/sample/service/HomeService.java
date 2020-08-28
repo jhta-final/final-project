@@ -21,7 +21,7 @@ public interface HomeService {
 	List<MoimMainDto> getFavoliteMoims();
 	
 	// 메안카테고리 랜덤표시
-	List<MoimMainDto> getMainCategoryMoims();
+	List<MoimMainDto> getMainCategoryMoims(long beginIndex, long endIndex, long mainCateNo);
 	
 	// 가입한 모임 표시
 	List<MoimMainDto> getjoinedMoim(String userId);
