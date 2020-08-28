@@ -54,7 +54,7 @@
 					<div class="card-footer">
 						<div class="row">
 							<div class="text-right" style="width: 90%">
-								<a href="/manager/boards.do" class="btn btn-secondary">취소</a>
+								<a href="/manager/boards.do?pageNo=1" class="btn btn-secondary">취소</a>
 								<button type="submit" class="btn btn-primary">작성</button>
 							</div>
 						</div>
