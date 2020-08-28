@@ -111,38 +111,17 @@ h5 {
 <div class="row">
 	<div class="col-12">
 		<h1 id="locationTitle"></h1>
-		<div id="locationMoim" class="row home-body">
-			
-		</div>
-		<button id="btn-get-data" class="btn text-center mb-3" style="width: 100%;background-color: lightgray; border-bottom: 1px solid gray; display: none;">더보기</button>
+		<div id="locationMoim" class="row home-body"></div>
+		<button id="locationViewMore" class="btn text-center mb-3" style="width: 100%;background-color: lightgray; border-bottom: 1px solid gray; display: none;">더보기</button>
 		<hr/>
 	</div>
 </div>
 <div class="row">
 	<div class="col-12">
-		<h1>${mainCategoryMoims[1].mainCateName }</h1>
-		<div class="row home-body">
-			<c:forEach items="${mainCategoryMoims }" var="category">
-				<div class="card mb-4 home-card" data-no="${category.moimNo }">
-					<img class="card-img-top" src="/resources/home_images/${category.image }"
-						alt="Card image cap">
-					<div class="card-body">
-						<div class="card-title">
-							<span><c:out value="${category.title }" /></span>
-						</div>
-						<div class="text-left">
-							<i class="fas fa-heart" style="color: #d09afc"></i>&ensp;<span class="text-left" >${category.likes }</span>&ensp;&ensp;
-							<i class="fas fa-users" style="color: #fcba03"></i>&ensp;<span class="mr-3">${category.joinCount }/${category.headCount }</span>
-							<c:if test="${category.premiumYn == 'Y'}">
-								<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>
-							</c:if>
-							<p style="float: right">
-							<fmt:formatDate value="${category.joinDate}" /></p>
-						</div>
-					</div>
-				</div>
-			</c:forEach>
-		</div>
+		<h1 id="mainCateTitle"></h1>
+		<div id="mainCateMoim" class="row home-body"></div>
+		<button id="mainCateViewMore" class="btn text-center mb-3" style="width: 100%;background-color: lightgray; border-bottom: 1px solid gray; display: none;">더보기</button>
+		<hr/>
 	</div>
 </div>
 <div class="row">
@@ -225,10 +204,68 @@ $(function() {
 	
 	
 	// 더보기 시작--------------------------------------
+	var mainCatePageNo = 1;
+	var mainCateNo = 0;
+	var $mainCatelist = $("#mainCategMoim");
+	$("#mainCateViewMore").click(function() {
+		moreMainCateData();
+	});
+	var $mainCateTitle = $("#mainCateTitle");
+	function moreMainCateData() {
+		
+		$.ajax({
+			type:"GET",
+			url:"/mainCate.do",
+			data:{
+				mainCateNo: mainCateNo,
+				mainCatePageNo :mainCatePageNo
+			},
+			success:function(result){
+				if(result.moims.length == 0) {return;}
+				mainCateNo = result.moims[0].mainCateNo
+				
+				if (result.total == 0) {
+	               $("#mainCateViewMore").hide();
+				} else {
+	               $("#mainCateViewMore").show();
+				}
+				
+	            $mainCateTitle.text(result.moims[0].mainCateName);
+	            if(Math.ceil(currentPageNo/4) == Math.ceil(result.total/4)) {
+	               $("#mainCateViewMore").hide();
+	            } else {
+	               $("#mainCateViewMore").show();
+	            }
+				
+				$.each(result.moims, function(index, mainCateMoim){
+					
+					var row2 = '<div class="card mb-4 home-card" data-no="'+ mainCateMoim.moimNo +'">';
+					row2 += '<img class="card-img-top" src="/resources/home_images/'+mainCateMoim.image+'" alt="Card image cap">';
+					row2 += '<div class="card-body"><div class="card-title">';
+					row2 += '<span>'+mainCateMoim.title+'</span>';
+					row2 += '</div><div class="text-left">';
+					row2 += '<i class="fas fa-heart" style="color: #d09afc"></i>&ensp;<span class="text-left" >'+mainCateMoim.likes+'</span>';
+				   	row2 += '&ensp;&ensp;<i class="fas fa-users" style="color: #fcba03"></i>&ensp;<span class="mr-3">'+mainCateMoim.joinCount+'/'+mainCateMoim.headCount+'</span>';
+				   	if (mainCateMoim.premiumYn == 'Y') {
+					   	row2 += '<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>';				   		
+				   	}
+				   	row2 += '<p style="float: right">'+mainCateMoim.joinDate+'</p>';
+				   	row2 += '</div></div></div>';
+					
+					$list.append(row2);
+				}); 
+				mainCatePageNo += 4;
+			}
+			
+		})
+	}
+
+	moreMainCateData();
+	
 	var currentPageNo = 1;
 	var locationNo = 0;
 	var $list = $("#locationMoim");
-	$("#btn-get-data").click(function() {
+	$("#locationViewMore").click(function() {
 		moreData();
 	});
 	var $locationTitle = $("#locationTitle");
@@ -246,16 +283,16 @@ $(function() {
 				locationNo = result.moims[0].locationNo
 				
 				if (result.total == 0) {
-	               $("#btn-get-data").hide();
+	               $("#locationViewMore").hide();
 				} else {
-	               $("#btn-get-data").show();
+	               $("#locationViewMore").show();
 				}
 				
 	            $locationTitle.text(result.moims[0].locationName);
 	            if(Math.ceil(currentPageNo/4) == Math.ceil(result.total/4)) {
-	               $("#btn-get-data").hide();
+	               $("#locationViewMore").hide();
 	            } else {
-	               $("#btn-get-data").show();
+	               $("#locationViewMore").show();
 	            }
 				
 				$.each(result.moims, function(index, locationMoim){
@@ -283,7 +320,10 @@ $(function() {
 
 	moreData();
 	
-	// 더보기 끝------------------------------------
+	
+	
+	
+	// 지역 더보기 끝------------------------------------
 	
 	
 	var modalMoimNo = "";
