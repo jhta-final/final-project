@@ -13,6 +13,7 @@ import com.sample.dao.FollowerDao;
 import com.sample.dao.PhotoDao;
 import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimJoinUserMoimDto;
+import com.sample.dto.MoimMainDto;
 import com.sample.dto.PhotoWIthLikeDto;
 import com.sample.vo.MoimAlram;
 import com.sample.vo.MoimBoard;
@@ -81,5 +82,10 @@ public class MypageServiceImpl implements MypageService {
 	public void deleteFollower(MoimFollow follow) {
 		followerDao.deleteFollower(follow);
 		
+	}
+
+	@Override
+	public List<MoimMainDto> getFavoliteMoims(String userId) {
+		return followerDao.selectFavoliteMoims(userId);
 	}
 }

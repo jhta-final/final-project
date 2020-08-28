@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimJoinUserMoimDto;
+import com.sample.dto.MoimMainDto;
 import com.sample.dto.PhotoWIthLikeDto;
 import com.sample.vo.MoimAlram;
 import com.sample.vo.MoimBoard;
@@ -21,6 +22,8 @@ public interface MypageService {
 	List<MoimBoard> boardsByUser(String userId);
 	
 	List<PhotoWIthLikeDto> photosByUser(String userId);
+	
+	List<MoimMainDto> getFavoliteMoims(String userId);
 	
 	int followYn(MoimFollow moimFollow);
 	

@@ -77,6 +77,14 @@ public class MypageController {
 		return "mypage/joinMoim.tiles";
 	}
 	
+	// 즐겨찾기한 모임
+	@GetMapping("/favoliteMoim.do")
+	public String favoliteMoims(Model model){
+		model.addAttribute("favolitemoims", mypageService.getFavoliteMoims(user.getId()));
+		
+		return "mypage/favoliteMoim.tiles";
+	}
+	
 	// 작성글
 	@GetMapping("/board.do")
 	public String userBoards(Model model) {

@@ -55,12 +55,14 @@ public class OtherpageController {
 	private MoimUser loginedUser = new MoimUser();
 	private MoimFollow moimFollow = new MoimFollow();
 	private int followYn;
+	private MoimUser ohterUser;
 	
 	
 	@GetMapping("/info.do")
 	public String friendPage(@RequestParam("userId") String foluserId, Model model, HttpSession session) {
 		this.loginedUser = (MoimUser)session.getAttribute("LOGIN_USER");
-		MoimUser otherUser = userService.getUserDetail(foluserId);
+		this.ohterUser = userService.getUserDetail(foluserId);
+		
 		List<MoimFollowDto> followers = mypageService.allFollower(foluserId);
 		List<MoimFollowDto> followings = mypageService.allFollowing(foluserId);
 		
@@ -71,7 +73,7 @@ public class OtherpageController {
 		this.followYn = mypageService.followYn(moimFollow);
 		
 		model.addAttribute("followerYN", this.followYn);
-		model.addAttribute("otherUser", otherUser);
+		model.addAttribute("otherUser", ohterUser);
 		model.addAttribute("followerCnt", followers.size());
 		model.addAttribute("followingCnt", followings.size());
 		
@@ -79,58 +81,54 @@ public class OtherpageController {
 	}
 		// 가입한모임
 		@GetMapping("/usermoim.do")
-		public Map<String, Object> joinMoims (){
-			Map<String, Object> infos = new HashMap<String, Object>();
+		public String joinMoims (Model model){
 			
-			List<MoimJoinUserMoimDto> moims = mypageService.allJoinMoims(moimFollow.getFolUserId());
 			// 팔로우 상태일떄
-			if(followYn == 1) {
-				infos.put("status", "true");
-				infos.put("joinmoim", moims);
+			if(this.followYn == 1) {
+				model.addAttribute("joinmoim", mypageService.allJoinMoims(moimFollow.getFolUserId()));
+				model.addAttribute("otherUser", this.ohterUser);
+				model.addAttribute("followerYN", this.followYn);
 			}
 			// 팔로우 상태가 아닐때
-			if(followYn == 0) {
-				infos.put("status", "false");
+			if(this.followYn == 0) {
+				model.addAttribute("followerYN", this.followYn);
+				model.addAttribute("otherUser", this.ohterUser);
 			}
-			return infos;
+			return "other/joinMoim.tiles";
 		}
 		
 		// 작성글
 		@GetMapping("/board.do")
-		@ResponseBody
-		public Map<String, Object> userBoards (){
-			Map<String, Object> infos = new HashMap<String, Object>();
-			long followYn = mypageService.followYn(moimFollow);
-			List<MoimBoard> boards = mypageService.boardsByUser(moimFollow.getFolUserId());
+		public String userBoards (Model model){
 			// 팔로우 상태일떄
-			if(followYn == 1) {
-				infos.put("status", "true");
-				infos.put("boards", boards);
+			if(this.followYn == 1) {
+				model.addAttribute("boards", mypageService.boardsByUser(moimFollow.getFolUserId()));
+				model.addAttribute("otherUser", this.ohterUser);
+				model.addAttribute("followerYN", this.followYn);
 			}
 			// 팔로우 상태가 아닐때
-			if(followYn == 0) {
-				infos.put("status", "false");
+			if(this.followYn == 0) {
+				model.addAttribute("followerYN", this.followYn);
+				model.addAttribute("otherUser", this.ohterUser);
 			}
-			return infos;
+			return "other/board.tiles";
 		}
 		
 		// 올린사진
 		@GetMapping("/photo.do")
-		@ResponseBody
-		public Map<String, Object> userPhotos () {
-			/*Map<String, Object> infos = new HashMap<String, Object>();
-			long followYn = mypageService.followYn(moimFollow);
-			//List<MoimPhoto> photos = mypageService.photosByUser(moimFollow.getFolUserId());
+		public String userPhotos (Model model) {
 			// 팔로우 상태일떄
-			if(followYn == 1) {
-				infos.put("status", "true");
-				infos.put("photos", photos);
+			if(this.followYn == 1) {
+				model.addAttribute("photos", mypageService.photosByUser(moimFollow.getFolUserId()));
+				model.addAttribute("otherUser", this.ohterUser);
+				model.addAttribute("followerYN", this.followYn);
 			}
 			// 팔로우 상태가 아닐때
-			if(followYn == 0) {
-				infos.put("status", "false");
-			}*/
-			return null;
+			if(this.followYn == 0) {
+				model.addAttribute("followerYN", this.followYn);
+				model.addAttribute("otherUser", this.ohterUser);
+			}
+			return "other/photo.tiles";
 		}
 		
 		// 쪽지보내기

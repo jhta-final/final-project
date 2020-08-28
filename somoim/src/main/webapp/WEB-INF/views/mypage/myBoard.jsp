@@ -69,6 +69,8 @@ p {
 					<li class="nav-item"><a class="nav-link"
 						href="/mypage/usermoim.do">가입모임</a></li>
 					<li class="nav-item"><a class="nav-link"
+						href="/mypage/favoliteMoim.do">즐겨찾는 모임</a></li>
+					<li class="nav-item"><a class="nav-link"
 						href="/mypage/photo.do">사진첩</a></li>
 					<li class="nav-item"><a class="nav-link active"
 						href="/mypage/board.do">내후기</a></li>
@@ -80,7 +82,7 @@ p {
 		<div class="col-9">
 			<c:choose>
 				<c:when test="${empty boards }">
-					<div>내가쓴 글이 존재하지않습니다.</div>
+					<div>작성한 글이 존재하지않습니다.</div>
 				</c:when>
 				<c:otherwise>
 					<div class='row justify-content-center'>

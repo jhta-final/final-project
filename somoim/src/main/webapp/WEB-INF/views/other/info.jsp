@@ -112,10 +112,10 @@
 	<div class="col-12">
 		<nav class="navbar">
 			<ul class="nav nav-tabs">
-				<li class="nav-item"><a class="nav-link active" href="/other/info.do">정보</a></li>
+				<li class="nav-item"><a class="nav-link active" href="/other/info.do?userId=${otherUser.id }">정보</a></li>
 				<li class="nav-item"><a class="nav-link" href="/other/usermoim.do">가입모임</a></li>
-				<li class="nav-item"><a class="nav-link" href="/other/board.do">사진첩</a></li>
-				<li class="nav-item"><a class="nav-link" href="/other/photo.do">작성후기</a></li>
+				<li class="nav-item"><a class="nav-link" href="/other/photo.do">사진첩</a></li>
+				<li class="nav-item"><a class="nav-link" href="/other/board.do">작성후기</a></li>
 			</ul>
 		</nav>
 	</div>

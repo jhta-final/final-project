@@ -198,22 +198,28 @@
 				</div>
 			</div>
 			
-			<div class="nav-right-profile">
-				<div data-toggle="dropdown">
-					<img src="/resources/profileImage/${LOGIN_USER.profileImage }" class="rounded-circle z-depth-0"
-						alt="avatar image" height="35" width="35">
-					<input id="userId" type="hidden" value="${LOGIN_USER.id }">
-				</div>
-				<div class="dropdown-menu dropdown-menu-right">
-					<a class="dropdown-item" href="/mypage/mypage.do">my page</a>
-					<a class="dropdown-item" href="#">프로필 수정</a>
-					<button class="dropdown-item" id="nav-message-button">쪽지함</button>
-					<a class="dropdown-item" href="/login/signout.do">로그아웃</a>
-				</div>
-			</div>
-			<div>
-				<a class="btn btn-primary" href="/manager/show.do">관리자 모드</a>
-			</div>
+			<c:choose>
+				<c:when test="${LOGIN_USER.id ne 'admin' }">
+					<div class="nav-right-profile">
+						<div data-toggle="dropdown">
+							<img src="/resources/profileImage/${LOGIN_USER.profileImage }" class="rounded-circle z-depth-0"
+								alt="avatar image" height="35" width="35">
+							<input id="userId" type="hidden" value="${LOGIN_USER.id }">
+						</div>
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" href="/mypage/mypage.do">my page</a>
+							<a class="dropdown-item" href="#">프로필 수정</a>
+							<button class="dropdown-item" id="nav-message-button">쪽지함</button>
+							<a class="dropdown-item" href="/login/signout.do">로그아웃</a>
+						</div>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div>
+						<a class="btn btn-primary" href="/manager/show.do">관리자 모드</a>
+					</div>				
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</nav>
 </div>
