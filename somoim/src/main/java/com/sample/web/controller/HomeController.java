@@ -215,7 +215,7 @@ public class HomeController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		if(beginIndex == 8) {
+		if(beginIndex == 1) {
 			map.put("moims", homeService.getAllMoims(beginIndex, beginIndex+7));
 		} else {
 			map.put("moims", homeService.getAllMoims(beginIndex, beginIndex+3));
