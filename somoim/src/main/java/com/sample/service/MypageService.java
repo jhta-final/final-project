@@ -12,7 +12,6 @@ import com.sample.vo.MoimPhoto;
 
 public interface MypageService {
 
-	void addFollower(MoimFollow moimFollow);
 	
 	List<MoimFollowDto> allFollower(String userId);
 	List<MoimFollowDto> allFollowing(String userId);
@@ -23,13 +22,9 @@ public interface MypageService {
 	
 	List<PhotoWIthLikeDto> photosByUser(String userId);
 	
-	
-	void AddAlram(MoimAlram moimAlram);
-	
-	// 쪽지 인서트
-	
 	int followYn(MoimFollow moimFollow);
 	
+	void addFollower(MoimFollow moimFollow);
 	
 	void deleteFollower(MoimFollow follow);
 }

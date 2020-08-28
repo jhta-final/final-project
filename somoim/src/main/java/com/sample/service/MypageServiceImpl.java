@@ -73,13 +73,6 @@ public class MypageServiceImpl implements MypageService {
 		return photos;
 	}
 	
-	
-	@Override
-	public void AddAlram(MoimAlram moimAlram) {
-		alramDao.insertAlram(moimAlram);
-		
-	}
-
 	@Override
 	public int followYn(MoimFollow moimFollow) {
 		return followerDao.findFollower(moimFollow);

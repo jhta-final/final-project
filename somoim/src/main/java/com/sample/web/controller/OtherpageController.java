@@ -56,10 +56,6 @@ public class OtherpageController {
 	private MoimFollow moimFollow = new MoimFollow();
 	private int followYn;
 	
-	@ModelAttribute("followerYn")
-	public int followerYn() {
-		return this.followYn;
-	}
 	
 	@GetMapping("/info.do")
 	public String friendPage(@RequestParam("userId") String foluserId, Model model, HttpSession session) {
@@ -74,13 +70,13 @@ public class OtherpageController {
 		this.moimFollow = moim;
 		this.followYn = mypageService.followYn(moimFollow);
 		
+		model.addAttribute("followerYN", this.followYn);
 		model.addAttribute("otherUser", otherUser);
 		model.addAttribute("followerCnt", followers.size());
 		model.addAttribute("followingCnt", followings.size());
 		
 		return "other/info.tiles";
 	}
-	
 		// 가입한모임
 		@GetMapping("/usermoim.do")
 		public Map<String, Object> joinMoims (){
@@ -154,28 +150,26 @@ public class OtherpageController {
 		}
 		
 		// 팔로우하기
-		@PostMapping("/addfollow.do")
-		public String addFollow(@ModelAttribute("follow") MoimFollow follow) {
+		@GetMapping("/addfollow.do")
+		public String addFollow() {
 			// 팔로우 추가하기
-			mypageService.addFollower(follow);
+			mypageService.addFollower(moimFollow);
 			// 알람 인서트
-			MoimAlram alram = new MoimAlram();
-			alram.setType("팔로우");
-			alram.setMessage(follow.getUserId()+"님이 팔로우 신청을 하였습니다.");
-			alram.setUserId(follow.getFolUserId());
-			mypageService.AddAlram(alram);
+			MoimAlram alram = new MoimAlram(moimFollow.getUserId() + "님이 팔로우 했습니다.", "팔로우",
+					moimFollow.getFolUserId(), moimFollow.getUserId());
+			alramService.addAlram(alram);
 			
-			return "other/info.tiles";
+			return "redirect:info.do?userId="+ moimFollow.getFolUserId();
 		}
 		
 		// 팔로우취소하기
-		@PostMapping("/deletefollow.do")
-		public String deleteFollow(@ModelAttribute("follow") MoimFollow follow) {
+		@GetMapping("/deletefollow.do")
+		public String deleteFollow() {
 			
 			// 팔로우테이블 삭제
-			mypageService.deleteFollower(follow);
+			mypageService.deleteFollower(moimFollow);
 			
-			return "other/info.tiles";
+			return "redirect:info.do?userId="+ moimFollow.getFolUserId();
 		}
 		
 		// 신고하기

@@ -82,8 +82,8 @@
 					d="M12 3H4a4 4 0 0 0-4 4v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V7a4 4 0 0 0-4-4zM8 7a3.99 3.99 0 0 0-1.354-3H12a3 3 0 0 1 3 3v6H8V7zm1 1.5h2.793l.853.854A.5.5 0 0 0 13 9.5h1a.5.5 0 0 0 .5-.5V8a.5.5 0 0 0-.5-.5H9v1zM4.585 7.157C4.836 7.264 5 7.334 5 7a1 1 0 0 0-2 0c0 .334.164.264.415.157C3.58 7.087 3.782 7 4 7c.218 0 .42.086.585.157z" />
 			</svg>
 		</button>
-		<c:if test="${followerYn eq 0 }">
-			<button class="btn btn-outline-info  text-dark btn-sm">
+		<c:if test="${followerYN eq 0 }">
+			<a class="btn btn-outline-info  text-dark btn-sm" href="/other/addfollow.do">
 				팔로우
 				<svg width="2em" height="2em" viewBox="0 0 16 16"
 					class="bi bi-person-plus" fill="currentColor"
@@ -93,10 +93,10 @@
 				  <path fill-rule="evenodd"
 						d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z" />
 				</svg>
-			</button>
+			</a>
 		</c:if>
-		<c:if test="${followerYn eq 1 }">
-			<button class="btn btn-outline-info text-dark btn-sm">
+		<c:if test="${followerYN eq 1 }">
+			<a class="btn btn-outline-info text-dark btn-sm" href="/other/deletefollow.do">
 				팔로우 취소
 				<svg width="2em" height="2em" viewBox="0 0 16 16"
 					class="bi bi-person-dash-fill" fill="currentColor"
@@ -104,7 +104,7 @@
 	  				<path fill-rule="evenodd"
 						d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5-.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z" />
 				</svg>
-			</button>
+			</a>
 		</c:if>
 	</div>
 </div>
@@ -230,7 +230,7 @@
 				id="other-message-title" placeholder="제목을 입력해주세요">
 		</div>
       	<div class="input-group">
-			<div class="input-group-text" id="inputGroup-sizing-sm">신고내용
+			<div class="input-group-text" id="inputGroup-sizing-sm">내용
 			</div>
 			<textarea class="form-control" id="other-message-content" cols="5"
 				name="content" placeholder="신고내용을 입력해주세요"></textarea>
@@ -314,6 +314,9 @@ $(function() {
 				}
 			}
 		})
+	})
+	
+	$("#other-follower-btn button").click(function() {
 	})
 })
 </script>
