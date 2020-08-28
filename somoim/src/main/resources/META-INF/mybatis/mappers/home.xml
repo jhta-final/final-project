@@ -299,8 +299,6 @@
 	
 	<!-- 나를 팔로워한 친구들 -->
 	<select id="followUsers" parameterType="string" resultType="MoimFollowDto">
-	<![CDATA[
-	select * from(
 	select
 	A.user_id		as userId,
 	A.fol_user_id	as folUserId,
@@ -315,8 +313,6 @@
         delete_yn = 'N'
 	and
 		A.fol_user_id = B.user_id
-	) where rownum <= 3
-	]]>
 	</select>
 
 	

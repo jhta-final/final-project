@@ -189,7 +189,7 @@ public class HomeController {
 	// 홈 메인카테 더보기용
 	@GetMapping("/mainCate.do")
 	@ResponseBody
-	public Map<String, Object> subCate(@RequestParam("currentPageNo") long beginIndex,
+	public Map<String, Object> subCate(@RequestParam("mainCatePageNo") long beginIndex,
 									@RequestParam(value="mainCateNo", required=false, defaultValue="0") long mainCateNo, HttpSession httpSession) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
