@@ -49,7 +49,7 @@ public class HomeController {
 		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
 
 		// 모든 카테고리 랜덤 모임 표시
-		httpSession.setAttribute("allMoims", homeService.getAllMoims());
+		//httpSession.setAttribute("allMoims", homeService.getAllMoims());
 		
 		// 지역별 선호 모임 랜덤 표시
 		//model.addAttribute("locationMoims", homeService.getlocationMoims(user.getLocationNo()));
@@ -204,6 +204,19 @@ public class HomeController {
 		
 		map.put("moims", homeService.getMainCategoryMoims(beginIndex, beginIndex+3, mainCateNo));
 		map.put("total", homeService.getAllMainCateCount(mainCateNo));
+		
+		return map;
+	}
+	
+	// 홈 전체모임 더보기용
+	@GetMapping("/all.do")
+	@ResponseBody
+	public Map<String, Object> all(@RequestParam("allPageNo") long beginIndex) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("moims", homeService.getAllMoims(beginIndex, beginIndex+3));
+		map.put("total", homeService.getAllMoimsCount());
 		
 		return map;
 	}

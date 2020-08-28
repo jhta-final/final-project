@@ -28,8 +28,13 @@ public class HomeServiceImpl implements HomeService{
 
 	// 전체 랜덤모임 조회
 	@Override
-	public List<MoimMainDto> getAllMoims() {
-		return homeDao.randomMoims();
+	public List<MoimMainDto> getAllMoims(long beginIndex, long endIndex) {
+		
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		hashMap.put("beginIndex", beginIndex);
+		hashMap.put("endIndex", endIndex);
+		
+		return homeDao.randomMoims(hashMap);
 	}
 
 	// 전체 회원 지역선호별 모임
@@ -184,6 +189,11 @@ public class HomeServiceImpl implements HomeService{
 		return homeDao.getAllMainCateCount(mainCateNo);
 	}
 
+	@Override
+	public long getAllMoimsCount() {
+		return homeDao.getAllMoimsCount();
+	}
+	
 	// 공지사항 10개 뽑기
 	@Override
 	public List<MoimManagerBoard> getmoimManagerBoardList() {

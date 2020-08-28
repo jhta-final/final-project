@@ -12,7 +12,7 @@ import com.sample.vo.MoimManagerBoard;
 public interface HomeService {
 
 	// 모든 카테고리 랜덤 모임 표시
-	List<MoimMainDto> getAllMoims();
+	List<MoimMainDto> getAllMoims(long beginIndex, long endIndex);
 	
 	// 지역별 선호 모임 랜덤 표시
 	List<MoimMainDto> getlocationMoims(long beginIndex, long endIndex, long locationNo);
@@ -59,6 +59,7 @@ public interface HomeService {
 	// 지역 검색 총 개수
 	long getAllLocationCount(long locationNo);
 	long getAllMainCateCount(long mainCateNo);
+	long getAllMoimsCount();
 	
 	// 공지사항 10개 뽑기
 	List<MoimManagerBoard> getmoimManagerBoardList();

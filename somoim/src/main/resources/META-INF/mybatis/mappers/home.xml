@@ -144,7 +144,8 @@
 	</select>
 
 	<!-- 랜덤 모임 표시 -->
-	<select id="randomMoims" resultType="MainDto">
+	<select id="randomMoims" parameterType="hashmap" resultType="MainDto">
+	select * from (
 		select
 			a.moim_no		as moimNo,
 			title			as title,
@@ -160,7 +161,8 @@
 			join_date		as joinDate,
 			a.created_date	as createdDate,
 			sub_cate_no		as subCateNo,
-			location_no		as locationNo
+			location_no		as locationNo,
+			row_number() over(order by join_date desc) rn
 		from
 			moim_main A, moim_join_user B
         where
@@ -169,8 +171,8 @@
             a.moim_no = b.moim_no
         and
         	a.delete_yn = 'N'
-		order by
-		   DBMS_RANDOM.RANDOM
+        )
+		<![CDATA[where rn >= #{beginIndex} and rn <= #{endIndex}]]>
 	</select>
 	
 	<!-- 지역 선호도 별로 표시 -->
@@ -399,6 +401,12 @@
 			b.main_cate_no = #{value}
 		and
 			a.delete_yn = 'N'
+	</select>
+	
+	<select id="getAllMoimsCount" resultType="long">
+		select count(*)
+		from moim_main
+		where delete_yn = 'N'
 	</select>
 	
 	<!-- 공지사항 9개 뽑기 -->
