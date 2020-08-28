@@ -219,6 +219,7 @@ $(function() {
 			success:function (result) {
 				let length = result.length;
 				console.log(result)
+				console.log(allPageNo)
 				if( length < 4 ){
 					isEnd = true;
 				}
