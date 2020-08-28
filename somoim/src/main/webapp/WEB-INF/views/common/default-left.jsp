@@ -37,10 +37,6 @@
 	color: #FFF;
 }
 
-#mySidenav .active>a {
-	background-color: rgba(0,073,140, .8);
-	color: #FFF;
-}
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #content {
@@ -163,7 +159,7 @@
 						<c:when test="${not empty joinedMoim }">
 							<c:forEach items="${joinedMoim}" var="joinedMoim" end="2">
 							
-								<a id="left-modal" class="nav-link" data-no="${joinedMoim.moimNo }"> <span class="nav-item avatar">
+								<a class="nav-link" data-no="${joinedMoim.moimNo }"> <span class="nav-item avatar">
 										${joinedMoim.title }
 										<c:if test="${joinedMoim.premiumYn eq 'Y'}">
 											<i class="fas fa-crown ml-2" style="color: #6699FF;"></i>
@@ -171,7 +167,7 @@
 								</span>
 								</a>
 							</c:forEach>
-							<a class="text-center" href="#" style="color: black;">더보기</a>
+							<a class="text-center" href="/mypage/usermoim.do" style="color: black;">더보기</a>
 						</c:when>
 						<c:otherwise>
 							<p class="text-center">가입한 모임이 없습니다.</p>
