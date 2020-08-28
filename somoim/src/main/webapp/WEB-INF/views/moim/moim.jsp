@@ -374,7 +374,7 @@
                     console.log(userId);
                     let btn = '';
                     btn += '<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>';
-                    btn += '<button class="btn btn-primary" data-join="'+subMoim.moimSubMoim.joinCount+'" data-head="'+subMoim.moimSubMoim.headCount+'" id="btn-participant" onclick="subMoimfx('+subMoimNo+','+userId+')">' + subMoim.moimSubMoim.joinCount;
+                    btn += '<button class="btn btn-primary" data-dismiss="modal" data-join="'+subMoim.moimSubMoim.joinCount+'" data-head="'+subMoim.moimSubMoim.headCount+'" id="btn-participant" onclick="subMoimfx('+subMoimNo+','+userId+')">' + subMoim.moimSubMoim.joinCount;
                     btn += '/'+subMoim.moimSubMoim.headCount+'</button>';
                     
                     $("#sub-footer").append(btn);
