@@ -132,9 +132,9 @@ public class HomeServiceImpl implements HomeService{
 
 	//셀렉트박스 검색기능
 	@Override
-	public List<MoimMainDto> getselectSearchFunction(Map<String, Object> keyword) {
+	public List<MoimMainDto> getselectSearchFunction(Map<String, Object> select) {
 		
-		return homeDao.selectSearchFunction(keyword);
+		return homeDao.selectSearchFunction(select);
 	}
 
 	// 좋아요 기능
