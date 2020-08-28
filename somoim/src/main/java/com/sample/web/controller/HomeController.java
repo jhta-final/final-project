@@ -197,7 +197,7 @@ public class HomeController {
 		long savedMainCateNo = mainCateNo;
 		
 		if(mainCateNo == 0) {
-			mainCateNo = (long)(Math.random()*25 +1);
+			mainCateNo = (long)(Math.random()*5 +1);
 		} else {
 			mainCateNo = savedMainCateNo;
 		}
