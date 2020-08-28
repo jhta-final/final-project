@@ -206,7 +206,7 @@ $(function() {
 	// 더보기 시작--------------------------------------
 	var mainCatePageNo = 1;
 	var mainCateNo = 0;
-	var $mainCatelist = $("#mainCategMoim");
+	var $mainCatelist = $("#mainCateMoim");
 	$("#mainCateViewMore").click(function() {
 		moreMainCateData();
 	});
@@ -231,7 +231,7 @@ $(function() {
 				}
 				
 	            $mainCateTitle.text(result.moims[0].mainCateName);
-	            if(Math.ceil(currentPageNo/4) == Math.ceil(result.total/4)) {
+	            if(Math.ceil(mainCatePageNo/4) == Math.ceil(result.total/4)) {
 	               $("#mainCateViewMore").hide();
 	            } else {
 	               $("#mainCateViewMore").show();
@@ -252,7 +252,7 @@ $(function() {
 				   	row2 += '<p style="float: right">'+mainCateMoim.joinDate+'</p>';
 				   	row2 += '</div></div></div>';
 					
-					$list.append(row2);
+					$mainCatelist.append(row2);
 				}); 
 				mainCatePageNo += 4;
 			}
