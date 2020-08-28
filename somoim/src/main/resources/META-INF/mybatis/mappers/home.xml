@@ -4,26 +4,43 @@
 <mapper namespace="com.sample.dao.HomeDao">
 	<!-- 키워드 검색기능 -->
 	<select id="searchFunction" parameterType="string" resultType="MainDto"> 
-	select *
+	select
+			a.moim_no		as moimNo,
+			title			as title,
+			join_count		as joinCount,
+			head_count		as headCount,
+			content			as content,
+			image			as image,
+			fee				as fee,
+			likes			as likes,
+			join_date		as joinDate,
+			a.premium_yn	as premiumYn,
+			a.created_date	as createdDate,
+			b.location_no	as locationNo,
+			b.name      	as locationName,
+            c.sub_cate_no	as subCateNo,
+			c.name			as subCateName,
+			d.main_cate_no	as mainCateNo,
+			d.name			as mainCateName
 	from
-		moim_main a
-		join moim_location b on a.location_no = b.location_no
-		join moim_sub_cate c on a.sub_cate_no = c.sub_cate_no
-		join moim_main_category d on c.main_cate_no = d.main_cate_no
+			moim_main a
+			join moim_location b on a.location_no = b.location_no
+			join moim_sub_cate c on a.sub_cate_no = c.sub_cate_no
+			join moim_main_category d on c.main_cate_no = d.main_cate_no
 	where 
-		(a.title like '%' || #{value} || '%'
+			(a.title like '%' || #{value} || '%'
 	or
-		a.content like '%' || #{value} || '%'
+			a.content like '%' || #{value} || '%'
+    or
+			d.name like '%' || #{value} || '%'
 	or
-		b.name like '%' || #{value} || '%'
-	or
-		c.name like '%' || #{value} || '%'
+			c.name like '%' || #{value} || '%'
 	or 
-		d.name like '%' || #{value} || '%')
+			d.name like '%' || #{value} || '%')
 	and
-		a.delete_yn = 'N'
+			a.delete_yn = 'N'
 	order by 
-		a.created_date desc
+			a.created_date desc
 	</select>
 	
 	<!-- 셀렉트박스 검색 -->
@@ -79,7 +96,7 @@
 	and
         c.main_cate_no = #{mainCateNo}
         </if>
-    ) order by 
+    order by 
 		a.created_date desc
 	</where>
 	</select>
@@ -219,7 +236,7 @@
 	</select>
 	
 	<!-- 카테고리 랜덤표시 -->
-	<select id="mainCategoryMoims" parameterType="long" resultType="MainDto">
+	<select id="mainCategoryMoims" parameterType="hashmap" resultType="MainDto">
 	 select * from(
 	 	select 
 			a.moim_no		as moimNo,
@@ -235,17 +252,17 @@
 			a.created_date	as createdDate,
 			b.main_cate_no	as mainCateNo,
 			c.sub_cate_no	as subCateNo,
-			b.name			as mainCateName
+			b.name			as mainCateName,
+            row_number() over(order by join_date desc) rn
 		from 
 			moim_main A, moim_main_category B, moim_sub_cate C
 		where
 			a.sub_cate_no = c.sub_cate_no and b.main_cate_no = c.main_cate_no
         and
-            b.main_cate_no = #{value}
+            b.main_cate_no = #{mainCateNo}
         and
         	a.delete_yn = 'N'
-	 ) order by 
-	 		dbms_random.random
+	 ) <![CDATA[where rn >= #{beginIndex} and rn <= #{endIndex}]]>
 	
 	</select>
 	
@@ -282,8 +299,6 @@
 	
 	<!-- 나를 팔로워한 친구들 -->
 	<select id="followUsers" parameterType="string" resultType="MoimFollowDto">
-	<![CDATA[
-	select * from(
 	select
 	A.user_id		as userId,
 	A.fol_user_id	as folUserId,
@@ -298,8 +313,6 @@
         delete_yn = 'N'
 	and
 		A.fol_user_id = B.user_id
-	) where rownum <= 3
-	]]>
 	</select>
 
 	

@@ -22,7 +22,7 @@ public interface HomeDao {
 	List<MoimMainDto> favoliteMoims();
 	
 	// 메안카테고리 랜덤표시
-	List<MoimMainDto> mainCategoryMoims(long mainCateNo);
+	List<MoimMainDto> mainCategoryMoims(HashMap<String, Object> map);
 	
 	// 가입한 모임 표시
 	List<MoimMainDto> joinedMoim(String userId);

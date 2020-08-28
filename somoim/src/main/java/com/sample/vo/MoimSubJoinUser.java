@@ -12,6 +12,12 @@ public class MoimSubJoinUser {
 		this.subMoimNo = subMoimNo;
 		this.userId = userId;
 	}
+	
+	public MoimSubJoinUser(long subMoimNo, long moimNo, String userId) {
+		this.subMoimNo = subMoimNo;
+		this.moimNo = moimNo;
+		this.userId = userId;
+	}
 
 	public long getSubMoimNo() {
 		return subMoimNo;

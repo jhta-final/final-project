@@ -12,21 +12,22 @@
 	
 }
 .nav-Notice-navi .btn{
-    font-size: 13px;
-    line-height: 6px;
+    font-size: 15px;
+    line-height: 7px;
     border-radius: 0.25rem;
-    width: 55px;
+    width: 53px;
+    border: 1px solid rgba(0,073,140, .5);
 	
 }
 
 .nav-Notice ul,
 .nav-Notice li {margin:0; padding:0; list-style:none;}
-.nav-Notice li a {display:block; height:26px; line-height:26px; color:#555; text-decoration:none;}
+.nav-Notice li a {display:block; height:26px; width: 220px; line-height:26px; color:#555; text-decoration:none;	overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 
 .nav-Notice {
 	text-overflow: ellipsis;
     border-radius: 0.25rem;
-    border: 2px solid #212529;
+    /* border: 1px solid #ced4da; */
     padding: 0 5px;
     height: 31px;
     overflow: hidden;
@@ -163,13 +164,12 @@
 		<div class="nav-Notice">
 		    <ul id="ticker">
 				<c:forEach items="${boardLists }" var="boardList" varStatus="listNo">
-				        <li><a href="#"><span>${listNo.count }</span>.<c:out value="${boardList.boardTitle}"/></a></li>
+					<li class="ml-1"><a href="#"><span>${listNo.count } . </span>${boardList.boardTitle}</a></li>
 				</c:forEach>
 		    </ul>
 		  <div class="nav-Notice-navi">
-		    <button class="btn btn-primary prev">이전</button>
-		    <button class="btn btn-primary next">다음</button>
-		    <button class="btn btn-warning pause none">정지</button>
+		    <button class="btn btn-line-primary prev" style="top:50%">이전</button>
+		    <button class="btn btn-line-primary next">다음</button>
 		  </div>
 		</div> 
 		 
@@ -551,22 +551,6 @@
 				           }); 
 
 				   var autoplay = true;
-				       $(document).on('click','.pause',function(){
-				             if(autoplay==true){
-				               clearTimeout(timer);
-				               $(this).text('재생');
-				               autoplay=false;
-				             }else{
-				               autoplay=true;
-				               $(this).text('정지');
-				               ticker();
-				             }
-				           });  
-				     var tickerpause = function()
-				   {
-				    
-				   };
-				   tickerpause();
 				   var tickerover = function()
 				   {
 				     $('#ticker').mouseover(function(){
@@ -578,7 +562,6 @@
 				   };
 				   tickerover();
 				     ticker();
-				     
 				 });
 		 
 		

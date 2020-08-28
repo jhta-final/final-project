@@ -22,10 +22,13 @@ import com.sample.dto.MoimMainDto;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sample.dto.DetailViewMoimsDto;
+import com.sample.dto.MoimFriends;
 import com.sample.service.AlramService;
+import com.sample.service.CategoryService;
 import com.sample.service.HomeService;
 import com.sample.service.MoimService;
 import com.sample.vo.MoimFavoriteMoim;
+import com.sample.vo.MoimJoinUser;
 import com.sample.vo.MoimManagerBoard;
 import com.sample.vo.MoimUser;
 
@@ -38,6 +41,8 @@ public class HomeController {
 	MoimService moimService;
 	@Autowired
 	private AlramService alramService;
+	@Autowired
+	private CategoryService categoryServive;
 	
 	@GetMapping("/home.do")
 	public String getAllMoims(Model model, HttpSession httpSession) {
@@ -53,7 +58,7 @@ public class HomeController {
 		model.addAttribute("favoliteMoims", homeService.getFavoliteMoims());
 		
 		// 메안카테고리 랜덤표시
-		model.addAttribute("mainCategoryMoims", homeService.getMainCategoryMoims());
+		//model.addAttribute("mainCategoryMoims", homeService.getMainCategoryMoims());
 		
 		// 가입한 모임 표시
 		//model.addAttribute("joinedMoim", homeService.getjoinedMoim(user.getId()));
@@ -77,36 +82,49 @@ public class HomeController {
 	// 키워드 검색 기능(타이틀, 내용, 지역, 메인카테고리 이름, 서브카테고리 이름)
 	@PostMapping("/test.do")
 	public String searchFunction(@RequestParam("keyword") String keyword,
-			Model model){
-
+			Model model, HttpSession httpSession){
+		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
+		
 		List<MoimMainDto> searchDto = homeService.getsearchFunction(keyword);
+		
+		for(MoimMainDto moims : searchDto) {
+			List<MoimUser> users = categoryServive.getFollowsByMoim(new MoimFriends(moims.getMoimNo(), user.getId()));
+			moims.setFriends(users);
+		}
+		
 		model.addAttribute("cateMoims", searchDto);
 		model.addAttribute("title", "search");
 
 		return "form/test.tiles";
 	}
 	
-	// 셀렉트 박스를 이용해서 검색
+	// 셀렉트 박스 및 키워드 이용해서 검색
 	@PostMapping("/test2.do")
 	public String selectSearchFunction
 			(@RequestParam(value="locationNo", required=false) long locationNo,
 			@RequestParam(value="mainCateNo", required=false) long mainCateNo,	
 			@RequestParam(value="subCateNo", required=false) long subCateNo,
 			@RequestParam("keyword") String keyword,
-			Model model) {
+			Model model, HttpSession httpSession) {
+		MoimUser user = (MoimUser) httpSession.getAttribute("LOGIN_USER");
 		
 		Map<String, Object> select = new HashMap<String, Object>();
+		
 		select.put("locationNo", locationNo);
-		System.out.println(locationNo);
 		select.put("mainCateNo", mainCateNo);
 		select.put("subCateNo", subCateNo);
 		select.put("locationName", homeService.getLocationName(locationNo));
 		select.put("mainCateName", homeService.getMainCategoryName(mainCateNo));
-		System.out.println(homeService.getMainCategoryName(mainCateNo));
 		select.put("subCateName", homeService.getSubCategoryName(subCateNo));
-		System.out.println(homeService.getSubCategoryName(subCateNo));
 		select.put("keyword", keyword);
+		
 		List<MoimMainDto> searchAll = homeService.getselectSearchFunction(select);
+		
+		for(MoimMainDto moims : searchAll) {
+			List<MoimUser> users = categoryServive.getFollowsByMoim(new MoimFriends(moims.getMoimNo(), user.getId()));
+			moims.setFriends(users);
+		}
+		
 		model.addAttribute("cateMoims", searchAll);
 		model.addAttribute("title", "search");
 		model.addAttribute("keyword", select);
@@ -168,5 +186,25 @@ public class HomeController {
 		return map;
 	}
 	
-	
+	// 홈 메인카테 더보기용
+	@GetMapping("/mainCate.do")
+	@ResponseBody
+	public Map<String, Object> subCate(@RequestParam("mainCatePageNo") long beginIndex,
+									@RequestParam(value="mainCateNo", required=false, defaultValue="0") long mainCateNo, HttpSession httpSession) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		long savedMainCateNo = mainCateNo;
+		
+		if(mainCateNo == 0) {
+			mainCateNo = (long)(Math.random()*5 +1);
+		} else {
+			mainCateNo = savedMainCateNo;
+		}
+		
+		map.put("moims", homeService.getMainCategoryMoims(beginIndex, beginIndex+3, mainCateNo));
+		map.put("total", homeService.getMainCategoryMoims(beginIndex, beginIndex+3, mainCateNo).size());
+		
+		return map;
+	}
 }
