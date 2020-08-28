@@ -15,6 +15,8 @@ public class UserBanInterceptor extends HandlerInterceptorAdapter {
 
 	@Autowired
 	private AlramService alramService;
+	@Autowired
+	HomeService homeService;
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -38,6 +40,7 @@ public class UserBanInterceptor extends HandlerInterceptorAdapter {
 				return false;
 			}
 			session.setAttribute("alrams", alramService.getAlrams(user.getId()));
+			session.setAttribute("followUsers", homeService.getfollowUsers(user.getId()));
 		}
 		
 		return true;
