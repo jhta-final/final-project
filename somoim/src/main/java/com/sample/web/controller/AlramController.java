@@ -71,10 +71,6 @@ public class AlramController {
 	
 	/* 쪽지 관련 */
 	
-	// 쪽지 보내기
-//	@PostMapping("/addmessage.do")
-//	public String addMessage()
-	
 	// 쪽지함 조회하기
 	@GetMapping("/message.do")
 	@ResponseBody

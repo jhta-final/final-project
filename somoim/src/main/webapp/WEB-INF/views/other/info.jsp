@@ -21,6 +21,10 @@
 	width: 450px;
 }
 
+#ohter-message-modal>div {
+	width: 450px;
+}
+
 #ohter-warning-modal .input-group-text, #ohter-message-modal .input-group-text {
 	display: flex;
 	-ms-flex-align: center;
@@ -69,7 +73,7 @@
 					d="M5.041 10.5h5.918a3 3 0 0 0-5.918 0zM4 11a4 4 0 1 1 8 0 .5.5 0 0 1-.5.5h-7A.5.5 0 0 1 4 11zm4-8a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 3zm8 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 11a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zM4.464 7.464a.5.5 0 0 1-.707 0L2.343 6.05a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707z" />
 			</svg>
 		</button>
-		<button class="btn btn-outline-primary btn-sm">
+		<button class="btn btn-outline-primary btn-sm" id="other-message-btn">
 			쪽지 보내기
 			<svg width="2em" height="2em" viewBox="0 0 16 16"
 				class="bi bi-mailbox2" fill="currentColor"
@@ -209,6 +213,39 @@
   </div>
 </div>
 
+<!-- 메세지보내기 모달창 -->
+<div class="modal fade" id="ohter-message-modal">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">메세지 보내기</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+	
+      <div class="modal-body">
+      	<div class="input-group">
+			<div class="input-group-text">제목</div>
+			<input type="text" class="form-control"
+				id="other-message-title" placeholder="제목을 입력해주세요">
+		</div>
+      	<div class="input-group">
+			<div class="input-group-text" id="inputGroup-sizing-sm">신고내용
+			</div>
+			<textarea class="form-control" id="other-message-content" cols="5"
+				name="content" placeholder="신고내용을 입력해주세요"></textarea>
+			<span id="other-message-content-counter">(0 / 최대 100자)</span>
+		</div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="other-message-submit">보내기</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 <script>
 // 가입모임 데이터 가져오는 AJAX
 $(function() {
@@ -233,15 +270,50 @@ $(function() {
 		})
 	})
 	
-	//글자수 실시간 카운팅
+	//경고창 글자수 실시간 카운팅
 	$('#other-warning-content').keyup(function (e){
 	    var content = $(this).val();
 	    $('#other-content-counter').html("("+content.length+" / 최대 100자)");    
 	    if (content.length > 100){
 	        alert("최대 100자까지 입력 가능합니다.");
-	        $(this).val(content.substring(0, 200));
+	        $(this).val(content.substring(0, 100));
 	        $('#other-content-counter').html("(100 / 최대 100자)");
 	    }
 	});
+	
+	// 메세지 모달
+	$('#other-message-btn').click(function() {
+		$("#ohter-message-modal").modal("show");
+	})
+	
+	//메세지 글자수 실시간 카운팅
+	$('#other-message-content').keyup(function (e){
+	    var content = $(this).val();
+	    $('#other-message-content-counter').html("("+content.length+" / 최대 100자)");    
+	    if (content.length > 100){
+	        alert("최대 100자까지 입력 가능합니다.");
+	        $(this).val(content.substring(0, 100));
+	        $('#other-message-content-counter').html("(100 / 최대 100자)");
+	    }
+	});
+	
+	$("#other-message-submit").click(function() {
+		$.ajax({
+			type: "post",
+			url: "/other/sendmessage.do",
+			data:{ 
+				content: $('#other-message-content').val(),
+				title: $('#other-message-title').val()	
+				},
+			dataType: "json",
+			success: function (status) {
+				if (status) {
+					$("#ohter-message-modal").modal("hide");					
+				} else {
+					alert("메세지 보내기를 실패했습니다. 다시 시도해주세요")
+				}
+			}
+		})
+	})
 })
 </script>

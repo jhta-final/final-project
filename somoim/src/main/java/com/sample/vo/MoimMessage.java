@@ -16,6 +16,18 @@ public class MoimMessage {
 	@JsonFormat(pattern="yyyy.MM.dd")
 	private Date createdDate;
 	
+	public MoimMessage() {
+		
+	}
+
+	public MoimMessage(String title, String content, String sendUser, String receiveUser) {
+		super();
+		this.title = title;
+		this.content = content;
+		this.sendUser = sendUser;
+		this.receiveUser = receiveUser;
+	}
+
 	public long getMessageNo() {
 		return messageNo;
 	}

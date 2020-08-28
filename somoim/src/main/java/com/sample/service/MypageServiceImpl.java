@@ -79,11 +79,6 @@ public class MypageServiceImpl implements MypageService {
 		alramDao.insertAlram(moimAlram);
 		
 	}
-	@Override
-	public void AddMessage(MoimAlram moimAlram) {
-		alramDao.insertMessage(moimAlram);
-		
-	}
 
 	@Override
 	public int followYn(MoimFollow moimFollow) {

@@ -16,15 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sample.dao.AlramDao;
 import com.sample.dao.WarningDao;
 import com.sample.dto.MoimFollowDto;
 import com.sample.dto.MoimJoinUserMoimDto;
+import com.sample.service.AlramService;
 import com.sample.service.MoimService;
 import com.sample.service.MypageService;
 import com.sample.service.UserService;
+import com.sample.service.WarningService;
 import com.sample.vo.MoimAlram;
 import com.sample.vo.MoimBoard;
 import com.sample.vo.MoimFollow;
+import com.sample.vo.MoimMessage;
 import com.sample.vo.MoimPhoto;
 import com.sample.vo.MoimUser;
 import com.sample.vo.MoimWarning;
@@ -43,7 +47,10 @@ public class OtherpageController {
 	MoimService moimService;
 	
 	@Autowired
-	WarningDao warningDao;
+	WarningService warningService;
+	
+	@Autowired
+	AlramService alramService;
 	
 	private MoimUser loginedUser = new MoimUser();
 	private MoimFollow moimFollow = new MoimFollow();
@@ -132,18 +139,18 @@ public class OtherpageController {
 		
 		// 쪽지보내기
 		@PostMapping("/sendmessage.do")
-		public String sendMessage(@ModelAttribute("messageForm") MoimAlram message) {
-			// 메세지 인서트
-			mypageService.AddMessage(message);
-			// 알람 인서트
-			MoimAlram alram = new MoimAlram();
-			alram.setType("쪽지");
-			alram.setUserId(message.getUserId());
-			alram.setMessage(message.getLoginUserId()+"님이 쪽지를 보내셨습니다.");
-			mypageService.AddAlram(alram);
-			
-			mypageService.AddMessage(message);
-			return "other/info.tiles";
+		@ResponseBody
+		public boolean sendMessage(@RequestParam("content") String content,
+				@RequestParam("title") String title) {
+			MoimMessage message = new MoimMessage(title, content, moimFollow.getUserId(), moimFollow.getFolUserId());
+			MoimAlram alram = new MoimAlram(moimFollow.getUserId() + "님이 메세지를 보냈습니다.", "메세지", moimFollow.getFolUserId(), moimFollow.getUserId());
+			try {
+				alramService.addMessage(message);
+				alramService.addAlram(alram);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
 		}
 		
 		// 팔로우하기
@@ -182,7 +189,7 @@ public class OtherpageController {
 				warningUser.setLoginUserId(moimFollow.getUserId());
 				warningUser.setUserId(moimFollow.getFolUserId());
 				
-				warningDao.insertWarning(warningUser);
+				warningService.addWarning(warningUser);
 				return true;
 			} catch (Exception e) {
 				return false;

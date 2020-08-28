@@ -50,7 +50,10 @@ public class AlramServiceImpl implements AlramService {
 	// 쪽지 보내기
 	@Override
 	public void addMessage(MoimMessage moimMessage) {
-		alramDao.insertMessageNew(moimMessage);
+		moimMessage.setUserId(moimMessage.getReceiveUser());
+		alramDao.insertMessage(moimMessage);
+		moimMessage.setUserId(moimMessage.getUserId());
+		alramDao.insertMessage(moimMessage);
 	}
 
 	// 쪽지 삭제하기

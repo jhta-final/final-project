@@ -12,11 +12,20 @@ public class MoimAlram {
 	private String readYn;
 	private String userId;
 	private String loginUserId;
-	private String content;
 	@JsonFormat(pattern="yyyy.MM.dd")
 	private Date createdDate;
 	
 	public MoimAlram() {}
+	
+
+	public MoimAlram(String message, String type, String userId, String loginUserId) {
+		super();
+		this.message = message;
+		this.type = type;
+		this.userId = userId;
+		this.loginUserId = loginUserId;
+	}
+
 
 	public long getAlramNo() {
 		return alramNo;
@@ -64,14 +73,6 @@ public class MoimAlram {
 
 	public void setLoginUserId(String loginUserId) {
 		this.loginUserId = loginUserId;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
 	}
 
 	public Date getCreatedDate() {

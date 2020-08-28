@@ -10,9 +10,7 @@ public interface AlramDao {
 	List<MoimAlram> selectAlrams(String userId);
 	
 	void insertAlram(MoimAlram alram);
-	
-	void insertMessage(MoimAlram alram);
-	
+		
 	void updateAlram(long alramNo);
 	
 	// 보낸쪽지함
@@ -21,7 +19,7 @@ public interface AlramDao {
 	List<MoimMessage> getAllReceiveMessages(String userId);
 	
 	// 쪽지 보내기
-	void insertMessageNew(MoimMessage moimMessage);
+	void insertMessage(MoimMessage moimMessage);
 	
 	// 쪽지 삭제하기
 	void deleteMessage(long messageNo);
