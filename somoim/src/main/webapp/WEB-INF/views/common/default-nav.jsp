@@ -163,7 +163,7 @@
 		<div class="nav-Notice">
 		    <ul id="ticker">
 				<c:forEach items="${boardLists }" var="boardList" varStatus="listNo">
-				        <li><a href="#"><span>${listNo.count }</span>.<c:out value="${boardList.boardTitle}"/></a></li>
+					<li><a href="#"><span>${listNo.count } . </span>${boardList.boardTitle}</a></li>
 				</c:forEach>
 		    </ul>
 		  <div class="nav-Notice-navi">

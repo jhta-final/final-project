@@ -330,6 +330,10 @@ $(function() {
 			dataType: "json",
 			success: function (moim) {
 				console.log(moim);
+				var link = '/moim/moim.do?moimNo='+moim.moimNo+'';
+				var join = '/moim/join.do?moimNo='+moim.moimNo+'&userId=${LOGIN_USER.id}';
+				var withdrawal = '/moim/outMoim.do?moimNo='+moim.moimNo+'&userId=${LOGIN_USER.id}';
+				modalMoimNo = moim.moimNo;
 				var header = '<div class="col-1"><img src="/resources/profileImage/'+moim.profileImage+'" class="rounded-circle z-depth-0" alt="image" height="50px" width="50px"></div>'
 					header += '<div class="col-9 text-left"><span class="mr-3">'+moim.nickName+'</span>'
 					header += '<span class="mr-3">'+moim.userId+'</span>'
@@ -367,10 +371,6 @@ $(function() {
 				$("#home-detail-joinDate").text("모이는날 : " + moim.joinDate)
 				$("#home-detail-createDate").text("만든날 : " + moim.createdDate)
 				
-				var link = '/moim/moim.do?moimNo='+moim.moimNo+'';
-				var join = '/moim/join.do?moimNo='+moim.moimNo+'&userId=${LOGIN_USER.id}';
-				var withdrawal = '/moim/outMoim.do?moimNo='+moim.moimNo+'&userId=${LOGIN_USER.id}';
-				modalMoimNo = moim.moimNo;
 				
 				
 				var image = '<div class="col-12"><img class="card-img-top" src="/resources/home_images/'+moim.image+'" alt="Card image cap" style="width: 100%; height: 581.63px; background-color: lightgray"></div>'
