@@ -212,17 +212,17 @@
 			<div class="collapse" id="left-myfriends" style="border-top: 1px solid lightgray">
 				<div class="nav-item">
 					<c:choose>
-						<c:when test="${not empty followUsers}">
+						<c:when test="${fn:length(followUsers) >= 3}">
 							<c:forEach items="${followUsers}" var="follow">
 								<a class="nav-link" href="/other/info.do?userId=${follow.folUserId }"> 
 									<span class="nav-item avatar">
-									<img src="/resources/profileImage/${follow.image }"
-										class="rounded-circle z-depth-0" alt="avatar image" height="35px" width="35px">
-										${follow.nickname }
+										<img src="/resources/profileImage/${follow.image }"
+											class="rounded-circle z-depth-0" alt="avatar image" height="35px" width="35px">
+											${follow.nickname }
 									</span>
 								</a>
 							</c:forEach>
-							<div class="dropup">
+							<div class="dropdown">
 							<a class="text-center dropdown-toggle" data-toggle="collapse" 
 								href="#left-myfriends" role="button" aria-expanded="false" 
 								aria-controls="collapseExample" style="color: black;">더보기</a>
@@ -236,7 +236,6 @@
 											</span>
 										</a>
 									</c:forEach>
-		    						
 		    					</ul>
 							</div>
 						</c:when>

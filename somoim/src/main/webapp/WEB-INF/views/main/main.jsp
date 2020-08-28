@@ -239,20 +239,20 @@ $(function() {
 				
 				$.each(result.moims, function(index, mainCateMoim){
 					
-					var row2 = '<div class="card mb-4 home-card" data-no="'+ mainCateMoim.moimNo +'">';
-					row2 += '<img class="card-img-top" src="/resources/home_images/'+mainCateMoim.image+'" alt="Card image cap">';
-					row2 += '<div class="card-body"><div class="card-title">';
-					row2 += '<span>'+mainCateMoim.title+'</span>';
-					row2 += '</div><div class="text-left">';
-					row2 += '<i class="fas fa-heart" style="color: #d09afc"></i>&ensp;<span class="text-left" >'+mainCateMoim.likes+'</span>';
-				   	row2 += '&ensp;&ensp;<i class="fas fa-users" style="color: #fcba03"></i>&ensp;<span class="mr-3">'+mainCateMoim.joinCount+'/'+mainCateMoim.headCount+'</span>';
+					var row3 = '<div class="card mb-4 home-card" data-no="'+ mainCateMoim.moimNo +'">';
+					row3 += '<img class="card-img-top" src="/resources/home_images/'+mainCateMoim.image+'" alt="Card image cap">';
+					row3 += '<div class="card-body"><div class="card-title">';
+					row3 += '<span>'+mainCateMoim.title+'</span>';
+					row3 += '</div><div class="text-left">';
+					row3 += '<i class="fas fa-heart" style="color: #d09afc"></i>&ensp;<span class="text-left" >'+mainCateMoim.likes+'</span>';
+				   	row3 += '&ensp;&ensp;<i class="fas fa-users" style="color: #fcba03"></i>&ensp;<span class="mr-3">'+mainCateMoim.joinCount+'/'+mainCateMoim.headCount+'</span>';
 				   	if (mainCateMoim.premiumYn == 'Y') {
-					   	row2 += '<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>';				   		
+					   	row3 += '<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>';				   		
 				   	}
-				   	row2 += '<p style="float: right">'+mainCateMoim.joinDate+'</p>';
-				   	row2 += '</div></div></div>';
+				   	row3 += '<p style="float: right">'+mainCateMoim.joinDate+'</p>';
+				   	row3 += '</div></div></div>';
 					
-					$mainCatelist.append(row2);
+					$mainCatelist.append(row3);
 				}); 
 				mainCatePageNo += 4;
 			}
@@ -372,7 +372,7 @@ $(function() {
 				console.log(moim);
 				var link = '/moim/moim.do?moimNo='+moim.moimNo+'';
 				var join = '/moim/join.do?moimNo='+moim.moimNo+'&userId=${LOGIN_USER.id}';
-				var withdrawal = '/moim/outMoim.do?moimNo='+moim.moimNo+'&userId=${LOGIN_USER.id}';
+				var withdrawal = '/moim/out.do?moimNo='+moim.moimNo+'&userId=${LOGIN_USER.id}';
 				modalMoimNo = moim.moimNo;
 				var header = '<div class="col-1"><img src="/resources/profileImage/'+moim.profileImage+'" class="rounded-circle z-depth-0" alt="image" height="50px" width="50px"></div>'
 					header += '<div class="col-9 text-left"><span class="mr-3">'+moim.nickName+'</span>'
