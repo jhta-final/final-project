@@ -127,28 +127,7 @@ h5 {
 <div class="row">
 	<div class="col-12">
 		<h1>전체모임</h1>
-		<div class="row home-body">
-			<c:forEach items="${allMoims }" var="moim">
-				<div class="card mb-4 home-card" data-no="${moim.moimNo }">
-					<img class="card-img-top" src="/resources/home_images/${moim.image }"
-						alt="Card image cap">
-					<div class="card-body">
-						<div class="card-title">
-							<span><c:out value="${moim.title }" /></span>
-						</div>
-						<div class="text-left">
-							<i class="fas fa-heart" style="color: #d09afc"></i>&ensp;<span class="text-left" >${moim.likes }</span>&ensp;&ensp;
-							<i class="fas fa-users" style="color: #fcba03"></i>&ensp;<span class="mr-3">${moim.joinCount }/${moim.headCount }</span>
-							<c:if test="${moim.premiumYn == 'Y'}">
-								<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>
-							</c:if>
-							<p style="float: right">
-							<fmt:formatDate value="${moim.joinDate}" /></p>
-						</div>
-					</div>
-				</div>
-			</c:forEach>
-		</div>
+		<div id="allMoim" class="row home-body"></div>
 	</div>
 </div>
 </div>
@@ -201,6 +180,76 @@ h5 {
 <script>
 
 $(function() {
+	
+	
+    let isEnd = false;
+    let allPageNo = 8;
+	let $allMoim = $("#allMoim");
+
+	$(function () {
+
+		$(window).scroll(function(){
+			let $window = $(this);
+			let scrollTop = $window.scrollTop();
+			let windowHeight = $window.height();
+			let documentHeight = $(document).height();
+			
+
+			// scrollbar의 thumb가 바닥 전 30px까지 도달 하면 리스트를 가져온다.
+			if( scrollTop + windowHeight == documentHeight ){
+				getAllMoim();
+			}
+		})
+		getAllMoim();
+
+	});
+	
+	function getAllMoim() {
+		if(isEnd == true){
+            return;
+        }
+		
+		$.ajax({
+			type:"GET",
+			url:"/all.do",
+			data: {
+				allPageNo : allPageNo
+			},
+			dataType: "json",
+			success:function (result) {
+				let length = result.length;
+				console.log(result)
+				if( length < 4 ){
+					isEnd = true;
+				}
+				if(length == 0) {
+					return;
+				}
+
+				$.each(result.moims, function(index, allMoim){
+					
+					var row4 = '<div class="card mb-4 home-card" data-no="'+ allMoim.moimNo +'">';
+					row4 += '<img class="card-img-top" src="/resources/home_images/'+allMoim.image+'" alt="Card image cap">';
+					row4 += '<div class="card-body"><div class="card-title">';
+					row4 += '<span>'+allMoim.title+'</span>';
+					row4 += '</div><div class="text-left">';
+					row4 += '<i class="fas fa-heart" style="color: #d09afc"></i>&ensp;<span class="text-left" >'+allMoim.likes+'</span>';
+				   	row4 += '&ensp;&ensp;<i class="fas fa-users" style="color: #fcba03"></i>&ensp;<span class="mr-3">'+allMoim.joinCount+'/'+allMoim.headCount+'</span>';
+				   	if (allMoim.premiumYn == 'Y') {
+					   	row4 += '<i class="fas fa-crown ml-2" style="color:#6699FF;"></i>';				   		
+				   	}
+				   	row4 += '<p style="float: right">'+allMoim.joinDate+'</p>';
+				   	row4 += '</div></div></div>';
+					
+					$allMoim.append(row4);
+				})
+			}
+		})
+	}
+	
+	
+	
+	
 	
 	
 	// 더보기 시작--------------------------------------
