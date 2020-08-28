@@ -118,6 +118,13 @@ public class MoimController {
 		return categoryService.getSubCates(mainCateNo);
 	}
 	
+	// 모임 탈퇴
+	@GetMapping("/outMoim.do")
+	public String outMoim(@RequestParam("userId") String userId) {
+		
+		return "";
+	}
+	
 	// 모임 정보 수정
 	@GetMapping("/modify.do")
 	public String modify(Model model, HttpSession httpSession, @RequestParam("moimNo") long moimNo) {

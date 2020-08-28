@@ -163,7 +163,7 @@
 		<div class="nav-Notice">
 		    <ul id="ticker">
 				<c:forEach items="${boardLists }" var="boardList" varStatus="listNo">
-				        <li><a href="#"><span>${listNo.count }</span>.<c:out value="${boardList.boardTitle}"/></a></li>
+					<li><a href="#"><span>${listNo.count } . </span>${boardList.boardTitle}</a></li>
 				</c:forEach>
 		    </ul>
 		  <div class="nav-Notice-navi">
@@ -545,22 +545,6 @@
 				           }); 
 
 				   var autoplay = true;
-				       $(document).on('click','.pause',function(){
-				             if(autoplay==true){
-				               clearTimeout(timer);
-				               $(this).text('재생');
-				               autoplay=false;
-				             }else{
-				               autoplay=true;
-				               $(this).text('정지');
-				               ticker();
-				             }
-				           });  
-				     var tickerpause = function()
-				   {
-				    
-				   };
-				   tickerpause();
 				   var tickerover = function()
 				   {
 				     $('#ticker').mouseover(function(){
@@ -572,7 +556,6 @@
 				   };
 				   tickerover();
 				     ticker();
-				     
 				 });
 		 
 		
