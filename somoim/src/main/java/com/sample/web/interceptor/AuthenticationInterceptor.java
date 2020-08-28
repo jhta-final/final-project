@@ -16,7 +16,7 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter{
 		String uri = request.getRequestURI();
 		HttpSession session  = request.getSession();
 		MoimUser user = (MoimUser) session.getAttribute("LOGIN_USER");
-		if((!"/".equals(uri)) && user == null) {
+		if((!"/".equals(uri)) &&user == null) {
 			response.sendRedirect("/");
 			return false;
 		}
@@ -25,6 +25,8 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter{
 			response.sendRedirect("/home.do");
 			return false;
 		}
+		
+		request.setAttribute("auth", "pass");
 		
 		return true;
 	}
