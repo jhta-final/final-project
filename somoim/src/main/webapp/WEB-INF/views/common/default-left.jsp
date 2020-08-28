@@ -210,10 +210,10 @@
 			<i class="fas fa-users"></i> 팔로잉 
 			</a>
 			<div class="collapse" id="left-myfriends" style="border-top: 1px solid lightgray">
-				<div class="nav-item">
+				<div id="leftFollowing" class="nav-item">
 					<c:choose>
-						<c:when test="${fn:length(followUsers) >= 3}">
-							<c:forEach items="${followUsers}" var="follow">
+						<c:when test="${fn:length(followUsers) >= 2}">
+							<c:forEach items="${followUsers}" var="follow" end="3">
 								<a class="nav-link" href="/other/info.do?userId=${follow.folUserId }"> 
 									<span class="nav-item avatar">
 										<img src="/resources/profileImage/${follow.image }"
@@ -223,21 +223,21 @@
 								</a>
 							</c:forEach>
 							<div class="dropdown">
-							<a class="text-center dropdown-toggle" data-toggle="collapse" 
+							<a id="followingViewMore" class="text-center dropdown-toggle" data-toggle="collapse" 
 								href="#left-myfriends" role="button" aria-expanded="false" 
 								aria-controls="collapseExample" style="color: black;">더보기</a>
-		    					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-									<c:forEach items="${followUsers}" var="follow">
-										<a class="nav-link nav-item" href="/other/info.do?userId=${follow.folUserId }"> 
-											<span class="nav-item avatar">
-											<img src="/resources/profileImage/${follow.image }"
-												class="rounded-circle z-depth-0" alt="avatar image" height="35px" width="35px">
-												${follow.nickname }
-											</span>
-										</a>
-									</c:forEach>
-		    					</ul>
 							</div>
+						</c:when>
+						<c:when test="${fn:length(followUsers) < 2}">
+							<c:forEach items="${followUsers}" var="follow">
+								<a class="nav-link" href="/other/info.do?userId=${follow.folUserId }"> 
+									<span class="nav-item avatar">
+										<img src="/resources/profileImage/${follow.image }"
+											class="rounded-circle z-depth-0" alt="avatar image" height="35px" width="35px">
+											${follow.nickname }
+									</span>
+								</a>
+							</c:forEach>
 						</c:when>
 						<c:otherwise>
 							<p class="text-center">팔로잉한 사람이 없습니다.</p>
@@ -429,5 +429,19 @@ $(function() {
 			}
 		})
 	})
+	
+	
+	$("#followingViewMore").click(function(){
+		$("#leftFollowing").empty();
+		var following = '<c:forEach items="${followUsers}" var="follow">'
+			following += '<a class="nav-link" href="/other/info.do?userId=${follow.folUserId }">'
+			following += '<span class="nav-item avatar">'
+			following += '<img src="/resources/profileImage/${follow.image }" class="rounded-circle z-depth-0" alt="avatar image" height="35px" width="35px">'
+			following += '${follow.nickname }</span></a></c:forEach>'
+		$("#leftFollowing").append(following);
+	})
+	
+	
+	
 });
 </script>
