@@ -395,7 +395,6 @@ $(function() {
 	
 	// 모임 디테일 모달 창 
 	$("body").on('click', ".home-card",function() {
-		console.log(1);
 		var moimNo = $(this).data("no");
 		$("#myModal").modal('show');
 		modal(moimNo);

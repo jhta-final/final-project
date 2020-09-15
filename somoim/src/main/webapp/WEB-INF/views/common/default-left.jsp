@@ -279,21 +279,21 @@
 			<!-- Modal Header end -->
 			<!-- Modal body -->
 			<div class="modal-body" style="padding:0px;">
-					<div id="left-modal-image" class="row"></div>
-					<div class="row">
-						<div class="col-12" style="padding: 30px;">
-						<h3 id="left-detail-title"></h3>
-							<p id="left-detail-count"></p>
-							<p id="left-detail-content"></p>
-							<p id="left-detail-location"></p>
-							<p id="left-detail-cate"></p>
-							<p><i class="fas fa-won-sign 2x"></i><span id="left-detail-fee"></span></p>
-							<p id="left-detail-likes"></p>
-							<p id="left-detail-premium"></p>
-							<p id="left-detail-joinDate">모이는날 : 2020.10.19</p>
-							<p id="left-detail-createDate">만든날 : 2020.08.15</p>
-						</div>
+				<div id="left-modal-image" class="row"></div>
+				<div class="row">
+					<div class="col-12" style="padding: 30px;">
+					<h3 id="left-detail-title"></h3>
+						<p id="left-detail-count"></p>
+						<p id="left-detail-content"></p>
+						<p id="left-detail-location"></p>
+						<p id="left-detail-cate"></p>
+						<p><i class="fas fa-won-sign 2x"></i><span id="left-detail-fee"></span></p>
+						<p id="left-detail-likes"></p>
+						<p id="left-detail-premium"></p>
+						<p id="left-detail-joinDate">모이는날 : 2020.10.19</p>
+						<p id="left-detail-createDate">만든날 : 2020.08.15</p>
 					</div>
+				</div>
 			</div>
 			<!-- Modal body end -->
 			<!-- Modal footer -->
@@ -304,7 +304,6 @@
 				<a id="left-moim-withdrawal-btn" class="btn btn-warning" href="">모임탈퇴</a>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
-			<!-- Modal footer end -->
 		</div>
 	</div>
 </div>
